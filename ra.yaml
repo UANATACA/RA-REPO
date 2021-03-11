@@ -4,10 +4,9 @@ info:
   title: UANATACA RA API DOCUMENTATION FOR DEVELOPERS
   x-logo:
       url: https://i.ibb.co/FwcHkGb/logoUana.png
-      backgroundColor: #FFFFFF
       altText: RA logo
   description: 
-      $ref: ./RA_guide.md
+      $ref: ./ra_gui.md
 host: api.uanataca.com
 schemes: 
   - https
