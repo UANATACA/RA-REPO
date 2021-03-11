@@ -1,0 +1,9245 @@
+# Introduction
+
+Globally, digital identity ecosystems are increasingly complex and consist of a wide range of identity models and actors with diverse responsibilities, interests, and priorities.
+
+Digital identities are created and used as part of a life-cycle that includes three fundamental stages:
+
+- registration, including enrollment and validation
+- issuance of documents or credentials
+- authentication for service delivery
+
+# Glossary
+
+List of entities and names used to describe UANATACA's services
+
+**Registration Authority (RA)**
+
+The RA manages the entire life-cycle of digital identities, from the certificate issuance to suspension, reactivation, renewal and revocation of the PKI credentials.
+
+**Registration Authority Officer (RAO)**
+
+The **RAO** follows strict guidelines and policies defined to ensure the trust of the CA. RAO is responsible for managing the requests for digital certificates and verifying the content of the requests as well as vetting people requesting them.
+
+**API User**
+
+The Account having access to the APIs provided by the system. It is generally used for a server to server interaction.
+
+**Certificate Request (Request)**
+
+It is a request to issue a new certificate. A request can be associated with only one **RA** and has a status attribute to monitor the progress of the application:
+
+1. Created
+2. Enrolled Ready
+3. Issued
+
+**Created:** The request has been created and associated to an **RA**, but the content of the request has not been validated yet. In this state, data can also be inconsistent, the system will not throw an error. The content of the request can be edited at any moment to make it valid.
+
+Enrolled Ready: The certificates are ready to be issued. The request arrives at this stage, if it has been approved and signed by a **RAO**, who is part of the **RA** in charge of the request.
+
+**Issued:** Certificates issued. The request is ready to be enrolled from the user's self-service page on the platform. The user must first set PIN and PUK codes of his or her choice and then enable the digital identity.
+
+**Secret codes (Scratchcard)**
+
+It is a virtual scratch card containing the secret codes of the user.
+
+The card contains:
+
+- a serial number: it uniquely identifies the user
+- an enrollment code: secret code, that is sent to the user by email
+
+It is important to notice that a **scratchcard** can be used only once. Every **request** must be associated with a different **scratchcard**.
+
+# Making Requests
+
+## Endpoints
+
+Uanataca expose its API on urls composed as follows:
+
+	https://{uanatacahost}/api/{version}/{resource}/
+
+The {uanatacahost} changes according to the environment:
+
+- access.bit4id.org:13035 if the environment is test
+- api.uanataca.com if the environment is production
+
+**{version}** is the api version (currently **v1**) and **{resource} is the name of the resource of our interest.
+
+<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ In test environment you need to trust the certificate Bit4idCA.crt</blockquote>
+
+Each resource can also have path parameters and sub-resources:
+
+	https://{uanatacahost}/api/{version}/{resource}/{param}/{sub-resources}/
+
+<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ Make sure the URL always ends with a forward slash ("/")</blockquote>
+
+These are some examples of endpoints exposed by Uanataca:
+
+	https://api.uanataca.com/api/v1/requests/
+
+</br>
+	
+	https://api.uanataca.com/api/v1/requests/123/
+
+</br>
+
+	https://api.uanataca.com/api/v1/requests/123/cloud_enroll/
+
+## Authentication
+
+The API authentication is perfomed providing to the server the certificate and the key of an enabled User.
+
+This is an example HTTP POST request perfomed with curl:
+
+	1 | curl --key key.pem --cert cert.pem -H "Content-Type: application/json" -d @params.json -X POST https://api.uanataca.com/api/v1/requests/
+
+and a Python with requests package example:
+
+	1 | import requests
+	2 | requests.get(
+	3 |     'https://api.uanataca.com/api/v1/scratchcards/',
+	4 |     cert = ('/path/to/cert.pem', '/path/to/key.pem')
+	5 | )
+
+## Methods Allowed
+
+The Uanataca API is based on a REST architecture. Each endpoint is accessed through HTTPS and when possible accept these HTTP verbs:
+
+<html>
+<table>
+  <tr>
+    <th>Method</th><th>Action</th>
+  </tr>
+  <tr>
+    <td>GET</td><td>Retrieves objects</td>
+  </tr>
+  <tr>
+    <td>POST</td><td>Creates objects</td>
+  </tr>
+  <tr>
+    <td>PUT</td><td>Changes objects</td>
+  </tr>
+</table> 
+</br> 
+</html>
+
+These are some examples using curl:
+
+	1 | curl -X GET https://api.uanataca.com/api/v1/requests/
+
+</br>
+
+	1 | curl -d @params.json -X POST https://api.uanataca.com/api/v1/requests/123/approve/
+
+</br>
+
+	1 | curl -d @params.json -X PUT https://api.uanataca.com/api/v1/requests/123/
+
+# Responses
+
+Every response body returned by Uanataca is JSON object.
+
+If the response is successful, the content of the JSON depends on the API queried.
+
+Instead, the error response is always composed of these keys:
+
+<html>
+<table>
+  <tr>
+    <th>Key</th><th>Description</th>
+  </tr>
+  <tr>
+    <td><b>error</b></td><td>A string that describe the error occured</td>
+  </tr>
+  <tr>
+    <td><b>code</b></td><td>The HTTP error code related</td>
+  </tr>
+  <tr>
+    <td><b>id</b></td><td>The unique identifier of the error generated by Uanataca</td>
+  </tr>
+</table> 
+</br> 
+</html>
+
+A successful response:
+
+	1 | [
+	2 |     {
+	3 |         "data": "MIIHyTCCBbGgAwIBAgIIcO...",
+	4 |         "profile": "PFnubeAF",
+	5 |         "subject": "CN=RAO COFTenerife API, 2.5.4.5=TINIT-TSTAPI74S23C129Y, 2.5.4.42=RAO, 2.5.4.4=API, C=ES",
+	6 |         "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
+	7 |         "valid_from": "2018-10-16T16:41:00",
+	8 |         "valid_to": "2020-10-15T16:41:00",
+	9 |         "serial_number": "70e07489bfccd478",
+	10|         "status": 0,
+	11|         "pk": 1980,
+	12|         "revokation_reason": null,
+	13|         "type": "FIRSTISSUE"
+	14|     }
+	15| ]
+
+An error response:
+
+	1 | {
+	2 |     "code": "500",
+	3 |     "id": "8e782cdcdb600a90",
+	4 |     "error": "Invalid ScratchCard"
+	5 | }
+
+Another error response:
+
+	1 | {
+	2 |    "code": "418",
+	3 |    "id": "551eb335898f79e4",
+	4 |    "error": "Invalid paramiters"
+	5 | }
+
+## Pagination
+
+Some endpoints works with the mechanism of pagination.
+
+This means that when an API returns the content requested, the JSON is composed with the keys:
+
+<html>
+<table>
+  <tr>
+    <th>Key</th><th>Description</th>
+  </tr>
+  <tr>
+    <td><b>count</b></td><td>Represents the number of object found</td>
+  </tr>
+  <tr>
+    <td><b>next</b></td><td>Represents the url of the next page (it is null if there are no more pages)</td>
+  </tr>
+  <tr>
+    <td><b>previous</b></td><td>Represents the url of the previous page (it is null if there are no more pages)</td>
+  </tr>
+  <tr>
+    <td><b>result</b></td><td>Contains a list of objects found</td>
+  </tr>
+</table> 
+</br> 
+</html>
+
+Every page contains at most **10 objects**.
+
+**Examples**
+
+Here are display a couple of JSON returned by Uanataca.
+
+A list of Scratchcards:
+
+	1 | {
+	2 |     "count": 40,
+	3 |     "next": "https://api.uanataca.com/api/v1/scratchcards/?page=2®istration_authority=8",
+	4 |     "previous": null,
+	5 |     "results": [
+	6 |         {
+	7 |             "pk": 801,
+	8 |             "sn": "2000100",
+	9 |             ...
+	10|         },
+	11|         {
+	12|             "pk": 800,
+	13|             "sn": "2000099",
+	14|             ...
+	15|         },
+	16|         ...
+	17|     ]
+	18| }
+
+A list of Requests:
+
+	1 | {
+	2 |     "count": 643,
+	3 |     "next": "https://api.uanataca.com/api/v1/requests/?page=2",
+	4 |     "previous": null,
+	5 |     "results": [
+	6 |         {
+	7 |             "pk": 788,
+	8 |             ...
+	9 |         },
+	10|         {
+	11|             "pk": 789,
+	12|             ...
+	13|         },
+	14|         ....
+	15|     ]
+	16| }
+
+## HTTP Status Codes
+
+<html>
+<table>
+  <tr>
+    <th>Code</th><th>Description</th>
+  </tr>
+  <tr>
+    <td>200</td><td>Everything went <b>OK</b>. The server elaborated correctly the request and returned the response to the client.</td>
+  </tr>
+  <tr>
+    <td>201</td><td>The object is successfully <b>Created</b> with the parameters sent by the client.</td>
+  </tr>
+  <tr>
+    <td>202</td><td>The request sent by the client has been <b>Accepted</b> and is under process.</td>
+  </tr>
+  <tr>
+    <td>204</td><td><b>No Content.</b> The operation was successful but no content is provided in the response body.</td>
+  </tr>
+  <tr>
+    <td>400</td><td><b>Bad Request.</b> The parameters sent, are not well formatted or are missing.</td>
+  </tr>
+  <tr>
+    <td>401</td><td><b>Unauthorized.</b> The user used for making the request is not authorized to consume that resource.</td>
+  </tr>
+  <tr>
+    <td>403</td><td><b>Forbidden.</b>The user used for making the request has no permissions to do it.</td>
+  </tr>  
+  <tr>
+    <td>404</td><td>The resource requested is <b>Not Found.</b></td>
+  </tr>
+  <tr>
+    <td>405</td><td><b>Method not allowed.</b> The endpoint called has not the method specified.</td>
+  </tr>
+  <tr>
+    <td>412</td><td><b>Precondition Failed.</b> The operation has some requirements that are not satisfied. For example if a Request is in a wrong state for the operation requested.</td>
+  </tr>
+  <tr>
+    <td>429</td><td><b>Too Many Requests.</b></td>
+  </tr>
+  <tr>
+    <td>500</td><td><b>Internal Server Error.</b> An error occured during the elaboration of the request.</td>
+  </tr>
+  <tr>
+    <td>502</td><td><b>Bad Gateway.</b></td>
+  </tr>
+  <tr>
+    <td>503</td><td><b>Service Unavailable.</b></td>
+  </tr>
+</table> 
+</br> 
+</html>
+
+# Certificate Profiles
+
+Uanataca provides different certificate profiles for different purpose.
+
+Each profile has their set of fields and each field can be mandatory or not.
+
+<html>
+<table>
+  <tr>
+    <th>Profile</th>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PFSoftAFCiudadano">PFSoftAFCiudadano</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PFqscdCiudadano">PFqscdCiudadano</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PFnubeAFCiudadano">PFnubeAFCiudadano</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PFnubeQAFCiudadano">PFnubeQAFCiudadano</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PFSoftAFEmpresa">PFSoftAFEmpresa</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PFqscdEmpresa">PFqscdEmpresa</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PFnubeAFEmpresa">PFnubeAFEmpresa</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PFnubeQAFEmpresa">PFnubeQAFEmpresa</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PFSoftAFColegiado">PFSoftAFColegiado</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PFqscdColegiado">PFqscdColegiado</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PFnubeAFColegiado">PFnubeAFColegiado</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PFnubeQAFColegiado">PFnubeQAFColegiado</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/REPsoft">REPsoft</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/REPqscd">REPqscd</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/REPnubeQ">REPnubeQ</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/REPPJsoft">REPPJsoft</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/REPPJnube">REPPJnube</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/REPPJqscd">REPPJqscd</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/REPPJnubeQ">REPPJnubeQ</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/EMPUBsoft">EMPUBsoft</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/EMPUBqscd">EMPUBqscd</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/EMPUBnubeQ">EMPUBnubeQ</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/REPESPJsoft">REPESPJsoft</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/REPESPJnube">REPESPJnube</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/REPESPJqscd">REPESPJqscd</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/REPESPJnubeQ">REPESPJnubeQ</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/SELLOPJnube">SELLOPJnube</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/SELLOPJsoft">SELLOPJsoft</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/SELLOPJnubeQ">SELLOPJnubeQ</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/SELLOPJqscd">SELLOPJqscd</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/SELLOMedio">SELLOMedio</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/SELLOAlto">SELLOAlto</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/SelloOrganoAltoNubeQ">SelloOrganoAltoNubeQ</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PEPNCiudadano">PEPNCiudadano</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PEPNPerteneciente">PEPNPerteneciente</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PEPNRepresentante">PEPNRepresentante</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PEPNColegiado">PEPNColegiado</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PEFacturacion">PEFacturacion</a></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PESElectronico">PESElectronico</a></td>
+  </tr>
+</table> 
+</br> 
+</html>
+
+
+## PFSoftAFCiudadano
+
+Certificate of a natural person issued on a cryptographic container in P12 format and intended for authentication and eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>0</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the software element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PFSoftAFCiudadano</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_number</td>
+<td></td>
+<td>The cardholder document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+</table>
+
+
+## PFqscdCiudadano
+
+Certificate of a natural person issued on a smartcard or a cryptographic token and intended for authentication and eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>1</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the smartcard element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PFqscdCiudadano</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>smartcard_sn</td>
+<td></td>
+<td>The smartcard serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_number</td>
+<td></td>
+<td>The cardholder document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+</table>
+
+
+## PFnubeAFCiudadano
+
+Certificate of a natural person issued in the centralized custody system of Uanataca certificates and intended for authentication and eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+    Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+    This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PFnubeAFCiudadano</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_number</td>
+<td></td>
+<td>The cardholder document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</table>
+
+
+## PFnubeQAFCiudadano
+
+Certificate of a natural person issued in the centralized custody system of Uanataca certificates and intended for authentication and qualified eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PFnubeQAFCiudadano</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_number</td>
+<td></td>
+<td>The cardholder document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+</table>
+
+## PFSoftAFEmpresa
+
+Certificate of a natural person belonging to an organization or company issued on cryptographic token in P12 format and intended for authentication and eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>0</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the software element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PFSoftAFEmpresa</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_rol</td>
+<td></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_tax_number</td>
+<td></td>
+<td>The organization tax number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_state</td>
+<td></td>
+<td>The organization state</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+
+## PFqscdEmpresa
+
+Certificate of a natural person belonging to an organization or company issued on a smartcard or cryptographic token and intended for authentication and eltronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>1</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the smartcard element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PFqscdEmpresa</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>smartcard_sn</td>
+<td></td>
+<td>The smartcard serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_rol</td>
+<td></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_tax_number</td>
+<td></td>
+<td>The organization tax number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_state</td>
+<td></td>
+<td>The organization state</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## PFnubeAFEmpresa
+
+Certificate of a natural person belonging to an organization or company issued in the centralized custody system of Uanataca certificates and intended for authentication and eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PFnubeAFEmpresa</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_rol</td>
+<td></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_tax_number</td>
+<td></td>
+<td>The organization tax number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_state</td>
+<td></td>
+<td>The organization state</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## PFnubeQAFEmpresa
+
+Certificate of a natural person belonging to an organization or company issued in the centralized custody system of Uanataca certificates and intended for authentication and qualified eltronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PFnubeQAFEmpresa</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_rol</td>
+<td></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_tax_number</td>
+<td></td>
+<td>The organization tax number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_state</td>
+<td></td>
+<td>The organization state</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## PFSoftAFColegiado
+
+Certificate of a registered individual, for authentication and electronic signature issued in cryptographic container format P12.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>0</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the software element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PFSoftAFColegiado</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>professional_id_number</td>
+<td></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_tax_number</td>
+<td></td>
+<td>The organization tax number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_state</td>
+<td></td>
+<td>The organization state</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## PFqscdColegiado
+
+Certificate of a registered individual, for authentication and electronic signature issued on a cryptographic card or token.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>1</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the smartcard element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PFqscdColegiado</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>smartcard_sn</td>
+<td></td>
+<td>The smartcard serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>professional_id_number</td>
+<td></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_tax_number</td>
+<td></td>
+<td>The organization tax number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_state</td>
+<td></td>
+<td>The organization state</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## PFnubeAFColegiado
+
+Certificate of a registered individual, for authentication and electronic signature issued in the centralized custody system of Uanataca certificates.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PFnubeAFColegiado</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>professional_id_number</td>
+<td></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_tax_number</td>
+<td></td>
+<td>The organization tax number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_state</td>
+<td></td>
+<td>The organization state</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## PFnubeQAFColegiado
+
+Certificate of a registered individual, for authentication and qualified electronic signature issued in the centralized custody system of Uanataca certificates.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PFnubeQAFColegiado</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>professional_id_number</td>
+<td></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_tax_number</td>
+<td></td>
+<td>The organization tax number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_state</td>
+<td></td>
+<td>The organization state</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## REPsoft
+
+Certificate of legal entity representative, suitable for the relationship between Spanish or European companies, for authentication and electronic signature issued in cryptographic container format P12.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscriber_responsible_serial</td>
+<td></td>
+<td>The organization representative document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>No</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>No</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>REPsoft</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>secure_element</td>
+<td>[0, 2]</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>citizen_tax_number</td>
+<td></td>
+<td>The citizen tax number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>sex</td>
+<td></td>
+<td>The cardholder sex</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_2</td>
+<td></td>
+<td>The cardholder second organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>fix_phone_number</td>
+<td></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_state</td>
+<td></td>
+<td>The organization state</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## REPqscd
+
+Certificate of legal entity representative, suitable for the relationship between Spanish or European companies, for the electronic signature issued on a cryptographic card or token.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscriber_responsible_serial</td>
+<td></td>
+<td>The organization representative document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>No</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>No</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>REPqscd</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>secure_element</td>
+<td>1</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the smartcard element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>citizen_tax_number</td>
+<td></td>
+<td>The citizen tax number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>sex</td>
+<td></td>
+<td>The cardholder sex</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_2</td>
+<td></td>
+<td>The cardholder second organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>fix_phone_number</td>
+<td></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_state</td>
+<td></td>
+<td>The organization state</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## REPnubeQ
+
+Certificate of representative of legal entity, suitable for the relationship between Spanish or European companies, for the qualified electronic signature, and issued in the centralized custody system of Uanataca certificates.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscriber_responsible_serial</td>
+<td></td>
+<td>The organization representative document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>No</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>No</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>REPnubeQ</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>citizen_tax_number</td>
+<td></td>
+<td>The citizen tax number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>sex</td>
+<td></td>
+<td>The cardholder sex</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>birth_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_2</td>
+<td></td>
+<td>The cardholder second organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>fix_phone_number</td>
+<td></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_state</td>
+<td></td>
+<td>The organization state</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## REPPJsoft
+
+Certificate of the legal entity representative issued on a cryptographic container in P12 format and intended for authentication and eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>[0, 2]</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>REPPJsoft</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>subscriber_responsible_serial</td>
+<td></td>
+<td>The organization representative document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## REPPJnube
+
+Certificate of the legal entity representative issued in the centralized custody system of Uanataca certificates and intended for authentication and eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>REPPJnube</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>subscriber_responsible_serial</td>
+<td></td>
+<td>The organization representative document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## REPPJqscd
+
+Certificate of the legal entity representative issued on a smartcard or on a cryptographic token and intended for authentication and eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>1</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the smartcard element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>REPPJqscd</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>smartcard_sn</td>
+<td></td>
+<td>The smartcard serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>subscriber_responsible_serial</td>
+<td></td>
+<td>The organization representative document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## REPPJnubeQ
+
+Certificate of representative of legal entity, suitable to interact with Spanish Public Administrations, issued in the centralized custody system of Uanataca certificates and intended for authentication and qualified eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>REPPJnubeQ</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>subscriber_responsible_serial</td>
+<td></td>
+<td>The organization representative document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## EMPUBsoft
+
+Certificate of public employee of a Spanish Public Administration, issued on a cryptographic container in P12 format and intended for authentication and eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>[0, 2]</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>EMPUBsoft</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td>CERTIFICADO ELECTRONICO DE EMPLEADO PUBLICO</td>
+<td>The cardholder first organizational unit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_2</td>
+<td></td>
+<td>The cardholder second organizational unit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_tax_number</td>
+<td></td>
+<td>The organization tax number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_position</td>
+<td></td>
+<td>The responsible position</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_3</td>
+<td></td>
+<td>The cardholder third organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_4</td>
+<td></td>
+<td>The cardholder fourth organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## EMPUBqscd
+
+Certificate of public employee of a Spanish Public Administration, issued on a smartcard or a cryptographic token and intended for eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>1</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the smartcard element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>EMPUBqscd</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>smartcard_sn</td>
+<td></td>
+<td>The smartcard serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td>CERTIFICADO ELECTRONICO DE EMPLEADO PUBLICO</td>
+<td>The cardholder first organizational unit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_2</td>
+<td></td>
+<td>The cardholder second organizational unit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_tax_number</td>
+<td></td>
+<td>The organization tax number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_position</td>
+<td></td>
+<td>The responsible position</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_3</td>
+<td></td>
+<td>The cardholder third organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_4</td>
+<td></td>
+<td>The cardholder fourth organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## EMPUBnubeQ
+
+Certificate of public employee of a Spanish Public Administration, issued in the centralized custody system of Uanataca certificates and intended for the qualified eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>EMPUBnubeQ</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td>CERTIFICADO ELECTRONICO DE EMPLEADO PUBLICO</td>
+<td>The cardholder first organizational unit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_2</td>
+<td></td>
+<td>The cardholder second organizational unit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_tax_number</td>
+<td></td>
+<td>The organization tax number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_position</td>
+<td></td>
+<td>The responsible position</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_3</td>
+<td></td>
+<td>The cardholder third organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_4</td>
+<td></td>
+<td>The cardholder fourth organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## REPESPJsoft
+
+Certificate of representative of entity without legal license issued on a cryptographic container in P12 format and intended for authentication and eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>[0, 2]</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>REPESPJsoft</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>subscriber_responsible_serial</td>
+<td></td>
+<td>The organization representative document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## REPESPJnube
+
+Certificate of representative of entity without legal license issued in the centralized custody system of Uanataca certificates and intended for authentication and eletronic signature.</p>
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>                
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>REPESPJnube</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>subscriber_responsible_serial</td>
+<td></td>
+<td>The organization representative document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## REPESPJqscd
+
+Certificate of representative of entity without legal license issued on a smartcard or on a cryptographic token and intended for authentication and eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>1</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the smartcard element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>REPESPJqscd</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>smartcard_sn</td>
+<td></td>
+<td>The smartcard serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>subscriber_responsible_serial</td>
+<td></td>
+<td>The organization representative document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## REPESPJnubeQ
+
+Certificate of representative of entity without legal license, suitable to relate with the Spanish Public Administrations, issued in the centralized custody system of Uanataca certificates and intended for authentication and qualified eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>REPESPJnubeQ</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>subscriber_responsible_serial</td>
+<td></td>
+<td>The organization representative document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td></td>
+<td>The organization web url</td>
+<td>No</td>
+</tr>
+</table>
+
+## SELLOPJnube
+
+Eletronic seal certificate issued in the centralized custody system of Uanataca certificates and intended for electronic signature, usually in unassisted processes.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>SELLOPJnube</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_email</td>
+<td></td>
+<td>The responsible email</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>process_application</td>
+<td></td>
+<td>The application name that will use the certificate</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+</table>
+
+## SELLOPJsoft
+
+Eletronic seal certificate issued in a cryptographic container in P12 format and intended for electronic signature, usually in unassisted processes.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>[0, 2]</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>SELLOPJsoft</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_email</td>
+<td></td>
+<td>The responsible email</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>process_application</td>
+<td></td>
+<td></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+</table>
+
+## SELLOPJnubeQ
+
+Eletronic seal certificate issued in the centralized custody system of Uanataca certificates and intended for the qualified eletronic signature, usually in unassisted processes.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud one.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>SELLOPJnubeQ</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_email</td>
+<td></td>
+<td>The responsible email</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>process_application</td>
+<td></td>
+<td></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+</table>
+
+## SELLOPJqscd
+
+Eletronic seal certificate, issued on a smartcard or a cryptographic token and intended for the eletronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>1</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the smartcard one.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>SELLOPJqscd</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>smartcard_sn</td>
+<td></td>
+<td>The smartcard serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_email</td>
+<td></td>
+<td>The responsible email</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>process_application</td>
+<td></td>
+<td>The application name that will use the certificate</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+</table>
+
+## SELLOMedio
+
+Electronic seal certificate for Spanish Public Administrations, intended for advanced electronic signature, generally in unattended processes, and issued issued in cryptographic container format P12.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>0</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the software element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>SELLOMedio</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td>SELLO ELECTRONICO</td>
+<td>The cardholder first organizational unit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_2</td>
+<td></td>
+<td>The cardholder second organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_3</td>
+<td></td>
+<td>The cardholder third organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_email</td>
+<td></td>
+<td>The responsible email</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>process_application</td>
+<td></td>
+<td>The application name that will use the certificate</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+</table>
+
+
+## SELLOAlto
+
+Electronic seal certificate for Spanish Public Administrations, intended for the electronic signature usually qualified in unattended processes, and issued on a cryptographic card or token.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>1</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the smartcard one.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>SELLOAlto</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>smartcard_sn</td>
+<td></td>
+<td>The smartcard serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td>SELLO ELECTRONICO</td>
+<td>The cardholder first organizational unit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_2</td>
+<td></td>
+<td>The cardholder second organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_3</td>
+<td></td>
+<td>The cardholder third organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_email</td>
+<td></td>
+<td>The responsible email</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>process_application</td>
+<td></td>
+<td>The application name that will use the certificate</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+</table>
+
+## SelloOrganoAltoNubeQ
+
+Electronic seal certificate for Spanish Public Administrations, intended for the electronic signature usually qualified in unattended processes, and issued in the centralized custody system of Uanataca certificates.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>2</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud one.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>SelloOrganoAltoNubeQ</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td>SELLO ELECTRONICO</td>
+<td>The cardholder first organizational unit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_2</td>
+<td></td>
+<td>The cardholder second organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_3</td>
+<td></td>
+<td>The cardholder third organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_email</td>
+<td></td>
+<td>The responsible email</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>process_application</td>
+<td></td>
+<td>The application name that will use the certificate</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+</table>
+
+## PEPNCiudadano
+
+Certificate of natural person, destined to authentication and digital signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>[0, 1, 2]</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PEPNCiudadano</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>smartcard_sn</td>
+<td></td>
+<td>The smartcard serial number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+DNI – National identity document.
+CEX - Immigration Card.
+PAS - Passport.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+</table>
+
+## PEPNPerteneciente
+
+Certificate of a natural person belonging to or linked to a company or organization, intended for authentication and digital signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>[0, 1, 2]</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PEPNPerteneciente</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>smartcard_sn</td>
+<td></td>
+<td>The smartcard serial number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[DNI,CEX,PAS]</td>
+<td>
+The cardholder Id Document Type.
+DNI – National identity document.
+CEX - Immigration Card.
+PAS - Passport.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_number</td>
+<td></td>
+<td>The cardholder document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_responsible_document_type</td>
+<td>[DNI,CEX,PAS]</td>
+<td>
+The responsible document type.
+DNI – National identity document.
+CEX - Immigration Card.
+PAS - Passport.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_responsible_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The responsible document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_responsible_document_number</td>
+<td></td>
+<td>The responsible document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+</table>
+
+## PEPNRepresentante
+
+Certificate of legal entity representative, intended for authentication and digital signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>[0, 1, 2]</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PEPNRepresentante</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>smartcard_sn</td>
+<td></td>
+<td>The smartcard serial number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[DNI,CEX,PAS]</td>
+<td>
+The cardholder Id Document Type.
+DNI – National identity document.
+CEX - Immigration Card.
+PAS - Passport.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_number</td>
+<td></td>
+<td>The cardholder document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+</table>
+
+## PEPNColegiado
+
+Certificate of a natural person linked to a professional association, destined to authentication and digital signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>[0, 1, 2]</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PEPNColegiado</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>smartcard_sn</td>
+<td></td>
+<td>The smartcard serial number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[DNI,CEX,PAS]</td>
+<td>
+The cardholder Id Document Type.
+DNI – National identity document.
+CEX - Immigration Card.
+PAS - Passport.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_number</td>
+<td></td>
+<td>The cardholder document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td>Colegiado</td>
+<td>The cardholder first organizational unit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_2</td>
+<td></td>
+<td>The cardholder second organizational unit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_3</td>
+<td></td>
+<td>The cardholder third organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_responsible_document_type</td>
+<td>[DNI,CEX,PAS]</td>
+<td>
+The responsible document type.
+DNI – National identity document.
+CEX - Immigration Card.
+PAS - Passport.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_responsible_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The responsible document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_responsible_document_number</td>
+<td></td>
+<td>The responsible document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+</table>
+
+## PEFacturacion
+
+Certificate of legal entity, intended only for electronic invoicing processes.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>[0, 1, 2]</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PEFacturacion</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>smartcard_sn</td>
+<td></td>
+<td>The smartcard serial number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[DNI,CEX,PAS]</td>
+<td>
+The cardholder Id Document Type.
+DNI – National identity document.
+CEX - Immigration Card.
+PAS - Passport.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_number</td>
+<td></td>
+<td>The cardholder document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>title</td>
+<td></td>
+<td>The cardholder professional title</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_2</td>
+<td></td>
+<td>The cardholder second organizational unit</td>
+<td>No</td>
+</tr>
+</table>
+
+## PESElectronico
+
+Certificado de persona jurídica, destinado a procesos de firma desasistidos dentro de una empresa u organización.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>[0, 1, 2]</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PESElectronico</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>smartcard_sn</td>
+<td></td>
+<td>The smartcard serial number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>process_application</td>
+<td></td>
+<td>The application name that will use the certificate</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[DNI,CEX,PAS]</td>
+<td>
+The cardholder Id Document Type.
+DNI – National identity document.
+CEX - Immigration Card.
+PAS - Passport.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_number</td>
+<td></td>
+<td>The cardholder document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+</table>
+
+# Paperless Mode
+
+The paperless mode is a new feature added to Uanataca that permits the generation of digital certificates without the use of eventual papery contracts. In this way every Request has its own digital contract that will be signed by the two sides of the transaction, the RAO that will approve the Request and the certificate holder, with their respective digital certificates.
+
+This document will guide you through:
+
+- Request creation in paperless mode
+- Managing documents
+- Approval
+- Cloud/Software Enrollment
+
+## Create a paperless Request
+
+In order to create a new Request in paperless mode, we need to set the parameter **paperless_mode** to **1**:
+
+	1 | {
+	2 |     "secure_element": "2",
+	3 |     "profile": "PFnubeAFCiudadano",
+	4 |     "validity_time": "365",
+	5 |     "scratchcard": "120000804",
+	6 |     "registration_authority": "41",
+	7 |     "country_name": "IT",
+	8 |     "id_document_type" : "TIN",
+	9 |     "id_document_country": "IT",
+	10|     "serial_number": "TSTAPI74S23C129Y",
+	11|     "id_document_description": "IDC",
+	12|     "id_document_issuer": "IKANSD",
+	13|     "id_document_number": "12345678A",
+	14|     "given_name": "Test",
+	15|     "surname_1": "Paperless",
+	16|     "surname_2": "Api",
+	17|     "email": "email@uanataca.com",
+	18|     "mobile_phone_number": "+393331122333",
+	19|     "paperless_mode": 1
+	20| }
+
+and query the same endpoint with an HTTP POST request:
+
+	/api/v1/requests/
+
+The return response is the same: a JSON containing the info of the Request just created. One of the most important parameters from this JSON is the "pk" which represents the Request unique identifier and is used for every operation related to this Request.
+
+## Upload documents
+
+The Request created needs documents, so we can query with an HTTP POST request this endpoint to upload the files:
+
+	/api/v1/pl_upload_document/
+
+The required documents for every Request are: **document\_front** (the photo of the front side of the requester ID card), **document\_rear** (the photo of the rear side if the requester ID card) and **document\_owner** (the photo of the requester with the ID card under the chin).
+
+If necessary it is possibile to upload extra documents that represents additional requester informations. This documents goes under the type of **extra\_document**.
+
+It is also possible to upload optional documents that are not strictly related to the requester informations, like a **tbs** document or the **raw** document.
+
+The tbs, to-be-signed, document (in pdf format) will be signed with the certificate that will be enrolled. Instead the raw document is a simple txt file that contain an hash to be signed. The output of the sign process for this file, is a new file containing the original hash and the signature generated.
+
+So to be able to upload documents, the query must contain a multipart/form-data header and the parameters: **"type"**, the type of the document (document\_front, document\_rear, extra\_document, ...) and **"document"**, the actual file to upload.
+
+Note that this endpoint has to be queried for every document that the Request needs.
+
+Another important aspect, is that the Request **must be** in the status **CREATED** in order to be able to upload documents.
+
+## Retrieving documents
+
+The documents associated to a Request, can always be retrieved, even if the Request is not in the status CREATED.
+
+It is possibile to retrieve documents by type or just all of them together.
+
+By querying with this json
+
+	1 | {
+	2 |     "type": "signed_raw"
+	3 | }
+
+the endpoint:
+
+	/api/v1/requests/{pk}/pl_get_document/
+
+we will get the documents that have as type "signed_raw".
+
+Instead to get all the documents as a list, we can query the endpoint:
+
+	/api/v1/requests/{pk}/pl_get_documents/
+
+which will return the documents and their unique identifier number.
+
+In all the cases, the document is returned encoded in **Base64**.
+
+
+# Delete documents
+
+In order to delete a document, the Request must be in the status CREATED.
+
+The only parameter needed by the endpoint
+
+	/api/v1/requests/{pk}/pl_delete_document/
+
+is the document unique identifier:
+
+	1 | {
+    2 | 	"docpk": 123
+	3 | }
+
+If the removal is successful the response by the server is:
+
+	{
+    	"status": "Document deleted successfully"
+	}
+
+## Approve Requests
+
+In order to approve a Request, this must be in the status of CREATED and must have at least the required documents (document_front, document_rear, document_owner).
+
+A Request can only be approved by a RAO which have associated a cloud user. In fact an example of the parameters accepted is this:
+
+	1 | {
+    2 | 	"username": "2000279",
+    3 | 	"password": "3DPTm:N4",
+    4 | 	"pin": "belorado74",
+    5 |		"rao_id": 233
+	6 |	}
+
+where "username", "password" and "pin" are the cloud user credentials, "rao_id" the unique identifier of the RAO that will approve the Request.
+
+	/api/v1/requests/{pk}/pl_approve/
+
+## Prepare for enrollment
+
+The enrollment for paperless Requests, needs a secret (OTP; One Time Password) that will be sent via SMS to the mobile phone number of Request (So when a new Request is created make sure it contains the correct number with the internation prefix number).
+
+The generation of the OTP code, changes according to the Request profile. If the Request has a standard profile, it is necessary to query this endpoint with a POST request passing the correct scratchcard number:
+
+	1 | {
+	2 |     "scratchcard": "110003051"
+	3 | }
+
+	/api/v1/requests/{pk}/generate_otp/
+
+Instead in case that the Request has a qualified profile (see Profiles), the generation of the otp changes. It must be performed with the endpoint:
+
+	/api/v1/requests/{pk}/generate_otp_for_qs/
+
+that accepts as parameters the **pin** and **puk** that will be assigned to the cloud identity.
+
+For both of the endpoints, if it is the first time that an OTP is generated for the specified Request, than it is simply sent to the mobile phone number registered. Instead if these endpoints are queried in less than one minute since the previous generated OTP, it will not generate a new OTP, but the previous one is still valid.
+
+Once received the secret, it can be used for the next phase: the Request Enrollment.
+
+## Enrollment
+
+Depending on the secure element choosen during the creation, or on the Request profile, there are different endpoints to enroll a Request:
+
+	/api/v1/requests/{pk}/pl_p12_enroll/
+
+</br>
+
+	/api/v1/requests/{pk}/pl_cloud_enroll/
+
+</br>
+
+	/api/v1/requests/{pk}/plq_cloud_enroll/
+
+The first one is used for the Software Requests and accept as parameters the secret and the p12password to set to the generated p12:
+
+	1 | {
+	2 |     "secret": "000000",
+	3 |     "p12password": "belorado74"
+	4 | }
+
+At the end of the enrollment the server reply with the P12 generated in PEM format.
+
+Instead the second one is for Cloud Requests. In addition to the secret it is necessary a pin code (the puk is generated in a cryptographic secure way by the server) assigned to the generated remote token:
+
+	1 | {
+    2 |		"secret": "000000",
+    3 |		"pin": "belorado74"
+	4 | }
+
+with the only difference that the **pin** parameter must coincide with the one passed to **generate\_otp\_for_qs** endpoint.
+
+If no error occures the server reply with a JSON containing a key "status" valued to "OK".
+
+
+# Watch on Video
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tUGLf5y1dEA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

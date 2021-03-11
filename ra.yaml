@@ -1,0 +1,2848 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: UANATACA RA API DOCUMENTATION FOR DEVELOPERS
+  x-logo:
+      url: https://i.ibb.co/FwcHkGb/logoUana.png
+      backgroundColor: #FFFFFF
+      altText: RA logo
+  description: 
+      $ref: ./RA_guide.md
+host: api.uanataca.com
+schemes: 
+  - https
+
+tags:
+- name: "REQUESTS"
+- name: "REGISTRATION AUTHORITY"
+- name: "REGISTRATION AUTHORITY OFFICER"
+- name: "SCRATCHCARDS"
+- name: "USERS"
+
+paths:
+
+###### requests ######
+###############################################################################
+
+  /api/v1/requests:
+    post: 
+      summary: CREATE REQUEST
+      tags:
+        - REQUESTS
+      description: Creates a new request for digital certificate issuance.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/CreateReqObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 2299,
+                    "given_name": "RAO",
+                    "surname_1": "COFTenerife",
+                    "surname_2": API,
+                    "sex": null,
+                    "id_document_type": "TIN",
+                    "id_document_country": "IT",
+                    "serial_number": "TSTAPI74S23C129Y",
+                    "country_name": "ES",
+                    "citizenship": null,
+                    "residence": null,
+                    "organization_email": null,
+                    "email": "email@bit4id.com",
+                    "title": null,
+                    "organization_name": null,
+                    "organizational_unit_1": null,
+                    "organizational_unit_2": null,
+                    "organization_identifier": null,
+                    "responsible_name": null,
+                    "responsible_first_surname": null,
+                    "responsible_second_surname": null,
+                    "responsible_email": null,
+                    "responsible_serial": null,
+                    "responsible_position": null,
+                    "subscriber_responsible_serial": null,
+                    "administrative_unit": null,
+                    "empowerment": null,
+                    "representation": null,
+                    "circumstances": null,
+                    "limit": null,
+                    "registration": null,
+                    "process_application": null,
+                    "entity_owner": null,
+                    "entity_owner_serial_number": null,
+                    "description": null,
+                    "certificate_set": [],
+                    "profile": "PFnubeAFCiudadano",
+                    "scratchcard": "120000400",
+                    "status": "CREATED",
+                    "registering_user": {
+                        "pk": 118,
+                        "permission_profile": 13,
+                        "registration_authority": 68,
+                        "request": 2298
+                    },
+                    "approving_user": null,
+                    "producing_user": null,
+                    "registration_authority": 68,
+                    "secure_element": 2,
+                    "validity_time": "730",
+                    "smartcard_sn": null,
+                    "citizen_tax_number": null,
+                    "birth_date": "16/10/1965",
+                    "birth_country": null,
+                    "birth_city": null,
+                    "birth_province": null,
+                    "birth_state": null,
+                    "birth_district": null,
+                    "birth_canton": null,
+                    "id_document_description": null,
+                    "id_document_issuer": null,
+                    "organization_rol": null,
+                    "professional_id_number": null,
+                    "mobile_phone_number": "3333333333",
+                    "fix_phone_number": null,
+                    "residence_address": null,
+                    "residence_city": null,
+                    "residence_province": null,
+                    "residence_postal_code": null,
+                    "residence_state": null,
+                    "residence_district": null,
+                    "residence_canton": null,
+                    "organization_tax_number": null,
+                    "organization_address": null,
+                    "organization_city": null,
+                    "organization_province": null,
+                    "organization_country": null,
+                    "organization_postal_code": null,
+                    "organization_state": null,
+                    "organization_url": null,
+                    "responsible_legal_level": null,
+                    "subscriber": null,
+                    "responsible_legal_documents": null,
+                    "special_conditions": null,
+                    "responsible_registry_data": null,
+                    "approving_rao": null,
+                    "producing_rao": null,
+                    "id_document_number": null
+                }
+###########
+    get: 
+      summary: LIST REQUESTS
+      tags:
+        - REQUESTS
+      description: Retrieves the list of requests stored.
+      produces:
+        - application/json 
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "count": 408,
+                    "next": "https://api.uanataca.com/api/v1/requests/?page=2&status=ISSUED",
+                    "previous": null,
+                    "results": [...]
+                }
+#############
+  /api/v1/requests/{id}/generates_tbs_receipt:
+    post: 
+      summary: GENERATE A TBS RECEIPT
+      tags:
+        - REQUESTS
+      description: Generates a receipt associated to a request
+      consumes:
+        - application/json
+      produces:
+        - application/json 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/TBSObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "rao": "100",
+                    "type": "APPROVE"
+                }
+#############
+  /api/v1/requests/{id}/approve:
+    post: 
+      summary: APPROVE A REQUEST
+      tags:
+        - REQUESTS
+      description: Once created a new Request, the next thing to do is approve it.
+      consumes:
+        - application/json
+      produces:
+        - application/json 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/ApproveReqObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "secrets": {
+                        "puk": "06092551",
+                        "enrollment_code": "8N!9xPhB",
+                        "pin": "76293975",
+                        "erc": "3706008596"
+                    },
+                    "request": {
+                        "pk": 665,
+                        "given_name": "TEST",
+                        "surname_1": "API",
+                        "surname_2": "Software P12",
+                        "sex": null,
+                        "id_document_type": "TIN",
+                        "id_document_country": "IT",
+                        "serial_number": "TSTAPI74S23C129Y",
+                        "country_name": "ES",
+                        "citizenship": null,
+                        "residence": null,
+                        "organization_email": null,
+                        "email": "asi@bit4id.com",
+                        "title": null,
+                        "organization_name": null,
+                        "organizational_unit_1": null,
+                        "organizational_unit_2": null,
+                        "organization_identifier": null,
+                        "responsible_name": null,
+                        "responsible_first_surname": null,
+                        "responsible_second_surname": null,
+                        "responsible_email": null,
+                        "responsible_serial": null,
+                        "responsible_position": null,
+                        "subscriber_responsible_serial": null,
+                        "administrative_unit": null,
+                        "empowerment": null,
+                        "representation": null,
+                        "circumstances": null,
+                        "limit": null,
+                        "registration": null,
+                        "process_application": null,
+                        "entity_owner": null,
+                        "entity_owner_serial_number": null,
+                        "description": null,
+                        "certificate_set": [],
+                        "profile": "PFSoftAFCiudadano",
+                        "scratchcard": "120000026",
+                        "status": "ENROLLREADY",
+                        "registering_user": {
+                            "pk": 34,
+                            "permission_profile": 18,
+                            "registration_authority": 39,
+                            "request": 605
+                        },
+                        "approving_user": {
+                            "pk": 34,
+                            "permission_profile": 18,
+                            "registration_authority": 39,
+                            "request": 605
+                        },
+                        "producing_user": null,
+                        "registration_authority": 39,
+                        "secure_element": 0,
+                        "validity_time": "730",
+                        "smartcard_sn": null,
+                        "citizen_tax_number": null,
+                        "birth_date": "16/10/1965",
+                        "birth_country": null,
+                        "birth_city": null,
+                        "birth_province": null,
+                        "birth_state": null,
+                        "birth_district": null,
+                        "birth_canton": null,
+                        "id_document_description": null,
+                        "id_document_issuer": null,
+                        "organization_rol": null,
+                        "professional_id_number": null,
+                        "mobile_phone_number": "3333333333",
+                        "fix_phone_number": null,
+                        "residence_address": null,
+                        "residence_city": null,
+                        "residence_province": null,
+                        "residence_postal_code": null,
+                        "residence_state": null,
+                        "residence_district": null,
+                        "residence_canton": null,
+                        "organization_tax_number": null,
+                        "organization_address": null,
+                        "organization_city": null,
+                        "organization_province": null,
+                        "organization_country": null,
+                        "organization_postal_code": null,
+                        "organization_state": null,
+                        "organization_url": null,
+                        "responsible_legal_level": null,
+                        "subscriber": null,
+                        "responsible_legal_documents": null,
+                        "special_conditions": null,
+                        "responsible_registry_data": null,
+                        "approving_rao": {
+                            "pk": 218,
+                            "given_name": "Alessandro",
+                            "surname_1": "Silvestro",
+                            "surname_2": "Bit4id",
+                            "certificate": {
+                                "profile": "EXTERNAL",
+                                "status": 0,
+                                "valid_from": "2018-10-16T11:07:00Z",
+                                "valid_to": "2020-10-15T11:07:00Z",
+                                "valid": "VALID",
+                                "revokation_reason": null,
+                                "serial_number": "0d0c1d8b1e4efefa",
+                                "subject": "CN=Alessandro Silvestro Bit4id,
+                                2.5.4.5=TINIT-RRRTST84R14F839U,
+                                2.5.4.42=Alessandro,
+                                2.5.4.4=Silvestro Bit4id, C=ES",
+                                "data": "MIIH5zCCBc+gAwIBAgI...",
+                                "issuer": "2.5.4.97=VATES-A66721499,
+                                CN=UANATACA CA1 DEVEL 2016,
+                                OU=AC-UANATACA,
+                                O=UANATACA S.A.,
+                                L=Barcelona C=ES"
+                            },
+                            "id_document_number": "RRRTST84R14F839U",
+                            "id_document_description": null,
+                            "id_document_issuer": null,
+                            "registration_authority": [
+                                39
+                            ],
+                            "registration_authority_master": 39
+                        },
+                        "producing_rao": null,
+                        "id_document_number": null
+                    }
+                }
+#############
+  /api/v1/requests/{id}/cloud_enroll:
+    post: 
+      summary: STANDARD CLOUD ENROLL
+      tags:
+        - REQUESTS
+      description: "**Standard Cloud Mode.** The enrollment consists in the generation of a new digital certificate for a request already created and approved."
+      consumes:
+        - application/json
+      produces:
+        - application/json 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/CloudEnrObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    [
+                        {
+                            "data": "MIIHyTCCBbGgAwIBAgIIcO...",
+                            "profile": "PFnubeAF",
+                            "subject": "CN=RAO COFTenerife API,
+                            2.5.4.5=TINIT-TSTAPI74S23C129Y,
+                            2.5.4.42=RAO, 2.5.4.4=COFTenerife, C=ES",
+                            "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona, C=ES",
+                            "valid_from": "2018-10-16T16:41:00",
+                            "valid_to": "2020-10-15T16:41:00",
+                            "serial_number": "70e07489bfccd478",
+                            "status": 0,
+                            "pk": 1980,
+                            "revokation_reason": null,
+                            "type": "FIRSTISSUE"
+                        }
+                    ]
+                }
+#############
+  /api/v1/requests/{id}/p12_enroll:
+    post: 
+      summary: STANDARD SOFTWARE ENROLL
+      tags:
+        - REQUESTS
+      description: "**Standard Software Mode.** The enrollment consists in the generation of a new digital certificate for a request already created and approved. The secure element set to Software."
+      consumes:
+        - application/json
+      produces:
+        - text/plain 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/SoftEnrObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            text/plain:
+                [
+                    "-----BEGIN PKCS12-----
+                    MIIN/AIBAzCCDcIGCSqGSIb3DQEHAaCCDbMEgg2vMIINqzCCCCgGCSqGSIb3DQEH
+                    AaCCCBkEgggVMIIIETCCCA0GCyqGSIb3DQEMCgEDoIIH2TCCB9UGCiqGSIb3DQEJ
+                    FgGgggfFBIIHwTCCB70wggWloAMCAQICCAw/8u9JFlHzMA0GCSqGSIb3DQEBCwUA
+                    MIG9MQswCQYDVQQGEwJFUzFEMEIGA1UEBww7QmFyY2Vsb25hIChzZWUgY3VycmVu
+                    dCBhZGRyZXNzIGF0IHd3dy51YW5hdGFjYS5jb20vYWRkcmVzcykxFjAUBgNVBAoM
+                    DVVBTkFUQUNBIFMuQS4xFDASBgNVBAsMC0FDLVVBTkFUQUNBMSAwHgYDVQQDDBdV
+                    QU5BVEFDQSBDQTEgREVWRUwgMjAxNjEYMBYGA1UEYQwPVkFURVMtQTY2NzIxNDk5
+                    MB4XDTE4MTEyMjE1MjgwMFoXDTIwMTEyMTE1MjgwMFoweDELMAkGA1UEBhMCRVMx
+                    GTAXBgNVBAQMEEFQSSBTb2Z0d2FyZSBQMTIxDTALBgNVBCoMBFRFU1QxHzAdBgNV
+                    BAUTFlRJTklULVRTVEFQSTc0UzIzQzEyOVkxHjAcBgNVBAMMFVRFU1QgQVBJIFNv
+                    ZnR3YXJlIFAxMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMf63BEB
+                    eKd1+oBVf8o/ybGCcs4ZUIsLaiI+uo/brGM40Uo0uoD1Y5e1Ewt6GdnB3+OQnCzv
+                    6prb/pSwZ5GxpjkYPjAf+MEyKsJfPTOW0gBQwvzo3oaXq9g/BqYRJcT7heM7knbb
+                    thT5mJTxnGoWAkTuRjwEsiyCAfVYrCwLqE4uNBvXju4nrZ51jA4kQx3oyVpy7Y3O
+                    uuVdIfOmxbKhb/iyBUAzYusRfUv+XVvDqiVLP+9a+i3JUpi2qMQNx4q3B4Ply1Fz
+                    1FgBw4icYtHfMrKHIkoKmYzPpUM97x4GE+Hz8esX98My0NROa59x0uoPuU+d4P1e
+                    e2x+aTKeiadfjkUCAwEAAaOCAwMwggL/MIHXBggrBgEFBQcBAQSByjCBxzBVBggr
+                    BgEFBQcwAoZJaHR0cDovL3d3dy51YW5hdGFjYS5jb20vcHVibGljL2Rvd25sb2Fk
+                    L3RzcF9jZXJ0aWZpY2F0ZXMvc3Vib3JkaW5hdGUxLmNydDA2BggrBgEFBQcwAYYq
+                    aHR0cDovL29jc3AxLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL29jc3AvMDYGCCsG
+                    AQUFBzABhipodHRwOi8vb2NzcDIudWFuYXRhY2EuY29tL3B1YmxpYy9wa2kvb2Nz
+                    cC8wHQYDVR0OBBYEFGDhXkciQE/205bmPJuEnR+ap8YPMAwGA1UdEwEB/wQCMAAw
+                    HwYDVR0jBBgwFoAUysyKpc+kjCJa1vuX90+0Tv3V764wVQYIKwYBBQUHAQMESTBH
+                    MAgGBgQAjkYBATALBgYEAI5GAQMCAQ8wLgYGBACORgEFDCRodHRwczovL3d3dy51
+                    YW5hdGFjYS5jb20vcHVibGljL2Nwcy8wgaEGA1UdIASBmTCBljAJBgcEAIvsQAEA
+                    MIGIBgsrBgEEAYLxNgEBATB5MDAGCCsGAQUFBwIBFiRodHRwczovL3d3dy51YW5h
+                    dGFjYS5jb20vcHVibGljL2Nwcy8wRQYIKwYBBQUHAgIwOQw3Q2VydGlmaWNhZG8g
+                    Y3VhbGlmaWNhZG8gZGUgUGVyc29uYSBGw61zaWNhIGVuIHNvZnR3YXJlLjCBjwYD
+                    VR0fBIGHMIGEMECgPqA8hjpodHRwOi8vY3JsMS51YW5hdGFjYS5jb20vcHVibGlj
+                    L3BraS9jcmwvQ0Exc3Vib3JkaW5hZGEuY3JsMECgPqA8hjpodHRwOi8vY3JsMi51
+                    YW5hdGFjYS5jb20vcHVibGljL3BraS9jcmwvQ0Exc3Vib3JkaW5hZGEuY3JsMA4G
+                    A1UdDwEB/wQEAwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwGQYD
+                    VR0RBBIwEIEOYXNpQGJpdDRpZC5jb20wDQYJKoZIhvcNAQELBQADggIBAJj7bPyq
+                    F+QojTNESKKxw0WdYgFEFF72hA44SZ5oCZ/ZORYZepVJnaI6zjRQ7ezQwNtc87mr
+                    Hdn7Bl9kNkgp1bFtllMzwr2/eg1/UrEE8+oWIXvaTU29/t1QXdPaMi/7Jq01yM1e
+                    VKF0lndz9qBuxlr1RwfcpznOhn+J+C4B6BeK0yc+jELDPpceuG0WNB5FDUrdy5x2
+                    +lYJLfSkg8+3l1mnSHZPUr3c3h2qX17XhV4r6lCFofBekrXfRrKUFmf0V9fs3N+k
+                    ymZQ8NCrOiPoDXTEdrhMvKFUQ7YEniwHJ7alzQGbKMd0X1BmvTw0HugbU6f/oMRM
+                    eDeP17lFbOMXkSdnHp3ly/ppfUJdnias1+vGs6V7HXd1irK+UjSTL6d0Eu64rwQK
+                    e9JY9hlaB9cdjFn4qqo1vDjQXfzIVOa8Xdatv1KXUqv45R3PhdZ3T3UsxXqbfHob
+                    mvR//ycrGZPzHeyqXYfzx1fXXmfrjqjePyzWoCu4HAAZWk+arG5DYEb6kmawK/kC
+                    lbI3nyNXQuUaZr/SxOROdtUH5aXdbhEOQf9voMvsiyhSUp5wCDg/CaSKwB48NWPx
+                    gliB9uuJqGWyub7fMj5OxRZVYlA3QqP7V2PvODE4jITJdOhemnrrdK/mlmIPwSJq
+                    8asL5rfwxyUs58FT2sDd6Qecw6Y5gK+ULgRjMSEwHwYJKoZIhvcNAQkVMRIEEAYu
+                    Zb4L5MZJKP6FifnzQFEwggV7BgkqhkiG9w0BBwagggVsMIIFaAIBADCCBWEGCSqG
+                    SIb3DQEHATAcBgoqhkiG9w0BDAEDMA4ECNOnUDg66SeRAgIIAKCCBTQEggUwTP5i
+                    TS5Uc2nSBvtWP+lNr5Y3PSjvn5or5KQglE0apYhscPQDSCdsTRua5uH6vYT5WcFd
+                    IvboQxlTZRXB0wOfLsAPWRiVB/Ex9IQkf01jQT4Zm4/0fHcAwDW0VlWqe6hTmjIL
+                    ssZKotCGOdJenqCiyqZSzUcfdAGTvKHOKo4fPoHFFiSDQwu0dcX7EKjM25kjXavG
+                    GztAYuxhA1WEYERJgz6R2Ex5QqSpvmLaFFQxrXDl7PZCS8eAdJvmWIZ+1yVudMP+
+                    KGTVED2LOeLoCJkFEESYDk2gHLv3ZVUvqjB/EshBj96UtpAEL+RvMXO8iuzWjIYD
+                    JVokM705iS53W+8Fe/Eq6K7yH3UgE1lCjrrrxuq5aNQ86mgCjXXFi7b8z6g/0Cbs
+                    f+e8kka7lRO+Tda/Iy3gKjnlvySsRGCw/1kOXuA+uFUjXWsA8zVcaKzeot43RoiB
+                    utelt+I8ypktPx2UrULYhPOLt7SJJJ2nngStVWFCmxMVEDrCbvygorePV9XkgTTQ
+                    z8TOpjJvEx/ZR7a5v+11l0KVzykLdU0t47yI3ruioMO64Eu2r+j7toJQv7Uld0Ok
+                    9vzxgjQk+Me+Fv+Bc9BgvXFGGdYcnAL8X60Au5kowHTeX0QdZp39hpNPHIQZHfxG
+                    A4ViZCq5hzCzAPP1kHzJLxus4zlKYON1zNZoTwg2YvySIGlZ6deMdREK7xjpCU6C
+                    aDajhmjEKfdOf1kNyfmjZxjgnY2uRhaEr3zsfaSP+yitrpIfHDSNP0vjanFj7MZX
+                    l0q6F3LPiYV62KBs95i0cBi3UVMfP67QRqeCv6pMCJxAwB0uUqzOQWXXfGVlInQL
+                    19Bi6Cd+aQT9DVZuR3v3mRPikx00v96RDQfaqvqxrXHs2AV/xs85kFUy0uL2VbjQ
+                    774OFLn9WbILgb2e7Mgd0AvIt9MBzbTjn04IWoLe85mi99K6xJFa+VAFvdxrdIcl
+                    DHN2UY+RdDMNddC/1oPdSM+XtnQxTG+VeI9g3du6RWjsLjaZzKuiDeQo5HjB0kSk
+                    6Di6PT0aXrIILlCf0abYJm6+8i7O7BGi25AbNE85j/kfoX+8vUo7Dp/mKb7gLhMY
+                    9HzJW/qrekzHagIqm/r1VreOQq3znciPD6Bfa+xQ4llbrCuY+OCNWWuVm+WuA6DU
+                    NuYy9zNJE0FYe1LQ4PUOiRX/EQHAPms3K2QeyzJ4rI9dXq1wTL1O5JJDAA2ZoBO3
+                    f9apY2e0JJE4RQRPcXBhC0D8ZysS2lMVCTL27DcwEFb8hMJvYTCRLhGu7xvp0Ct6
+                    w7EUyAQ8V6ZYG4IO9BE7u8M5niOcn0Wj2Dfo/VdSwxSAqCHRK5wYS/X/pJgux25M
+                    pu0e0mEChzoIxmBdN8WYLPq0SPrNTst/ljhy2RxS279BrPMgbZU/9hP072oqzzxF
+                    W1tgd/u8fdYKorfsxrtsxgrKJmmW8y7EcrmRj2b58fdEfQ5im76eDBRIaApyqAuT
+                    ta34S0A8aOwoNse4hKRYE6o6M6lhLwA1LTVTVR32hJSdiQoI6FgWFNq/eHfNfHJT
+                    CUIQvzSir0F7W3V27rK+qL/A54xTnXEhaXVXVuVrv2HV2ssD71++KvA0QMXvKdHm
+                    ELLAODHV207YgyCB1bJ3dy09Zc12QJbIoRK43bp0qMxhSPvtLxAiWWIoLuadW049
+                    8djnm0LcQL2lmVNV0niX6FAy2Ke4AcdMZyfFW7FOlAsx0YFh0AvcnG6or7yDeTVF
+                    VRjILhp+w87nLH1piXPyvcgmpg8PhUBsMfIsafswMTAhMAkGBSsOAwIaBQAEFMTL
+                    2+V/OTEk5UPr3hk4UchA399mBAiMGAxbKnlamQICCAA=
+                    -----END PKCS12-----"
+                ]
+#############
+  /api/v1/requests/{id}:
+    get: 
+      summary: GET REQUEST
+      tags:
+        - REQUESTS
+      description: Returns the information registered about a Request.
+      produces:
+        - application/json 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/pdf:
+                {
+                    "pk": 123,
+                    "given_name": "given_name_1",
+                    "surname_1": "surname_1_1",
+                    "surname_2": "",
+                    "sex": "F",
+                    "id_document_type": null,
+                    "id_document_country": null,
+                    "serial_number": "serial_number",
+                    "country_name": "ES",
+                    "citizenship": "ES",
+                    "residence": "ES",
+                    "organization_email": null,
+                    "email": "dci@bit4id.com",
+                    "title": "title",
+                    "organization_name": "organization_name",
+                    "organizational_unit_1": "",
+                    "organizational_unit_2": null,
+                    "organization_identifier": null,
+                    "responsible_name": "responsible_name",
+                    "responsible_first_surname": "responsible_first_surname",
+                    "responsible_second_surname": "",
+                    "responsible_email": null,
+                    "responsible_serial": "responsible_serial",
+                    "responsible_position": null,
+                    "subscriber_responsible_serial": null,
+                    "administrative_unit": null,
+                    "empowerment": null,
+                    "representation": null,
+                    "circumstances": null,
+                    "limit": null,
+                    "registration": null,
+                    "process_application": null,
+                    "entity_owner": null,
+                    "entity_owner_serial_number": null,
+                    "description": null,
+                    "certificate_set": [
+                        {
+                        "profile": "PFqscdAF",
+                        "status": 0,
+                        "valid_from": "2017-05-21T16:16:00Z",
+                        "valid_to": "2018-05-21T16:16:00Z",
+                        "valid": "EXPIRED",
+                        "revokation_reason": null,
+                        "serial_number": "4ac1ad258802b782",
+                        "subject": "2.5.4.97=VATES-organization_tax_number, CN=given_name_1 surname_1_1 / organization_tax_number, 2.5.4.5=IDCES-serial_number, 2.5.4.42=given_name_1, 2.5.4.4=surname_1_1, 2.5.4.12=title, O=organization_name, C=ES",
+                        "data": "MIIIUjCCBj...",
+                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                        }
+                    ],
+                    "profile": "PFqscdEmpresa",
+                    "scratchcard": "7000071",
+                    "status": "ISSUED",
+                    "registering_user": {
+                        "pk": 1,
+                        "permission_profile": 1,
+                        "registration_authority": 1,
+                        "request": 1
+                    },
+                    "approving_user": {
+                        "pk": 1,
+                        "permission_profile": 1,
+                        "registration_authority": 1,
+                        "request": 1
+                    },
+                    "producing_user": {
+                        "pk": 1,
+                        "permission_profile": 1,
+                        "registration_authority": 1,
+                        "request": 1
+                    },
+                    "registration_authority": 1,
+                    "secure_element": 1,
+                    "validity_time": "365",
+                    "smartcard_sn": "7420000300008275",
+                    "citizen_tax_number": "citizen_tax_number",
+                    "birth_date": "01/01/1980",
+                    "birth_country": "ES",
+                    "birth_city": "",
+                    "birth_province": "",
+                    "birth_state": "",
+                    "birth_district": "",
+                    "birth_canton": "",
+                    "id_document_description": "",
+                    "id_document_issuer": "",
+                    "organization_rol": "",
+                    "professional_id_number": null,
+                    "mobile_phone_number": "+39369258147",
+                    "fix_phone_number": "",
+                    "residence_address": "",
+                    "residence_city": "",
+                    "residence_province": "",
+                    "residence_postal_code": "",
+                    "residence_state": "",
+                    "residence_district": "",
+                    "residence_canton": "",
+                    "organization_tax_number": "organization_tax_number",
+                    "organization_address": "",
+                    "organization_city": "",
+                    "organization_province": "",
+                    "organization_country": "",
+                    "organization_postal_code": "",
+                    "organization_state": "",
+                    "organization_url": "",
+                    "responsible_legal_level": null,
+                    "subscriber": null,
+                    "responsible_legal_documents": null,
+                    "special_conditions": null,
+                    "responsible_registry_data": null,
+                    "approving_rao": {
+                        "pk": 1,
+                        "given_name": "User",
+                        "surname_1": "Admin",
+                        "surname_2": "",
+                        "certificate": {
+                            "profile": "PERSONA_FISICA_SOFT",
+                            "status": 0,
+                            "valid_from": "2017-01-24T11:00:31Z",
+                            "valid_to": "2020-01-24T11:00:31Z",
+                            "valid": "VALID",
+                            "revokation_reason": null,
+                            "serial_number": "3ef3696d2939241d",
+                            "subject": "2.5.4.97=VATES-organization_tax_number, CN=given_name_1 surname_1_1 / organization_tax_number, 2.5.4.5=IDCES-serial_number, 2.5.4.42=given_name_1, 2.5.4.4=surname_1_1, 2.5.4.12=title, O=organization_name, C=ES",
+                            "data": "MIIIUjCCBj...",
+                            "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                        },
+                        "id_document_number": "5241651",
+                        "id_document_description": "Patente",
+                        "id_document_issuer": "Motorizzazione Civile",
+                        "registration_authority": [
+                        1,
+                        2
+                        ],
+                        "registration_authority_master": 1
+                    },
+                    "producing_rao": {
+                        "pk": 1,
+                        "given_name": "User",
+                        "surname_1": "Admin",
+                        "surname_2": "",
+                        "certificate": {
+                            "profile": "PERSONA_FISICA_SOFT",
+                            "status": 0,
+                            "valid_from": "2017-01-24T11:00:31Z",
+                            "valid_to": "2020-01-24T11:00:31Z",
+                            "valid": "VALID",
+                            "revokation_reason": null,
+                            "serial_number": "3ef3696d2939241d",
+                            "subject": "2.5.4.97=VATES-organization_tax_number, CN=given_name_1 surname_1_1 / organization_tax_number, 2.5.4.5=IDCES-serial_number, 2.5.4.42=given_name_1, 2.5.4.4=surname_1_1, 2.5.4.12=title, O=organization_name, C=ES",
+                            "data": "MIIIUjCCBj...",
+                            "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                        },
+                        "id_document_number": "5241651",
+                        "id_document_description": "Patente",
+                        "id_document_issuer": "Motorizzazione Civile",
+                        "registration_authority": [
+                        1,
+                        2
+                        ],
+                        "registration_authority_master": 1
+                    },
+                    "id_document_number": null,
+                    "id_responsible_document_type": null,
+                    "id_responsible_document_country": null,
+                    "id_responsible_document_number": null,
+                    "organizational_unit_3": null
+                }
+#############
+    put: 
+      summary: UPDATE REQUEST
+      tags:
+        - REQUESTS
+      description: Update information about a Request
+      consumes:
+        - application/json 
+      produces:
+        - application/json 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/UpdateReqObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/pdf:
+                {
+                    "pk": 789,
+                    "given_name": "R2",
+                    "surname_1": "D2",
+                    "surname_2": "",
+                    "sex": null,
+                    "id_document_type": "IDC",
+                    "id_document_country": "ES",
+                    "serial_number": "12321321",
+                    "country_name": "ES",
+                    "citizenship": null,
+                    "residence": "ES",
+                    "organization_email": null,
+                    "email": "email@example.com",
+                    "title": null,
+                    "organization_name": null,
+                    "organizational_unit_1": null,
+                    "organizational_unit_2": null,
+                    "organization_identifier": null,
+                    "responsible_name": null,
+                    "responsible_first_surname": null,
+                    "responsible_second_surname": null,
+                    "responsible_email": null,
+                    "responsible_serial": null,
+                    "responsible_position": null,
+                    "subscriber_responsible_serial": null,
+                    "administrative_unit": null,
+                    "empowerment": null,
+                    "representation": null,
+                    "circumstances": null,
+                    "limit": null,
+                    "registration": null,
+                    "process_application": null,
+                    "entity_owner": null,
+                    "entity_owner_serial_number": null,
+                    "description": null,
+                    "certificate_set": [],
+                    "profile": "PFnubeAFCiudadano",
+                    "scratchcard": "100000146",
+                    "status": "CREATED",
+                    "registering_user": {
+                        "pk": 1,
+                        "permission_profile": 1,
+                        "registration_authority": 1,
+                        "request": 1
+                    },
+                    "approving_user": null,
+                    "producing_user": null,
+                    "registration_authority": 41,
+                    "secure_element": 2,
+                    "validity_time": "730",
+                    "smartcard_sn": "",
+                    "citizen_tax_number": "",
+                    "birth_date": null,
+                    "birth_country": null,
+                    "birth_city": "",
+                    "birth_province": "",
+                    "birth_state": "",
+                    "birth_district": "",
+                    "birth_canton": "",
+                    "id_document_description": "",
+                    "id_document_issuer": "",
+                    "organization_rol": null,
+                    "professional_id_number": null,
+                    "mobile_phone_number": "393389827525",
+                    "fix_phone_number": "",
+                    "residence_address": "",
+                    "residence_city": "",
+                    "residence_province": "",
+                    "residence_postal_code": "",
+                    "residence_state": "",
+                    "residence_district": "",
+                    "residence_canton": "",
+                    "organization_tax_number": null,
+                    "organization_address": null,
+                    "organization_city": null,
+                    "organization_province": null,
+                    "organization_country": null,
+                    "organization_postal_code": null,
+                    "organization_state": null,
+                    "organization_url": null,
+                    "responsible_legal_level": null,
+                    "subscriber": null,
+                    "responsible_legal_documents": null,
+                    "special_conditions": null,
+                    "responsible_registry_data": null,
+                    "approving_rao": null,
+                    "producing_rao": null,
+                    "id_document_number": "",
+                    "id_responsible_document_type": null,
+                    "id_responsible_document_country": null,
+                    "id_responsible_document_number": null,
+                    "organizational_unit_3": null
+                }
+#############
+  /api/v1/requests/{id}/cancel:
+    delete: 
+      summary: CANCEL REQUEST
+      tags:
+        - REQUESTS
+      description: Change the request status to CANCELLED.
+      produces:
+        - application/json 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/pdf:
+                {
+                    "status": "Request cancelled"
+                }
+#############
+  /api/v1/requests/{id}/generate_document:
+    post: 
+      summary: GENERATE DOCUMENT
+      tags:
+        - REQUESTS
+      description: Retrieve the documents associated to the Request
+      produces:
+        - application/json 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/GenDocObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/pdf:
+                {
+                    "document": "%PDF-1.4\n%\ufffd\ufffd\ufffd\ufffd Generated PDF document 0 obj\n<<\n/F1 2 0 R\n..."
+                }
+#############
+  /api/v1/requests/{id}/validate:
+    get: 
+      summary: VALIDATE REQUEST
+      tags:
+        - REQUESTS
+      description: Validate the request fields.
+      produces:
+        - text/plain 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            text/plain:
+                [
+                    [
+                        "serial_number",
+                        "missing"
+                    ],
+                    [
+                        "mobile_phone_number",
+                        "missing"
+                    ]
+                ]
+#############
+  /api/v1/requests/{id}/preauthlink:
+    post: 
+        summary: CREATE PRE-AUTH LINK
+        tags:
+          - REQUESTS
+        description: Create a new pre-authenticated link for the request.
+        produces:
+          - application/json
+        parameters:
+          - in: path
+            name: id
+            type: string
+            description: The unique identifier of the Request
+            required: true
+        responses:
+          200:
+            description: Successful Response
+            examples:
+              application/json:
+                  {
+                      "preauthenticatedlink" : "link-as-string"
+                  }
+#############
+    get: 
+      summary: GET PRE-AUTH LINK
+      tags:
+        - REQUESTS
+      description: Retrieve the pre-authenticated link associated to the request.
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "preauthenticatedlink" : "link-as-string"
+                }
+#############
+  /api/v1/requests/{id}/pl_upload_document:
+    get: 
+      summary: (PAPERLESS) UPLOAD DOCUMENT
+      tags:
+        - REQUESTS
+      description: Upload the required documentation for certificate issuance.
+      produces:
+        - application/json
+      consumes:
+        - multipart/form-data
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+        - in: formData
+          name: document
+          description: The file to be uploaded
+          required: true
+          type: string
+        - in: formData
+          name: type
+          enum: [document_front, document_rear, document_owner]
+          description: The type of the document to be uploaded
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 48312,
+                    "type": "document_front"
+                }              
+#############
+  /api/v1/requests/{id}/pl_delete_document:
+    get: 
+      summary: (PAPERLESS) DELETE DOCUMENT
+      tags:
+        - REQUESTS
+      description: Delete an identification document previously uploaded.
+      produces:
+        - application/json
+      consumes:
+        - multipart/form-data
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+        - in: formData
+          name: docpk
+          description: The database primary key of the document to be deleted
+          required: true
+          type: string
+      responses:
+          200:
+            description: Successful Response
+            examples:
+              application/json:
+                  {
+                      "status": "Document deleted successfully"
+                  }              
+#############
+  /api/v1/requests/{id}/pl_get_document:
+    get: 
+      summary: (PAPERLESS) GET DOCUMENT
+      tags:
+        - REQUESTS
+      description: Retrieves a request's associated document in Base64 format.
+      produces:
+        - application/json
+      consumes:
+        - multipart/form-data
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+        - in: formData
+          name: type
+          description: The type of the document to be retrieved
+          required: true
+          type: string
+      responses:
+          200:
+            description: Successful Response
+            examples:
+              application/json:
+                  [
+                      {
+                          "pk": 48319,
+                          "document": "iVBORw0KGgoAAAANSUhEUgAAAPwAAAChCAYAAAGUvOLYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAABU9xJREFUeNqMlmuMXGUZx3/nfmZ257bX7m53t91uKbS1Ak0kIFIwIZHUSP0kBmLiJSIWXa3SBE1TkaZaU2liQFObED9QE0M(...)",
+                          "type": "document_front"
+                      }
+                  ]      
+#############
+  /api/v1/requests/{id}/pl_get_documents:
+    get: 
+      summary: (PAPERLESS) GET DOCUMENT
+      tags:
+        - REQUESTS
+      description: Retrieves all uploaded documents associated to a request.
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+      responses:
+          200:
+            description: Successful Response
+            examples:
+              application/json:
+                  [
+                      {
+                          "pk": 48319,
+                          "document": "iVBORw0KGgoAAAANSUhEUgAAAPwAAAChCAYAAAGUvOLYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAABU9xJREFUeNqMlmuMXGUZx3/nfmZ257bX7m53t91uKbS1Ak0kIFIwIZHUSP0kBmLiJSIWXa3SBE1TkaZaU2liQFObED9QE0M(...)",
+                          "type": "document_front"
+                      },
+                      {
+                          "pk": 48320,
+                          "document": "7m53t91uKbS1Ak0kIFIwIZHUSP0kBmLiJiVBORw0KGgoAAAANSUhEUgAAAPwTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAABU9xJREFUeNqAAAChCAYAAAGUvOLYAAAAGXRFWHRMlmuMXGUZx3/nfmZ257bXSIWXa3SBE1TkaZaU2liQFObED9QE0M(...)",
+                          "type": "document_rear"
+                      },
+                      {
+                          "pk": 48321,
+                          "document": "ANSUhEUgAAAPwTb2Z0d27m53t91uREFUeNqAAACwIZHUSP0kBmLiJiVBORw0KGgoAAAFyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAABU9xJhCAYAAAGU7bXSIWXa3SBE1TkaZaU2DDKxk89fogpvOLYAAAAGXRFWHRMlmuMXGUZx3/nfmZ25liQFObED9QE0M(...)",
+                          "type": "signed_contract"
+                      } 
+                  ]
+#############
+  /api/v1/requests/{id}/pl_approve:
+    post: 
+      summary: (PAPERLESS) APPROVE A REQUEST
+      tags:
+        - REQUESTS
+      description: Once created a new request, the next thing to do is approve it.
+      consumes:
+        - application/json
+      produces:
+        - application/json 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/PlApproveReqObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "secrets": {
+                        "puk": "06092551",
+                        "enrollment_code": "8N!9xPhB",
+                        "pin": "76293975",
+                        "erc": "3706008596"
+                    },
+                    "request": {
+                        "pk": 665,
+                        "given_name": "TEST",
+                        "surname_1": "API",
+                        "surname_2": "Software P12",
+                        "sex": null,
+                        "id_document_type": "TIN",
+                        "id_document_country": "IT",
+                        "serial_number": "TSTAPI74S23C129Y",
+                        "country_name": "ES",
+                        "citizenship": null,
+                        "residence": null,
+                        "organization_email": null,
+                        "email": "asi@bit4id.com",
+                        "title": null,
+                        "organization_name": null,
+                        "organizational_unit_1": null,
+                        "organizational_unit_2": null,
+                        "organization_identifier": null,
+                        "responsible_name": null,
+                        "responsible_first_surname": null,
+                        "responsible_second_surname": null,
+                        "responsible_email": null,
+                        "responsible_serial": null,
+                        "responsible_position": null,
+                        "subscriber_responsible_serial": null,
+                        "administrative_unit": null,
+                        "empowerment": null,
+                        "representation": null,
+                        "circumstances": null,
+                        "limit": null,
+                        "registration": null,
+                        "process_application": null,
+                        "entity_owner": null,
+                        "entity_owner_serial_number": null,
+                        "description": null,
+                        "certificate_set": [],
+                        "profile": "PFSoftAFCiudadano",
+                        "scratchcard": "120000026",
+                        "status": "ENROLLREADY",
+                        "registering_user": {
+                            "pk": 34,
+                            "permission_profile": 18,
+                            "registration_authority": 39,
+                            "request": 605
+                        },
+                        "approving_user": {
+                            "pk": 34,
+                            "permission_profile": 18,
+                            "registration_authority": 39,
+                            "request": 605
+                        },
+                        "producing_user": null,
+                        "registration_authority": 39,
+                        "secure_element": 0,
+                        "validity_time": "730",
+                        "smartcard_sn": null,
+                        "citizen_tax_number": null,
+                        "birth_date": "16/10/1965",
+                        "birth_country": null,
+                        "birth_city": null,
+                        "birth_province": null,
+                        "birth_state": null,
+                        "birth_district": null,
+                        "birth_canton": null,
+                        "id_document_description": null,
+                        "id_document_issuer": null,
+                        "organization_rol": null,
+                        "professional_id_number": null,
+                        "mobile_phone_number": "3333333333",
+                        "fix_phone_number": null,
+                        "residence_address": null,
+                        "residence_city": null,
+                        "residence_province": null,
+                        "residence_postal_code": null,
+                        "residence_state": null,
+                        "residence_district": null,
+                        "residence_canton": null,
+                        "organization_tax_number": null,
+                        "organization_address": null,
+                        "organization_city": null,
+                        "organization_province": null,
+                        "organization_country": null,
+                        "organization_postal_code": null,
+                        "organization_state": null,
+                        "organization_url": null,
+                        "responsible_legal_level": null,
+                        "subscriber": null,
+                        "responsible_legal_documents": null,
+                        "special_conditions": null,
+                        "responsible_registry_data": null,
+                        "approving_rao": {
+                            "pk": 218,
+                            "given_name": "Alessandro",
+                            "surname_1": "Silvestro",
+                            "surname_2": "Bit4id",
+                            "certificate": {
+                                "profile": "EXTERNAL",
+                                "status": 0,
+                                "valid_from": "2018-10-16T11:07:00Z",
+                                "valid_to": "2020-10-15T11:07:00Z",
+                                "valid": "VALID",
+                                "revokation_reason": null,
+                                "serial_number": "0d0c1d8b1e4efefa",
+                                "subject": "CN=Alessandro Silvestro Bit4id,
+                                2.5.4.5=TINIT-RRRTST84R14F839U,
+                                2.5.4.42=Alessandro,
+                                2.5.4.4=Silvestro Bit4id, C=ES",
+                                "data": "MIIH5zCCBc+gAwIBAgI...",
+                                "issuer": "2.5.4.97=VATES-A66721499,
+                                CN=UANATACA CA1 DEVEL 2016,
+                                OU=AC-UANATACA,
+                                O=UANATACA S.A.,
+                                L=Barcelona C=ES"
+                            },
+                            "id_document_number": "RRRTST84R14F839U",
+                            "id_document_description": null,
+                            "id_document_issuer": null,
+                            "registration_authority": [
+                                39
+                            ],
+                            "registration_authority_master": 39
+                        },
+                        "producing_rao": null,
+                        "id_document_number": null
+                    }
+                }
+#############
+  /api/v1/requests/{id}/pl_cloud_enroll:
+    post: 
+      summary: (PAPERLESS) CLOUD ENROLL
+      tags:
+        - REQUESTS
+      description: "**Paperless Cloud Mode.** The enrollment consists in the generation of a new digital certificate for a request already created and approved."
+      consumes:
+        - application/json
+      produces:
+        - application/json 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/PlCloudEnrObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                [
+                    {
+                        "pk": 18786,
+                        "data": "MIIH7TCCBdWgAwIBAgIIBcBB/lEe++EwDQYJKoZIhvcNAQELBQAwgb0xCzAJBgNVBAYTAkVTMUQwQgYDVQQHDDtCYXJjZWxvbmEgKHNlZSBjdXJyZW50IGFkZHJlc3MgYXQgd3d3LnVhbmF0YWNhLmNvbS9hZGRyZXNzKTEWMBQGA1UECgwNVUFOQVRBQ0E(...)",
+                        "profile": "PFnubeAF",
+                        "subject": "CN=Person Certificate Sample, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=Person, 2.5.4.4=Certificate Sample, C=ES",
+                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
+                        "valid_from": "2021-01-04T14:06:00",
+                        "valid_to": "2023-01-04T14:06:00",
+                        "serial_number": "05c041fe511efbe1",
+                        "request": 28204,
+                        "status": 0,
+                        "revokation_reason": null
+                    }
+                ]
+#############
+  /api/v1/requests/{id}/pl_p12_enroll:
+    post: 
+      summary: (PAPERLESS) SOFTWARE ENROLL
+      tags:
+        - REQUESTS
+      description: "**Paperless Software Mode.** The enrollment consists in the generation of a new digital certificate for a request already created and approved."
+      consumes:
+        - application/json
+      produces:
+        - application/json 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/PlSoftEnrObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                [
+                    "-----BEGIN PKCS12-----
+                    MIIN/AIBAzCCDcIGCSqGSIb3DQEHAaCCDbMEgg2vMIINqzCCCCgGCSqGSIb3DQEH
+                    AaCCCBkEgggVMIIIETCCCA0GCyqGSIb3DQEMCgEDoIIH2TCCB9UGCiqGSIb3DQEJ
+                    FgGgggfFBIIHwTCCB70wggWloAMCAQICCAw/8u9JFlHzMA0GCSqGSIb3DQEBCwUA
+                    MIG9MQswCQYDVQQGEwJFUzFEMEIGA1UEBww7QmFyY2Vsb25hIChzZWUgY3VycmVu
+                    dCBhZGRyZXNzIGF0IHd3dy51YW5hdGFjYS5jb20vYWRkcmVzcykxFjAUBgNVBAoM
+                    DVVBTkFUQUNBIFMuQS4xFDASBgNVBAsMC0FDLVVBTkFUQUNBMSAwHgYDVQQDDBdV
+                    QU5BVEFDQSBDQTEgREVWRUwgMjAxNjEYMBYGA1UEYQwPVkFURVMtQTY2NzIxNDk5
+                    MB4XDTE4MTEyMjE1MjgwMFoXDTIwMTEyMTE1MjgwMFoweDELMAkGA1UEBhMCRVMx
+                    GTAXBgNVBAQMEEFQSSBTb2Z0d2FyZSBQMTIxDTALBgNVBCoMBFRFU1QxHzAdBgNV
+                    BAUTFlRJTklULVRTVEFQSTc0UzIzQzEyOVkxHjAcBgNVBAMMFVRFU1QgQVBJIFNv
+                    ZnR3YXJlIFAxMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMf63BEB
+                    eKd1+oBVf8o/ybGCcs4ZUIsLaiI+uo/brGM40Uo0uoD1Y5e1Ewt6GdnB3+OQnCzv
+                    6prb/pSwZ5GxpjkYPjAf+MEyKsJfPTOW0gBQwvzo3oaXq9g/BqYRJcT7heM7knbb
+                    thT5mJTxnGoWAkTuRjwEsiyCAfVYrCwLqE4uNBvXju4nrZ51jA4kQx3oyVpy7Y3O
+                    uuVdIfOmxbKhb/iyBUAzYusRfUv+XVvDqiVLP+9a+i3JUpi2qMQNx4q3B4Ply1Fz
+                    1FgBw4icYtHfMrKHIkoKmYzPpUM97x4GE+Hz8esX98My0NROa59x0uoPuU+d4P1e
+                    e2x+aTKeiadfjkUCAwEAAaOCAwMwggL/MIHXBggrBgEFBQcBAQSByjCBxzBVBggr
+                    BgEFBQcwAoZJaHR0cDovL3d3dy51YW5hdGFjYS5jb20vcHVibGljL2Rvd25sb2Fk
+                    L3RzcF9jZXJ0aWZpY2F0ZXMvc3Vib3JkaW5hdGUxLmNydDA2BggrBgEFBQcwAYYq
+                    aHR0cDovL29jc3AxLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL29jc3AvMDYGCCsG
+                    AQUFBzABhipodHRwOi8vb2NzcDIudWFuYXRhY2EuY29tL3B1YmxpYy9wa2kvb2Nz
+                    cC8wHQYDVR0OBBYEFGDhXkciQE/205bmPJuEnR+ap8YPMAwGA1UdEwEB/wQCMAAw
+                    HwYDVR0jBBgwFoAUysyKpc+kjCJa1vuX90+0Tv3V764wVQYIKwYBBQUHAQMESTBH
+                    MAgGBgQAjkYBATALBgYEAI5GAQMCAQ8wLgYGBACORgEFDCRodHRwczovL3d3dy51
+                    YW5hdGFjYS5jb20vcHVibGljL2Nwcy8wgaEGA1UdIASBmTCBljAJBgcEAIvsQAEA
+                    MIGIBgsrBgEEAYLxNgEBATB5MDAGCCsGAQUFBwIBFiRodHRwczovL3d3dy51YW5h
+                    dGFjYS5jb20vcHVibGljL2Nwcy8wRQYIKwYBBQUHAgIwOQw3Q2VydGlmaWNhZG8g
+                    Y3VhbGlmaWNhZG8gZGUgUGVyc29uYSBGw61zaWNhIGVuIHNvZnR3YXJlLjCBjwYD
+                    VR0fBIGHMIGEMECgPqA8hjpodHRwOi8vY3JsMS51YW5hdGFjYS5jb20vcHVibGlj
+                    L3BraS9jcmwvQ0Exc3Vib3JkaW5hZGEuY3JsMECgPqA8hjpodHRwOi8vY3JsMi51
+                    YW5hdGFjYS5jb20vcHVibGljL3BraS9jcmwvQ0Exc3Vib3JkaW5hZGEuY3JsMA4G
+                    A1UdDwEB/wQEAwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwGQYD
+                    VR0RBBIwEIEOYXNpQGJpdDRpZC5jb20wDQYJKoZIhvcNAQELBQADggIBAJj7bPyq
+                    F+QojTNESKKxw0WdYgFEFF72hA44SZ5oCZ/ZORYZepVJnaI6zjRQ7ezQwNtc87mr
+                    Hdn7Bl9kNkgp1bFtllMzwr2/eg1/UrEE8+oWIXvaTU29/t1QXdPaMi/7Jq01yM1e
+                    VKF0lndz9qBuxlr1RwfcpznOhn+J+C4B6BeK0yc+jELDPpceuG0WNB5FDUrdy5x2
+                    +lYJLfSkg8+3l1mnSHZPUr3c3h2qX17XhV4r6lCFofBekrXfRrKUFmf0V9fs3N+k
+                    ymZQ8NCrOiPoDXTEdrhMvKFUQ7YEniwHJ7alzQGbKMd0X1BmvTw0HugbU6f/oMRM
+                    eDeP17lFbOMXkSdnHp3ly/ppfUJdnias1+vGs6V7HXd1irK+UjSTL6d0Eu64rwQK
+                    e9JY9hlaB9cdjFn4qqo1vDjQXfzIVOa8Xdatv1KXUqv45R3PhdZ3T3UsxXqbfHob
+                    mvR//ycrGZPzHeyqXYfzx1fXXmfrjqjePyzWoCu4HAAZWk+arG5DYEb6kmawK/kC
+                    lbI3nyNXQuUaZr/SxOROdtUH5aXdbhEOQf9voMvsiyhSUp5wCDg/CaSKwB48NWPx
+                    gliB9uuJqGWyub7fMj5OxRZVYlA3QqP7V2PvODE4jITJdOhemnrrdK/mlmIPwSJq
+                    8asL5rfwxyUs58FT2sDd6Qecw6Y5gK+ULgRjMSEwHwYJKoZIhvcNAQkVMRIEEAYu
+                    Zb4L5MZJKP6FifnzQFEwggV7BgkqhkiG9w0BBwagggVsMIIFaAIBADCCBWEGCSqG
+                    SIb3DQEHATAcBgoqhkiG9w0BDAEDMA4ECNOnUDg66SeRAgIIAKCCBTQEggUwTP5i
+                    TS5Uc2nSBvtWP+lNr5Y3PSjvn5or5KQglE0apYhscPQDSCdsTRua5uH6vYT5WcFd
+                    IvboQxlTZRXB0wOfLsAPWRiVB/Ex9IQkf01jQT4Zm4/0fHcAwDW0VlWqe6hTmjIL
+                    ssZKotCGOdJenqCiyqZSzUcfdAGTvKHOKo4fPoHFFiSDQwu0dcX7EKjM25kjXavG
+                    GztAYuxhA1WEYERJgz6R2Ex5QqSpvmLaFFQxrXDl7PZCS8eAdJvmWIZ+1yVudMP+
+                    KGTVED2LOeLoCJkFEESYDk2gHLv3ZVUvqjB/EshBj96UtpAEL+RvMXO8iuzWjIYD
+                    JVokM705iS53W+8Fe/Eq6K7yH3UgE1lCjrrrxuq5aNQ86mgCjXXFi7b8z6g/0Cbs
+                    f+e8kka7lRO+Tda/Iy3gKjnlvySsRGCw/1kOXuA+uFUjXWsA8zVcaKzeot43RoiB
+                    utelt+I8ypktPx2UrULYhPOLt7SJJJ2nngStVWFCmxMVEDrCbvygorePV9XkgTTQ
+                    z8TOpjJvEx/ZR7a5v+11l0KVzykLdU0t47yI3ruioMO64Eu2r+j7toJQv7Uld0Ok
+                    9vzxgjQk+Me+Fv+Bc9BgvXFGGdYcnAL8X60Au5kowHTeX0QdZp39hpNPHIQZHfxG
+                    A4ViZCq5hzCzAPP1kHzJLxus4zlKYON1zNZoTwg2YvySIGlZ6deMdREK7xjpCU6C
+                    aDajhmjEKfdOf1kNyfmjZxjgnY2uRhaEr3zsfaSP+yitrpIfHDSNP0vjanFj7MZX
+                    l0q6F3LPiYV62KBs95i0cBi3UVMfP67QRqeCv6pMCJxAwB0uUqzOQWXXfGVlInQL
+                    19Bi6Cd+aQT9DVZuR3v3mRPikx00v96RDQfaqvqxrXHs2AV/xs85kFUy0uL2VbjQ
+                    774OFLn9WbILgb2e7Mgd0AvIt9MBzbTjn04IWoLe85mi99K6xJFa+VAFvdxrdIcl
+                    DHN2UY+RdDMNddC/1oPdSM+XtnQxTG+VeI9g3du6RWjsLjaZzKuiDeQo5HjB0kSk
+                    6Di6PT0aXrIILlCf0abYJm6+8i7O7BGi25AbNE85j/kfoX+8vUo7Dp/mKb7gLhMY
+                    9HzJW/qrekzHagIqm/r1VreOQq3znciPD6Bfa+xQ4llbrCuY+OCNWWuVm+WuA6DU
+                    NuYy9zNJE0FYe1LQ4PUOiRX/EQHAPms3K2QeyzJ4rI9dXq1wTL1O5JJDAA2ZoBO3
+                    f9apY2e0JJE4RQRPcXBhC0D8ZysS2lMVCTL27DcwEFb8hMJvYTCRLhGu7xvp0Ct6
+                    w7EUyAQ8V6ZYG4IO9BE7u8M5niOcn0Wj2Dfo/VdSwxSAqCHRK5wYS/X/pJgux25M
+                    pu0e0mEChzoIxmBdN8WYLPq0SPrNTst/ljhy2RxS279BrPMgbZU/9hP072oqzzxF
+                    W1tgd/u8fdYKorfsxrtsxgrKJmmW8y7EcrmRj2b58fdEfQ5im76eDBRIaApyqAuT
+                    ta34S0A8aOwoNse4hKRYE6o6M6lhLwA1LTVTVR32hJSdiQoI6FgWFNq/eHfNfHJT
+                    CUIQvzSir0F7W3V27rK+qL/A54xTnXEhaXVXVuVrv2HV2ssD71++KvA0QMXvKdHm
+                    ELLAODHV207YgyCB1bJ3dy09Zc12QJbIoRK43bp0qMxhSPvtLxAiWWIoLuadW049
+                    8djnm0LcQL2lmVNV0niX6FAy2Ke4AcdMZyfFW7FOlAsx0YFh0AvcnG6or7yDeTVF
+                    VRjILhp+w87nLH1piXPyvcgmpg8PhUBsMfIsafswMTAhMAkGBSsOAwIaBQAEFMTL
+                    2+V/OTEk5UPr3hk4UchA399mBAiMGAxbKnlamQICCAA=
+                    -----END PKCS12-----"
+                ]
+#############
+  /api/v1/requests/{id}/generate_otp:
+    post: 
+      summary: GENERATE OTP
+      tags:
+        - REQUESTS
+      description: Used to generate a new One-Time Password (OTP) which will be sent to the client via SMS.
+      produces:
+        - application/json 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                { }
+
+###### scratchcards ######
+###############################################################################
+
+  /api/v1/scratchcards:
+    post: 
+      summary: CREATE SCRATCHCARD
+      tags:
+        - SCRATCHCARDS
+      description: Create a new scratchcard.
+      consumes:
+        - application/json
+      produces:
+        - application/json 
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/CreateScrObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 1245,
+                    "sn": "110000150",
+                    "secrets": "{\"erc\": \"8207878566\", \"enrollment_code\": \"97Q6B,6W\", \"pin\": \"25936657\", \"puk\": \"44024058\"}",
+                    "registration_authority": 41
+                }
+#############
+    get: 
+      summary: LIST SCRATCHCARDS
+      tags:
+        - SCRATCHCARDS
+      description: Gets the list of scratchcards
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "count": 3,
+                    "next": null,
+                    "previous": null,
+                    "results": [
+                        {
+                            "pk": 1245,
+                            "sn": "110000150",
+                            "secrets": "{\"erc\": \"8207878566\", \"enrollment_code\": \"97Q6B,6W\", \"pin\": \"25936657\", \"puk\": \"25936657\"}",
+                            "registration_authority": 41
+                        },
+                        {
+                            "pk": 1193,
+                            "sn": "100000147",
+                            "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
+                            "registration_authority": 41
+                        },
+                        {
+                            "pk": 1192,
+                            "sn": "100000146",
+                            "secrets": "{\"erc\": \"8117606937\", \"enrollment_code\": \",8cj6Ax2\", \"pin\": \"85376977\", \"puk\": \"86175206\"}",
+                            "registration_authority": 41
+                        }
+                    ]
+                }
+#############
+  /api/v1/scratchcard/{id}:
+    get: 
+      summary: GET SCRATCHCARD
+      tags:
+        - SCRATCHCARDS
+      description: Get details from a scratchcard.
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The scratchcard unique id
+          required: true
+      produces:
+        - application/json       
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 1193,
+                    "sn": "100000147",
+                    "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
+                    "registration_authority": 41
+                }
+#############
+    put: 
+      summary: UPDATE A SCRATCHCARD
+      tags:
+        - SCRATCHCARDS
+      description: Update details from a scratchcard.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The scratchcard unique id
+          required: true  
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/UpdScrObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 1193,
+                    "sn": "100000147",
+                    "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
+                    "registration_authority": 41
+                }
+#############
+    post: 
+      summary: IS USED SCRATCHCARD
+      tags:
+        - SCRATCHCARDS
+      description: Get the status of a known scratchcard.
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The scratchcard unique id
+          required: true      
+      produces:
+        - application/json       
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 1193,
+                    "sn": "100000147",
+                    "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
+                    "registration_authority": 41
+                }
+#############
+  /api/v1/scratchcards/get_first_unused:
+    post: 
+      summary: GET FIRST UNUSED SCRATCHCARD
+      tags:
+        - SCRATCHCARDS
+      description: Get first unused scratchcard.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/FUScrObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 1193,
+                    "sn": "100000147",
+                    "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
+                    "registration_authority": 41
+                }
+#############
+  /api/v1/scratchcards/revoke:
+    post: 
+      summary: REVOKE SCRATCHCARD
+      tags:
+        - SCRATCHCARDS
+      description: Revoke certificates associated to the request that use the specified scratchcard.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/REVScrObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                [
+                    {
+                        "data": "MIIH2zCCBcOgAwIBAgIIC3a...",
+                        "profile": "PFnubeAF",
+                        "subject": "CN=Alessandrp adsnio, 2.5.4.5=IDCIT-TSTAPI74S23C129Y, 2.5.4.42=Alessandrp, 2.5.4.4=adsnio, C=ES",
+                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
+                        "valid_from": "2019-01-22T16:42:00Z",
+                        "valid_to": "2019-01-23T16:42:00Z",
+                        "serial_number": "0b7687af3c8a833f",
+                        "status": 2,
+                        "pk": 761,
+                        "revokation_reason": 1,
+                        "type": "FIRSTISSUE"
+                    }
+                ]
+#############
+  /api/v1/scratchcards/whoami:
+    post: 
+      summary: WHOAMI
+      tags:
+        - SCRATCHCARDS
+      description: 	Get the request associated to the scratchcard.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/WhoScrObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 788,
+                    "given_name": "R2",
+                    "surname_1": "D2",
+                    "surname_2": "",
+                    "sex": null,
+                    "id_document_type": "IDC",
+                    "id_document_country": "ES",
+                    "serial_number": "12321",
+                    "country_name": "ES",
+                    "citizenship": null,
+                    "residence": "ES",
+                    "organization_email": null,
+                    "email": "email@example.com",
+                    "title": null,
+                    "organization_name": null,
+                    "organizational_unit_1": null,
+                    "organizational_unit_2": null,
+                    "organization_identifier": null,
+                    "responsible_name": null,
+                    "responsible_first_surname": null,
+                    "responsible_second_surname": null,
+                    "responsible_email": null,
+                    "responsible_serial": null,
+                    "responsible_position": null,
+                    "subscriber_responsible_serial": null,
+                    "administrative_unit": null,
+                    "empowerment": null,
+                    "representation": null,
+                    "circumstances": null,
+                    "limit": null,
+                    "registration": null,
+                    "process_application": null,
+                    "entity_owner": null,
+                    "entity_owner_serial_number": null,
+                    "description": null,
+                    "certificate_set": [],
+                    "profile": "PFnubeAFCiudadano",
+                    "scratchcard": "110000150",
+                    "status": "ENROLLREADY",
+                    "registering_user": {
+                        "pk": 1,
+                        "permission_profile": 1,
+                        "registration_authority": 1,
+                        "request": 1
+                    },
+                    "approving_user": {
+                        "pk": 1,
+                        "permission_profile": 1,
+                        "registration_authority": 1,
+                        "request": 1
+                    },
+                    "producing_user": null,
+                    "registration_authority": 41,
+                    "secure_element": 2,
+                    "validity_time": "730",
+                    "smartcard_sn": "",
+                    "citizen_tax_number": "",
+                    "birth_date": null,
+                    "birth_country": null,
+                    "birth_city": "",
+                    "birth_province": "",
+                    "birth_state": "",
+                    "birth_district": "",
+                    "birth_canton": "",
+                    "id_document_description": "",
+                    "id_document_issuer": "",
+                    "organization_rol": null,
+                    "professional_id_number": null,
+                    "mobile_phone_number": "393389827525",
+                    "fix_phone_number": "",
+                    "residence_address": "",
+                    "residence_city": "",
+                    "residence_province": "",
+                    "residence_postal_code": "",
+                    "residence_state": "",
+                    "residence_district": "",
+                    "residence_canton": "",
+                    "organization_tax_number": null,
+                    "organization_address": null,
+                    "organization_city": null,
+                    "organization_province": null,
+                    "organization_country": null,
+                    "organization_postal_code": null,
+                    "organization_state": null,
+                    "organization_url": null,
+                    "responsible_legal_level": null,
+                    "subscriber": null,
+                    "responsible_legal_documents": null,
+                    "special_conditions": null,
+                    "responsible_registry_data": null,
+                    "approving_rao": {
+                        "pk": 1,
+                        "given_name": "User",
+                        "surname_1": "Admin",
+                        "surname_2": "",
+                        "certificate": {
+                            "profile": "PERSONA_FISICA_SOFT",
+                            "status": 0,
+                            "valid_from": "2017-01-24T11:00:31Z",
+                            "valid_to": "2020-01-24T11:00:31Z",
+                            "valid": "VALID",
+                            "revokation_reason": null,
+                            "serial_number": "3ef3696d2939241d",
+                            "subject": "CN=User Admin, 2.5.4.5=u12345678, 2.5.4.42=User, 2.5.4.4=Admin, O=no presente, C=IT",
+                            "data": "MIIIEDCCBfigAwIBAgIIPvNpbSk5JB0wDQYJKoZIhvcNAQELBQ...",
+                            "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                        },
+                        "id_document_number": "5241651",
+                        "id_document_description": "Patente",
+                        "id_document_issuer": "Motorizzazione Civile",
+                        "registration_authority": [
+                            1,
+                            2
+                        ],
+                        "registration_authority_master": 1
+                    },
+                    "producing_rao": null,
+                    "id_document_number": "",
+                    "id_responsible_document_type": null,
+                    "id_responsible_document_country": null,
+                    "id_responsible_document_number": null,
+                    "organizational_unit_3": null
+                }
+#############
+  /api/v1/scratchcards/move:
+    post: 
+      summary: MOVE SCRATCHCARDS
+      tags:
+        - SCRATCHCARDS
+      description: Move scratchcards from an ra to another one.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/MoveScrObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "moved": 2
+                }
+
+###### registration authority ######
+###############################################################################
+  /api/v1/registrationauthorities:
+    post:
+      summary: CREATE RA
+      tags:
+        - REGISTRATION AUTHORITY
+      description: Create a new registration authority.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/CreateRAObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 42,
+                    "name": "A new RA",
+                    "parent": 1,
+                    "operators": [],
+                    "enabled_from": "2019-01-01",
+                    "enabled_until": null,
+                    "organization_tax_number": "43242414213",
+                    "organization_name": "TEST",
+                    "responsible_name": "RESP",
+                    "responsible_first_surname": "TEST",
+                    "responsible_second_surname": null,
+                    "responsible_serial": "1234567890",
+                    "email": "email@example.com",
+                    "fix_phone_number": "391234567890",
+                    "mobile_phone_number": null,
+                    "city": null,
+                    "postal_code": null,
+                    "province": null,
+                    "url": null,
+                    "country": "IT"
+                }
+#############
+    get:
+      summary: LIST RAs
+      tags:
+        - REGISTRATION AUTHORITY
+      description: Get the list of registration authorities
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "count": 40,
+                    "next": "https://api.uanataca.com/api/v1/registrationauthorities/?page=2",
+                    "previous": null,
+                    "results": [
+                        {
+                            "pk": 1,
+                            "name": "Uanataca Authority",
+                            "parent": null,
+                            "operators": [
+                                {
+                                    "pk": 13,
+                                    "permission_profile": 6,
+                                    "registration_authority": 1,
+                                    "request": 441
+                                },
+                                {
+                                    "pk": 1,
+                                    "permission_profile": 1,
+                                    "registration_authority": 1,
+                                    "request": 1
+                                },
+                                {
+                                    "pk": 8,
+                                    "permission_profile": 1,
+                                    "registration_authority": 1,
+                                    "request": 89
+                                }
+                            ]
+                        },
+                        ...
+                    ]
+                }
+#############
+  /api/v1/registrationauthorities/{id}:
+    post:
+      summary: GET RA
+      tags:
+        - REGISTRATION AUTHORITY
+      description: Create a new registration authority.
+      consumes:
+        - application/json      
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The id of the registration authority
+          required: true
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 40,
+                    "name": "A new RA",
+                    "parent": 1,
+                    "operators": []
+                }
+#############
+    put:
+      summary: UPDATE RA
+      tags:
+        - REGISTRATION AUTHORITY
+      description: Update the info about a registration authority.
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The id of the registration authority
+          required: true
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/UpdateRAObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 40,
+                    "name": "Just a NEW RA",
+                    "parent": 1,
+                    "operators": []
+                }
+###### registration authority officer ######
+###############################################################################
+
+  /api/v1/rao:
+    post:
+      summary: CREATE RAO
+      tags:
+        - REGISTRATION AUTHORITY OFFICER
+      description: Create a new registration authority officer.
+      consumes:
+        - application/json      
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/CreateRAOObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 219,
+                    "given_name": "This is not the RAO",
+                    "surname_1": "You were",
+                    "surname_2": "Looking for",
+                    "certificate": {
+                        "profile": "EXTERNAL",
+                        "status": 0,
+                        "valid_from": "2019-01-28T16:31:00",
+                        "valid_to": "2021-01-27T16:31:00",
+                        "valid": "UNKNOW",
+                        "revokation_reason": null,
+                        "serial_number": "4501b05b35da0b54",
+                        "subject": "CN=Gnigni Bubu, 2.5.4.5=IDCES-12432143313213, 2.5.4.42=Gnigni, 2.5.4.4=Bubu, C=ES",
+                        "data": "MIIHpzCCBY+gAwIBAgIIRQGwW...",
+                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                    },
+                    "id_document_number": "12354232414",
+                    "id_document_description": null,
+                    "id_document_issuer": null,
+                    "registration_authority": [
+                        41
+                    ],
+                    "registration_authority_master": 41
+                }
+#############
+    put:
+      summary: UPDATE RAO
+      tags:
+        - REGISTRATION AUTHORITY OFFICER
+      description: Update information about a RAO.
+      consumes:
+        - application/json      
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/UpdateRAOObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 219,
+                    "given_name": "This is not the RAO",
+                    "surname_1": "You were",
+                    "surname_2": "Looking for",
+                    "certificate": {
+                        "profile": "EXTERNAL",
+                        "status": 0,
+                        "valid_from": "2019-01-28T16:31:00",
+                        "valid_to": "2021-01-27T16:31:00",
+                        "valid": "UNKNOW",
+                        "revokation_reason": null,
+                        "serial_number": "4501b05b35da0b54",
+                        "subject": "CN=Gnigni Bubu, 2.5.4.5=IDCES-12432143313213, 2.5.4.42=Gnigni, 2.5.4.4=Bubu, C=ES",
+                        "data": "MIIHpzCCBY+gAwIBAgIIRQGwW...",
+                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                    },
+                    "id_document_number": "12354232414",
+                    "id_document_description": null,
+                    "id_document_issuer": null,
+                    "registration_authority": [
+                        41
+                    ],
+                    "registration_authority_master": 41
+                }
+#############
+    get:
+      summary: LIST RAOs
+      tags:
+        - REGISTRATION AUTHORITY OFFICER
+      description: "Get the list of RAOs. The result can be filtered with the following query parameters: given_namesurname_1, surname_2, certificate, registration_authority, registration_authority_master"
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: filter1
+          type: string
+          description: Filter1
+        - in: query
+          name: filter2
+          type: string
+          description: Filter2
+        - in: query
+          name: filterN
+          type: string
+          description: FilterN
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "count": 1,
+                    "next": "null",
+                    "previous": null,
+                    "results": [
+                        {
+                            "pk": 219,
+                            "given_name": "This is not the RAO",
+                            "surname_1": "You were",
+                            "surname_2": "Looking for",
+                            "certificate": {
+                                "profile": "EXTERNAL",
+                                "status": 0,
+                                "valid_from": "2019-01-28T16:31:00Z",
+                                "valid_to": "2021-01-27T16:31:00Z",
+                                "valid": "VALID",
+                                "revokation_reason": null,
+                                "serial_number": "4501b05b35da0b54",
+                                "subject": "CN=Gnigni Bubu, 2.5.4.5=IDCES-12432143313213, 2.5.4.42=Gnigni, 2.5.4.4=Bubu, C=ES",
+                                "data": "MIIHpzCCBY+gAwIBA...",
+                                "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                            },
+                            "id_document_number": "12354232414",
+                            "id_document_description": null,
+                            "id_document_issuer": null,
+                            "registration_authority": [
+                                41
+                            ],
+                            "registration_authority_master": 41
+                        }
+                    ]
+                }
+#############
+  /api/v1/rao/{id}:
+    get:
+      summary: GET RAO
+      tags:
+        - REGISTRATION AUTHORITY OFFICER
+      description: Get information about a RAO.
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The RAO's unique identifier
+          required: true
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 219,
+                    "given_name": "This is not the RAO",
+                    "surname_1": "You were",
+                    "surname_2": "Looking for",
+                    "certificate": {
+                        "profile": "EXTERNAL",
+                        "status": 0,
+                        "valid_from": "2019-01-28T16:31:00Z",
+                        "valid_to": "2021-01-27T16:31:00Z",
+                        "valid": "VALID",
+                        "revokation_reason": null,
+                        "serial_number": "4501b05b35da0b54",
+                        "subject": "CN=Gnigni Bubu, 2.5.4.5=IDCES-12432143313213, 2.5.4.42=Gnigni, 2.5.4.4=Bubu, C=ES",
+                        "data": "MIIHpzCCBY+gAwIBAgIIRQGwWzXaC...",
+                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                    },
+                    "id_document_number": "12354232414",
+                    "id_document_description": null,
+                    "id_document_issuer": null,
+                    "registration_authority": [
+                        41
+                    ],
+                    "registration_authority_master": 41
+                }
+###### registration authority user ######
+###############################################################################
+  /api/v1/users:
+    post:
+      summary: CREATE USER
+      tags:
+        - USERS
+      description: Create a new user.
+      consumes:
+        - application/json      
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+              $ref: "#/definitions/CreateUserObject"
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 36,
+                    "permission_profile": 18,
+                    "registration_authority": 41,
+                    "request": 787
+                }
+#############
+    get:
+      summary: LIST USERS
+      tags:
+        - USERS
+      description: Get the list of users.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "count": 30,
+                    "next": "https://api.uanataca.com/api/v1/users/?page=2",
+                    "previous": null,
+                    "results": [
+                        {
+                            "pk": 22,
+                            "permission_profile": 18,
+                            "registration_authority": 24,
+                            "request": 506
+                        },
+                        ...
+                    ]
+                } 
+#############
+  /api/v1/users/{id}:
+    get:
+      summary: GET USER
+      tags:
+        - USERS
+      description: Get information about an user.
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The User's unique identifier
+          required: true
+      responses:
+        200:
+            description: Successful Response
+            examples:
+              application/json:
+                  {
+                      "pk": 36,
+                      "permission_profile": 18,
+                      "registration_authority": 41,
+                      "request": 787
+                  }
+#############
+    put:
+      summary: UPDATE USER
+      tags:
+        - USERS
+      description: Update a new user.
+      consumes:
+        - application/json      
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+              $ref: "#/definitions/UpdateUserObject"
+        - in: path
+          name: id
+          type: string
+          description: The User's unique identifier
+          required: true
+      responses:
+        200:
+          description: Successful Response
+          examples:
+            application/json:
+                {
+                    "pk": 36,
+                    "permission_profile": 18,
+                    "registration_authority": 41,
+                    "request": 787
+                }
+###### definitions ######
+###############################################################################
+definitions:
+  CreateReqObject:
+    type: "object"
+    properties:
+      profile:
+          type: "string"
+          default: "PFnubeAFCiudadano"
+          description: "Certificate profile"
+      scratchcard:
+          type: "string"
+          default: "11111111"
+          description: "Available and unused serial number from the file scratchcards.txt"
+      secure_element:
+          type: "string"
+          default: "2"
+          description: "Can be 0, 1 or 2 which stands respectively to Software, Smartcard and Cloud."
+      registration_authority:
+          type: "string"
+          default: "68"
+          description: "The unique identifier (PK) of the RA (it's assigned when is created)."
+      country_name:
+          type: "string"
+          default: "ES"
+          description: "The country where the RA is registered."
+      serial_number:
+          type: "string"
+          default: "TSTAPI74S23C129Y"
+          description: "The country where the RA is registered."
+      id_document_country:
+          type: "string"
+          default: "IT"
+      id_document_type:
+          type: "string"
+          default: "TIN"
+      given_name:
+          type: "string"
+          default: "RAO"
+      surname_1:
+          type: "string"
+          default: "API"
+      birth_date:
+          type: "string"
+          default: "16/10/1965"
+      email:
+          type: "string"
+          default: "email@bit4id.com"
+      mobile_phone_number:
+          type: "string"
+          default: "391234567890"
+      paperless_mode:
+          type: "string"
+          default: "1"
+###########
+  UpdateReqObject:
+    type: "object"
+    properties:
+      profile:
+          type: "string"
+          default: "PFnubeAFCiudadano"
+          description: "Certificate profile"
+      scratchcard:
+          type: "string"
+          default: "11111111"
+          description: "Available and unused serial number from the file scratchcards.txt"
+      secure_element:
+          type: "string"
+          default: "2"
+          description: "Can be 0, 1 or 2 which stands respectively to Software, Smartcard and Cloud."
+      registration_authority:
+          type: "string"
+          default: "68"
+          description: "The unique identifier (PK) of the RA (it's assigned when is created)."
+      country_name:
+          type: "string"
+          default: "ES"
+          description: "The country where the RA is registered."
+      serial_number:
+          type: "string"
+          default: "TSTAPI74S23C129Y"
+          description: "The country where the RA is registered."
+      id_document_country:
+          type: "string"
+          default: "IT"
+      id_document_type:
+          type: "string"
+          default: "TIN"
+      given_name:
+          type: "string"
+          default: "RAO"
+      surname_1:
+          type: "string"
+          default: "API"
+      birth_date:
+          type: "string"
+          default: "16/10/1965"
+      email:
+          type: "string"
+          default: "email@bit4id.com"
+      mobile_phone_number:
+          type: "string"
+          default: "391234567890"
+###########
+  TBSObject:
+    type: "object"
+    properties:
+      rao:
+          type: "string"
+          default: "100"
+          description: "The unique identifier of the RAO that will sign and approve the request"
+      type:
+          type: "string"
+          default: "APPROVE"
+          description: "The type of the receipt to generate"
+###########
+  ApproveReqObject:
+    type: "object"
+    properties:
+      rao:
+          type: "string"
+          default: "100"
+          description: "The unique identifier of the RAO that will sign and approve the request"
+      receipt:
+          type: "string"
+          default: "MIIHyTCCBbGgA..."
+          description: "The signed receipt as a Base64 formatted string"
+###########
+  CloudEnrObject:
+    type: "object"
+    properties:
+      scratchcard:
+          type: "string"
+          default: "120000400"
+          description: "The scratchcard of the request that needs enrollment"
+      erc:
+          type: "string"
+          default: "bB7n9RYk"
+          description: "The enrollment code associated to the scratchcard"
+      pin:
+          type: "string"
+          default: "belorado74"
+          description: "A new pin to assign. Must contain at least 2 letters, 2 numbers and must be at least 8 characters long"
+      puk:
+          type: "string"
+          default: "belorado74"
+          description: "A new puk to assign. Must contain at least 2 letters, 2 numbers and must be at least 8 characters long"
+###########
+  SoftEnrObject:  
+    type: "object"
+    properties:
+      scratchcard:
+          type: "string"
+          default: "120000400"
+          description: "The scratchcard of the request that needs enrollment"
+      enrollment_code:
+          type: "string"
+          default: "bB7n9RYk"
+          description: "The enrollment code associated to the scratchcard"
+###########
+  GenDocObject:  
+    type: "object"
+    properties:
+      doctype:
+          type: "string"
+          default: "120000400"
+          description: "It represents the type of doc to retrieve. It can assume the values of: 'acceptance', 'contract' and 'credentials'"
+      lang:
+          type: "string"
+          default: "bB7n9RYk"
+          description: "The enrollment code associated to the scratchcard"
+###########
+  PlApproveReqObject:
+    type: "object"
+    properties:
+      username:
+          type: "string"
+          default: "5053374"
+          description: "The RAO's username"
+      password:
+          type: "string"
+          default: "Gy6F37xK"
+          description: "The RAO's password"
+      pin:
+          type: "string"
+          default: "belorado74"
+          description: "The RAO's pin"
+      rao_id:
+          type: "string"
+          default: "100"
+          description: "The RAO's id"
+      lang:
+          type: "string"
+          default: "ES"
+          description: "The RAO's pin"
+###########
+  PlCloudEnrObject:
+    type: "object"
+    properties:
+      secret:
+          type: "string"
+          default: "123456"
+          description: "The OTP code sent to the client via SMS"
+      pin:
+          type: "string"
+          default: "belorado74"
+          description: "The PIN code created by the client (must contain at least 2 letters, 2 numbers and must be at least 8 characters long)"
+###########
+  PlSoftEnrObject:
+    type: "object"
+    properties:
+      secret:
+          type: "string"
+          default: "123456"
+          description: "The OTP code sent to the client via SMS"
+      p12password:
+          type: "string"
+          default: "belorado74"
+          description: "The PIN code created by the client (must contain at least 2 letters, 2 numbers and must be at least 8 characters long)"
+###########
+  CreateScrObject:
+    type: "object"
+    properties:
+      sn:
+          type: "string"
+          default: "110000150"
+          description: "The scratchcard serial number  "
+      registration_authority:
+          type: "string"
+          default: "41"
+          description: "The registration authority id"
+      secret:
+          type: "object"
+          properties:
+              erc:
+                  type: "object"
+                  properties:
+                      erc:
+                          type: "string"
+                          default: "8207878566"
+                          description: "Security code used for recovery or revocation purpose"
+                      enrollment_code:
+                          type: "string"
+                          default: "97Q6B,6W"
+                          description: "Security code requested for different operations (like certificate enrollment)"
+                      pin:
+                          type: "string"
+                          default: "25936657"
+                          description: "Default pin assigned to the scratchcard. This will be changed in the enrollment phase."
+                      puk:
+                          type: "string"
+                          default: "44024058"
+                          description: "Default puk assigned to the scratchcard. This will be changed in the enrollment phase."
+###########
+  UpdScrObject:
+    type: "object"
+    properties:
+      sn:
+          type: "string"
+          default: "110000150"
+          description: "The scratchcard serial number  "
+      registration_authority:
+          type: "string"
+          default: "41"
+          description: "The registration authority id"
+      secret:
+          type: "object"
+          properties:
+              erc:
+                  type: "object"
+                  properties:
+                      erc:
+                          type: "string"
+                          default: "8207878566"
+                          description: "Security code used for recovery or revocation purpose"
+                      enrollment_code:
+                          type: "string"
+                          default: "97Q6B,6W"
+                          description: "Security code requested for different operations (like certificate enrollment)"
+                      pin:
+                          type: "string"
+                          default: "25936657"
+                          description: "Default pin assigned to the scratchcard. This will be changed in the enrollment phase."
+                      puk:
+                          type: "string"
+                          default: "44024058"
+                          description: "Default puk assigned to the scratchcard. This will be changed in the enrollment phase."
+###########
+  FUScrObject:
+    type: "object"
+    properties:
+      ra:
+          type: "string"
+          default: "139"
+          description: "The registration authority id"
+###########
+  REVScrObject:
+    type: "object"
+    properties:
+      scratchcard:
+          type: "string"
+          default: "2000265"
+          description: "The scratchcard serial number"
+      erc:
+          type: "string"
+          default: "9219995130"
+          description: "The scratchcard serial number"
+      reason:
+          type: "string"
+          default: "UNSPECIFIED"
+          description: "The secrets associated to the scratchcard"
+###########
+  WhoScrObject:
+    type: "object"
+    properties:
+      scratchcard:
+          type: "string"
+          default: "110000150"
+          description: "The registration authority id"
+      erc:
+          type: "string"
+          default: "97Q6B,6W"
+          description: "The scratchcard enrollment code"
+###########
+  MoveScrObject:
+    type: "object"
+    properties:
+      from_ra:
+          type: "string"
+          default: "39"
+          description: "The source RA that will give the scratchcards"
+      to_ra:
+          type: "string"
+          default: "41"
+          description: "The scratchcard enrollment code"
+      amount:
+          type: "string"
+          default: "2"
+          description: "The scratchcard enrollment code	" 
+      from_sn:
+          type: "string"
+          default: "5053349"
+          description: "The starting serial" 
+      to_sn:
+          type: "string"
+          default: "5058000"
+          description: "The ending serial"
+###########
+  CreateRAObject:
+    type: "object"
+    properties:
+      name:
+          type: "string"
+          default: "A new RA"
+          description: "The RA name"
+      parent:
+          type: "string"
+          default: "139"
+          description: "The RA parent unique id"
+      enabled_from:
+          type: "string"
+          default: "2019-01-01"
+          description: "The date when the RA will be enabled from (the format is YYYY-MM-DD)" 
+      enabled_until:
+          type: "string"
+          default: "2023-01-01"
+          description: "The date when the RA will be no longer enabled (the format is YYYY-MM-DD)" 
+      organization_tax_number:
+          type: "string"
+          default: "43242414213"
+          description: "The tax number of the organization"
+      organization_name:
+          type: "string"
+          default: "TEST"
+          description: "The organization name"
+      responsible_name:
+          type: "string"
+          default: "RESP"
+          description: "The RA responsible name"
+      responsible_first_surname:
+          type: "string"
+          default: "TEST"
+          description: "The RA responsible first surname"
+      responsible_second_surname:
+          type: "string"
+          default: "TEST2"
+          description: "The RA responsible serial" 
+      responsible_serial:
+          type: "string"
+          default: "1234567890"
+          description: "A valid email address" 
+      email:
+          type: "string"
+          default: "email@example.com"
+          description: "A phone number"
+      fix_phone_number:
+          type: "string"
+          default: "391234567890"
+          description: "A mobile phone number"
+      address:
+          type: "string"
+          default: "Example address"
+          description: "The city address" 
+      city:
+          type: "string"
+          default: "City name"
+          description: "The city where the RA is located" 
+      postal_code:
+          type: "string"
+          default: "105-2000"
+          description: "The postal code of the city where the RA is located"
+      province:
+          type: "string"
+          default: "Province name"
+          description: "The province of the city where the RA is located"
+      url:
+          type: "string"
+          default: "www.organization.com"
+          description: "A web url of the RA" 
+      country:
+          type: "string"
+          default: "IT"
+          description: "The country where the RA is located"
+###########
+  UpdateRAObject:
+    type: "object"
+    properties:
+      name:
+          type: "string"
+          default: "A new RA"
+          description: "The RA name"
+      parent:
+          type: "string"
+          default: "139"
+          description: "The RA parent unique id"
+      enabled_from:
+          type: "string"
+          default: "2019-01-01"
+          description: "The date when the RA will be enabled from (the format is YYYY-MM-DD)" 
+      enabled_until:
+          type: "string"
+          default: "2023-01-01"
+          description: "The date when the RA will be no longer enabled (the format is YYYY-MM-DD)" 
+      organization_tax_number:
+          type: "string"
+          default: "43242414213"
+          description: "The tax number of the organization"
+      organization_name:
+          type: "string"
+          default: "TEST"
+          description: "The organization name"
+      responsible_name:
+          type: "string"
+          default: "RESP"
+          description: "The RA responsible name"
+      responsible_first_surname:
+          type: "string"
+          default: "TEST"
+          description: "The RA responsible first surname"
+      responsible_second_surname:
+          type: "string"
+          default: "TEST2"
+          description: "The RA responsible serial" 
+      responsible_serial:
+          type: "string"
+          default: "1234567890"
+          description: "A valid email address" 
+      email:
+          type: "string"
+          default: "email@example.com"
+          description: "A phone number"
+      fix_phone_number:
+          type: "string"
+          default: "391234567890"
+          description: "A mobile phone number"
+      address:
+          type: "string"
+          default: "Example address"
+          description: "The city address" 
+      city:
+          type: "string"
+          default: "City name"
+          description: "The city where the RA is located" 
+      postal_code:
+          type: "string"
+          default: "105-2000"
+          description: "The postal code of the city where the RA is located"
+      province:
+          type: "string"
+          default: "Province name"
+          description: "The province of the city where the RA is located"
+      url:
+          type: "string"
+          default: "www.organization.com"
+          description: "A web url of the RA" 
+      country:
+          type: "string"
+          default: "IT"
+          description: "The country where the RA is located" 
+###########
+  CreateRAOObject:
+    type: "object"
+    properties:
+      registration_authority_master:
+          type: "string"
+          default: "41"
+          description: "The registration authority master id"
+      registration_authority:
+          type: "string"
+          default: "[41]"
+          description: "The list of the RAs where the RAO can operate	"
+      certificate:
+          type: "string"
+          default: "[41]"
+          description: "The Request certificate in Base64 format"
+      given_name:
+          type: "string"
+          default: "Person"
+          description: "The RAO's name"
+      surname_1:
+          type: "string"
+          default: "Surname"
+          description: "The RAO's first surname"
+      surname_2:
+          type: "string"
+          default: "Surname2"
+          description: "The RAO's second surname"
+      id_document_number:
+          type: "string"
+          default: "12354232414"
+          description: "The RAO's document number"
+      id_document_issuer:
+          type: "string"
+          default: "Entity"
+          description: "The document issuer"
+      email:
+          type: "string"
+          default: "email@example.com"
+          description: "A valid email address" 
+###########
+  UpdateRAOObject:
+    type: "object"
+    properties:
+      registration_authority_master:
+          type: "string"
+          default: "41"
+          description: "The registration authority master id"
+      registration_authority:
+          type: "string"
+          default: "[41]"
+          description: "The list of the RAs where the RAO can operate	"
+      certificate:
+          type: "string"
+          default: "[41]"
+          description: "The Request certificate in Base64 format"
+      given_name:
+          type: "string"
+          default: "Person"
+          description: "The RAO's name"
+      surname_1:
+          type: "string"
+          default: "Surname"
+          description: "The RAO's first surname"
+      surname_2:
+          type: "string"
+          default: "Surname2"
+          description: "The RAO's second surname"
+      id_document_number:
+          type: "string"
+          default: "12354232414"
+          description: "The RAO's document number"
+      id_document_issuer:
+          type: "string"
+          default: "Entity"
+          description: "The document issuer"
+      email:
+          type: "string"
+          default: "email@example.com"
+          description: "A valid email address" 
+###########
+  CreateUserObject:
+    type: "object"
+    properties:
+      registration_authority:
+          type: "string"
+          default: "41"
+          description: "The registration authority id"
+      permission_profile:
+          type: "string"
+          default: "18"
+          description: "The permission profile id that will be associated to this user"
+      request:
+          type: "string"
+          default: "787"
+          description: "The request id"
+      rao:
+          type: "string"
+          default: "219"
+          description: "The RAO id"
+###########
+  UpdateUserObject:
+    type: "object"
+    properties:
+      registration_authority:
+          type: "string"
+          default: "41"
+          description: "The registration authority id"
+      permission_profile:
+          type: "string"
+          default: "18"
+          description: "The permission profile id that will be associated to this user"
+      request:
+          type: "string"
+          default: "787"
+          description: "The request id"
+      rao:
+          type: "string"
+          default: "219"
+          description: "The RAO id"
