@@ -43,7 +43,7 @@ paths:
           description: Successful Response
           schema:
             type: object
-            description: A JSON object with the full information about the created request  
+            description: A JSON object with full information about the created request  
           examples:
             application/json:
                 {
@@ -143,7 +143,7 @@ paths:
             properties:
               detail:
                 type: string
-                description: JSON parse error message
+                description: JSON syntax error
           examples:
             application/json:
               {
@@ -183,7 +183,19 @@ paths:
           description: Successful Response
           schema:
             type: object
-            description: A JSON object with the information associated to the request. 
+            properties:
+              count:
+                type: string
+                description: The number of existing requests
+              next:
+                type: string
+                description: The list next page endpoint
+              previous:
+                type: string
+                description: The list previous page endpoint                
+              results:
+                type: object
+                description: A JSON object with full information related to each listed request
           examples:
             application/json:
                 {
