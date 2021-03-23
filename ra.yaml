@@ -2566,7 +2566,7 @@ paths:
                 type: number
                 description: The scratchcard database id
               sn: 
-                type: number
+                type: string
                 description: The scratchcard serial number
               secrets:
                 type: object
@@ -2589,6 +2589,19 @@ paths:
                     "secrets": "{\"erc\": \"8207878566\", \"enrollment_code\": \"97Q6B,6W\", \"pin\": \"25936657\", \"puk\": \"44024058\"}",
                     "registration_authority": 41
                 }
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: JSON syntax error
+          examples:
+            application/json:
+              {
+                  "detail": "JSON parse error - Expecting ',' delimiter: line 4 column 2 (char 53)"
+              }
         403:
           description: Permission denied
           schema:
@@ -2608,6 +2621,8 @@ paths:
       tags:
         - SCRATCHCARDS
       description: Gets the list of scratchcards
+      produces:
+        - application/json
       responses:
         200:
           description: Successful Response
@@ -2654,6 +2669,19 @@ paths:
                         (...)
                     ]
                 }
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: JSON syntax error
+          examples:
+            application/json:
+              {
+                  "detail": "JSON parse error - Expecting ',' delimiter: line 4 column 2 (char 53)"
+              }
 #############
   /api/v1/scratchcard/{id}:
     get: 
@@ -2701,7 +2729,7 @@ paths:
                     "registration_authority": 2
                 }
         404:
-          description: Scratchard not found
+          description: Invalid scratchcard id
           schema:
             type: object
             properties:
@@ -2774,6 +2802,19 @@ paths:
                     "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
                     "registration_authority": 41
                 }
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: JSON syntax error
+          examples:
+            application/json:
+              {
+                  "detail": "JSON parse error - Expecting ',' delimiter: line 4 column 2 (char 53)"
+              }
         403:
           description: Permission denied
           schema:
@@ -2812,6 +2853,40 @@ paths:
           examples:
             text/plain:
                 "true"
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: JSON syntax error
+          examples:
+            application/json:
+                {
+                    "detail": "JSON parse error - Expecting property name enclosed in double quotes: line 3 column 1 (char 22)"
+                }
+        500:
+          description: Invalid scratchcard id
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message                
+          examples:
+            application/json:
+                {
+                    "code": "500",
+                    "id": "168cfa712331f994",
+                    "error": "ScratchCard matching query does not exist."
+                }
 #############
   /api/v1/scratchcards/get_first_unused:
     post: 
@@ -2860,6 +2935,19 @@ paths:
                     "sn": "100000147",
                     "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
                     "registration_authority": 41
+                }
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: JSON syntax error
+          examples:
+            application/json:
+                {
+                    "detail": "JSON parse error - Expecting property name enclosed in double quotes: line 3 column 1 (char 14)"
                 }
 #############
   /api/v1/scratchcards/revoke:
@@ -2929,14 +3017,35 @@ paths:
             properties:
               detail:
                 type: string
-                description: JSON parse error message
+                description: JSON syntax error
           examples:
             application/json:
               {
                   "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 2 (char 30)"
               }
-        500:
+        412:
           description: Invalid or missing parameters
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message                
+          examples:
+            application/json:
+                {
+                    "code": "418",
+                    "id": "fef0a6c7023e67c6",
+                    "error": "Invalid paramiters"
+                }
+        500:
+          description: Invalid request id
           schema:
             type: object
             properties:
@@ -3104,6 +3213,19 @@ paths:
                     "id_responsible_document_number": null,
                     "organizational_unit_3": null
                 }
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: JSON syntax error
+          examples:
+            application/json:
+              {
+                  "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 2 (char 30)"
+              }
         412:
           description: Invalid or missing parameters
           schema:
@@ -3176,7 +3298,7 @@ paths:
                     "details": "Permission Denied"
                 }
         500:
-          description: Bad Request
+          description: Bad Request (JSON syntax error)
           schema:
             type: object
             properties:
@@ -3219,192 +3341,193 @@ paths:
             type: object
             description: A JSON object containing full information about the renewable request
           examples:
-              {
-                  "torenew": {
-                      "data": "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",
-                      "profile": "PFnubeAF",
-                      "subject": "CN=Name Surname1 Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
-                      "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
-                      "valid_from": "2021-03-19T15:58:00Z",
-                      "valid_to": "2021-03-26T15:58:00Z",
-                      "serial_number": "1862295652b6e042",
-                      "status": 0,
-                      "pk": 21686,
-                      "revokation_reason": null,
-                      "type": "FIRSTISSUE"
-                  },
-                  "renewed": false,
-                  "request": {
-                      "pk": 37037,
-                      "given_name": "Name",
-                      "surname_1": "Surname1",
-                      "surname_2": "Surname2",
-                      "sex": null,
-                      "id_document_type": "IDC",
-                      "id_document_country": "ES",
-                      "serial_number": "Y3646957E",
-                      "country_name": "ES",
-                      "citizenship": null,
-                      "residence": "ES",
-                      "organization_email": null,
-                      "email": "mail@domain",
-                      "title": null,
-                      "organization_name": null,
-                      "organizational_unit_1": null,
-                      "organizational_unit_2": null,
-                      "organization_identifier": null,
-                      "responsible_name": null,
-                      "responsible_first_surname": null,
-                      "responsible_second_surname": null,
-                      "responsible_email": null,
-                      "responsible_serial": null,
-                      "responsible_position": null,
-                      "subscriber_responsible_serial": null,
-                      "administrative_unit": null,
-                      "empowerment": null,
-                      "representation": null,
-                      "circumstances": null,
-                      "limit": null,
-                      "registration": null,
-                      "process_application": null,
-                      "entity_owner": null,
-                      "entity_owner_serial_number": null,
-                      "description": null,
-                      "certificate_set": [
-                          {
-                              "profile": "PFnubeAF",
-                              "status": 0,
-                              "valid_from": "2021-03-19T15:58:00Z",
-                              "valid_to": "2021-03-26T15:58:00Z",
-                              "valid": "VALID",
-                              "revokation_reason": null,
-                              "serial_number": "1862295652b6e042",
-                              "subject": "CN=Name Surname1 Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
-                              "data": "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",
-                              "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
-                          }
-                      ],
-                      "profile": "PFnubeAFCiudadano",
-                      "scratchcard": "5056027",
-                      "status": "ISSUED",
-                      "registering_user": {
-                          "pk": 578,
-                          "permission_profile": 1,
-                          "registration_authority": 303,
-                          "request": 25935
-                      },
-                      "approving_user": {
-                          "pk": 578,
-                          "permission_profile": 1,
-                          "registration_authority": 303,
-                          "request": 25935
-                      },
-                      "producing_user": {
-                          "pk": 527,
-                          "permission_profile": 19,
-                          "registration_authority": 303,
-                          "request": 28634
-                      },
-                      "registration_authority": 303,
-                      "secure_element": 2,
-                      "validity_time": "7",
-                      "smartcard_sn": null,
-                      "citizen_tax_number": "",
-                      "birth_date": null,
-                      "birth_country": null,
-                      "birth_city": "",
-                      "birth_province": "",
-                      "birth_state": "",
-                      "birth_district": "",
-                      "birth_canton": "",
-                      "id_document_description": "",
-                      "id_document_issuer": "",
-                      "organization_rol": null,
-                      "professional_id_number": null,
-                      "mobile_phone_number": "+34999999999",
-                      "fix_phone_number": "",
-                      "residence_address": "",
-                      "residence_city": "",
-                      "residence_province": "",
-                      "residence_postal_code": "",
-                      "residence_state": "",
-                      "residence_district": "",
-                      "residence_canton": "",
-                      "organization_tax_number": null,
-                      "organization_address": null,
-                      "organization_city": null,
-                      "organization_province": null,
-                      "organization_country": null,
-                      "organization_postal_code": null,
-                      "organization_state": null,
-                      "organization_url": null,
-                      "responsible_legal_level": null,
-                      "subscriber": null,
-                      "responsible_legal_documents": null,
-                      "special_conditions": null,
-                      "responsible_registry_data": null,
-                      "approving_rao": {
-                          "pk": 1400,
-                          "given_name": "RAO_Name",
-                          "surname_1": "RAO_Surname1",
-                          "surname_2": "RAO_Surname2",
-                          "certificate": {
-                              "profile": "PFnubeNC",
-                              "status": 0,
-                              "valid_from": "2020-12-01T14:52:00Z",
-                              "valid_to": "2022-12-01T14:52:00Z",
-                              "valid": "VALID",
-                              "revokation_reason": null,
-                              "serial_number": "28a70ba50632ba07",
-                              "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, OU=RAO_Name Gonzalez DPR:www.uanataca.com, C=ES",
-                              "data": "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",
-                              "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
-                          },
-                          "id_document_number": "Y3646959E",
-                          "id_document_description": "Mi descripcion",
-                          "id_document_issuer": "aASSAD",
-                          "registration_authority": [],
-                          "registration_authority_master": 327,
-                          "is_identificator": false
-                      },
-                      "producing_rao": {
-                          "pk": 1400,
-                          "given_name": "RAO_Name",
-                          "surname_1": "RAO_Surname1",
-                          "surname_2": "RAO_Surname2",
-                          "certificate": {
-                              "profile": "PFnubeNC",
-                              "status": 0,
-                              "valid_from": "2020-12-01T14:52:00Z",
-                              "valid_to": "2022-12-01T14:52:00Z",
-                              "valid": "VALID",
-                              "revokation_reason": null,
-                              "serial_number": "28a70ba50632ba07",
-                              "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, OU=RAO_Name Gonzalez DPR:www.uanataca.com, C=ES",
-                              "data": "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",
-                              "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
-                          },
-                          "id_document_number": "Y3646959E",
-                          "id_document_description": "Mi descripcion",
-                          "id_document_issuer": "aASSAD",
-                          "registration_authority": [],
-                          "registration_authority_master": 327,
-                          "is_identificator": false
-                      },
-                      "id_document_number": "",
-                      "id_responsible_document_type": null,
-                      "id_responsible_document_country": null,
-                      "id_responsible_document_number": null,
-                      "organizational_unit_3": null,
-                      "paperless_mode": true,
-                      "ext_recognition_data": "",
-                      "complement_number": null,
-                      "id_responsible_document_issuer": null,
-                      "provider_registration_number": null,
-                      "communication_language": "es",
-                      "identification_rao": null
-                  }
-              }
+            application/json:
+                {
+                    "torenew": {
+                        "data": "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",
+                        "profile": "PFnubeAF",
+                        "subject": "CN=Name Surname1 Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
+                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
+                        "valid_from": "2021-03-19T15:58:00Z",
+                        "valid_to": "2021-03-26T15:58:00Z",
+                        "serial_number": "1862295652b6e042",
+                        "status": 0,
+                        "pk": 21686,
+                        "revokation_reason": null,
+                        "type": "FIRSTISSUE"
+                    },
+                    "renewed": false,
+                    "request": {
+                        "pk": 37037,
+                        "given_name": "Name",
+                        "surname_1": "Surname1",
+                        "surname_2": "Surname2",
+                        "sex": null,
+                        "id_document_type": "IDC",
+                        "id_document_country": "ES",
+                        "serial_number": "Y3646957E",
+                        "country_name": "ES",
+                        "citizenship": null,
+                        "residence": "ES",
+                        "organization_email": null,
+                        "email": "mail@domain",
+                        "title": null,
+                        "organization_name": null,
+                        "organizational_unit_1": null,
+                        "organizational_unit_2": null,
+                        "organization_identifier": null,
+                        "responsible_name": null,
+                        "responsible_first_surname": null,
+                        "responsible_second_surname": null,
+                        "responsible_email": null,
+                        "responsible_serial": null,
+                        "responsible_position": null,
+                        "subscriber_responsible_serial": null,
+                        "administrative_unit": null,
+                        "empowerment": null,
+                        "representation": null,
+                        "circumstances": null,
+                        "limit": null,
+                        "registration": null,
+                        "process_application": null,
+                        "entity_owner": null,
+                        "entity_owner_serial_number": null,
+                        "description": null,
+                        "certificate_set": [
+                            {
+                                "profile": "PFnubeAF",
+                                "status": 0,
+                                "valid_from": "2021-03-19T15:58:00Z",
+                                "valid_to": "2021-03-26T15:58:00Z",
+                                "valid": "VALID",
+                                "revokation_reason": null,
+                                "serial_number": "1862295652b6e042",
+                                "subject": "CN=Name Surname1 Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
+                                "data": "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",
+                                "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                            }
+                        ],
+                        "profile": "PFnubeAFCiudadano",
+                        "scratchcard": "5056027",
+                        "status": "ISSUED",
+                        "registering_user": {
+                            "pk": 578,
+                            "permission_profile": 1,
+                            "registration_authority": 303,
+                            "request": 25935
+                        },
+                        "approving_user": {
+                            "pk": 578,
+                            "permission_profile": 1,
+                            "registration_authority": 303,
+                            "request": 25935
+                        },
+                        "producing_user": {
+                            "pk": 527,
+                            "permission_profile": 19,
+                            "registration_authority": 303,
+                            "request": 28634
+                        },
+                        "registration_authority": 303,
+                        "secure_element": 2,
+                        "validity_time": "7",
+                        "smartcard_sn": null,
+                        "citizen_tax_number": "",
+                        "birth_date": null,
+                        "birth_country": null,
+                        "birth_city": "",
+                        "birth_province": "",
+                        "birth_state": "",
+                        "birth_district": "",
+                        "birth_canton": "",
+                        "id_document_description": "",
+                        "id_document_issuer": "",
+                        "organization_rol": null,
+                        "professional_id_number": null,
+                        "mobile_phone_number": "+34999999999",
+                        "fix_phone_number": "",
+                        "residence_address": "",
+                        "residence_city": "",
+                        "residence_province": "",
+                        "residence_postal_code": "",
+                        "residence_state": "",
+                        "residence_district": "",
+                        "residence_canton": "",
+                        "organization_tax_number": null,
+                        "organization_address": null,
+                        "organization_city": null,
+                        "organization_province": null,
+                        "organization_country": null,
+                        "organization_postal_code": null,
+                        "organization_state": null,
+                        "organization_url": null,
+                        "responsible_legal_level": null,
+                        "subscriber": null,
+                        "responsible_legal_documents": null,
+                        "special_conditions": null,
+                        "responsible_registry_data": null,
+                        "approving_rao": {
+                            "pk": 1400,
+                            "given_name": "RAO_Name",
+                            "surname_1": "RAO_Surname1",
+                            "surname_2": "RAO_Surname2",
+                            "certificate": {
+                                "profile": "PFnubeNC",
+                                "status": 0,
+                                "valid_from": "2020-12-01T14:52:00Z",
+                                "valid_to": "2022-12-01T14:52:00Z",
+                                "valid": "VALID",
+                                "revokation_reason": null,
+                                "serial_number": "28a70ba50632ba07",
+                                "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, OU=RAO_Name Gonzalez DPR:www.uanataca.com, C=ES",
+                                "data": "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",
+                                "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                            },
+                            "id_document_number": "Y3646959E",
+                            "id_document_description": "Mi descripcion",
+                            "id_document_issuer": "aASSAD",
+                            "registration_authority": [],
+                            "registration_authority_master": 327,
+                            "is_identificator": false
+                        },
+                        "producing_rao": {
+                            "pk": 1400,
+                            "given_name": "RAO_Name",
+                            "surname_1": "RAO_Surname1",
+                            "surname_2": "RAO_Surname2",
+                            "certificate": {
+                                "profile": "PFnubeNC",
+                                "status": 0,
+                                "valid_from": "2020-12-01T14:52:00Z",
+                                "valid_to": "2022-12-01T14:52:00Z",
+                                "valid": "VALID",
+                                "revokation_reason": null,
+                                "serial_number": "28a70ba50632ba07",
+                                "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, OU=RAO_Name Gonzalez DPR:www.uanataca.com, C=ES",
+                                "data": "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",
+                                "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                            },
+                            "id_document_number": "Y3646959E",
+                            "id_document_description": "Mi descripcion",
+                            "id_document_issuer": "aASSAD",
+                            "registration_authority": [],
+                            "registration_authority_master": 327,
+                            "is_identificator": false
+                        },
+                        "id_document_number": "",
+                        "id_responsible_document_type": null,
+                        "id_responsible_document_country": null,
+                        "id_responsible_document_number": null,
+                        "organizational_unit_3": null,
+                        "paperless_mode": true,
+                        "ext_recognition_data": "",
+                        "complement_number": null,
+                        "id_responsible_document_issuer": null,
+                        "provider_registration_number": null,
+                        "communication_language": "es",
+                        "identification_rao": null
+                    }
+                }
         400:
           description: JSON syntax error
           schema:
@@ -3419,7 +3542,7 @@ paths:
                     "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 5 (char 38)"
                 }
         412:
-          description: Request disabled | not enabled for renewal | Invalid parameters
+          description: Request disabled | not enabled for renewal | Invalid parameters | Maximum renewals reached
           schema:
             type: object
             properties:
@@ -3516,7 +3639,7 @@ paths:
           examples:
             application/json:
                 {
-                    "status": "Renewal enabled for request"
+                    "status": "Renewal disabled for request"
                 }
         404:
           description: Invalid parameters
@@ -3758,7 +3881,7 @@ paths:
           required: true
       responses:
         200:
-          description: Invalid request id | parameters | otp or pin not locked
+          description: Successful response
           schema:
             type: object
             properties:
@@ -3775,7 +3898,7 @@ paths:
                     "message": "Pin unlocked successfully"
                 }
         412:
-          description: Invalid request id | parameters | otp or pin not locked
+          description: Invalid request id | parameters | invalid otp 
           schema:
             type: object
             properties:
@@ -3796,7 +3919,7 @@ paths:
                     "error": "Invalid Request"
                 }
         500:
-          description: JSON syntax error
+          description: JSON syntax error | Pin not locked
           schema:
             type: object
             properties:
@@ -3921,14 +4044,14 @@ paths:
             properties:
               detail:
                 type: string
-                description: JSON parse error message
+                description: JSON syntax error
           examples:
             application/json:
               {
                   "detail": "JSON parse error - Expecting ',' delimiter: line 12 column 5 (char 361)"
               }
         500:
-          description: Invalid or missing parameters
+          description: Invalid or missing parameters | Permission denied
           schema:
             type: object
             properties:
@@ -4227,7 +4350,7 @@ paths:
             properties:
               detail:
                 type: string
-                description: JSON parse error message
+                description: JSON syntax error
           examples:
             application/json:
               {
@@ -4347,8 +4470,21 @@ paths:
                     ],
                     "registration_authority_master": 1
               }
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: JSON syntax error
+          examples:
+            application/json:
+              {
+                  "detail": "JSON parse error - Expecting ',' delimiter: line 12 column 5 (char 361)"
+              }
         500:
-          description: Invalid or missing parameters
+          description: Invalid or missing parameters | Permission denied
           schema:
             type: object
             properties:
@@ -4457,27 +4593,61 @@ paths:
                     ],
                     "registration_authority_master": 1
                 }
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: JSON syntax error
+          examples:
+            application/json:
+              {
+                  "detail": "JSON parse error - Expecting ',' delimiter: line 12 column 5 (char 361)"
+              }
+        500:
+          description: Invalid or missing parameters | Permission denied
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message                
+          examples:
+            application/json:
+                {
+                    "code": "500",
+                    "id": "572b9094bafb7cc3",
+                    "error": "You do not have permission to perform this action."
+                }
 #############
     get:
       summary: LIST RAOs
       tags:
         - REGISTRATION AUTHORITY OFFICER
-      description: "Get the list of RAOs. The result can be filtered with the following query parameters: given_namesurname_1, surname_2, certificate, registration_authority, registration_authority_master"
+      description: "Get the list of RAOs. The result can be filtered with the following query parameters: given_name, surname_1, surname_2, certificate, registration_authority, registration_authority_master"
       produces:
         - application/json
       parameters:
         - in: query
           name: filter1
           type: string
-          description: Filter1
+          description: Filter string
         - in: query
           name: filter2
           type: string
-          description: Filter2
+          description: Filter string
         - in: query
           name: filterN
           type: string
-          description: FilterN
+          description: Filter string
       responses:
         200:
           description: Successful Response
@@ -4686,7 +4856,7 @@ paths:
                   "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 31 (char 69)"
               }
         500:
-          description: Invalid or missing parameters
+          description: Invalid or missing parameters | Permission denied
           schema:
             type: object
             properties:
@@ -4711,7 +4881,7 @@ paths:
       summary: LIST USERS
       tags:
         - USERS
-      description: Get the list of users.
+      description: Gets the list of users.
       produces:
         - application/json
       responses:
@@ -4795,7 +4965,7 @@ paths:
                       "request": 787
                   }
         500:
-          description: Invalid or missing parameters
+          description: Invalid or missing parameters | Permission denied
           schema:
             type: object
             properties:
@@ -4875,7 +5045,7 @@ paths:
                   "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 31 (char 69)"
               }
         500:
-          description: Invalid or missing parameters
+          description: Invalid or missing parameters | Permission denied
           schema:
             type: object
             properties:
