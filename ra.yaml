@@ -1448,7 +1448,7 @@ paths:
           examples:
             application/json:
                 {
-                    "document": "%PDF-1.4\n%���� ReportLab Generated PDF document http://www.reportlab.com\n1 0 obj\n<<\n/F1 2 0 R\n>>\nendobj\n2 0 obj\n<<\n/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font\n>>\nendobj\n3 0 obj\n<<\n/BitsPerComponent 8 /ColorSpace /DeviceRGB /Filter [ /ASCII85Decode /FlateDecode ] /Height 111 /Length 13170 /Subtype /Image \n  /Type /XObject /Width 300\n>>\nstream\nGb\"/,M-CZaqYkPbM:kU4>YX4t(o&h-\\oHcuC@E#-'0PbL`VVnh6p+<9!,iP`\"]5lM><EK$'H!4r4pID5RKI/VhqM)^p@S!!f,QK3XnSfMLRID0ri5gAlheCW]=Jgr(`4),(`4),(`4),(`4),(`4),(`5GK=KJrk%Y\"lF#clM0gu<5q(`7Q*``K]fpE069$3urV93SLS5i^d@5o:Gb*$#cZlCUQ_rH2N>eSG/MV&RFer3H>t./IaFh[t]rU$'e,s%q\\SI=YAIn#Q;UOZ&u^^[co!,st08OYgSIk]9KS\"+sBXes*.`rLG?!8JRG%(glJ%72VNIXPL4dY[;ldR,\\,&[bOFJM_GPJ]n<aTpL4&S*(2:Pqs_VX':+BmhNXfn1J9MN5U6Y6h55&&.0]lA0;CBf6YL[s#n^=`p%0<oS?uJST00.`gPCAZ;N-LK3B\\km\"+sr(_a,o'nn$pa\"UNJ$_BpJRCObiPG2;<?^\\uub!/uO=Is+BZU<]`c@UN\\>XPlSXba.u6mB\"nt*KRCm+06CQ^#Gf&f50sUM$sf@(8c;0V*FsZ8;-CjnV<_ek:CB#HN;ot[ADDc2L!hjb0R<FC_hrRBJR7Qe=A^#ZRSZ?YH`,f=-0p(P=s\"\\?O[DPIKOgo^O6nE#C-Q^AB5&$QiQVQ]6g_FiKE0aF5s<+Z`4]D%LJ/27qItU9n%H_e)i0[i,$Yq2<=j;8k4h\\(%f%/l;;%B3k`9YM1M@5@4EbXr:XLlB]s-0<!.oS^A_Frpd^]N/e.hNanJ#>h[CK&oYoG?XG8fc5,^J%`S]4`^sF$N+Tl^HVI<8rU+Z^bp[%KCprU>@;8B7^K5Xof.92bddg:3.,rNs)<PlPugTYgB[%uNZQor9I9J$!W39%tbSfY\\_d&18gDJ?YD?4f/p\\(N]^AAeC6B!oY9'u7W3-X^Y+DS(81-6uPJE(H$fYNRWh.iURTq,26G9s)/<c+q]dkj7XmR8!8)gFO*WVPa.;jccRB\"qPd!AAKS\\qL,4:An]kI`bQgn).1(ckhR)(YZNIDmHlg#ECg@h4pL4fg@ZC4io1F8Y>-9Pe=AX)]jsRb\\4NM]rNl:\"_=$j]Y63a#C;pBUbmW[2gq8#GD/8a9'ZjFZ7dc+JCi&\\#?3UW6,!5\\D`(<l/`_VPQ4U-Q&EB[EU_3Fu.q=<'jk_$;/2HL-=<!:LLQp.uqggkA&4n:Q0ebhT@hc*:=>r=jVB)-1Y7$R+5!]Ra2,Mqt3aN0l*EAEC_'6C[9XXdrWW1[%f(,&u$m3V!pdUaM4DDR_t*?C^D=u_hf]R8c*]T0:<Ht+t#?pK/5Phb'Gdq?lKnrKCs.673]YB\"5_k\\2/i$<suj-Qpj5a]%(3(A_5f2de<V_SXk3M_K;-oI!G,qHGQV\"tCTUG$LuZ,U'0CqKps(HDIEEF\"Y=mV9A/hlhrCR\"+pXrB4o+m3%H[l_r>-j^SR\\,g57Id[lG6*.3]t!ooV$%Aa\"74jXXA(C+iIoih_]&JIr2`R2Y:h'H*=,rYCTH_'MjHLi]E(8DuXRIMD56X]lYuV$IE7;H[/aD]'E0,k1Np]32K'b%U7d<M=9d%2SRGY$Ohb.0WUsr(2C]aM8o&SBT&;;=^a!HHk1;p3(pYWf4I_PO\\lC;km6=*3h*5rskVaI3u/,G!!4fa*,g=[C3PcHX-=[(G@*bQK@2,doNp0OJ1!nUSD=#`,8#W%:-Zu>7Oi<AD<\"(UaqF[@dCMlW`lX:B'%a$rJ-j$::EI12QJ]9K>Gajgph?&Yq.S_V5:\"p5)=d+=\"#IFOQf<se%Ybc4J)(Slf^#bHVkk+_<hm,`?=DZUAaqT$lK(H[\\T^A<nDS$S;.Us.@(/%eEJb)hbD:&E!<mHF0WkmWb*XL\\,op@_ae0MPkK9$Q7!3Ig\"PlLYF6P<oXP@p8L;XFZ+;^tSTUM4WRo\\N/RPc?`Y</ED#%KMU8+g&5('hce/6^p6d#S/=P1iC(T==4#o62DFd3^p$EA<\"P)6`ZUiu,pQ\\J9bQ2Q&Wqnm4\\$?[WfW+(V':RH8&q@*rjB:qP'D-bi)8c5V?*VPCM^<N8hf<1st(r=//9CCrtrqM=/40Wi\\@f#*M`e-ctmOViNEcPL6Gh:]YLUX_#\\m$ck)UtqE/:<MT5Q9A>YP#A$I1Z[9@HYoA79uJ!?r9pH[9GZ#>Yh9N(7R)0XBb)Z3[Vh>(8RA)k'S]nn3/IHC:3P>(^FbO>$;7\\;c-Ul`5T?RD/4GeEW9s*7DNdZY#s^bQYC>T0#)SO<LPm]b12_U2s[OM_/1m_dG_tH>X!ebB'\\eOU?kr9X#91)^H$9&Vghm=S)&OrrR>uX9M(ib,eYj\"G?N_G'>f!;UF\/VD^uG3MOL/E5bFr/0>HS[iP$T\\8T7;$G0>ArNLR@)Q>Z$>mJ^DJCGVF'`N%LJXJY%Jp\"O],Kra+>;kK.bGkrE27!(/8XH'T,BXfJ!Z8CgUmkn[n>AQd(WMm<Yl`TYlK)Y\\eQBX5dlT@g-\"+;1n>?Xbs\"YD[])\\*jjgT\\)'j4=(rh8ma'rt[gZPeptrW2tRNA='EYnd>'9UP80>AEZQomMeq#nquj7;(9ZK6SYWW%*r6:-`>IL8(=^!;B*&9)n!F<1CIb.$'-(9LSE_W26HurZtXbiHhPpcj!VB8C_#XVVJQch&\"mqcL27T,\\V71H\\Ljdpg>103m@1OCm#/^W6:jTNcD$GPKNtOY_Afbg.XQ%KMriU]'8fs3^1/PhXtk5Y\\(b=%&.f/n/RARV,f%Zol!u:Eq7\\3;\"\\gmZqnpG`d0I(kpYs/[Mb@`T%MCYc5GX9p6IT@D8W6))BCICOQ`_k\\pmkr@bJm:n8\\7Pnb@WXk`LYTXo073Z:_/h4KD9iJ+(\\MIR9;T;(Y.GPoilW`$iDEbHJ'e<Q9Lr7f8L#L4E?s%U+@iVIIlR$Q*V8@rT.tCJedtU$3EJnai,AdSdWG;11WephhRt'TYGg&^I>VNgEujYGAn4Pr84\"i?<@ZU#2es7A;-9Gn2'?nY=ujW=\"$&B/G]:Co'oY<Y?j:,\";V\"i)_/mn;W4On_oFg<,XO)qkf/ulY\"qE\"n+YhF#1m_F_,K\"U,,]0^0QMdHJfi8Yl]A'Xnm/0Bdo_M\"oNR2UnN_)?Lk*-AddO,8>?e^ITn91*/TA^n-OOX9@A3J*;\"XQ+(_jqZlRuN&[?nKOmAB(K1u7Z(Bo9\"J[>0t)`$pIfq!S@F&[ajI(@Ga8]6ZVa-:mq\"U<a%bj9`MO!kT'dc$mY(\\Vbui<fi3>kOi&4hnr:-@2!WW1,U)3'0`o$;DLrgJpPo`GRcEETH=-0lJ!E-lj.Z\"j8oN_p;s((BY4<6_p((YKV@'m*mG05>F8pFkcl4_q.;%D<cC?28`1N)_jil&T\"Ks+QoVe:m9<#Eldi+726*D6#fri<^4^L\"PQuqlg\\,U*7cqqJF#'/jhRk/A-?uGGa)-GF6IUZn>&W5?W2O0jW67M&e\\;r#3HMp5-0I7$#C^^gIb^`VWO&P1DV-W0O.SrKs54K;-rKWUf<CN,/g*H,iM7oC&@Dkgc9GAL\\W:&+5adMFfa_7(3jS_+1Hm`7igSu0h,Q&_l#RmO\"6ZIpiDO(hLhcF?2(R9:*K(S4Xs9U3pE)L75@K^a\\7DJ,cY9Z8mu2@le/fpK>^B>9RX.]U*Sn;D]1`\\lX25jaD@fo!s%lQU5Z*4T6j&IYk%,hM%O)1!jgJ%:jN-4dNeNXk8Oj`fV/2A97,fd%r-U.>.c__D?5!t:D@S?B#S4P'bMh:.nWY#0CMUPNP,`1?i_Q//c\\D`L#k]kNo!0TV&pufi66`7*\"U,'\\dq?gi0m*(l=-M2Hc;uZ*mdP<:%YjFq]Z#GSn5<MVMeh1Ic`N_DW9cb/jh3Fd6%o94Xq+Arj333MIin+$2&.1#C2IlBqdZpR5$ra@pU,%]]ZN5BnW3TFaO2(+[\"%Ur_/Pl`0:)kOL9$t/PCVg_o;/eij@^mWU5u>M_%hNB\\64ip*Gcl(S)R5UXH8\"j_#`J'lG5[l&%.'>2nmE&Z4C\\CfDMQFa_W'3*A73fnQ5.;0^gugQ_,?5F'+QW2fC2@>s.&=q0Y<A<N6N=U$Nku#ml69QdjNpR)3:>MC:j2_&Y/q@,&@\"&eW86?UDg&'A&Z'gk+Gcs-Qf_Yc\".TA.<X%Yd2E:*J>U[9]J08C[4#2.eSXbb9ouI\\Eqrl9_mML#,3K%XSVSpmgRNK=BjN>fim,]ND6;JK%dUO?0rL[a[$W:mEU./gHrgLQ\\H;:8B+`Aa:Pn=]Lnbog>1/<gsXP_D/6I72g<hg>HXm9o!EZP_Dfj>5#1*hmsdZPEdb8t/ZsX`Jee=hk:0ou&/%W&ClrYn>ta&`7HL2]l`L9%hU9ctrpVY`kR@d'mbCg$Q!cma^<E9JFm*R7kdoUo+;09;OV?g`3h:0eL/%6X6r<gLh)e^\"Wa<9Z<uclnQ1U3G&Q,^:K#YZh\\][:Gd`u,Ncl=Hg`7+JIla$7m33+u31GMmmBXr9gp5tMj0_%tIk=j7n39QqP4dM:=C((7T<,L8W8IhK2_$.DKB:XN(T/<*#RGA1F7ot0pM0oF>SP?bCe/7634NSL,V:BG9i@tS$Y?Y?J\\jjM$\">)5ZYE7(c^h,?!Fp7XdTq^9/hPUseUSHl%0no.a.8p<j4Er9&^J?k'<bpViM9:GJjTk/++$>/<7aFA\"%[q(QXC+aPVMU9BS1F\"V%j*m6+2Tl1P3UA!T]P,$In7eIYuhqT*#?^^n2nK6=+KF703R8X5o<Xlfdr\"$$LKF.=_9RVT^j&q`Ak,:QqR`?JTK\"(ahdT3',E6(-Eipi=,\"MOaQGnjT7K']^:-'-k?OWE4+B-PEjC'IVbW`\\pp#aFiBH?G<(don^r_^;O8#U-*)=hrqX(n*Z@_S?lRO=._\"UPnj2?uq2]46QU28-#RktAHk,Q8D7#WS+SK!Ja$8`=+M2\"415rcH[or&a*L'S;)9@7=[,Oi95pVQ&Bh?a-^'J`L*0PYO5@YZ*8AM`0?,/ajE_k9/T&1l06\"sdMI;@Io9>\\tbS,7]kH2r3`i@f;o_QR8q*Ua%qIaqY/T%&./c&Y*&uc#<W9I;D#n<$[s-&L;>`!28R`7ocrf(t`;-:9NSDD+:;A'Z+?M\"DobkM[!5/b*`TpBF;T[P,$'TmR8\\\"I&G4i*>IK6#:\"C^.Ve+Sm5o!7n$;[7M$Af_3n8*\"8h&Ms>8`;c0J7Qpneh]$F\\,;8cpmE3;4Qaq=^*7OBic;(N;5hins-Vb9k:fm*^b8n%j#_Pq(I55^3ipX0Yio[!#su:#8,H1:3;SIoN97e-Z7ps'*h8-DcL.+oP.D0cCpaYDD!@Q$%n\\?>k9?^cCj7VSuB?`4;=1t&J7SZ5aU<MP3b6n\\PsXl5q-#5c7;>AJ*st-Sd3S$kVP3F4n'0KBJTGWVpoc\\6\\D=oG0.SXa2ss3C=297+eebqdBKsOV+/F2IcE,#`&0Ll*2dGuEtJ6a\\Wh&l+X,*OS!1!GE3Q:.)fuY\"eQ[2nc@L`[(!eZ@#:[=U0$_?p=4H[hs)JY_IE@Q_]u`S(%&IddT>+2RWQV7r*fWmMAm+VH:t0T^jeN;b\\?Yg9*Ot6pK;6IZc;!E:ER:ub$lhZ[-#PY*=.TmiJ9Y*/L:CXsMb@$%LH1T7ga)'NlB6\\O95sB+TdW9GeJm=b)r*(21#k5aGK`,3-Ce\",a[)@iS2P6@66cJ<I%;Xjj#rqO@q$lu]65c#d2+rmp:U%B&pEb[dDRhRLq6DHfKmP<T7pOJkXq:\\jhMI*Qm9Yf')+AA(Y;Mj+nh*am>hNM;)\"Xh2,1GNM&Ytm=h/3P#NAmdnBG]:0]L;B1^G9eW9Bb$&-eCK)UfZ]Ju6Qs&<0L_Eq&:tj,0$h=0>_$fdC9HDCHMP4iO-C'%]`_UYUYkZ!S2G1*a]u#5Fp:%0mO.9]g>\"5D/\"a!?>r4Zb!YXQ'n@<:p;(\"9,P79L&cVH6*ZEXO'0hG?Qbf\\f?HUF8NggI_c)<i6XhKF9s&BL$^/RnE-WRf'_O\\0rLua\"TXfm.7@t$.2,YY#,%]p`57Ii-/)H)k+F<(4*/%q,=;`TlS@F)iC]Z4JbtNIk-.TIh(nSF6'$Os?NKZ$Xe7jIE+$O_1K6E<#qJQ+^Bei?!FCu9*/]N.dC%mi3>%sESkV*dto1OMR_&n/\\9\"3WemjpA5S@iZ_$_ffr,VnF4?:QZVL)3gkgUL7*4$m,mPsdqu&*2Ea#@GC9XIQshoMa;7AQHCUWGC+%&D`817'VjgF_B*C0I8#fopW;ZauOD>6Mdf*gmW!GAV*ZTDRj@5)#!>]TZk5B/ia2i/\"WUD;g;9QH4;NJSGT1.%YD7:6fe#BVItYLKU8-7l9c&%?<hIV1sL<W0/Ama$uqWpIR.L&YK3RT&,]2.P6YZCcCm.4PK]bJjR52qLRTZ$+%L9f1Q`4h8CPr\"d'>Yl77N[0,qEe$Qi6u4)s=a@PT5)Mr'aRa[(LESS2<[S5_oF5'9-Gn>_;iI.9/`&\"$C>o@a8>b8?Gq)b(1KiEmcd^h9F>,iNNBPoX:iJP!Q?,KQMD5a9?fq(;4$6B*5:KPfhO86sju]DF(j=9I:!3>>hYGe'%sTQtR@F2dQ(V^_=L@YWcNaa%cc4&cZmpo*^JdED3DJ!LMlG<n4ijd;\"+)>'LjfJ<CT,ppk/7.lia\"3]P'FQZ$SOKE)9Zd2o$Vn2e'CS::EZVp:HL/\\1;B,&iS$jXZ,-h.hWYBKU<?Eoo8+#>7_?-fX,#]4I//:j&@RFbbWZhnCI9nUSHOMh;5qjV9Rac&jYh8B;/6Yh.E)f^eQ2_*l4fLk)LX6<m6\\(NN?8d3M#SlaQ7tME@q%ID55J/=7V;1Z+N=r;J(<^\"fDC(G#@4U].CO*=[$H`Lhn&!uiVu^7HUU.aWJ#9qcuY1b&ipAo[ihTr>ntOgJAIADuV9\"c\\:ukt[kgF6b`$'9+#g368:mE;\"4^1]2&SH,(,u\"$UAJ_Bf\\3_5I7Rik_MP-`-;1lbLY'$UH;I(!Ndc]2:C7l;5^@_ePL@DN$_%YFK423Bd>,@Y\\Ca^AW/rc9]mCq`Ij]cDG^PJJTtH8fh[r9^C:\\bX^ZITtM:giJ'/:1Hs=:eSAJD:Fig,PV-<_E6&<60s<JZb52tXld-s.Qg:0_D@^-LpDnS8\"JPR<0?u@[-kcjl'C#J>B@XIUe:`L<HB<^.C42VCXZ1R=E`K&=X5%^HrI,]Td*?n9&nM^R&GdGFi7+aTMRG\\q7_.sqL5B5-[$ef!H4^CoaHBQ&/P9:0#+C?K4B3t<g-rGFnsY3r;.KAB9=S2kF+`7o,MYI@N\\Le]/1[mfk\"9(>W6O-`\"sK@Y:<TkK9S/hUN3Dh8fN>6AO3-m?4)=0;>%A)/!5=-50n=)OP@rTehbhlRNM^OVZK6rnqWsX*,^'ci]@VG\"i(24edpt-Nd>#`/DSj?6WN\"K_Ei\\*/;d$t5^4_/Y.>=&tD\\fP,+YT=E$RK&iF.skf5KjmdofueSrs#qD_bh/Z]iLB;kfY=X$?$NYSEd3-Er3c$2%bpEJ*qp8W@JuDMWY%MjQ^<WA8[/aa.5S+L[eBIBHDc+KODadRVm>2,UCn%GX*jT5Nhjs1'p[=WM\"SE)iQ`X%4Yf#)VhRk!&m.f=:pKi,Fk+bal-Y`RA9I*FNXg.N*j1^cg>CCp@%P,mWR)VWDnabTSO@42p=RQlHUZr32PD&:]%X[>c\\HC%Na2K7;<3/X0q?_I;\\(#f0LL-W`cS2D%8e6&iL=/YJ8GtAqV,3)\"S!CP0<$P0B&\\s=tL&\"ON\\MpV+1)Y+!0B'c@V4fUnf.aR8uX3k^..\\(T5%N,hl\\a@^H,PpDu;YZFNDJ1la@*T+,btFhdo($b&l-0ZIX;dV3poQ._>!W8C[F0`f4ld-fUT$BD3fjp+NhB3:Ul&]&J3=$J_.*uF-:T!9.Q-k$V(\"lpFe\\.0M.5E@.,kdWohPj#FSW7C1PbNX6D\\(PR((G71XE9Yd^QcmUL^qJi4i\\;A?'9o,0boi'lV8GPikuq79es<lK2n_3u[URs,O92G9Q<ZTD2`.5^4o7qA$HY0mO0YhK\"]ruPKXR?9OPgIHK)r4olm@+)0#Jc[/k(LZrNg7_+4)at96ROm-DTq0[r/ZeAdPAfic`62QhV3.Ep<9<3-FdjZYZ2'nC(PsZJ)VP_,A@5_F&n5e^T=jK\\@*m:gRg@q5!6aqdR&i$[XP0V4dq&6\\Z_Y/)BO@PdRDoDqkq-[<QuIU1L8=1feHrGB'g\"Mb`\\^]^cEcl#Ti4(3:ETNYob&Qh\\JE0TijWN>q=EF.9J4B6$FiqHRnKG+/q989<2oQu'.g>X=J1d#n)./O3<T8FseGZ'XGuH/\"0S9lkr%IiGF05\"[\\S,U^g70jm.J6@MD5l\"qU#!g58cQY'H!+gSGH9U\\(D;,LnZcQpn8;<chL1C+*Uk:aCm6X*b6c07k+&&rj;(oTm,LGFK/>edsc&M?6kbX%uY9c'.!XgXO]Ne2JGYMWHi%G[n;41cC)+<ZE`\"q,\"d.tG7Q%A7reKGf3GTL-k7=?\".@=!goRNF/TN+npA$KAk?r1d9ig]A%ORf$p/FjI(m_\\Q7\"\">A\/`%ABiS-n=MBS\\*Z?\"WQlnjOP:l,WI1\"m[PhGB4WNXC\\!^(=]rmu1BU\"jJ_OpDBr_K%EcUA%Q4[`cUuQ&?He/e3q0a6tkn$!=3]]08<7jYEC$rY0Q'GA;B&7U5ob#sA46Ue_bK3g<?;/krX[r!ji6boDQA2onGmL(LZh+1p#BB8]bK?dW0CfOT?b]GXTg7>EH)kSuKHYqjX*[HPrX]cBY%/+f4oH-j_fGNCCgT8][oBInIf..WlSj447g-I@'/,n:Hd:j-F4^kNG\"nAC#_/VJLh\\ZV?Vjg*LXm==nD].H&i/6,BRTr*!,`>D98K(GDV\\'_Z$5Wac;\"rPTf3&*ZN#l][##'8lbdqanb2<hp%@u$b?$//#;$JRY&V.2X&i4B>M-LrcA_pb4!cV$0,eg/ie\"XXOlt`C9,egUY(jj5\\B?m^\"O!s>M_@XMD6lSbgSUjFe8&bI.B1/g>k2%mL^2>Gk,t;0HUX2H'TAAZo#@.Xe'UVkL#e/8i*Zt.n(I:C,BU*RWp>(U.2K`;&:fLf+X&@4V&n\\n?tjLrJ!^]6Zu\"N.ZH4RTfsP2eU<a(\\jHY,mP@jI>l6RtQM3m=*Jh,jQRBn`h=hfE\\?Ji43Us.';6,?1qm'GeLS;;Ob.^uFXlJ22g>IQBGcE1EZG5m,GC:3nXFuC%h5KI'(.6E#CiR&lfQ3^T9lI9N)5tdOr8!HkN?!U^:g9uD7nshmR<ofi#0L?K-K<6\"/RAc+a99r$5NeF\\Mm4oN<Gj`09)jW$\\[W?(L?=%g\\n&%YVi*P8in,U\"QY$R<:.1)0-4aZ&RbB5luc-=KE\"&d\\!eDNqIR)*ZliK5H7?U:9nn\\U!<ReIb#,4hA;G2kks@I)B\\h(gtDCM4`G%sJV/lL<cboc#gJE>95DNdhTT)5<!D1,E@CO>Am<\"Z`52[qslTDm!?Y$@+lG'Jh)u0Q3*D:\"o7ZW25)t!Yd-`j=-f6-q3]lX/HT^-I`\"u$[=m.Nbn1@]>$LV#Iq!THT8)hOTGGr6G`oe*uW2N#t2ajTNq4]:fCT!\\AoLZYt'k#er0;((+XT*=%+FZ*%7d^\\C>O^h3aOI/ld,HeU-3PL\"A^k&>Z\\IG7_3%PFq@Y-:-1gZ_-_/\"72RLd-'V@qscnXNnfnbF_AS0antfSKW]4LZB\\7R%#dMSTo-_?HI*436OGt=@rJXSVpCmJ?m0/8QRmd[QqV,U*Zg1dP%,Kj;F25U6Cs5+\"5`cfjlGKa2)m;L,[3g\"O1QY2TFk;213DZ[3QMl[?*e^Fn.cp(`6D,)o(4@k1`;WS$_2ct:_1DDUVakl1?fUAnZsa4Y?4@+bQ;YWqVb\\8Yk;[?@UkH*+1,bR('p\"dF?..n_+77\"8P(?d7*Z;a4=#:@^4\"1ad=\\trB*gRCTfp=i#OOD]+8MZ`aeB\"1icl>AXpRUu6Fe`tNscX(Kg[2SjfX%;)BZpeOkhpDq+A\"Vrg$Uo(_eg&7!i:RHjQXg.jb<>4a%g)D.;KN=;Ihf^<*t8*?(S^`d<9f]mKK+^qOB\"IXV<t!pltiXbB(c(n<F..RG2`l7e,_B*jhgfF%Lh17=^rGm\\+M_g_J@f;lQ';)!6M..WO,HU0KZ:.IA8O;eVZNLT1:1.Jn'$$a5T!pE\"]#/O\\XOU3i[DVbi7]*44i:j<OD<)d+=?eE6/ZFK[n+?nRm13`'@]anVhr*5-`$\\RrYgK@Yu2f?W*G_u3\\ctDI?eS(MhZ8Z^maFfQbX;`2`Rmid@b/u3^*9!?hp[]51=A^JON&jB*UPeR&U7fIR;,5CeQoq,:TI5S5B?d$+(P*,1L6#.P=i\"ggs1sV[,*7TQ:J8;pkuS6i?!W)-JOY\"L03D1E[olrh\")h\"UW?@hsf7W]Nn.Hlc>VGX[Na.+jD<;j0]\\L3Jqp=C:kHjKf*<?D]3243h6J'\"_JL1q$!S%McS:R<&He\"3pFS(#Dh1B$+_=@):DC,u>g<uf@n:$K7Ca(T].THeCq#CR6k(=Kj1kCB_<*%us>d,biH*\\O<bb1WJOG'.8c>TUS4C1jU-olaq6U<6^N=0s\"/1iG\"I3tm%nkE7i)*Yo]`H1cAm0sWNW'hLpQh]D2/4OE0l2oGHhT%)+nE&a^<oJBB/2S7V'(SDp5tUM$]D'C[TIhmDpaO124q#\",=MobGLVe9%,lRo4kt*t-H-aFhr\\U&g@,@C,eQS$F.shaS21bm%q:D\\WUS!A!b94Ej_K(d\"GOF>,a/GpIS#M!lY`cX8eFgNh)!t+crHsSlLQ?t'jHL,+,Hq.k,T$Z*@$$gD\"7q;g5t/U(>Qu4$dNUXXYWIVZq2g[]rh@XB6clmDM#N'qT`3p!iqB1kabWrBP!U5B'QTp<fX_Oe4u_*PUeVOa^eBAW+9e-j^URT0DTd*_5EZ\"IIdXiPp_&f]=:,E,;n3ecS'Z6[E2..'qd[Opc^6^3flu-HBo.\\\"R6q^_:gNeY'a=pJ%R`[:'-J-KK:+&p)L`m5/=JX[;5d05>\\LVYDrN.oH%8EFG9W\\O$sg!>ZCXj:*=W]%U%B72f+chFnHnmWDg>UiFF]$XgI]ogpi/2U_Em9:!!gVS4c%94(/%k9)fa)^`#dInoWX2!fIjem'#t4%B2qqH!_,$>BX(\">G464Sm\"\",,0H+@,M%qAnFKiMV@/L/j(,cHuj,#Gj!E-Nq_QfUl/J-J9KS&S6>p\"k-+U2V9iZ,EhChQUPWh=1$!t8\"?WL<sBUb>0?f;$DX6BfZ8&9NQBL9*pmMnfe@J\\-^XprELLP+G@s+Yr!e4$X0=/g.D<RMRZE=Bdm%/H@=?>+\"pTS72/#A^EK#p'nEbdLgsJlpI6HpD``p$OQW+5@cdeiaK,L^`+Ob0hjuV0@SP/S%*c%7</&g52k%:gTAth5X7a6+/$hk=@bO[5HRkgAfkGV_#(WlT9Kh#]R6,7ZjYh!(^_8c(SFjV-,)/<+e*HE02rkA5_l-.7`4pC6X0^H(OAh)N#P'.1=egIE_&D<Ho@,JB![o8[=g*l90=6j_aakN5UA`U7#3N^!VX5DPRE^'j[BdN%;ZgN&[iE:#6X>+]6oa_?lA2=dKn+u6L7/O]RrKq_'ZOX+8`\\?IM?2Hr.W(L^nE(Q;6X^fgb=P-+bS-`n7k>c7B-rg%gh4aUY.$n<+r@dSr&dVr\\.nMn_KYZm;mePE8G9j(m\"n!7\"aVlJSBXB+3MJu.5(U>FuE=fkcs0bOY?WnYRq?[1_$#q<#6#Q9ER*Y*\\\":enE=cIc6BM\"1_BM9W\"@1!='3OV\"aVLC?fATuE%d_T7+PXK:Ikct9,`IDF6=dh,-E'J6$RC4VZX`\\KSp,P8>gm&h%,1J#!F-`Ni3C>*1<N0+-17($5jsK@0'[\\gefml+qBc&XUSJ>K8'>F03N9!$:dKPia]*#%pNph/m$oo1Vl9MCdN<<H.fHD(WlpLP?N\\?Y^+Dm'T1BKl?rPb9t106JuOHn!BuZq;+/t@\"GiU8COgGfY#P1j\\=NAC]`dLn;_0EZ'0I7A4ka27iMAP$;4&bu$Mkc(SIUW8$4*7/g>tGW$\"i-h316SG\"r^5toC4uXK\\m&Z:,J>r/+F:UFERbJ'k4tjp[3rOmQj8l.Oq*?64LtflK[[]k7?U!31l;&n!(UH&-EI)gCTGs0/\"D`D04Q&*YE^)IQluXS27m4E<L@A\"<sWFYD\"di+:OESThom9nrUo&-OKksIc>&OC#O?s)dZ(VJ>WCW#6,otdOo[q=cYTE>O1S>8.N-M)<)ljNV>\\JV7?PX0VQ%eP]XI\"inOYY!p0n#XBPgLCL7R+^&sWm762e.K)&W:h?/0J.A+J$m-:,r$WmXY&U]*oR6]CgeVV40%g8/R*t^r-QE'm78hU68p.4OIGA2jUpY<=NhTTVr#>?^9@g\".N?(g#9;:+<M_.Fo#*uE;h_?,=GB'O5,rZ\"1^5WP08PX7];Ug:ao>GD;X*asN9mRYd`j]4]emAg^I#)6Fg,2Z+a[s10U!;gkiq\"U%A77EfMGTqYu7VJ<@ldk>YC[!oFKo):(Qe?R1f.es-!nNGA!IL+Z9Um*2DF7mmV&(dk^n%.g,qKg)@q4!\"GOI:CDb!5bc^6`Ij/4,-:;6;^>8YQQ^BW'3@r'.56uWFSG3mufj-XpKq=a2,7!=V5B0U_7(b%QD$/EMLCM@G,Sr8Wc+1cdCe7jJ?4qV,%Dcae20_c6!9$&&A+!tF2$<\\G0_p##RRnb:a0JNE=d,*W.+th`]9^/7X/7a%`>hQs/i$CEG4)`nJ=$/gg^F=2!P\\:+&\"2g`>mg9F]DXo\\Jm\"mQ;rkbJ,bF\\+`_8,P[Ts_9ciPJ$-B<(T/Jqq!UHT:,QoaD7Y)JCs=H_U6)qhk/!+o4i'8S.%FiI;Ms&>).7[U\\JQcN_b09S%aNio<i.fbO#c%(ujtd7BWA8A5#Sb7kZ'jNQ:u,pfC(plBuWLWO'V-n%%e(Vaod:_+\"Dba^P'rVDL4Dl2.[]e.VK)#=MGR-O#'n(kSt*PHseZK9q5MkK\\>\"Ud8-hO9gV$&6cqfr#5es&6.(/;VfI4aVYOm.mTnd;-YN/Q`iX))fd/4Z?pIb&,mW`5Wk1FXs6\"]Y*tL8ml'%1Vmlclh1+KiaUQ\\ldp':o1.)s:Paon\\N=iX_3dUb+.nZn;m0bCAEN$gY-+o^(^ti[5SaQYNud^h4$,N4eCr[36*Z0!L,X&A1`?i&DmuL:UVkVr)@R#_$k*OQ$k*OQ$k*OQ$k*OQ$k*OQ$k*OQ$k*OQ$k*R8pjW9;7?R~>endstream\nendobj\n4 0 obj\n<<\n/Contents 8 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 7 0 R /Resources <<\n/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ] /XObject <<\n/FormXob.9ca65b0e3ac241366dd5634c585dea33 3 0 R\n>>\n>> /Rotate 0 /Trans <<\n\n>> \n  /Type /Page\n>>\nendobj\n5 0 obj\n<<\n/Outlines 9 0 R /PageMode /UseNone /Pages 7 0 R /Type /Catalog\n>>\nendobj\n6 0 obj\n<<\n/Author (\\(anonymous\\)) /CreationDate (D:20210211145938+00'00') /Creator (\\(unspecified\\)) /Keywords () /ModDate (D:20210211145938+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) \n  /Subject (\\(unspecified\\)) /Title (\\(anonymous\\)) /Trapped /False\n>>\nendobj\n7 0 obj\n<<\n/Count 1 /Kids [ 4 0 R ] /Type /Pages\n>>\nendobj\n8 0 obj\n<<\n/Filter [ /ASCII85Decode /FlateDecode ] /Length 3495\n>>\nstream\nGatU5gN)&i&Ui84bbL]&5n'oLo+J/VV4;R?[?b'_<0W.M0Vl_m@UNI%Q+oM\\B)iQp5WDfq<@\\]KR@`iqVb]63F7G<\\s/14`I_07YCX0H1m^J,[:;H9^ZE*l/DeH!9i&^<BnNrS]8]:&km/0`t9dL_&1<FDa=Z7O)%t<RUFQ#tq:F]AUVD!17X$lJF]OCPAg&5:EG2.5bWd`1iOMr1,KJ;n3IBBRK5P:e8U`p-f?0R9s$b.9I=VaJUOG95YPJ[(IH[YSmraDYK\\q%->Eug=-q0$@OYBE;1?&&4q17q=QTn=[e7-EWkkPBarYl!nUr)Qn#/HdRmeO]BE?&3f\\1HtR7:E,RV)IH\\DLqfoAf__-Kl^JDdlW[5E;UZT(K,8kEqj/B.;%b3W/+[#GX%I+RF.\"qOnWZX'qb!oi=t!5qakq8gTlMO2HR@1<'h,!HT=JJMGG65MEH\\W#:MH\\!=c!R\\MRLotqLQuRnk/=Lh,O#,B;LFp4bPoi0J[>a)><mck2QC\"nm]T+S.!BiHh63b>sqQVnK:D(m,>U,L<5&/A&HUX2O1[rdLU9Ko3V`BIMj<SD1j7fULZ)sk,m=H`F0b,RmYtO_)-,A@Q.a,*4Aju^V'U)/OtbDs8@+[5Fo4/qo;<l^WK089#DBF+5,K5]?<tlDXW)T[-WiBDa^'t?c;@VL3lF0f;,E:Nps]@'*KIqT<\\!GbKj7^hI#(1HbUTWT!]hak:?of?X=<\\-h_@M\\AS;Z,o\\r4MdWs<!CMGb1?*gVEjFK$qT'p6&k>u^g*5tkgM2M1E^Mn>7JeJdXtNeEM+eV079;q3apJXd+Mm,O7dChq*lhn@$RAJ\"CE(hZI1>PZXX@WlQ3%p0CnH/Bl5Yt#`LbblQEgi?^s5?)\"Y8?JSBSrVJB%?Ph]6)r?jAusm48=UpT291f=;F4^*XBl:O6@=Cb-o>l9is2TFI\"sLOf5_9&tc9:+K=r>#t!Wrd30D_hL-6*Ehf`rEAKtOd-!#j0GHak$g7X4YfNd,I>AD_Dp'WAmHU6@Uq839ibJ05d7p#ZE)g.\\o_sUN8iq;ik&//B3aht8k$!FKl:6+muH=R_BH5Z]V-\\e(.jW3N^eR'gtKFkLsPThD*g$NV\\Qk@,V>YN\"B#=m.Q@c^iItq\")>Vp+3;8#lgG72@$hf6a8/9PY?C#.iG3mCWie*4U/KRnepDnEWYY+gQjCaL''K50U8X=QneI\"TC^s!t>p@JR[O/X=eqZ;NnRHI!+-B:2uh#VWPb!6<W4nrI,i)H_*$p2A%[[K'7HXSS1=6`@Z\"<e\\];gjA-;pj1YafWX\"8Zunb<c&'pNR94+>KWdeR65?BMG!,3@:(aIs$N0UKu\\!ln_PIg__@K1YG(\\(,!Q6G8<0XDo\"\\`2&<\\'H!c%+CT8ZcaDCGES)2FhD2T[G6[_So>$%nsuX@tlAV(DJ]H%pC4F?3BgG[h.#0BDZCo%[X)\\p&,rf^K5nACf)[-b7D(m8)jAo+c@?_VMW_nc7S/L\\DU/,\\8AH+6>9d'ARVVgA\"h`5@\"^u*7P0h-W;=3H_T#)LRRdqDL@l7TBgEY:<\"/JlE!^8LI:0\"\"VMG:\"iAXO[U!)T6m$,?d:Te-.O&WZp'-Wap+cf9OZ&d&gUC^>^[$Q,D-g)mP>uH'0H=6;r9sbB(&VaAV%*:HR+oZ&'SV>6;0\\]9AS8L%_jb4.oD+OdCkC7eI0V26q2m[KBG\"P9]kg@kHGL+*A;Y<-TqBgm5NZXFWCnX/9i2!e\\)d0&Hrs2<cYLr:09cc)MNJ2WqSAkuF=O&K>Hk[^MDV4ZK4OJ>)rX1HF]Ga)W%SL1':$I)AlqCsB-,@Uhd/LZ)/,MFPo1U=Yihsd4LT&rLE'fZG#aei!*W6J-tMpb8goMYMDH73/;B]Wd9P2IUH'>UXI-4q'h3QjI0I4)M9nt&DH,\")m`F2F@G2\"X'+eVOY\"8/MaA3R9=$Q-hNur@gd-:4b00<RC!i\\W(l//f@I>RcM8<2_)FEi!@HLFUN:5d*rY;>I`G#lrUU6IYTU#T`PYlKb@AbCtipoh$cOpXU3A6OKZI(?*i&O#.H\\5.Krljst-n6R!-@Feu[`5H'MTbI$M7J\"l!bX0MGJ(!\\SaK=)TO]Po.,?/!/_\"P<M9?!+q-,.b%p,sf%7&cUK>K`C'A1fWoT7jNS`/g\\Foi/F@D)R]H2\\,^u]>MWj6gT^HO;Of5]i[_M:WlFifI<\\LC8Mlle<tSEUZ*K!raB#g0p)i9;eFp[U\"#d[P'GiX0?EWZfod1+P,\"HS,*^m#$IZnqb[EbNL*X1W](M`42$NJK@2_#B7Mb)B@QMX4;,YU7R*4Sf7%;l$b=hUco^L^o\\Xi&5S%poiaZp2Udk+t1'2=4C#HI6mX`TEd18>rT^1\\P+$2_=tYoRTEAsA=16<?=5D:'2XpJc7\"FV4dh'67kr-`1o?8CA5uR:O17Y91_L_=`fEGV6J2'0@U.o/%MON+f9#*Lk(E]'^r4-=lir;YHn\"2;o7:.R`/1j^TMqGE^B_\\iIJnKeC^5'@hIMn57MhUn^0nF4GNV31A/i5k;g?`H4G^4G8Kpe$Qp/!ruK!p9VH!j7CntC_KHSSQ_!sr)KW]^s%oTF4d$G&^*@3=J[]$5)&q!![NdXB.`[%oUq8Ug)Z[aK;lh@+f.rS1I3DHf%=KEhlTI;UO!;NB@X`H9>[>H-[e3+f2?g/J<N7r256NH(L[so3-u^&Qs*FjSO`?P_`<Pq\\ma%1\\QbU<1Qc4T$5+qu*>`7D!2g*@Lu=Vs.I23Doha_OA\\B^iH0FA!R='@/g%j(_F#:^ob%OGj:I.*873Y$OZ?<rJihBJ^j+#JMESmXZELNu@`5t'd!Wa$mXbn#hRKZ5<^G@iCAW9SS&oOY&OCFqTO*qMLoMX<+n4hD<\"$kn%`_ITAWlSX[VPR]gr>Mn;(6F`R_4QH5qtV$aEq\"e\\4@F1O;8%rR>MM>*>\\;L$S`eHU82e,Mh7@4RdqG2]+[pDsCba5gfc&IRo8-YV1<R+Veg/.nL&p*5Z!qe1q4rKEAR!/=dBcW+'3J,i'A'dcm[+c=6reh%YP%q:A$uM!&e*4:OA&_JfJ^@>nVOZ8a4B$5OfV9V29Aek%[pAVko!ClUaVr25W#8YA0/\\oHH@Qb/<s8A'Lit-RB5)Xb*(H7I56\"h4>6-c-RP0fcB7/'fBp;r4#A%.<>pR>2;$;q(jb*m%;j@7;J&%ho)g@mY(<?O^lrO.G!T'`P^JHBkU1n`C5gUIr)T5r$ggZ/ON*rYM(kSPN]bZGpf.R3/V;>kZgY)7V.sC[jQ4p^HCtELb0PNa;UWd>gjP.HEi+0S1=Y>Kajf!]!O5udSuc3>$/k?MNHmY$n_s>RZ[[?%_:@nR3\"&m1p<7S`r6<RUE5d`?F\"N4ECQfc$`s6*\"$rh&^h=)91hl5s\\^YPq&N?+?3pkb<s3^WrJ`C;_:X'`3bYr=kW[\"iOio*ta\"cEm\"5o?VW0h:[6arr%)Im9iNR`AC0HJ-=HjSf->X2ZQ2RRNC>cAl`>QrrmqrPo9~>endstream\nendobj\n9 0 obj\n<<\n/Count 0 /Type /Outlines\n>>\nendobj\nxref\n0 10\n0000000000 65535 f \n0000000073 00000 n \n0000000104 00000 n \n0000000211 00000 n \n0000013573 00000 n \n0000013839 00000 n \n0000013923 00000 n \n0000014206 00000 n \n0000014265 00000 n \n0000017851 00000 n \ntrailer\n<<\n/ID \n[<61702397be0a0c57feecef035de89a9d><61702397be0a0c57feecef035de89a9d>]\n% ReportLab generated PDF document -- digest (http://www.reportlab.com)\n\n/Info 6 0 R\n/Root 5 0 R\n/Size 10\n>>\nstartxref\n17897\n%%EOF\n"
+                    "document": "%PDF-1.4\n%���� ReportLab Generated PDF document http://www.reportlab.com\n1 0 obj\n<<\n/F1 2 0 R\n>>\nendobj\n2 0 obj\n<<\n/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font\n>>\nendobj\n3 0 obj\n<<\n/BitsPerComponent 8 /ColorSpace /DeviceRGB /Filter [ /ASCII85Decode /FlateDecode ] /Height 111 /Length 13170 /Subtype /Image \n  /Type /XObject /Width 300\n>>\nstream\nGb\"/,M-CZaqYkPbM:kU4>YX4t(o&(...)%%EOF\n"
                 }
         412:
           description: Invalid request id
@@ -2718,6 +2718,11 @@ paths:
         - SCRATCHCARDS
       description: Get the status of a known scratchcard.
       parameters:
+        - in: path
+          name: id
+          type: string
+          required: true  
+          description: The scratchcard unique id
         - in: "body"
           name: "body"
           schema:
@@ -2824,7 +2829,7 @@ paths:
                 type: string
               type:
                 type: string
-                examples:
+          examples:
             application/json:
                 [
                     {
@@ -3377,8 +3382,11 @@ paths:
         200:
           description: Successful Response
           schema:
-            status: object
-            description: A JSON object containing full information about the renewable request
+            type: object
+            properties:
+              status:
+                type: string
+                description: The response status message (renewal enabled)
           examples:
             application/json:
                 {
@@ -3424,12 +3432,15 @@ paths:
         200:
           description: Successful Response
           schema:
-            status: object
-            description: A JSON object containing full information about the renewable request
+            type: object
+            properties:
+              status:
+                type: string
+                description: The response status message (renewal disabled)
           examples:
             application/json:
                 {
-                    "status": "Renewal disabled for request"
+                    "status": "Renewal enabled for request"
                 }
         404:
           description: Invalid parameters
@@ -3464,11 +3475,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - in: path
-          name: id
-          type: string
-          description: The response status message
-          required: true
         - in: "body"
           name: "body"
           schema:
@@ -3477,7 +3483,7 @@ paths:
         200:
           description: Successful Response
           schema:
-            status: object
+            type: object
             description: A JSON object containing information about the renewed request
           examples:
             application/json:
@@ -3555,19 +3561,25 @@ paths:
         200:
           description: Successful Response
           schema:
-            status: object
+            type: object
             description: A JSON object containing information about the renewed request
           examples:
             application/json:
-
-
-
-
-
-
-
-
-
+                [
+                    {
+                        "data": "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",
+                        "profile": "PFnubeAF",
+                        "subject": "CN=Name Surname1 Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
+                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
+                        "valid_from": "2021-03-22T11:51:00",
+                        "valid_to": "2021-03-29T11:51:00",
+                        "serial_number": "611af7c8fdd5cea9",
+                        "status": 0,
+                        "pk": 21715,
+                        "revokation_reason": null,
+                        "type": "RENEWAL"
+                    }
+                ]
         400:
           description: JSON syntax error
           schema:
@@ -3633,7 +3645,7 @@ paths:
             application/json:
                 {
                     "status": "success",
-                    "message": "OTP sent vis SMS"
+                    "message": "OTP sent via SMS"
                 }
         500:
           description: Invalid request id
@@ -3675,11 +3687,24 @@ paths:
           required: true
       responses:
         200:
-
-
-
+          description: Invalid request id | parameters | otp or pin not locked
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: The response status code
+              message:
+                type: string
+                description: The response status message
+          examples:
+            application/json:
+            {
+                "status": "success",
+                "message": "Pin unlocked successfully"
+            }
         412:
-          description: Invalid request id or pin not locked
+          description: Invalid request id | parameters | otp or pin not locked
           schema:
             type: object
             properties:
@@ -3751,6 +3776,8 @@ paths:
                 type: number
               operators: 
                 type: array
+                items:
+                  type: string
               enabled_from:
                 type: string
               enabled_until: 
@@ -3789,33 +3816,33 @@ paths:
                 type: string
               enable_external_auth: 
                 type: string
-                examples:
+          examples:
             application/json:
-                {
-                    "pk": 2,
-                    "name": "Sample New RA",
-                    "parent": 1,
-                    "operators": [],
-                    "enabled_from": "2021-01-01",
-                    "enabled_until": null,
-                    "organization_tax_number": "43242414213",
-                    "organization_name": "Organization",
-                    "responsible_name": "Name",
-                    "responsible_first_surname": "Surname1",
-                    "responsible_second_surname": Surname2,
-                    "responsible_serial": "1234567890",
-                    "email": "mail@domain",
-                    "fix_phone_number": "391234567890",
-                    "mobile_phone_number": null,
-                    "city": null,
-                    "postal_code": null,
-                    "province": null,
-                    "url": null,
-                    "address": null,
-                    "state": null,
-                    "country": "ES",
-                    "enable_external_auth": false
-                }
+              {
+                  "pk": 2,
+                  "name": "Sample New RA",
+                  "parent": 1,
+                  "operators": [],
+                  "enabled_from": "2021-01-01",
+                  "enabled_until": null,
+                  "organization_tax_number": "43242414213",
+                  "organization_name": "Organization",
+                  "responsible_name": "Name",
+                  "responsible_first_surname": "Surname1",
+                  "responsible_second_surname": Surname2,
+                  "responsible_serial": "1234567890",
+                  "email": "mail@domain",
+                  "fix_phone_number": "391234567890",
+                  "mobile_phone_number": null,
+                  "city": null,
+                  "postal_code": null,
+                  "province": null,
+                  "url": null,
+                  "address": null,
+                  "state": null,
+                  "country": "ES",
+                  "enable_external_auth": false
+              }
         400:
           description: Bad Request
           schema:
@@ -3972,7 +3999,9 @@ paths:
                 description: The parent RA unique id
               operators:
                 type: array
-                description: A JSON array of objects with the set operators for the requested RA                
+                items:
+                  type: string
+                  description: A JSON array of objects with the set operators for the requested RA                
           examples:
             application/json:
                   {
@@ -4053,6 +4082,8 @@ paths:
                 type: number
               operators: 
                 type: array
+                items:
+                  type: string
               enabled_from:
                 type: string
               enabled_until: 
@@ -4184,7 +4215,7 @@ paths:
               surname_1:
                 type: number
               surname_2: 
-                type: array
+                type: string
               certificate:
                 type: object
                 properties:
@@ -4214,6 +4245,8 @@ paths:
                 type: string
               registration_authority:
                 type: array
+                items:
+                  type: number
               registration_authority_master: 
                 type: string
           examples:
@@ -4292,7 +4325,7 @@ paths:
               surname_1:
                 type: number
               surname_2: 
-                type: array
+                type: string
               certificate:
                 type: object
                 properties:
@@ -4322,6 +4355,8 @@ paths:
                 type: string
               registration_authority:
                 type: array
+                items:
+                  type: number
               registration_authority_master: 
                 type: string
           examples:
@@ -4611,7 +4646,6 @@ paths:
       responses:
         200:
           description: Successful Response
-          examples:
           schema:
             type: object
             properties:
@@ -4626,7 +4660,10 @@ paths:
                 description: The list previous page endpoint      
               results:
                 type: array
-                description: Array of JSON objects containing users information             
+                field:
+                  type: object
+                  description: Array of JSON objects containing users information
+          examples:             
             application/json:
                 {
                     "count": 7,
