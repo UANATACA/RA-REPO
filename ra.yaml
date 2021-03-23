@@ -1601,27 +1601,27 @@ paths:
                   {
                       "detail": "You do not have permission to perform this action."
                   }
-        404:
-          description: Invalid request id
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "400",
-                    "id": "de450daacf24014e",
-                    "error": "No Request matches the given query."
-                }
+          404:
+            description: Invalid request id
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: The response status code
+                id:
+                  type: string
+                  description: The response status id
+                error:
+                  type: string
+                  description: The response status message                
+            examples:
+              application/json:
+                  {
+                      "code": "400",
+                      "id": "de450daacf24014e",
+                      "error": "No Request matches the given query."
+                  }
 #############
   /api/v1/requests/{id}/pl_upload_document:
     get: 
