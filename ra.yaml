@@ -4831,112 +4831,83 @@ definitions:
     properties:
       profile:
           type: "string"
-          default: "PFnubeAFCiudadano"
           description: "Certificate profile"
       scratchcard:
           type: "string"
-          default: "11111111"
           description: "Available and unused serial number from the file scratchcards.txt"
       secure_element:
           type: "string"
-          default: "2"
           description: "Can be 0, 1 or 2 which stands respectively to Software, Smartcard and Cloud."
       registration_authority:
           type: "string"
-          default: "68"
           description: "The unique identifier (PK) of the RA (it's assigned when is created)."
       country_name:
           type: "string"
-          default: "ES"
           description: "The country where the RA is registered."
       serial_number:
           type: "string"
-          default: "TSTAPI74S23C129Y"
           description: "The country where the RA is registered."
       id_document_country:
           type: "string"
-          default: "IT"
       id_document_type:
           type: "string"
-          default: "TIN"
       given_name:
           type: "string"
-          default: "RAO"
       surname_1:
           type: "string"
-          default: "API"
       birth_date:
           type: "string"
-          default: "16/10/1965"
       email:
           type: "string"
-          default: "email@bit4id.com"
       mobile_phone_number:
           type: "string"
-          default: "391234567890"
       paperless_mode:
           type: "string"
-          default: "1"
 ###########
   UpdateReqObject:
     type: "object"
     properties:
       profile:
           type: "string"
-          default: "PFnubeAFCiudadano"
           description: "Certificate profile"
       scratchcard:
           type: "string"
-          default: "11111111"
           description: "Available and unused serial number from the file scratchcards.txt"
       secure_element:
           type: "string"
-          default: "2"
           description: "Can be 0, 1 or 2 which stands respectively to Software, Smartcard and Cloud."
       registration_authority:
           type: "string"
-          default: "68"
           description: "The unique identifier (PK) of the RA (it's assigned when is created)."
       country_name:
           type: "string"
-          default: "ES"
           description: "The country where the RA is registered."
       serial_number:
           type: "string"
-          default: "TSTAPI74S23C129Y"
           description: "The country where the RA is registered."
       id_document_country:
           type: "string"
-          default: "IT"
       id_document_type:
           type: "string"
-          default: "TIN"
       given_name:
           type: "string"
-          default: "RAO"
       surname_1:
           type: "string"
-          default: "API"
       birth_date:
           type: "string"
-          default: "16/10/1965"
       email:
           type: "string"
-          default: "email@bit4id.com"
       mobile_phone_number:
           type: "string"
-          default: "391234567890"
 ###########
   TBSObject:
     type: "object"
     properties:
       rao:
           type: "string"
-          default: "100"
           description: "The unique identifier of the RAO that will sign and approve the request"
       type:
           type: "string"
-          default: "APPROVE"
           description: "The type of the receipt to generate"
 ###########
   ApproveReqObject:
@@ -4944,11 +4915,9 @@ definitions:
     properties:
       rao:
           type: "string"
-          default: "100"
           description: "The unique identifier of the RAO that will sign and approve the request"
       receipt:
           type: "string"
-          default: "MIIHyTCCBbGgA..."
           description: "The signed receipt as a Base64 formatted string"
 ###########
   CloudEnrObject:
@@ -4956,19 +4925,15 @@ definitions:
     properties:
       scratchcard:
           type: "string"
-          default: "120000400"
           description: "The scratchcard number of the request to be enrolled"
       erc:
           type: "string"
-          default: "bB7n9RYk"
           description: "The enrollment code associated to the scratchcard"
       pin:
           type: "string"
-          default: "belorado74"
           description: "A new pin to assign. Must contain at least 2 letters, 2 numbers and must be at least 8 characters long"
       puk:
           type: "string"
-          default: "belorado74"
           description: "A new puk to assign. Must contain at least 2 letters, 2 numbers and must be at least 8 characters long"
 ###########
   SoftEnrObject:  
@@ -4976,11 +4941,9 @@ definitions:
     properties:
       scratchcard:
           type: "string"
-          default: "120000400"
           description: "The scratchcard number of the request to be enrolled"
       enrollment_code:
           type: "string"
-          default: "bB7n9RYk"
           description: "The enrollment code associated to the scratchcard"
 ###########
   GenDocObject:  
@@ -4988,11 +4951,9 @@ definitions:
     properties:
       doctype:
           type: "string"
-          default: "120000400"
           description: "It represents the type of doc to retrieve. It can assume the values of: 'acceptance', 'contract' and 'credentials'"
       lang:
           type: "string"
-          default: "bB7n9RYk"
           description: "The enrollment code associated to the scratchcard"
 ###########
   PlApproveReqObject:
@@ -5000,23 +4961,18 @@ definitions:
     properties:
       username:
           type: "string"
-          default: "5053374"
           description: "The RAO's username"
       password:
           type: "string"
-          default: "Gy6F37xK"
           description: "The RAO's password"
       pin:
           type: "string"
-          default: "belorado74"
           description: "The RAO's pin"
       rao_id:
           type: "string"
-          default: "100"
           description: "The RAO's id"
       lang:
           type: "string"
-          default: "ES"
           description: "The RAO's pin"
 ###########
   PlCloudEnrObject:
@@ -5024,11 +4980,9 @@ definitions:
     properties:
       secret:
           type: "string"
-          default: "123456"
           description: "The OTP code sent to the client via SMS"
       pin:
           type: "string"
-          default: "belorado74"
           description: "The PIN code created by the client (must contain at least 2 letters, 2 numbers and must be at least 8 characters long)"
 ###########
   PlSoftEnrObject:
@@ -5036,11 +4990,9 @@ definitions:
     properties:
       secret:
           type: "string"
-          default: "123456"
           description: "The OTP code sent to the client via SMS"
       p12password:
           type: "string"
-          default: "belorado74"
           description: "The PIN code created by the client (must contain at least 2 letters, 2 numbers and must be at least 8 characters long)"
 ###########
   CreateScrObject:
@@ -5048,11 +5000,9 @@ definitions:
     properties:
       sn:
           type: "string"
-          default: "110000150"
           description: "The scratchcard serial number  "
       registration_authority:
           type: "string"
-          default: "41"
           description: "The registration authority id"
       secret:
           type: "object"
@@ -5062,19 +5012,15 @@ definitions:
                   properties:
                       erc:
                           type: "string"
-                          default: "8207878566"
                           description: "Security code used for recovery or revocation purpose"
                       enrollment_code:
                           type: "string"
-                          default: "97Q6B,6W"
                           description: "Security code requested for different operations (like certificate enrollment)"
                       pin:
                           type: "string"
-                          default: "25936657"
                           description: "Default pin assigned to the scratchcard. This will be changed in the enrollment phase."
                       puk:
                           type: "string"
-                          default: "44024058"
                           description: "Default puk assigned to the scratchcard. This will be changed in the enrollment phase."
 ###########
   UpdScrObject:
@@ -5082,11 +5028,9 @@ definitions:
     properties:
       sn:
           type: "string"
-          default: "110000150"
           description: "The scratchcard serial number  "
       registration_authority:
           type: "string"
-          default: "41"
           description: "The registration authority id"
       secret:
           type: "object"
@@ -5096,19 +5040,15 @@ definitions:
                   properties:
                       erc:
                           type: "string"
-                          default: "8207878566"
                           description: "Security code used for recovery or revocation purpose"
                       enrollment_code:
                           type: "string"
-                          default: "97Q6B,6W"
                           description: "Security code requested for different operations (like certificate enrollment)"
                       pin:
                           type: "string"
-                          default: "25936657"
                           description: "Default pin assigned to the scratchcard. This will be changed in the enrollment phase."
                       puk:
                           type: "string"
-                          default: "44024058"
                           description: "Default puk assigned to the scratchcard. This will be changed in the enrollment phase."
 ###########
   FUScrObject:
@@ -5116,7 +5056,6 @@ definitions:
     properties:
       ra:
           type: "string"
-          default: "139"
           description: "The registration authority id"
 ###########
   IUScrObject:
@@ -5124,7 +5063,6 @@ definitions:
     properties:
       sn:
           type: "string"
-          default: "5053349"
           description: "The scratchcard serial number"
 ###########
   REVScrObject:
@@ -5132,15 +5070,12 @@ definitions:
     properties:
       scratchcard:
           type: "string"
-          default: "2000265"
           description: "The scratchcard serial number"
       erc:
           type: "string"
-          default: "9219995130"
           description: "The scratchcard serial number"
       reason:
           type: "string"
-          default: "UNSPECIFIED"
           description: "The secrets associated to the scratchcard"
 ###########
   WhoScrObject:
@@ -5148,11 +5083,9 @@ definitions:
     properties:
       scratchcard:
           type: "string"
-          default: "110000150"
           description: "The registration authority id"
       erc:
           type: "string"
-          default: "97Q6B,6W"
           description: "The scratchcard enrollment code"    
 ###########
   MoveScrObject:
@@ -5160,23 +5093,18 @@ definitions:
     properties:
       from_ra:
           type: "string"
-          default: "39"
           description: "The source RA that will give the scratchcards"
       to_ra:
           type: "string"
-          default: "41"
           description: "The scratchcard enrollment code"
       amount:
           type: "string"
-          default: "2"
           description: "The scratchcard enrollment code	" 
       from_sn:
           type: "string"
-          default: "5053349"
           description: "The starting serial" 
       to_sn:
           type: "string"
-          default: "5058000"
           description: "The ending serial"
 ###########
   IsRenScrObject:
@@ -5184,11 +5112,9 @@ definitions:
     properties:
       scratchcard:
           type: "string"
-          default: "110000150"
           description: "The scratchcard number of the request"
       erc:
           type: "string"
-          default: "97Q6B,6W"
           description: "The scratchcard enrollment code of the request"
 ###########
   ClRenScrObject:
@@ -5196,15 +5122,12 @@ definitions:
     properties:
       username:
           type: "string"
-          default: "110000150"
           description: "The username associated to the request to be renewed"
       password:
           type: "string"
-          default: "97Q6B,6W"
           description: "The password associated to the request to be renewed"
       pin:
           type: "string"
-          default: "97Q6B,6W"
           description: "The pin associated to the request to be renewed"
 ###########
   SoRenScrObject:
@@ -5212,15 +5135,12 @@ definitions:
     properties:
       username:
           type: "string"
-          default: "110000150"
           description: "The username associated to the request to be renewed"
       password:
           type: "string"
-          default: "97Q6B,6W"
           description: "The password associated to the request to be renewed"
       pin:
           type: "string"
-          default: "97Q6B,6W"
           description: "The pin associated to the request to be renewed"            
 ###########
   CreateRAObject:
@@ -5228,75 +5148,57 @@ definitions:
     properties:
       name:
           type: "string"
-          default: "A new RA"
           description: "The RA name"
       parent:
           type: "string"
-          default: "139"
           description: "The RA parent unique id"
       enabled_from:
           type: "string"
-          default: "2019-01-01"
           description: "The date when the RA will be enabled from (the format is YYYY-MM-DD)" 
       enabled_until:
           type: "string"
-          default: "2023-01-01"
           description: "The date when the RA will be no longer enabled (the format is YYYY-MM-DD)" 
       organization_tax_number:
           type: "string"
-          default: "43242414213"
           description: "The tax number of the organization"
       organization_name:
           type: "string"
-          default: "TEST"
           description: "The organization name"
       responsible_name:
           type: "string"
-          default: "RESP"
           description: "The RA responsible name"
       responsible_first_surname:
           type: "string"
-          default: "TEST"
           description: "The RA responsible first surname"
       responsible_second_surname:
           type: "string"
-          default: "TEST2"
           description: "The RA responsible serial" 
       responsible_serial:
           type: "string"
-          default: "1234567890"
           description: "A valid email address" 
       email:
           type: "string"
-          default: "email@example.com"
           description: "A phone number"
       fix_phone_number:
           type: "string"
-          default: "391234567890"
           description: "A mobile phone number"
       address:
           type: "string"
-          default: "Example address"
           description: "The city address" 
       city:
           type: "string"
-          default: "City name"
           description: "The city where the RA is located" 
       postal_code:
           type: "string"
-          default: "105-2000"
           description: "The postal code of the city where the RA is located"
       province:
           type: "string"
-          default: "Province name"
           description: "The province of the city where the RA is located"
       url:
           type: "string"
-          default: "www.organization.com"
           description: "A web url of the RA" 
       country:
           type: "string"
-          default: "IT"
           description: "The country where the RA is located"
 ###########
   UpdateRAObject:
@@ -5304,75 +5206,57 @@ definitions:
     properties:
       name:
           type: "string"
-          default: "A new RA"
           description: "The RA name"
       parent:
           type: "string"
-          default: "139"
           description: "The parent RA unique id"
       enabled_from:
           type: "string"
-          default: "2019-01-01"
           description: "The date when the RA will be enabled from (the format is YYYY-MM-DD)" 
       enabled_until:
           type: "string"
-          default: "2023-01-01"
           description: "The date when the RA will be no longer enabled (the format is YYYY-MM-DD)" 
       organization_tax_number:
           type: "string"
-          default: "43242414213"
           description: "The tax number of the organization"
       organization_name:
           type: "string"
-          default: "TEST"
           description: "The organization name"
       responsible_name:
           type: "string"
-          default: "RESP"
           description: "The RA responsible name"
       responsible_first_surname:
           type: "string"
-          default: "TEST"
           description: "The RA responsible first surname"
       responsible_second_surname:
           type: "string"
-          default: "TEST2"
           description: "The RA responsible serial" 
       responsible_serial:
           type: "string"
-          default: "1234567890"
           description: "A valid email address" 
       email:
           type: "string"
-          default: "email@example.com"
           description: "A phone number"
       fix_phone_number:
           type: "string"
-          default: "391234567890"
           description: "A mobile phone number"
       address:
           type: "string"
-          default: "Example address"
           description: "The city address" 
       city:
           type: "string"
-          default: "City name"
           description: "The city where the RA is located" 
       postal_code:
           type: "string"
-          default: "105-2000"
           description: "The postal code of the city where the RA is located"
       province:
           type: "string"
-          default: "Province name"
           description: "The province of the city where the RA is located"
       url:
           type: "string"
-          default: "www.organization.com"
           description: "A web url of the RA" 
       country:
           type: "string"
-          default: "IT"
           description: "The country where the RA is located" 
 ###########
   CreateRAOObject:
@@ -5380,39 +5264,30 @@ definitions:
     properties:
       registration_authority_master:
           type: "string"
-          default: "41"
           description: "The registration authority master id"
       registration_authority:
           type: "string"
-          default: "[41]"
           description: "The list of the RAs where the RAO can operate	"
       certificate:
           type: "string"
-          default: "[41]"
           description: "The Request certificate in Base64 format"
       given_name:
           type: "string"
-          default: "Person"
           description: "The RAO's name"
       surname_1:
           type: "string"
-          default: "Surname"
           description: "The RAO's first surname"
       surname_2:
           type: "string"
-          default: "Surname2"
           description: "The RAO's second surname"
       id_document_number:
           type: "string"
-          default: "12354232414"
           description: "The RAO's document number"
       id_document_issuer:
           type: "string"
-          default: "Entity"
           description: "The document issuer"
       email:
           type: "string"
-          default: "email@example.com"
           description: "A valid email address" 
 ###########
   UpdateRAOObject:
@@ -5420,39 +5295,30 @@ definitions:
     properties:
       registration_authority_master:
           type: "string"
-          default: "41"
           description: "The registration authority master id"
       registration_authority:
           type: "string"
-          default: "[41]"
           description: "The list of the RAs where the RAO can operate	"
       certificate:
           type: "string"
-          default: "[41]"
           description: "The Request certificate in Base64 format"
       given_name:
           type: "string"
-          default: "Person"
           description: "The RAO's name"
       surname_1:
           type: "string"
-          default: "Surname"
           description: "The RAO's first surname"
       surname_2:
           type: "string"
-          default: "Surname2"
           description: "The RAO's second surname"
       id_document_number:
           type: "string"
-          default: "12354232414"
           description: "The RAO's document number"
       id_document_issuer:
           type: "string"
-          default: "Entity"
           description: "The document issuer"
       email:
           type: "string"
-          default: "email@example.com"
           description: "A valid email address" 
 ###########
   CreateUserObject:
@@ -5460,19 +5326,15 @@ definitions:
     properties:
       registration_authority:
           type: "string"
-          default: "41"
           description: "The registration authority id"
       permission_profile:
           type: "string"
-          default: "18"
           description: "The permission profile id that will be associated to this user"
       request:
           type: "string"
-          default: "787"
           description: "The request id"
       rao:
           type: "string"
-          default: "219"
           description: "The RAO id"
 ###########
   UpdateUserObject:
@@ -5480,17 +5342,13 @@ definitions:
     properties:
       registration_authority:
           type: "string"
-          default: "41"
           description: "The registration authority id"
       permission_profile:
           type: "string"
-          default: "18"
           description: "The permission profile id that will be associated to this user"
       request:
           type: "string"
-          default: "787"
           description: "The request id"
       rao:
           type: "string"
-          default: "219"
           description: "The RAO id"
