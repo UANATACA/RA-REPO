@@ -415,11 +415,11 @@ paths:
                 description: The response status message    
           examples:
             application/json:
-                {
-                    "code": "400",
-                    "id": "b78952287417c96f",
-                    "error": "No Request matches the given query."
-                }
+              {
+                  "code": "400",
+                  "id": "b78952287417c96f",
+                  "error": "No Request matches the given query."
+              }
 #############
   /api/v1/requests/{id}/approve:
     post: 
@@ -450,17 +450,17 @@ paths:
               secrets:
                 type: object
                 properties:
-                    puk: 
-                      type: string
-                    enrollment_code: 
-                      type: string
-                    pin:
-                      type: string
-                    erc:
-                      type: string
-                request:
-                  type: object
-                  description: The JSON object with the information associated to the approved request
+                  puk: 
+                    type: string
+                  enrollment_code: 
+                    type: string
+                  pin:
+                    type: string
+                  erc:
+                    type: string
+              request:
+                type: object
+                description: The JSON object with the information associated to the approved request
           examples:
             application/json:
                 {
