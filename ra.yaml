@@ -39,7 +39,7 @@ paths:
         schema:
           $ref: "#/definitions/CreateReqObject"
       responses:
-        200:
+        201:
           description: Successful Response
           schema:
             type: object
@@ -143,14 +143,14 @@ paths:
             properties:
               detail:
                 type: string
-                description: JSON syntax error
+                description: JSON syntax error description
           examples:
             application/json:
               {
                   "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 2 (char 30)"
               }
         500:
-          description: Invalid or missing parameters
+          description: Invalid or missing parameters | Permission denied
           schema:
             type: object
             properties:
@@ -314,9 +314,9 @@ paths:
                             "responsible_registry_data": null,
                             "approving_rao": {
                                 "pk": 1400,
-                                "given_name": "RAO Name",
-                                "surname_1": "RAO Surname1",
-                                "surname_2": "RAO Surname2",
+                                "given_name": "RAO_Name",
+                                "surname_1": "RAO_Surname1",
+                                "surname_2": "RAO_Surname2",
                                 "certificate": {
                                     "profile": "PFnubeNC",
                                     "status": 0,
@@ -325,7 +325,7 @@ paths:
                                     "valid": "VALID",
                                     "revokation_reason": null,
                                     "serial_number": "28a70ba50632ba07",
-                                    "subject": "CN=RAO Name RAO Surname1 RAO Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=RAO NAme, 2.5.4.4=RAO Surname1 RAO Surname2, OU=RAO Name RAO Surname1 DPR:www.uanataca.com, C=ES",
+                                    "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, OU=RAO_Name RAO_Surname1 DPR:www.uanataca.com, C=ES",
                                     "data": "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",
                                     "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
                                 },
@@ -337,9 +337,9 @@ paths:
                             },
                             "producing_rao": {
                                 "pk": 1400,
-                                "given_name": "RAO Name",
-                                "surname_1": "RAO Surname1",
-                                "surname_2": "RAO Surname2",
+                                "given_name": "RAO_Name",
+                                "surname_1": "RAO_Surname1",
+                                "surname_2": "RAO_Surname2",
                                 "certificate": {
                                     "profile": "PFnubeNC",
                                     "status": 0,
@@ -348,7 +348,7 @@ paths:
                                     "valid": "VALID",
                                     "revokation_reason": null,
                                     "serial_number": "28a70ba50632ba07",
-                                    "subject": "CN=RAO Name RAO Surname1 RAO Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=RAO_Name, 2.5.4.4=RAO Surname1 RAO Surname2, OU=RAO Name RAO Surname1 DPR:www.uanataca.com, C=ES",
+                                    "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, OU=RAO_Name RAO_Surname1 DPR:www.uanataca.com, C=ES",
                                     "data": "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",
                                     "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
                                 },
@@ -409,10 +409,23 @@ paths:
             application/json:
                 {
                     "serial_number": "3ef3696d2939241d",
-                    "receipt": "El operador RAO Name RAO Surname1 con número de identificación 12345678P\r\nactuando en calidad de operador autorizado de registro del prestador de servicios\r\nde confianza UANATACA, S.A. con NIF A66721499, (UANATACA en lo sucesivo)\r\n\r\nDECLARA\r\n\r\nQue previa verificación de acuerdo a la Declaración de Prácticas de UANATACA\r\npublicadas en www.uanataca.com, la información detallada a continuación es\r\ncorrecta y será incluida (donde aplicable) en la solicitud de certificados\r\ncualificados:\r\n\r\n- Datos de Identificación de la solicitud de certificados: 36893\r\n- Nombre y Apellidos del Firmante: Name Surname1 Surname2\r\n- DNI/NIE/PASAPORTE del Firmante: 11111111B\r\n- Dirección de correo electrónico del Firmante: mail@domain.com\r\n\r\n\r\n18/03/2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
+                    "receipt": "El operador RAO_Name RAO_Surname1 con número de identificación 12345678P\r\nactuando en calidad de operador autorizado de registro del prestador de servicios\r\nde confianza UANATACA, S.A. con NIF A66721499, (UANATACA en lo sucesivo)\r\n\r\nDECLARA\r\n\r\nQue previa verificación de acuerdo a la Declaración de Prácticas de UANATACA\r\npublicadas en www.uanataca.com, la información detallada a continuación es\r\ncorrecta y será incluida (donde aplicable) en la solicitud de certificados\r\ncualificados:\r\n\r\n- Datos de Identificación de la solicitud de certificados: 36893\r\n- Nombre y Apellidos del Firmante: Name Surname1 Surname2\r\n- DNI/NIE/PASAPORTE del Firmante: 11111111B\r\n- Dirección de correo electrónico del Firmante: mail@domain.com\r\n\r\n\r\n18/03/2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
                 }
         400:
-          description: Request id not found
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: JSON syntax error description
+          examples:
+            application/json:
+              {
+                  "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 2 (char 30)"
+              }
+        404:
+          description: Invalid request id
           schema:
             type: object
             properties:
@@ -586,7 +599,7 @@ paths:
                                 "valid": "VALID",
                                 "revokation_reason": null,
                                 "serial_number": "0d0c1d8b1e4efefa",
-                                "subject": "CN=RAO Name RAO Surname1 RAO Surname2,
+                                "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2,
                                 2.5.4.5=TINIT-RRRTST84R14F839U,
                                 2.5.4.42=RAO_Name,
                                 2.5.4.4=RAO_Surname1 RAO_Surname2, C=ES",
@@ -609,8 +622,21 @@ paths:
                         "id_document_number": null
                     }
                 }
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: JSON syntax error description
+          examples:
+            application/json:
+                {
+                    "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 5 (char 23)"
+                }
         404:
-          description: Request id not found
+          description: Invalid request id
           schema:
             type: object
             properties:
@@ -651,27 +677,6 @@ paths:
                     "id": "5c2ad9880b90970b",
                     "error": "Invalid request fields: mobile_phone_number"
                 }
-        500:
-          description: Invalid request or parameters
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message    
-          examples:
-            application/json:
-                {
-                    "code": "400",
-                    "id": "b78952287417c96f",
-                    "error": "No Request matches the given query."
-                }
 #############
   /api/v1/requests/{id}/cloud_enroll:
     post: 
@@ -702,21 +707,17 @@ paths:
           examples:
             application/json:
                 {
-                    [
-                        {
-                            "data": "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",
-                            "profile": "PFnubeAF",
-                            "subject": "CN=Name Surname1 Surname2, 2.5.4.5=TINES-11111111B, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
-                            "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
-                            "valid_from": "2021-03-19T14:12:00",
-                            "valid_to": "2022-03-19T14:12:00",
-                            "serial_number": "78434ee4745418db",
-                            "status": 0,
-                            "pk": 21677,
-                            "revokation_reason": null,
-                            "type": "FIRSTISSUE"
-                        }
-                    ]
+                    "data": "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",
+                    "profile": "PFnubeAF",
+                    "subject": "CN=Name Surname1 Surname2, 2.5.4.5=TINES-11111111B, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
+                    "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
+                    "valid_from": "2021-03-19T14:12:00",
+                    "valid_to": "2022-03-19T14:12:00",
+                    "serial_number": "78434ee4745418db",
+                    "status": 0,
+                    "pk": 21677,
+                    "revokation_reason": null,
+                    "type": "FIRSTISSUE"
                 }
         400:
           description: Bad Request
@@ -725,14 +726,14 @@ paths:
             properties:
               detail:
                 type: string
-                description: The response status code
+                description: JSON syntax error details
           examples:
             application/json:
                 {
                     "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 5 (char 38)"
                 }
         404:
-          description: Invalid request or parameters
+          description: Invalid request id
           schema:
             type: object
             properties:
@@ -753,7 +754,7 @@ paths:
                     "error": "No Request matches the given query."
                 }
         412:
-          description: Invalid request parameters
+          description: Invalid request status | request parameters
           schema:
             type: object
             properties:
@@ -783,7 +784,7 @@ paths:
       consumes:
         - application/json
       produces:
-        - text/plain 
+        - application/json
       parameters:
         - in: path
           name: id
@@ -801,7 +802,7 @@ paths:
             type: string
             description: The issued certificate in Base64 format
           examples:
-            text/plain:
+            application/json:
                 [
                     "-----BEGIN PKCS12-----
                     MIIN/AIBAzCCDcIGCSqGSIb3DQEHAaCCDbMEgg2vMIINqzCCCCgGCSqGSIb3DQEH
@@ -916,7 +917,7 @@ paths:
                     "error": "No Request matches the given query."
                 }
         412:
-          description: Invalid request id
+          description: Invalid parameters
           schema:
             type: object
             properties:
@@ -934,7 +935,7 @@ paths:
                 {
                     "code": "418",
                     "id": "52e66b8c518f2c3b",
-                    "error": "Invalid paramiters"
+                    "error": "Invalid parameters"
                 }
 
 #############
@@ -943,21 +944,21 @@ paths:
       summary: GET REQUEST
       tags:
         - REQUESTS
-      description: Returns the information registered about a Request.
+      description: Returns full information about a request.
       produces:
         - application/json 
       parameters:
         - in: path
           name: id
           type: string
-          description: The unique identifier of the Request
+          description: The unique identifier of the request
           required: true
       responses:
         200:
           description: Successful Response
           schema:
               type: object
-              description: The JSON object with the information associated to the approved request
+              description: The JSON object with full information associated to the approved request
           examples:
             application/pdf:
                 {
@@ -1130,7 +1131,7 @@ paths:
                     "communication_language": "",
                     "identification_rao": null
                 }
-        400:
+        404:
           description: Invalid request id
           schema:
             type: object
@@ -1151,33 +1152,12 @@ paths:
                     "id": "3172438498af74e8",
                     "error": "No Request matches the given query."
                 }
-        412:
-          description: Invalid parameters
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "418",
-                    "id": "c3b1fa265faf3062",
-                    "error": "Invalid parameters"
-                }
 #############
     put: 
       summary: UPDATE REQUEST
       tags:
         - REQUESTS
-      description: Update information about a Request
+      description: Updates information about a request.
       consumes:
         - application/json 
       produces:
@@ -1197,7 +1177,7 @@ paths:
           description: Successful Response
           schema:
             type: object
-            description: A JSON object with the full information about the created request  
+            description: A JSON object with full information about the updated request  
           examples:
             application/json:
                 {
@@ -1297,27 +1277,14 @@ paths:
             properties:
               detail:
                 type: string
-                description: JSON parse error message
+                description: JSON syntax error
           examples:
             application/json:
               {
                   "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 2 (char 30)"
               }
-        403:
-          description: Permission denied
-          schema:
-            type: object
-            properties:
-              detail:
-                type: string
-                description: Permission denied error message
-          examples:
-            application/json:
-              {
-                  "detail": "You do not have permission to perform this action."
-              }
-        412:
-          description: Already approved request id
+        404:
+          description: Request id not found
           schema:
             type: object
             properties:
@@ -1333,12 +1300,33 @@ paths:
           examples:
             application/json:
                 {
-                    "code": "500",
-                    "id": "a400c26a689ae9b4",
-                    "error": "You do not have permission to perform this action."
-                } 
+                    "code": "400",
+                    "id": "d79de76df1307cba",
+                    "error": "No Request matches the given query."
+                }
+        412:
+          description: Already approved request
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message                
+          examples:
+            application/json:
+                {
+                    "code": "412",
+                    "id": "e59481276ddcc529",
+                    "error": "Invalid request status"
+                }
         500:
-          description: Invalid or missing parameters
+          description: Invalid or missing parameters | Permission denied
           schema:
             type: object
             properties:
@@ -1462,6 +1450,19 @@ paths:
                 {
                     "document": "%PDF-1.4\n%���� ReportLab Generated PDF document http://www.reportlab.com\n1 0 obj\n<<\n/F1 2 0 R\n>>\nendobj\n2 0 obj\n<<\n/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font\n>>\nendobj\n3 0 obj\n<<\n/BitsPerComponent 8 /ColorSpace /DeviceRGB /Filter [ /ASCII85Decode /FlateDecode ] /Height 111 /Length 13170 /Subtype /Image \n  /Type /XObject /Width 300\n>>\nstream\nGb\"/,M-CZaqYkPbM:kU4>YX4t(o&(...)%%EOF\n"
                 }
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: JSON syntax error
+          examples:
+            application/json:
+              {
+                  "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 2 (char 30)"
+              }
         412:
           description: Invalid request id
           schema:
@@ -1491,7 +1492,7 @@ paths:
         - REQUESTS
       description: Validate the request fields.
       produces:
-        - text/plain 
+        - application/json 
       parameters:
         - in: path
           name: id
@@ -1516,7 +1517,7 @@ paths:
                         "missing"
                     ]
                 ]
-        400:
+        404:
           description: Invalid request id
           schema:
             type: object
@@ -1533,9 +1534,9 @@ paths:
           examples:
             application/json:
                 {
-                    "code": "412",
-                    "id": "e443f8e716ee4cfa",
-                    "error": ""
+                    "code": "400",
+                    "id": "de450daacf24014e",
+                    "error": "No Request matches the given query."
                 }
         412:
           description: Already approved request id
@@ -1561,7 +1562,7 @@ paths:
 #############
   /api/v1/requests/{id}/preauthlink:
     get: 
-        summary: GET PRE-AUTH LINK
+        summary: GET PRE-AUTHENTICATION LINK
         tags:
           - REQUESTS
         description: Create a new pre-authenticated link for the request.
@@ -1600,6 +1601,27 @@ paths:
                   {
                       "detail": "You do not have permission to perform this action."
                   }
+        404:
+          description: Invalid request id
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message                
+          examples:
+            application/json:
+                {
+                    "code": "400",
+                    "id": "de450daacf24014e",
+                    "error": "No Request matches the given query."
+                }
 #############
   /api/v1/requests/{id}/pl_upload_document:
     get: 
@@ -1629,7 +1651,7 @@ paths:
           required: true
           type: string
       responses:
-        200:
+        201:
           description: Successful Response
           schema:
             type: object
@@ -1736,11 +1758,32 @@ paths:
               application/json:
                   {
                       "error": "No documents found with id 616026"
-                  } 
+                  }
+          500:
+            description: Missing parameter `docpk`
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: The response status code
+                id:
+                  type: string
+                  description: The response status id
+                error:
+                  type: string
+                  description: The response status message                
+            examples:
+              application/json:
+                  {
+                      "code": "500",
+                      "id": "7cb82a609ad8e270",
+                      "error": "invalid literal for int() with base 10: ''"
+                  }  
 #############
   /api/v1/requests/{id}/pl_get_document:
     get: 
-      summary: (PAPERLESS) GET DOCUMENTS
+      summary: (PAPERLESS) GET A DOCUMENT
       tags:
         - REQUESTS
       description: Retrieves a request's associated document in Base64 format.
@@ -1784,22 +1827,30 @@ paths:
                       }
                   ]
           404:
-            description: Invalid document id
+            description: Invalid request id
             schema:
               type: object
               properties:
+                code:
+                  type: string
+                  description: The response status code
+                id:
+                  type: string
+                  description: The response status id
                 error:
                   type: string
-                  description: The response error message                
+                  description: The response status message                
             examples:
               application/json:
                   {
-                      "error": "No documents found with id 616026"
+                      "code": "400",
+                      "id": "c6972c3efdc6db8e",
+                      "error": "No Request matches the given query."
                   }      
 #############
   /api/v1/requests/{id}/pl_get_documents:
     get: 
-      summary: (PAPERLESS) GET DOCUMENT
+      summary: (PAPERLESS) GET ALL DOCUMENTS
       tags:
         - REQUESTS
       description: Retrieves all uploaded documents associated to a request.
@@ -2171,7 +2222,7 @@ paths:
             properties:
               detail:
                 type: string
-                description: JSON parse error message
+                description: JSON syntax error
           examples:
             application/json:
                 {
@@ -2340,6 +2391,19 @@ paths:
                     2+V/OTEk5UPr3hk4UchA399mBAiMGAxbKnlamQICCAA=
                     -----END PKCS12-----"
                 ]
+        403:
+          description: Invalid OTP code
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: The response status code              
+          examples:
+            application/json:
+                {
+                    "status": "Confirmation code invalid"
+                }
         404:
           description: Invalid request id
           schema:
@@ -2411,27 +2475,6 @@ paths:
                 {
                     "delivery_method": "sms"
                 }
-        500:
-          description: Invalid parameters or error in JSON
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "500",
-                    "id": "2a871f452832f624",
-                    "error": "ScratchCard matching query does not exist."
-                }
         412:
           description: Not approved request id
           schema:
@@ -2473,6 +2516,27 @@ paths:
                     "code": "400",
                     "id": "642393a5d86069b7",
                     "error": "No Request matches the given query."
+                }
+        500:
+          description: Invalid scratchcard or JSON syntax error
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message                
+          examples:
+            application/json:
+                {
+                    "code": "500",
+                    "id": "2a871f452832f624",
+                    "error": "ScratchCard matching query does not exist."
                 }
 ###### scratchcards ######
 ###############################################################################
@@ -4260,9 +4324,9 @@ paths:
             application/json:
               {
                     "pk": 30,
-                    "given_name": "RAO Name",
-                    "surname_1": "RAO Surname1",
-                    "surname_2": "RAO Surname2",
+                    "given_name": "RAO_Name",
+                    "surname_1": "RAO_Surname1",
+                    "surname_2": "RAO_Surname2",
                     "certificate": {
                         "profile": "EXTERNAL",
                         "status": 0,
@@ -4370,9 +4434,9 @@ paths:
             application/json:
                 {
                     "pk": 30,
-                    "given_name": "RAO Name",
-                    "surname_1": "RAO Surname1",
-                    "surname_2": "RAO Surname2",
+                    "given_name": "RAO_Name",
+                    "surname_1": "RAO_Surname1",
+                    "surname_2": "RAO_Surname2",
                     "certificate": {
                         "profile": "EXTERNAL",
                         "status": 0,
@@ -4441,9 +4505,9 @@ paths:
                     "results": [
                         {
                             "pk": 30,
-                            "given_name": "RAO Name",
-                            "surname_1": "RAO Surname1",
-                            "surname_2": "RAO Surname2",
+                            "given_name": "RAO_Name",
+                            "surname_1": "RAO_Surname1",
+                            "surname_2": "RAO_Surname2",
                             "certificate": {
                                 "profile": "EXTERNAL",
                                 "status": 0,
@@ -4521,9 +4585,9 @@ paths:
             application/json:
                 {
                     "pk": 219,
-                    "given_name": "RAO Name",
-                    "surname_1": "RAO Surname1",
-                    "surname_2": "RAO Surname2",
+                    "given_name": "RAO_Name",
+                    "surname_1": "RAO_Surname1",
+                    "surname_2": "RAO_Surname2",
                     "certificate": {
                         "profile": "EXTERNAL",
                         "status": 0,
