@@ -3686,23 +3686,6 @@ paths:
           description: The unique identifier of the Request
           required: true
       responses:
-        200:
-          description: Invalid request id | parameters | otp or pin not locked
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: The response status code
-              message:
-                type: string
-                description: The response status message
-          examples:
-            application/json:
-                {
-                    "status": "success",
-                    "message": "Pin unlocked successfully"
-                }
         412:
           description: Invalid request id | parameters | otp or pin not locked
           schema:
