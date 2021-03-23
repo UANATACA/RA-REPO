@@ -3699,10 +3699,10 @@ paths:
                 description: The response status message
           examples:
             application/json:
-            {
-                "status": "success",
-                "message": "Pin unlocked successfully"
-            }
+                {
+                    "status": "success",
+                    "message": "Pin unlocked successfully"
+                }
         412:
           description: Invalid request id | parameters | otp or pin not locked
           schema:
