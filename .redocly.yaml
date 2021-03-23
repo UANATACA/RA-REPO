@@ -11,6 +11,7 @@ referenceDocs:
       - lang: "Python"
       - lang: "Node.js"
       - lang: "C#"
+  hideRequestPayloadSample: true      
   theme:
     spacing:
       sectionHorizontal: 80
@@ -53,7 +54,10 @@ referenceDocs:
       rightPanelHeading:
         fontFamily: 'Lato'
       fieldName:
-        fontFamily: 'Lato'    
+        fontFamily: 'Lato'
+      links:
+        color: '#E20D1B'
+        hover: '#9E060F'         
       tokens:
         string:
           color: '#A0FBAB' # Para todo lo que esté encerrado en comillas simples o dobles
