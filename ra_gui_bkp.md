@@ -9057,10 +9057,7 @@ PAS - Passport.
 </tr>
 </table>
 
-
-# Workflow
-
-## Paperless Mode
+# Paperless Mode
 
 The paperless mode is a new feature added to Uanataca that permits the generation of digital certificates without the use of eventual papery contracts. In this way every Request has its own digital contract that will be signed by the two sides of the transaction, the RAO that will approve the Request and the certificate holder, with their respective digital certificates.
 
@@ -9071,7 +9068,7 @@ This document will guide you through:
 - Approval
 - Cloud/Software Enrollment
 
-> Create a paperless Request
+## Create a paperless Request
 
 In order to create a new Request in paperless mode, we need to set the parameter **paperless_mode** to **1**:
 
@@ -9102,7 +9099,7 @@ and query the same endpoint with an HTTP POST request:
 
 The return response is the same: a JSON containing the info of the Request just created. One of the most important parameters from this JSON is the "pk" which represents the Request unique identifier and is used for every operation related to this Request.
 
-> Upload documents
+## Upload documents
 
 The Request created needs documents, so we can query with an HTTP POST request this endpoint to upload the files:
 
@@ -9122,26 +9119,7 @@ Note that this endpoint has to be queried for every document that the Request ne
 
 Another important aspect, is that the Request **must be** in the status **CREATED** in order to be able to upload documents.
 
-
-> Approve Request
-
-In order to approve a Request, this must be in the status of CREATED and must have at least the required documents (document_front, document_rear, document_owner).
-
-A Request can only be approved by a RAO which have associated a cloud user. In fact an example of the parameters accepted is this:
-
-	1 | {
-    2 | 	"username": "2000279",
-    3 | 	"password": "3DPTm:N4",
-    4 | 	"pin": "belorado74",
-    5 |		"rao_id": 233
-	6 |	}
-
-where "username", "password" and "pin" are the cloud user credentials, "rao_id" the unique identifier of the RAO that will approve the Request.
-
-	/api/v1/requests/{pk}/pl_approve/
-
-
-> Retrieving documents
+## Retrieving documents
 
 The documents associated to a Request, can always be retrieved, even if the Request is not in the status CREATED.
 
@@ -9168,11 +9146,6 @@ which will return the documents and their unique identifier number.
 In all the cases, the document is returned encoded in **Base64**.
 
 
-
-## Standard Mode
-
-
-
 # Delete documents
 
 In order to delete a document, the Request must be in the status CREATED.
@@ -9193,7 +9166,24 @@ If the removal is successful the response by the server is:
     	"status": "Document deleted successfully"
 	}
 
-# Prepare for enrollment
+## Approve Requests
+
+In order to approve a Request, this must be in the status of CREATED and must have at least the required documents (document_front, document_rear, document_owner).
+
+A Request can only be approved by a RAO which have associated a cloud user. In fact an example of the parameters accepted is this:
+
+	1 | {
+    2 | 	"username": "2000279",
+    3 | 	"password": "3DPTm:N4",
+    4 | 	"pin": "belorado74",
+    5 |		"rao_id": 233
+	6 |	}
+
+where "username", "password" and "pin" are the cloud user credentials, "rao_id" the unique identifier of the RAO that will approve the Request.
+
+	/api/v1/requests/{pk}/pl_approve/
+
+## Prepare for enrollment
 
 The enrollment for paperless Requests, needs a secret (OTP; One Time Password) that will be sent via SMS to the mobile phone number of Request (So when a new Request is created make sure it contains the correct number with the internation prefix number).
 
@@ -9215,7 +9205,7 @@ For both of the endpoints, if it is the first time that an OTP is generated for 
 
 Once received the secret, it can be used for the next phase: the Request Enrollment.
 
-# Enrollment
+## Enrollment
 
 Depending on the secure element choosen during the creation, or on the Request profile, there are different endpoints to enroll a Request:
 
