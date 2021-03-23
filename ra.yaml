@@ -4660,7 +4660,7 @@ paths:
                 description: The list previous page endpoint      
               results:
                 type: array
-                field:
+                items:
                   type: object
                   description: Array of JSON objects containing users information
           examples:             
