@@ -3,7 +3,7 @@ info:
   version: '1.0'
   title: UANATACA RA API DOCUMENTATION FOR DEVELOPERS
   x-logo:
-      url: https://i.ibb.co/y8XRJqZ/ra-logo.png
+      url: https://i.ibb.co/g4yZytc/ra-logo.png
       altText: RA logo
   description: 
       $ref: ./ra_gui.md
