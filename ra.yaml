@@ -3668,66 +3668,7 @@ paths:
                     "id": "8a1289c3606148ce",
                     "error": "Request matching query does not exist."
                 }
-#############
-  /api/v1/requests/{id}/unlock_pin:
-    get: 
-      summary: OTP FOR RESET/UNLOCK PIN
-      tags:
-        - SCRATCHCARDS
-      description: Performs the pin reset or unlock operation
-      produces:
-        - application/json
-      consumes:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: The unique identifier of the Request
-          required: true
-      responses:
-        412:
-          description: Invalid request id | parameters | otp or pin not locked
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "412",
-                    "id": "64943e09cbd42ea7",
-                    "error": "Invalid Request"
-                }
-        500:
-          description: JSON syntax error
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "500",
-                    "id": "21484514a0d347f7",
-                    "error": "JSON parse error - Expecting ',' delimiter: line 4 column 5 (char 75)"
-                }
+
 ###### registration authority ######
 ###############################################################################
   /api/v1/registrationauthorities:
