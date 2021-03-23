@@ -449,7 +449,7 @@ paths:
             properties:
               secrets:
                 type: object
-                  properties:
+                properties:
                     puk: 
                       type: string
                     enrollment_code: 
