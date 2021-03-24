@@ -12,11 +12,11 @@ Digital identities are created and used as part of a life-cycle that includes th
 
 List of entities and names used to describe UANATACA's services
 
-**Registration Authority (RA)**
+`Registration Authority (RA)`
 
 The RA manages the entire life-cycle of digital identities, from the certificate issuance to suspension, reactivation, renewal and revocation of the PKI credentials.
 
-**Registration Authority Officer (RAO)**
+>Registration Authority Officer (RAO)
 
 The **RAO** follows strict guidelines and policies defined to ensure the trust of the CA. RAO is responsible for managing the requests for digital certificates and verifying the content of the requests as well as vetting people requesting them.
 
@@ -9250,4 +9250,4 @@ with the only difference that the **pin** parameter must coincide with the one p
 If no error occures the server reply with a JSON containing a key "status" valued to "OK".
 
 
-## API Reference
+# API Reference
