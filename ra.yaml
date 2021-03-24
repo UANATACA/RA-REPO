@@ -2549,60 +2549,60 @@ paths:
                       "id": "de450daacf24014e",
                       "error": "No Request matches the given query."
                   }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X GET \
-                    https://api.uanataca.com/api/v1/requests/25139/preauthlink
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/preauthlink',
-                    {method: 'GET'}
-                  );
+        x-codeSamples:
+          - lang: 'curl'
+            source: |
+                    curl -i -X GET \
+                      https://api.uanataca.com/api/v1/requests/25139/preauthlink
+          - lang: 'Javascript'
+            source: |
+                    const resp = await fetch(
+                      'https://api.uanataca.com/api/v1/requests/25139/preauthlink',
+                      {method: 'GET'}
+                    );
 
-                  const data = await resp.text();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
+                    const data = await resp.text();
+                    console.log(data);
+          - lang: 'Python'
+            source: |
+                    import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/preauthlink"
+                    url = "https://api.uanataca.com/api/v1/requests/25139/preauthlink"
 
-                  response = requests.get(url)
+                    response = requests.get(url)
 
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
+                    data = response.json()
+                    print(data)
+          - lang: 'Node.js'
+            source: |
+                    const fetch = require('node-fetch');
 
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/preauthlink',
-                    {method: 'GET'}
-                  );
+                    const resp = await fetch(
+                      'https://api.uanataca.com/api/v1/requests/25139/preauthlink',
+                      {method: 'GET'}
+                    );
 
-                  const data = await resp.text();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
+                    const data = await resp.text();
+                    console.log(data);
+          - lang: 'C#'
+            source: |
+                    using System;
+                    using System.Net.Http;
+                    using System.Threading.Tasks;
 
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
+                    public class Program
                     {
-                      using (var client = new HttpClient())
+                      public static async Task Main(string[] args)
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/preauthlink");
-                        var response = await request.Content.ReadAsStringAsync();
+                        using (var client = new HttpClient())
+                        {
+                          var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/preauthlink");
+                          var response = await request.Content.ReadAsStringAsync();
 
-                        Console.WriteLine(response);
+                          Console.WriteLine(response);
+                        }
                       }
                     }
-                  }
 #############
   /api/v1/requests/{id}/pl_upload_document:
     get: 
