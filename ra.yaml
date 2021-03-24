@@ -6455,6 +6455,10 @@ paths:
           type: string
           description: The unique identifier of the Request
           required: true
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/ResetPinObject"
       responses:
         200:
           description: Successful response
