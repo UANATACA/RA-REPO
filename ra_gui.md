@@ -2,8 +2,7 @@
 
 Globally, digital identity ecosystems are increasingly complex and consist of a wide range of identity models and actors with diverse responsibilities, interests, and priorities.
 
-<td><a href="#pepito" style="color:#E20D1B;">Pepito</a></td>
-<td><a href="#pepito2" style="color:#E20D1B;">Pepito2</a></td>
+<td><a href="#pepito">Pepito</a></td>
 
 Digital identities are created and used as part of a life-cycle that includes three fundamental stages:
 
@@ -297,127 +296,111 @@ Uanataca provides different certificate profiles for different purpose.
 
 Each profile has their set of fields and each field can be mandatory or not.
 
+## Uanataca Europe
+
 <html>
 <table>
   <tr>
     <th>Profile</th>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFSoftAFCiudadano" style="color:#E20D1B;">PFSoftAFCiudadano</a></td>
+    <td><a href="#section/Certificate-Profiles/PFSoftAFCiudadano">PFSoftAFCiudadano</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFqscdCiudadano" style="color:#E20D1B;">PFqscdCiudadano</a></td>
+    <td><a href="#section/Certificate-Profiles/PFqscdCiudadano">PFqscdCiudadano</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFnubeAFCiudadano" style="color:#E20D1B;">PFnubeAFCiudadano</a></td>
+    <td><a href="#section/Certificate-Profiles/PFnubeAFCiudadano">PFnubeAFCiudadano</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFnubeQAFCiudadano" style="color:#E20D1B;">PFnubeQAFCiudadano</a></td>
+    <td><a href="#section/Certificate-Profiles/PFnubeQAFCiudadano">PFnubeQAFCiudadano</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFSoftAFEmpresa" style="color:#E20D1B;">PFSoftAFEmpresa</a></td>
+    <td><a href="#section/Certificate-Profiles/PFSoftAFEmpresa">PFSoftAFEmpresa</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFqscdEmpresa" style="color:#E20D1B;">PFqscdEmpresa</a></td>
+    <td><a href="#section/Certificate-Profiles/PFqscdEmpresa">PFqscdEmpresa</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFnubeAFEmpresa" style="color:#E20D1B;">PFnubeAFEmpresa</a></td>
+    <td><a href="#section/Certificate-Profiles/PFnubeAFEmpresa">PFnubeAFEmpresa</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFnubeQAFEmpresa" style="color:#E20D1B;">PFnubeQAFEmpresa</a></td>
+    <td><a href="#section/Certificate-Profiles/PFnubeQAFEmpresa">PFnubeQAFEmpresa</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFSoftAFColegiado" style="color:#E20D1B;">PFSoftAFColegiado</a></td>
+    <td><a href="#section/Certificate-Profiles/PFSoftAFColegiado">PFSoftAFColegiado</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFqscdColegiado" style="color:#E20D1B;">PFqscdColegiado</a></td>
+    <td><a href="#section/Certificate-Profiles/PFqscdColegiado">PFqscdColegiado</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFnubeAFColegiado" style="color:#E20D1B;">PFnubeAFColegiado</a></td>
+    <td><a href="#section/Certificate-Profiles/PFnubeAFColegiado">PFnubeAFColegiado</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFnubeQAFColegiado" style="color:#E20D1B;">PFnubeQAFColegiado</a></td>
+    <td><a href="#section/Certificate-Profiles/PFnubeQAFColegiado">PFnubeQAFColegiado</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPsoft" style="color:#E20D1B;">REPsoft</a></td>
+    <td><a href="#section/Certificate-Profiles/REPsoft">REPsoft</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPqscd" style="color:#E20D1B;">REPqscd</a></td>
+    <td><a href="#section/Certificate-Profiles/REPqscd">REPqscd</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPnubeQ" style="color:#E20D1B;">REPnubeQ</a></td>
+    <td><a href="#section/Certificate-Profiles/REPnubeQ">REPnubeQ</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPPJsoft" style="color:#E20D1B;">REPPJsoft</a></td>
+    <td><a href="#section/Certificate-Profiles/REPPJsoft">REPPJsoft</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPPJnube" style="color:#E20D1B;">REPPJnube</a></td>
+    <td><a href="#section/Certificate-Profiles/REPPJnube">REPPJnube</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPPJqscd" style="color:#E20D1B;">REPPJqscd</a></td>
+    <td><a href="#section/Certificate-Profiles/REPPJqscd">REPPJqscd</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPPJnubeQ" style="color:#E20D1B;">REPPJnubeQ</a></td>
+    <td><a href="#section/Certificate-Profiles/REPPJnubeQ">REPPJnubeQ</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/EMPUBsoft" style="color:#E20D1B;">EMPUBsoft</a></td>
+    <td><a href="#section/Certificate-Profiles/EMPUBsoft">EMPUBsoft</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/EMPUBqscd" style="color:#E20D1B;">EMPUBqscd</a></td>
+    <td><a href="#section/Certificate-Profiles/EMPUBqscd">EMPUBqscd</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/EMPUBnubeQ" style="color:#E20D1B;">EMPUBnubeQ</a></td>
+    <td><a href="#section/Certificate-Profiles/EMPUBnubeQ">EMPUBnubeQ</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPESPJsoft" style="color:#E20D1B;">REPESPJsoft</a></td>
+    <td><a href="#section/Certificate-Profiles/REPESPJsoft">REPESPJsoft</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPESPJnube" style="color:#E20D1B;">REPESPJnube</a></td>
+    <td><a href="#section/Certificate-Profiles/REPESPJnube">REPESPJnube</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPESPJqscd" style="color:#E20D1B;">REPESPJqscd</a></td>
+    <td><a href="#section/Certificate-Profiles/REPESPJqscd">REPESPJqscd</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPESPJnubeQ" style="color:#E20D1B;">REPESPJnubeQ</a></td>
+    <td><a href="#section/Certificate-Profiles/REPESPJnubeQ">REPESPJnubeQ</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/SELLOPJnube" style="color:#E20D1B;">SELLOPJnube</a></td>
+    <td><a href="#section/Certificate-Profiles/SELLOPJnube">SELLOPJnube</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/SELLOPJsoft" style="color:#E20D1B;">SELLOPJsoft</a></td>
+    <td><a href="#section/Certificate-Profiles/SELLOPJsoft">SELLOPJsoft</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/SELLOPJnubeQ" style="color:#E20D1B;">SELLOPJnubeQ</a></td>
+    <td><a href="#section/Certificate-Profiles/SELLOPJnubeQ">SELLOPJnubeQ</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/SELLOPJqscd" style="color:#E20D1B;">SELLOPJqscd</a></td>
+    <td><a href="#section/Certificate-Profiles/SELLOPJqscd">SELLOPJqscd</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/SELLOMedio" style="color:#E20D1B;">SELLOMedio</a></td>
+    <td><a href="#section/Certificate-Profiles/SELLOMedio">SELLOMedio</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/SELLOAlto" style="color:#E20D1B;">SELLOAlto</a></td>
+    <td><a href="#section/Certificate-Profiles/SELLOAlto">SELLOAlto</a></td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/SelloOrganoAltoNubeQ" style="color:#E20D1B;">SelloOrganoAltoNubeQ</a></td>
-  </tr>
-  <tr>
-    <td><a href="#section/Certificate-Profiles/PEPNCiudadano" style="color:#E20D1B;">PEPNCiudadano</a></td>
-  </tr>
-  <tr>
-    <td><a href="#section/Certificate-Profiles/PEPNPerteneciente" style="color:#E20D1B;">PEPNPerteneciente</a></td>
-  </tr>
-  <tr>
-    <td><a href="#section/Certificate-Profiles/PEPNRepresentante" style="color:#E20D1B;">PEPNRepresentante</a></td>
-  </tr>
-  <tr>
-    <td><a href="#section/Certificate-Profiles/PEPNColegiado" style="color:#E20D1B;">PEPNColegiado</a></td>
-  </tr>
-  <tr>
-    <td><a href="#section/Certificate-Profiles/PEFacturacion" style="color:#E20D1B;">PEFacturacion</a></td>
-  </tr>
-  <tr>
-    <td><a href="#section/Certificate-Profiles/PESElectronico" style="color:#E20D1B;">PESElectronico</a></td>
+    <td><a href="#section/Certificate-Profiles/SelloOrganoAltoNubeQ">SelloOrganoAltoNubeQ</a></td>
   </tr>
 </table> 
 </br> 
@@ -8178,6 +8161,37 @@ TIN - Tax Identification Number according to the European Commission.</td>
 </tr>
 </table>
 
+
+## Uanataca Peru
+
+<html>
+<table>
+  <tr>
+    <th>Profile</th><th>Description</th><th>Element</th>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PEPNCiudadano">PEPNCiudadano</a></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PEPNPerteneciente">PEPNPerteneciente</a></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PEPNRepresentante">PEPNRepresentante</a></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PEPNColegiado">PEPNColegiado</a></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PEFacturacion">PEFacturacion</a></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td><a href="#section/Certificate-Profiles/PESElectronico">PESElectronico</a></td><td></td><td></td>
+  </tr>
+</table> 
+</br> 
+</html>
+
+
 ## PEPNCiudadano
 
 Certificate of natural person, destined to authentication and digital signature.
@@ -9223,18 +9237,4 @@ If no error occures the server reply with a JSON containing a key "status" value
 
 # API Reference
 
-<HTML><div style="padding: 50px;"><a name="pepito2">PEPITO2</a></div>
-
-## API Reference2
-
-### API Reference3
-
-asdfasdfasdf
-
-### API Reference4
-
-asdfasdfasdf
-
-#### API Subreference
-
-<HTML><div style="margin-top: 50px;"><a name="pepito">PEPITO</a></div>
+<HTML><div id="pepito" style="padding-top: 60px;">PEPITO</div>
