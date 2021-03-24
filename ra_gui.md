@@ -9223,7 +9223,7 @@ If no error occures the server reply with a JSON containing a key "status" value
 
 # API Reference
 
-<HTML><a name="pepito2" style="margin-top: 30px;">PEPITO2</a>
+<HTML><div style="padding: 50px;"><a name="pepito2">PEPITO2</a></div>
 
 ## API Reference2
 
@@ -9237,4 +9237,4 @@ asdfasdfasdf
 
 #### API Subreference
 
-<HTML><a name="pepito" style="padding-top: 30px;">PEPITO</a>
+<HTML><div style="margin-top: 50px;"><a name="pepito">PEPITO</a></div>
