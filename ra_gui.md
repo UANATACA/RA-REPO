@@ -3,6 +3,7 @@
 Globally, digital identity ecosystems are increasingly complex and consist of a wide range of identity models and actors with diverse responsibilities, interests, and priorities.
 
 <td><a href="#pepito" style="color:#E20D1B;">Pepito</a></td>
+<td><a href="#pepito2" style="color:#E20D1B;">Pepito2</a></td>
 
 Digital identities are created and used as part of a life-cycle that includes three fundamental stages:
 
@@ -9222,6 +9223,8 @@ If no error occures the server reply with a JSON containing a key "status" value
 
 # API Reference
 
+<HTML><a name="pepito2" style="margin-top: 30px;">PEPITO2</a>
+
 ## API Reference2
 
 ### API Reference3
@@ -9234,4 +9237,4 @@ asdfasdfasdf
 
 #### API Subreference
 
-<HTML><a name="pepito">PEPITO</a>
+<HTML><a name="pepito" style="padding-top: 30px;">PEPITO</a>
