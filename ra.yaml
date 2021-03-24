@@ -6519,6 +6519,107 @@ paths:
                     "id": "21484514a0d347f7",
                     "error": "JSON parse error - Expecting ',' delimiter: line 4 column 5 (char 75)"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/requests/37037/unlock_pin \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "scratchcard": "5053349",
+                      "enrollment_code": "7T8xdGBN",
+                      "newpin": "tejedora32",
+                      "otp": "211489"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/37037/unlock_pin',
+                    {
+                      method: 'GET',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '5053349',
+                        enrollment_code: '7T8xdGBN',
+                        newpin: 'tejedora32',
+                        otp: '211489'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/37037/unlock_pin"
+
+                  payload = {
+                    "scratchcard": "5053349",
+                    "enrollment_code": "7T8xdGBN",
+                    "newpin": "tejedora32",
+                    "otp": "211489"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.get(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/37037/unlock_pin',
+                    {
+                      method: 'GET',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '5053349',
+                        enrollment_code: '7T8xdGBN',
+                        newpin: 'tejedora32',
+                        otp: '211489'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          scratchcard: '5053349',
+                          enrollment_code: '7T8xdGBN',
+                          newpin: 'tejedora32',
+                          otp: '211489'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/:id/unlock_pin");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 ###### registration authority ######
 ###############################################################################
   /api/v1/registrationauthorities:
@@ -6650,7 +6751,178 @@ paths:
                     "code": "500",
                     "id": "fcb7f0f60cba631b",
                     "error": "{'name': [u'Registration Authority with this RA Name already exists.']}"
-                }       
+                }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/registrationauthorities \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "name": "RA Name",
+                      "parent": "1",
+                      "enabled_from": "20/07/2020",
+                      "enabled_until": "20/07/2025",
+                      "organization_tax_number": "A9999999W",
+                      "organization_name": "Name_Org",
+                      "responsible_name": "Name_Resp",
+                      "responsible_first_surname": "Sur1_Resp",
+                      "responsible_second_surname": "Sur2_Resp",
+                      "responsible_serial": "X11111111C",
+                      "email": "mail@domain",
+                      "fix_phone_number": "+34333333333",
+                      "address": "Address Name",
+                      "city": "City Name",
+                      "postal_code": "1000000",
+                      "province": "Province_Name",
+                      "url": "http://www.organization.com",
+                      "country": "ES"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/registrationauthorities',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        name: 'RA Name',
+                        parent: '1',
+                        enabled_from: '20/07/2020',
+                        enabled_until: '20/07/2025',
+                        organization_tax_number: 'A9999999W',
+                        organization_name: 'Name_Org',
+                        responsible_name: 'Name_Resp',
+                        responsible_first_surname: 'Sur1_Resp',
+                        responsible_second_surname: 'Sur2_Resp',
+                        responsible_serial: 'X11111111C',
+                        email: 'mail@domain',
+                        fix_phone_number: '+34333333333',
+                        address: 'Address Name',
+                        city: 'City Name',
+                        postal_code: '1000000',
+                        province: 'Province_Name',
+                        url: 'http://www.organization.com',
+                        country: 'ES'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/registrationauthorities"
+
+                  payload = {
+                    "name": "RA Name",
+                    "parent": "1",
+                    "enabled_from": "20/07/2020",
+                    "enabled_until": "20/07/2025",
+                    "organization_tax_number": "A9999999W",
+                    "organization_name": "Name_Org",
+                    "responsible_name": "Name_Resp",
+                    "responsible_first_surname": "Sur1_Resp",
+                    "responsible_second_surname": "Sur2_Resp",
+                    "responsible_serial": "X11111111C",
+                    "email": "mail@domain",
+                    "fix_phone_number": "+34333333333",
+                    "address": "Address Name",
+                    "city": "City Name",
+                    "postal_code": "1000000",
+                    "province": "Province_Name",
+                    "url": "http://www.organization.com",
+                    "country": "ES"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/registrationauthorities',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        name: 'RA Name',
+                        parent: '1',
+                        enabled_from: '20/07/2020',
+                        enabled_until: '20/07/2025',
+                        organization_tax_number: 'A9999999W',
+                        organization_name: 'Name_Org',
+                        responsible_name: 'Name_Resp',
+                        responsible_first_surname: 'Sur1_Resp',
+                        responsible_second_surname: 'Sur2_Resp',
+                        responsible_serial: 'X11111111C',
+                        email: 'mail@domain',
+                        fix_phone_number: '+34333333333',
+                        address: 'Address Name',
+                        city: 'City Name',
+                        postal_code: '1000000',
+                        province: 'Province_Name',
+                        url: 'http://www.organization.com',
+                        country: 'ES'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          name: 'RA Name',
+                          parent: '1',
+                          enabled_from: '20/07/2020',
+                          enabled_until: '20/07/2025',
+                          organization_tax_number: 'A9999999W',
+                          organization_name: 'Name_Org',
+                          responsible_name: 'Name_Resp',
+                          responsible_first_surname: 'Sur1_Resp',
+                          responsible_second_surname: 'Sur2_Resp',
+                          responsible_serial: 'X11111111C',
+                          email: 'mail@domain',
+                          fix_phone_number: '+34333333333',
+                          address: 'Address Name',
+                          city: 'City Name',
+                          postal_code: '1000000',
+                          province: 'Province_Name',
+                          url: 'http://www.organization.com',
+                          country: 'ES'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/registrationauthorities", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }     
 #############
     get:
       summary: LIST RAs
@@ -6739,6 +7011,60 @@ paths:
                         ...
                     ]
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/registrationauthorities
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/registrationauthorities',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/registrationauthorities"
+
+                  response = requests.get(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/registrationauthorities',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/registrationauthorities");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  } 
 #############
   /api/v1/registrationauthorities/{id}:
     post:
@@ -6824,6 +7150,60 @@ paths:
                     "id": "61f0ac735c8a40bd",
                     "error": "You do not have permission to perform this action."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/registrationauthorities/98
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/registrationauthorities/98',
+                    {method: 'POST'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/registrationauthorities/98"
+
+                  response = requests.post(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/registrationauthorities/98',
+                    {method: 'POST'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/registrationauthorities/98", null);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  } 
 #############
     put:
       summary: UPDATE RA
@@ -6957,7 +7337,97 @@ paths:
                     "id": "61f0ac735c8a40bd",
                     "error": "You do not have permission to perform this action."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X PUT \
+                    https://api.uanataca.com/api/v1/registrationauthorities \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "enabled_until": "20/07/2028",
+                      "email": "new_mail@domain"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/registrationauthorities',
+                    {
+                      method: 'PUT',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        enabled_until: '20/07/2028',
+                        email: 'new_mail@domain'
+                      })
+                    }
+                  );
 
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/registrationauthorities"
+
+                  payload = {
+                    "enabled_until": "20/07/2028",
+                    "new_email": "mail@domain"
+                   }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.put(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/registrationauthorities',
+                    {
+                      method: 'PUT',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        enabled_until: '20/07/2028',
+                        email: 'new_mail@domain'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          enabled_until: '20/07/2028',
+                          email: 'new_mail@domain'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/registrationauthorities", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  } 
 ###### registration authority officer ######
 ###############################################################################
 
@@ -7084,6 +7554,127 @@ paths:
                     "id": "572b9094bafb7cc3",
                     "error": "You do not have permission to perform this action."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/rao \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "registration_authority_master": 1,
+                      "registration_authority": ["63", "64", "65"],
+                      "certificate": "25714",
+                      "given_name": "RAO_Name",
+                      "surname_1": "RAO_Surname1",
+                      "surname_2": "RAO_Surname2",
+                      "id_document_number": "12354232414",
+                      "email": "mail@domain"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/rao',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        registration_authority_master: 1,
+                        registration_authority: ["63", "64", "65"],
+                        certificate: '25714',
+                        given_name: 'RAO_Name',
+                        surname_1: 'RAO_Surname1',
+                        surname_2: 'RAO_Surname2',
+                        id_document_number: '12354232414',
+                        email: 'mail@domain'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/rao"
+
+                  payload = {
+                    "registration_authority_master": 1,
+                    "registration_authority": ["63", "64", "65"],
+                    "certificate": "25714",
+                    "given_name": "RAO_Name",
+                    "surname_1": "RAO_Surname1",
+                    "surname_2": "RAO_Surname2",
+                    "id_document_number": "12354232414",
+                    "email": "mail@domain"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/rao',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        registration_authority_master: 1,
+                        registration_authority: ["63", "64", "65"],
+                        certificate: '25714',
+                        given_name: 'RAO_Name',
+                        surname_1: 'RAO_Surname1',
+                        surname_2: 'RAO_Surname2',
+                        id_document_number: '12354232414',
+                        email: 'mail@domain'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          registration_authority_master: 1,
+                          registration_authority: ["63", "64", "65"],
+                          certificate: '25714',
+                          given_name: 'RAO_Name',
+                          surname_1: 'RAO_Surname1',
+                          surname_2: 'RAO_Surname2',
+                          id_document_number: '12354232414',
+                          email: 'mail@domain'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/rao", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
     put:
       summary: UPDATE RAO
@@ -7207,6 +7798,92 @@ paths:
                     "id": "572b9094bafb7cc3",
                     "error": "You do not have permission to perform this action."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X PUT \
+                    https://api.uanataca.com/api/v1/rao \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "given_name": "RAO_NewName"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/rao',
+                    {
+                      method: 'PUT',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        given_name: 'RAO_NewName'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/rao"
+
+                  payload = {
+                    "given_name": "RAO_NewName"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.put(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/rao',
+                    {
+                      method: 'PUT',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        given_name: 'RAO_NewName'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          given_name: 'RAO_NewName'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/rao", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
     get:
       summary: LIST RAOs
@@ -7280,6 +7957,78 @@ paths:
                         }
                     ]
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    'https://api.uanataca.com/api/v1/rao?filter1=string&filter2=string&filterN=string'
+        - lang: 'Javascript'
+          source: |
+                  const query = new URLSearchParams({
+                    filter1: 'string',
+                    filter2: 'string',
+                    filterN: 'string'
+                  }).toString();
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/rao?' + query,
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/rao"
+
+                  query = {
+                    "filter1": "string",
+                    "filter2": "string",
+                    "filterN": "string"
+                  }
+
+                  response = requests.get(url, params=query)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const query = new URLSearchParams({
+                    filter1: 'string',
+                    filter2: 'string',
+                    filterN: 'string'
+                  }).toString();
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/rao?' + query,
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/rao?filter1=string&filter2=string&filterN=string");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/rao/{id}:
     get:
@@ -7379,6 +8128,78 @@ paths:
                     "id": "dcd61c1df53e6276",
                     "error": "Rao matching query does not exist."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    'https://api.uanataca.com/api/v1/rao?filter1=string&filter2=string&filterN=string'
+        - lang: 'Javascript'
+          source: |
+                  const query = new URLSearchParams({
+                    filter1: 'string',
+                    filter2: 'string',
+                    filterN: 'string'
+                  }).toString();
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/rao?' + query,
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/rao"
+
+                  query = {
+                    "filter1": "string",
+                    "filter2": "string",
+                    "filterN": "string"
+                  }
+
+                  response = requests.get(url, params=query)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const query = new URLSearchParams({
+                    filter1: 'string',
+                    filter2: 'string',
+                    filterN: 'string'
+                  }).toString();
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/rao?' + query,
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/rao?filter1=string&filter2=string&filterN=string");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 ###### registration authority user ######
 ###############################################################################
   /api/v1/users:
@@ -7456,6 +8277,107 @@ paths:
                     "id": "a278e41eebf8c505",
                     "error": "You do not have permission to perform this action."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/users \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "registration_authority": 1,
+                      "permission_profile": 18,
+                      "request": 255,
+                      "rao": 1400
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/users',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        registration_authority: 1,
+                        permission_profile: 18,
+                        request: 255,
+                        rao: 1400
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/users"
+
+                  payload = {
+                    "registration_authority": 1,
+                    "permission_profile": 18,
+                    "request": 255,
+                    "rao": 1400
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/users',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        registration_authority: 1,
+                        permission_profile: 18,
+                        request: 255,
+                        rao: 1400
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          registration_authority: 1,
+                          permission_profile: 18,
+                          request: 255,
+                          rao: 1400
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/users", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
     get:
       summary: LIST USERS
@@ -7517,7 +8439,61 @@ paths:
                         },
                         ...
                     ]
-                } 
+                }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/users
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/users',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/users"
+
+                  response = requests.get(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/users',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/users");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/users/{id}:
     get:
@@ -7565,6 +8541,60 @@ paths:
                     "id": "7710a1144589dcd4",
                     "error": "User matching query does not exist."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/users/36
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/users/36',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/users/36"
+
+                  response = requests.get(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/users/36',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/users/36");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
     put:
       summary: UPDATE USER
@@ -7645,7 +8675,92 @@ paths:
                     "id": "a278e41eebf8c505",
                     "error": "You do not have permission to perform this action."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X PUT \
+                    https://api.uanataca.com/api/v1/users \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "request": 150
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/users',
+                    {
+                      method: 'PUT',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        request: 150
+                      })
+                    }
+                  );
 
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/users"
+
+                  payload = {
+                    "request": 150
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.put(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/users',
+                    {
+                      method: 'PUT',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        request: 150
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          request: 150
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/users", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 
 
 
@@ -8107,7 +9222,9 @@ definitions:
           type: "string"
           description: "The registration authority master id"
       registration_authority:
-          type: "string"
+          type: "array"
+            items:
+              type: string          
           description: "The list of the RAs where the RAO can operate	"
       certificate:
           type: "string"
