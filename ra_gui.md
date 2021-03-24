@@ -2,6 +2,8 @@
 
 Globally, digital identity ecosystems are increasingly complex and consist of a wide range of identity models and actors with diverse responsibilities, interests, and priorities.
 
+<td><a href="#pepito" style="color:#E20D1B;">Pepito</a></td>
+
 Digital identities are created and used as part of a life-cycle that includes three fundamental stages:
 
 - registration, including enrollment and validation
@@ -9232,4 +9234,4 @@ asdfasdfasdf
 
 #### API Subreference
 
-asfdsfasdf asdg adf
+<HTML><a name="pepito">PEPITO</a>
