@@ -8,11 +8,13 @@ Digital identities are created and used as part of a life-cycle that includes th
 - issuance of documents or credentials
 - authentication for service delivery
 
+![img](https://i.ibb.co/BPP6yKn/ra-hiw.png)
+
 # Glossary
 
 List of entities and names used to describe UANATACA's services
 
-`Registration Authority (RA)`
+>Registration Authority (RA)
 
 The RA manages the entire life-cycle of digital identities, from the certificate issuance to suspension, reactivation, renewal and revocation of the PKI credentials.
 
@@ -24,7 +26,7 @@ The **RAO** follows strict guidelines and policies defined to ensure the trust o
 
 The Account having access to the APIs provided by the system. It is generally used for a server to server interaction.
 
-**Certificate Request (Request)**
+>Certificate Request (Request)
 
 It is a request to issue a new certificate. A request can be associated with only one **RA** and has a status attribute to monitor the progress of the application:
 
@@ -38,7 +40,7 @@ Enrolled Ready: The certificates are ready to be issued. The request arrives at 
 
 **Issued:** Certificates issued. The request is ready to be enrolled from the user's self-service page on the platform. The user must first set PIN and PUK codes of his or her choice and then enable the digital identity.
 
-**Secret codes (Scratchcard)**
+>Scratchcard
 
 It is a virtual scratch card containing the secret codes of the user.
 
@@ -99,40 +101,6 @@ and a Python with requests package example:
 	3 |     'https://api.uanataca.com/api/v1/scratchcards/',
 	4 |     cert = ('/path/to/cert.pem', '/path/to/key.pem')
 	5 | )
-
-## Methods Allowed
-
-The Uanataca API is based on a REST architecture. Each endpoint is accessed through HTTPS and when possible accept these HTTP verbs:
-
-<html>
-<table>
-  <tr>
-    <th>Method</th><th>Action</th>
-  </tr>
-  <tr>
-    <td>GET</td><td>Retrieves objects</td>
-  </tr>
-  <tr>
-    <td>POST</td><td>Creates objects</td>
-  </tr>
-  <tr>
-    <td>PUT</td><td>Changes objects</td>
-  </tr>
-</table> 
-</br> 
-</html>
-
-These are some examples using curl:
-
-	1 | curl -X GET https://api.uanataca.com/api/v1/requests/
-
-</br>
-
-	1 | curl -d @params.json -X POST https://api.uanataca.com/api/v1/requests/123/approve/
-
-</br>
-
-	1 | curl -d @params.json -X PUT https://api.uanataca.com/api/v1/requests/123/
 
 # Responses
 
@@ -9251,3 +9219,17 @@ If no error occures the server reply with a JSON containing a key "status" value
 
 
 # API Reference
+
+## API Reference2
+
+### API Reference3
+
+asdfasdfasdf
+
+### API Reference4
+
+asdfasdfasdf
+
+#### API Subreference
+
+asfdsfasdf asdg adf
