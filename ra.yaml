@@ -170,6 +170,162 @@ paths:
                     "id": "80a9e5709417bdc9",
                     "error": "Invalid ScratchCard"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "profile": "PFnubeAFCiudadano",
+                      "scratchcard": "5053349",
+                      "secure_element": "2",
+                      "registration_authority": "116",
+                      "country_name": "ES",
+                      "serial_number": "A1111111E",
+                      "id_document_country": "IT",
+                      "id_document_type": "TIN",
+                      "given_name": "Name",
+                      "surname_1": "Surname1",
+                      "surname_2" "Surname2"
+                      "birth_date": "09/11/1989",
+                      "email": "mail@domain",
+                      "mobile_phone_number": "+39555555555",
+                      "paperless_mode": 1
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        profile: 'PFnubeAFCiudadano',
+                        scratchcard: '5053349',
+                        secure_element: '2',
+                        registration_authority: '116',
+                        country_name: 'ES',
+                        serial_number: 'A1111111E',
+                        id_document_country: 'IT',
+                        id_document_type: 'TIN',
+                        given_name: 'Name',
+                        surname_1: 'Surname1',        
+                        surname_2: 'Surname2',
+                        birth_date: '09/11/1989',
+                        email: 'mail@domain',
+                        mobile_phone_number: '+39555555555',
+                        paperless_mode: 1
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests"
+
+                  payload = {
+                      "profile": "PFnubeAFCiudadano",
+                      "scratchcard": "5053349",
+                      "secure_element": "2",
+                      "registration_authority": "116",
+                      "country_name": "ES",
+                      "serial_number": "A1111111E",
+                      "id_document_country": "IT",
+                      "id_document_type": "TIN",
+                      "given_name": "Name",
+                      "surname_1": "Surname1",
+                      "surname_2" "Surname2"
+                      "birth_date": "09/11/1989",
+                      "email": "mail@domain",
+                      "mobile_phone_number": "+39555555555",
+                      "paperless_mode": 1
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        profile: 'PFnubeAFCiudadano',
+                        scratchcard: '5053349',
+                        secure_element: '2',
+                        registration_authority: '116',
+                        country_name: 'ES',
+                        serial_number: 'A1111111E',
+                        id_document_country: 'ES',
+                        id_document_type: 'IDC',
+                        given_name: 'Name',
+                        surname_1: 'Surname1',        
+                        surname_2: 'Surname2',
+                        birth_date: '09/11/1989',
+                        email: 'mail@domain',
+                        mobile_phone_number: '+39555555555',
+                        paperless_mode: 1
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          profile: 'PFnubeAFCiudadano',
+                          scratchcard: '5053349',
+                          secure_element: '2',
+                          registration_authority: '116',
+                          country_name: 'ES',
+                          serial_number: 'A1111111E',
+                          id_document_country: 'ES',
+                          id_document_type: 'IDC',
+                          given_name: 'Name',
+                          surname_1: 'Surname1',        
+                          surname_2: 'Surname2',
+                          birth_date: '09/11/1989',
+                          email: 'mail@domain',
+                          mobile_phone_number: '+39555555555',
+                          paperless_mode: 1
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }       
 ###########
     get: 
       summary: LIST REQUESTS
@@ -372,6 +528,60 @@ paths:
                         }
                     ]
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/requests
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests"
+
+                  response = requests.get(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}/generates_tbs_receipt:
     post: 
@@ -445,6 +655,97 @@ paths:
                   "id": "b78952287417c96f",
                   "error": "No Request matches the given query."
               }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "rao": "1400",
+                      "type": "APPROVE"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        rao: '1400',
+                        type: 'APPROVE'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt"
+
+                  payload = {
+                    "rao": "1400",
+                    "type": "APPROVE"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        rao: '1400',
+                        type: 'APPROVE'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          rao: '1400',
+                          type: 'APPROVE'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}/approve:
     post: 
@@ -677,6 +978,97 @@ paths:
                     "id": "5c2ad9880b90970b",
                     "error": "Invalid request fields: mobile_phone_number"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/approve \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "rao": "1400",
+                      "receipt": "MIIOgQYJKoZIhvcNAQcCoIIOcjCCDm4CAQExCzAJBgUrDgMCGgUAMIIDcQYJKoZIhvcNAQcBoIIDYgSCA15FbCBvcGVyYWRvciBVc2VyIEFkbWluIGNvbiBuw7ptZXJvIGRlIGlkZW50aWZpY2FjacOzbiAxMjM0NTY3OFANCmFjdHVhbmRvIGVuIGNhbGlkYWQgZGUgb3BlcmFkb3IgYXV0b3JpemFkbyBkZSByZWdpc3RybyBkZWwgcHJlc3RhZG9yIGRlIHNlcnZpY2lvcw0KZGUgY29uZmlhbnphIFVBTkFUQUNBLCBTLkEuIGNvbiBOSUYgQTY2NzIxNDk5LCAoVUFOQVRBQ0EgZW4gbG8gc3VjZXNpdm8pDQoNCkRFQ0xBUkENCg0KUXVlIHByZXZpYSB2ZXJpZmljYWNpw7NuIGRlIGFjdWVyZG8gYSBsYSBEZWNsYXJhY2nDs24gZGUgUHLDoWN0aWNhcyBkZSBVQU5BVEFDQQ0KcHVibGljYWRhcyBlbiB3d3cudWFuYXRhY2EuY29tLCBsYSBpbmZvcm1hY2nDs24gZGV0YWxsYWRhIGEgY29udGludWFjacOzbiBlcw0KY29ycmVjdGEgeSBzZXLDoSBpbmNsdWlkYSAoZG9uZGUgYXBsaWNhYmxlKSBlbiBsYSBzb2xpY2l0dWQgZGUgY2VydGlmaWNhZG9zDQpjdWFsaWZpY2Fkb3M6DQoNCi0gRGF0b3MgZGUgSWRlbnRpZmljYWNpw7NuIGRlIGxhIHNvbGljaXR1ZCBkZSBjZXJ0aWZpY2Fkb3M6IDM2MTcNCi0gTm9tYnJlIHkgQXBlbGxpZG9zIGRlbCBGaXJtYW50ZTogQXVtIEFwaSBDbG91ZF9URVNUDQotIEROSS9OSUUvUEFTQVBPUlRFIGRlbCBGaXJtYW50ZTogMTMyNDU2NzhBDQotIERpcmVjY2nDs24gZGUgY29ycmVvIGVsZWN0csOzbmljbyBkZWwgRmlybWFudGU6IGF1bUB1YW5hdGFjYS5jb20NCg0KDQozMC8wNC8yMDE5DQoNCg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KRmRvLiBVc2VyIEFkbWluDQpPcGVyYWRv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"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/approve',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        rao: '1400',
+                        receipt: 'MIIOgQYJKoZIhvcNAQcCoIIOcjCCDm4CAQExCzAJBgUrDgMCGgUAMIIDcQYJKoZIhvcNAQcBoIIDYgSCA15FbCBvcGVyYWRvciBVc2VyIEFkbWluIGNvbiBuw7ptZXJvIGRlIGlkZW50aWZpY2FjacOzbiAxMjM0NTY3OFANCmFjdHVhbmRvIGVuIGNhbGlkYWQgZGUgb3BlcmFkb3IgYXV0b3JpemFkbyBkZSByZWdpc3RybyBkZWwgcHJlc3RhZG9yIGRlIHNlcnZpY2lvcw0KZGUgY29uZmlhbnphIFVBTkFUQUNBLCBTLkEuIGNvbiBOSUYgQTY2NzIxNDk5LCAoVUFOQVRBQ0EgZW4gbG8gc3VjZXNpdm8pDQoNCkRFQ0xBUkENCg0KUXVlIHByZXZpYSB2ZXJpZmljYWNpw7NuIGRlIGFjdWVyZG8gYSBsYSBEZWNsYXJhY2nDs24gZGUgUHLDoWN0aWNhcyBkZSBVQU5BVEFDQQ0KcHVibGljYWRhcyBlbiB3d3cudWFuYXRhY2EuY29tLCBsYSBpbmZvcm1hY2nDs24gZGV0YWxsYWRhIGEgY29udGludWFjacOzbiBlcw0KY29ycmVjdGEgeSBzZXLDoSBpbmNsdWlkYSAoZG9uZGUgYXBsaWNhYmxlKSBlbiBsYSBzb2xpY2l0dWQgZGUgY2VydGlmaWNhZG9zDQpjdWFsaWZpY2Fkb3M6DQoNCi0gRGF0b3MgZGUgSWRlbnRpZmljYWNpw7NuIGRlIGxhIHNvbGljaXR1ZCBkZSBjZXJ0aWZpY2Fkb3M6IDM2MTcNCi0gTm9tYnJlIHkgQXBlbGxpZG9zIGRlbCBGaXJtYW50ZTogQXVtIEFwaSBDbG91ZF9URVNUDQotIEROSS9OSUUvUEFTQVBPUlRFIGRlbCBGaXJtYW50ZTogMTMyNDU2NzhBDQotIERpcmVjY2nDs24gZGUgY29ycmVvIGVsZWN0csOzbmljbyBkZWwgRmlybWFudGU6IGF1bUB1YW5hdGFjYS5jb20NCg0KDQozMC8wNC8yMDE5DQoNCg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KRmRvLiBVc2VyIEFkbWluDQpPcGVyYWRvciBhdXRvcml6YWRvIGRlIHJlZ2lzdHJvoIIIFDCCCBAwggX4oAMCAQICCD7zaW0pOSQdMA0GCSqGSIb3DQEBCwUAMIG9MQswCQYDVQQGEwJFUzFEMEIGA1UEBww7QmFyY2Vsb25hIChzZWUgY3VycmVudCBhZGRyZXNzIGF0IHd3dy51YW5hdGFjYS5jb20vYWRkcmVzcykxFjAUBgNVBAoMDVVBTkFUQUNBIFMuQS4xFDASBgNVBAsMC0FDLVVBTkFUQUNBMSAwHgYDVQQDDBdVQU5BVEFDQSBDQTEgREVWRUwgMjAxNjEYMBYGA1UEYQwPVkFURVMtQTY2NzIxNDk5MB4XDTE3MDEyNDExMDAzMVoXDTIwMDEyNDExMDAzMVowazELMAkGA1UEBhMCSVQxFDASBgNVBAoMC25vIHByZXNlbnRlMQ4wDAYDVQQEDAVBZG1pbjENMAsGA1UEKgwEVXNlcjESMBAGA1UEBRMJdTEyMzQ1Njc4MRMwEQYDVQQDDApVc2VyIEFkbWluMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7/mWrFTExAFn1Pu7wfBp/PqIRMgN9G9lVatsmibKVsXeBwHXApLDUPOa/ar/0Sow8O4Cl3hQjpi6qBS6zo4ETZ4tW9nsjVUprYY4VzrIngjtrHrg21TvMJKQwSBQRhbko+4nqEH6BXCvLMPGnoYgfQXoHBAdazw+bLGXWh7GGjHqnsNwfyqqLlDU+0I5vY7zLVTNVMpwWaq9XEQ15+B7Etf5arfhytsjk0Msl+2TFXDRqr1DXebcD5wMMgudZ/FDi6BvTWHUqHHEJ4xyG1YGwBwhSlsjYWalopsTTJvepPizpnudLpwzREMOV/qROZU+I4/0mGeJIM1cLOER/AzqyQIDAQABo4IDYzCCA18wLQYDVR0JBCYwJDAQBggrBgEFBQcJBTEEEwJJVDAQBggrBgEFBQcJBDEEEwJJVDCB1gYIKwYBBQUHAQEEgckwgcYwVAYIKwYBBQUHMAKGSGh0dHA6Ly93d3cudWFuYXRhY2EuY29tL3B1YmxpYy9kb3dubG9hZC90c3BfY2VydGlmaWNhdGVzL3RydXN0ZWRSb290LnA3YzA2BggrBgEFBQcwAYYqaHR0cDovL29jc3AxLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL29jc3AvMDYGCCsGAQUFBzABhipodHRwOi8vb2NzcDIudWFuYXRhY2EuY29tL3B1YmxpYy9wa2kvb2NzcC8wHQYDVR0OBBYEFA7B1xRJItN6d6Io/FbL4AhjB/JLMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUysyKpc+kjCJa1vuX90+0Tv3V764wYgYIKwYBBQUHAQMEVjBUMAgGBgQAjkYBATALBgYEAI5GAQMCAQ8wOwYGBACORgEFDDFodHRwOi8vd3d3LnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL1BEUy1QRnNvZnQtRU4vMIHGBgNVHSAEgb4wgbswgbgGCysGAQQBgvE2AQEBMIGoMDMGCCsGAQUFBwIBFidodHRwOi8vd3d3LnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL2RwYy8wcQYIKwYBBQUHAgIwZQxjQ2VydGlmaWNhZG8gcmVjb25vY2lkbyBkZSBwZXJzb25hIGbDrXNpY2EgZW4gc29mdHdhcmUuICBWZXIgaHR0cDovL3d3dy51YW5hdGFjYS5jb20vcHVibGljL3BraS9kcGMvMIGPBgNVHR8EgYcwgYQwQKA+oDyGOmh0dHA6Ly9jcmwxLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL2NybC9DQTFzdWJvcmRpbmFkYS5jcmwwQKA+oDyGOmh0dHA6Ly9jcmwyLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL2NybC9DQTFzdWJvcmRpbmFkYS5jcmwwDgYDVR0PAQH/BAQDAgTwMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDAZBgNVHREEEjAQgQ5mZmlAYml0NGlkLmNvbTANBgkqhkiG9w0BAQsFAAOCAgEAdqvgmUcV5Az9sWht85eyRg2fOKhssvYEZhnzt8Wfiw1F76rUBMKgH0teT3HImozbkAvppZY6uLSLChSzRXGBJ+ThYrnZyC2f99hSAHjw+dcYnPyqrnEi+qgjukTBw15IreVPvYvpuMB+hGLpRx8H0BMGgPgBz+rxbFHtleoTFHerFQREIALl3VCK1uBrHVymIykDit773fLt97vBdrEPhyp/JY8OXTy7FzvS+yLRWpxOuQovx6VxPKEzEcKGYoSVM0Z4h8cOQwr2ZiX8VKMt6DPqnjSzA9U8VVvzsxiEncHLZrxtVBIRGRPxo8qHemzo1LwZcdxTMdReyX64a8nRTjPqjLnc8Uj55ZFnlTPyKtfRA2FoZHYcoB2LAqxJNMIlpVa41wy25aLXzJioZZ5Fx7ydqRlQDDPAMsbgM099veEI0amAfBhP5tJvRTAjjQ7xNo7BIeh8tMMx/lhWlm3w/pXGVJy4Zkzs3b9hQxI/HP4lY7ukgvrv7sgQA2BgCFtfbsmpEmDC0iCSboE6VtzVBkIkRWqIcY1kWv8rq9LW+FJ7j2NjZVRi/dMme23fYOguQ0R6qg2sF5wJwoSTNET4skRaVJdm2LHqgFR3u2aKuV6sOP7g7aZpQVhYxUPo+FEZMKrSOR4ey9weI/zeYIAdVr9gvUlyfvJbkXtST1y2y+AxggLNMIICyQIBATCByjCBvTELMAkGA1UEBhMCRVMxRDBCBgNVBAcMO0JhcmNlbG9uYSAoc2VlIGN1cnJlbnQgYWRkcmVzcyBhdCB3d3cudWFuYXRhY2EuY29tL2FkZHJlc3MpMRYwFAYDVQQKDA1VQU5BVEFDQSBTLkEuMRQwEgYDVQQLDAtBQy1VQU5BVEFDQTEgMB4GA1UEAwwXVUFOQVRBQ0EgQ0ExIERFVkVMIDIwMTYxGDAWBgNVBGEMD1ZBVEVTLUE2NjcyMTQ5OQIIPvNpbSk5JB0wCQYFKw4DAhoFAKCB2DAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA0MzAwOTUxMzVaMCMGCSqGSIb3DQEJBDEWBBR25+DuU9KvyVxmoOyKbXzUaNTJBDB5BgkqhkiG9w0BCQ8xbDBqMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJYIZIAWUDBAECMAoGCCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggqhkiG9w0DAgIBQDAHBgUrDgMCBzANBggqhkiG9w0DAgIBKDANBgkqhkiG9w0BAQEFAASCAQBiUKAPyH3QgYqd7fdHxMWJoGQAocPIHTD4AP0hDjDYuY52OchEbMxzJ3FoHNz/K/UyFdeNzLYqZB+8dDRDxWFsQn/9AsweZ2hUbNf8rGrlpw52jyH5UO8uFRZSA3NuV92csHf5anDBcBbKcNSKkMtpguLRju6N3OXZnA3MpOoGB0Dr4pfCttUoTxZp6goY7xmHaHWrBrGgwO7UxmPgV03VCdLJyK6qv6eoxxMZ7ow751VZxzNCbbyCtS7/iAk74NxXlHhQPAyiwi2E7khcavhSsAWMC3hvGlyOeXpUgItuMuNIc9nZf+tAw6cXFav7ITwp0mGO5cd8sYts7NKlVkjE'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/approve"
+
+                  payload = {
+                    "rao": "1400",
+                    "receipt": "MIIOgQYJKoZIhvcNAQcCoIIOcjCCDm4CAQExCzAJBgUrDgMCGgUAMIIDcQYJKoZIhvcNAQcBoIIDYgSCA15FbCBvcGVyYWRvciBVc2VyIEFkbWluIGNvbiBuw7ptZXJvIGRlIGlkZW50aWZpY2FjacOzbiAxMjM0NTY3OFANCmFjdHVhbmRvIGVuIGNhbGlkYWQgZGUgb3BlcmFkb3IgYXV0b3JpemFkbyBkZSByZWdpc3RybyBkZWwgcHJlc3RhZG9yIGRlIHNlcnZpY2lvcw0KZGUgY29uZmlhbnphIFVBTkFUQUNBLCBTLkEuIGNvbiBOSUYgQTY2NzIxNDk5LCAoVUFOQVRBQ0EgZW4gbG8gc3VjZXNpdm8pDQoNCkRFQ0xBUkENCg0KUXVlIHByZXZpYSB2ZXJpZmljYWNpw7NuIGRlIGFjdWVyZG8gYSBsYSBEZWNsYXJhY2nDs24gZGUgUHLDoWN0aWNhcyBkZSBVQU5BVEFDQQ0KcHVibGljYWRhcyBlbiB3d3cudWFuYXRhY2EuY29tLCBsYSBpbmZvcm1hY2nDs24gZGV0YWxsYWRhIGEgY29udGludWFjacOzbiBlcw0KY29ycmVjdGEgeSBzZXLDoSBpbmNsdWlkYSAoZG9uZGUgYXBsaWNhYmxlKSBlbiBsYSBzb2xpY2l0dWQgZGUgY2VydGlmaWNhZG9zDQpjdWFsaWZpY2Fkb3M6DQoNCi0gRGF0b3MgZGUgSWRlbnRpZmljYWNpw7NuIGRlIGxhIHNvbGljaXR1ZCBkZSBjZXJ0aWZpY2Fkb3M6IDM2MTcNCi0gTm9tYnJlIHkgQXBlbGxpZG9zIGRlbCBGaXJtYW50ZTogQXVtIEFwaSBDbG91ZF9URVNUDQotIEROSS9OSUUvUEFTQVBPUlRFIGRlbCBGaXJtYW50ZTogMTMyNDU2NzhBDQotIERpcmVjY2nDs24gZGUgY29ycmVvIGVsZWN0csOzbmljbyBkZWwgRmlybWFudGU6IGF1bUB1YW5hdGFjYS5jb20NCg0KDQozMC8wNC8yMDE5DQoNCg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KRmRvLiBVc2VyIEFkbWluDQpPcGVyYWRv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"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/approve',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        rao: '1400',
+                        receipt: 'MIIOgQYJKoZIhvcNAQcCoIIOcjCCDm4CAQExCzAJBgUrDgMCGgUAMIIDcQYJKoZIhvcNAQcBoIIDYgSCA15FbCBvcGVyYWRvciBVc2VyIEFkbWluIGNvbiBuw7ptZXJvIGRlIGlkZW50aWZpY2FjacOzbiAxMjM0NTY3OFANCmFjdHVhbmRvIGVuIGNhbGlkYWQgZGUgb3BlcmFkb3IgYXV0b3JpemFkbyBkZSByZWdpc3RybyBkZWwgcHJlc3RhZG9yIGRlIHNlcnZpY2lvcw0KZGUgY29uZmlhbnphIFVBTkFUQUNBLCBTLkEuIGNvbiBOSUYgQTY2NzIxNDk5LCAoVUFOQVRBQ0EgZW4gbG8gc3VjZXNpdm8pDQoNCkRFQ0xBUkENCg0KUXVlIHByZXZpYSB2ZXJpZmljYWNpw7NuIGRlIGFjdWVyZG8gYSBsYSBEZWNsYXJhY2nDs24gZGUgUHLDoWN0aWNhcyBkZSBVQU5BVEFDQQ0KcHVibGljYWRhcyBlbiB3d3cudWFuYXRhY2EuY29tLCBsYSBpbmZvcm1hY2nDs24gZGV0YWxsYWRhIGEgY29udGludWFjacOzbiBlcw0KY29ycmVjdGEgeSBzZXLDoSBpbmNsdWlkYSAoZG9uZGUgYXBsaWNhYmxlKSBlbiBsYSBzb2xpY2l0dWQgZGUgY2VydGlmaWNhZG9zDQpjdWFsaWZpY2Fkb3M6DQoNCi0gRGF0b3MgZGUgSWRlbnRpZmljYWNpw7NuIGRlIGxhIHNvbGljaXR1ZCBkZSBjZXJ0aWZpY2Fkb3M6IDM2MTcNCi0gTm9tYnJlIHkgQXBlbGxpZG9zIGRlbCBGaXJtYW50ZTogQXVtIEFwaSBDbG91ZF9URVNUDQotIEROSS9OSUUvUEFTQVBPUlRFIGRlbCBGaXJtYW50ZTogMTMyNDU2NzhBDQotIERpcmVjY2nDs24gZGUgY29ycmVvIGVsZWN0csOzbmljbyBkZWwgRmlybWFudGU6IGF1bUB1YW5hdGFjYS5jb20NCg0KDQozMC8wNC8yMDE5DQoNCg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KRmRvLiBVc2VyIEFkbWluDQpPcGVyYWRv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'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          rao: '1400',
+                          receipt: 'MIIOgQYJKoZIhvcNAQcCoIIOcjCCDm4CAQExCzAJBgUrDgMCGgUAMIIDcQYJKoZIhvcNAQcBoIIDYgSCA15FbCBvcGVyYWRvciBVc2VyIEFkbWluIGNvbiBuw7ptZXJvIGRlIGlkZW50aWZpY2FjacOzbiAxMjM0NTY3OFANCmFjdHVhbmRvIGVuIGNhbGlkYWQgZGUgb3BlcmFkb3IgYXV0b3JpemFkbyBkZSByZWdpc3RybyBkZWwgcHJlc3RhZG9yIGRlIHNlcnZpY2lvcw0KZGUgY29uZmlhbnphIFVBTkFUQUNBLCBTLkEuIGNvbiBOSUYgQTY2NzIxNDk5LCAoVUFOQVRBQ0EgZW4gbG8gc3VjZXNpdm8pDQoNCkRFQ0xBUkENCg0KUXVlIHByZXZpYSB2ZXJpZmljYWNpw7NuIGRlIGFjdWVyZG8gYSBsYSBEZWNsYXJhY2nDs24gZGUgUHLDoWN0aWNhcyBkZSBVQU5BVEFDQQ0KcHVibGljYWRhcyBlbiB3d3cudWFuYXRhY2EuY29tLCBsYSBpbmZvcm1hY2nDs24gZGV0YWxsYWRhIGEgY29udGludWFjacOzbiBlcw0KY29ycmVjdGEgeSBzZXLDoSBpbmNsdWlkYSAoZG9uZGUgYXBsaWNhYmxlKSBlbiBsYSBzb2xpY2l0dWQgZGUgY2VydGlmaWNhZG9zDQpjdWFsaWZpY2Fkb3M6DQoNCi0gRGF0b3MgZGUgSWRlbnRpZmljYWNpw7NuIGRlIGxhIHNvbGljaXR1ZCBkZSBjZXJ0aWZpY2Fkb3M6IDM2MTcNCi0gTm9tYnJlIHkgQXBlbGxpZG9zIGRlbCBGaXJtYW50ZTogQXVtIEFwaSBDbG91ZF9URVNUDQotIEROSS9OSUUvUEFTQVBPUlRFIGRlbCBGaXJtYW50ZTogMTMyNDU2NzhBDQotIERpcmVjY2nDs24gZGUgY29ycmVvIGVsZWN0csOzbmljbyBkZWwgRmlybWFudGU6IGF1bUB1YW5hdGFjYS5jb20NCg0KDQozMC8wNC8yMDE5DQoNCg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KRmRvLiBVc2VyIEFkbWluDQpPcGVyYWRv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'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/approve", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}/cloud_enroll:
     post: 
@@ -774,6 +1166,107 @@ paths:
                     "id": "2df6b3bbdd4b86d3",
                     "error": "Invalid request status"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/cloud_enroll \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "scratchcard": "5053349",
+                      "erc": ",_3A26F!",
+                      "pin": "belorado74",
+                      "puk": "belorado74"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/cloud_enroll',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '5053349',
+                        erc: ',_3A26F!',
+                        pin: 'belorado74',
+                        puk: 'belorado74'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/cloud_enroll"
+
+                  payload = {
+                    "scratchcard": "5053349",
+                    "erc": ",_3A26F!",
+                    "pin": "belorado74",
+                    "puk": "belorado74"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/cloud_enroll',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '5053349',
+                        erc: ',_3A26F!',
+                        pin: 'belorado74',
+                        puk: 'belorado74'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          scratchcard: '5053349',
+                          erc: ',_3A26F!',
+                          pin: 'belorado74',
+                          puk: 'belorado74'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/cloud_enroll", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}/p12_enroll:
     post: 
@@ -937,7 +1430,97 @@ paths:
                     "id": "52e66b8c518f2c3b",
                     "error": "Invalid parameters"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/p12_enroll \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "scratchcard": "5053349",
+                      "enrollment_code": ",_3A26F!"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/p12_enroll',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '5053349',
+                        enrollment_code: ',_3A26F!'
+                      })
+                    }
+                  );
 
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/p12_enroll"
+
+                  payload = {
+                    "scratchcard": "5053349",
+                    "enrollment_code": ",_3A26F!"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/p12_enroll',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '5053349',
+                        enrollment_code: ',_3A26F!'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          scratchcard: '5053349',
+                          enrollment_code: ',_3A26F!'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/p12_enroll", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}:
     get: 
@@ -1152,6 +1735,60 @@ paths:
                     "id": "3172438498af74e8",
                     "error": "No Request matches the given query."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/requests/25139
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139"
+
+                  response = requests.get(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
     put: 
       summary: UPDATE REQUEST
@@ -1346,6 +1983,97 @@ paths:
                     "id": "a400c26a689ae9b4",
                     "error": "You do not have permission to perform this action."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139 \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "surname_2": "New_Surname2",
+                      "email": "New_mail@domain"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        surname_2: 'New_Surname2',
+                        email: 'New_mail@domain'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139"
+
+                  payload = {
+                      "surname_2": "New_Surname2",
+                      "email": "New_mail@domain"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        surname_2: 'New_Surname2',
+                        email: 'New_mail@domain'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          surname_2: 'New_Surname2',
+                          email: 'New_mail@domain'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }       
 #############
   /api/v1/requests/{id}/cancel:
     delete: 
@@ -1417,6 +2145,60 @@ paths:
                     "id": "478492eec17596d3",
                     "error": "Invalid request status"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X DELETE \
+                    https://api.uanataca.com/api/v1/requests/25139/cancel
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/cancel',
+                    {method: 'DELETE'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/cancel"
+
+                  response = requests.delete(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/cancel',
+                    {method: 'DELETE'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.DeleteAsync("https://api.uanataca.com/api/v1/requests/25139/cancel");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}/generate_document:
     post: 
@@ -1484,6 +2266,97 @@ paths:
                     "id": "478492eec17596d3",
                     "error": "Invalid request status"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/generate_document \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "doctype": "contract",
+                      "lang": "en"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_document',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        doctype: 'contract',
+                        lang: 'en'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_document"
+
+                  payload = {
+                    "doctype": "contract",
+                    "lang": "en"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_document',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        doctype: 'contract',
+                        lang: 'en'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          doctype: 'contract',
+                          lang: 'en'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generate_document", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}/validate:
     get: 
@@ -1559,6 +2432,60 @@ paths:
                     "id": "e443f8e716ee4cfa",
                     "error": "Invalid request status"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/requests/25139/validate
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/validate',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/validate"
+
+                  response = requests.get(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/validate',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/validate");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}/preauthlink:
     get: 
@@ -1621,6 +2548,60 @@ paths:
                       "code": "400",
                       "id": "de450daacf24014e",
                       "error": "No Request matches the given query."
+                  }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/requests/25139/preauthlink
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/preauthlink',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/preauthlink"
+
+                  response = requests.get(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/preauthlink',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/preauthlink");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
                   }
 #############
   /api/v1/requests/{id}/pl_upload_document:
@@ -1916,6 +2897,60 @@ paths:
                       "code": "400",
                       "id": "c6972c3efdc6db8e",
                       "error": "No Request matches the given query."
+                  }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/requests/25139/pl_get_documents
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_get_documents',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_get_documents"
+
+                  response = requests.get(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_get_documents',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/pl_get_documents");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
                   } 
 #############
   /api/v1/requests/{id}/pl_approve:
@@ -2149,6 +3184,112 @@ paths:
                     "id": "2a871f452832f624",
                     "error": "Rao matching query does not exist."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/pl_approve \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "username": "RAO_Name",
+                      "password": "Rw36:#Y6",
+                      "pin": "tejedora32",
+                      "rao_id": "898",
+                      "lang": "ES"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_approve',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        username: 'RAO_Name',
+                        password: 'Rw36:#Y6',
+                        pin: 'tejedora32',
+                        rao_id: '898',
+                        lang: 'ES'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_approve"
+
+                  payload = {
+                    "username": "RAO_Name",
+                    "password": "Rw36:#Y6",
+                    "pin": "tejedora32",
+                    "rao_id": "898",
+                    "lang": "ES"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_approve',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        username: 'RAO_Name',
+                        password: 'Rw36:#Y6',
+                        pin: 'tejedora32',
+                        rao_id: '898',
+                        lang: 'ES'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          username: 'RAO_Name',
+                          password: 'Rw36:#Y6',
+                          pin: 'tejedora32',
+                          rao_id: '898',
+                          lang: 'ES'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/:id/pl_approve", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}/pl_cloud_enroll:
     post: 
@@ -2283,6 +3424,97 @@ paths:
                     "id": "3abd32aa9b9614ca",
                     "error": "Invalid request status"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "secret": "014566",
+                      "pin": "belorado74"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        secret: '014566',
+                        pin: 'belorado74'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll"
+
+                  payload = {
+                    "secret": "014566",
+                    "pin": "belorado74"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        secret: '014566',
+                        pin: 'belorado74'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          secret: '014566',
+                          pin: 'belorado74'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}/pl_p12_enroll:
     post: 
@@ -2446,6 +3678,97 @@ paths:
                     "id": "3abd32aa9b9614ca",
                     "error": "Invalid request status"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "secret": "014566",
+                      "p12password": "belorado74"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        secret: '014566',
+                        p12password: 'belorado74'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll"
+
+                  payload = {
+                    "secret": "014566",
+                    "p12password": "belorado74"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        secret: '014566',
+                        p12password: 'belorado74'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          secret: '014566',
+                          p12password: 'belorado74'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}/generate_otp:
     post: 
@@ -2538,6 +3861,60 @@ paths:
                     "id": "2a871f452832f624",
                     "error": "ScratchCard matching query does not exist."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/generate_otp
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp',
+                    {method: 'POST'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_otp"
+
+                  response = requests.post(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp',
+                    {method: 'POST'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generate_otp", null);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 ###### scratchcards ######
 ###############################################################################
 
@@ -2615,6 +3992,127 @@ paths:
                 {
                     "detail": "You do not have permission to perform this action."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/scratchcards \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "sn": "1200948",
+                      "registration_authority": 63,
+                      "secret": {
+                          "erc": "8207878566",
+                          "enrollment_code": "97Q6B,6W",
+                          "pin": "25936657",
+                          "puk": "44024058"
+                        }
+                      }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcards',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        sn: '1200948',
+                        registration_authority: 63,
+                        secret: {
+                          erc: '8207878566',
+                          enrollment_code: '97Q6B,6W',
+                          pin: '25936657',
+                          puk: '44024058'
+                        }
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/scratchcards"
+
+                  payload = {
+                    "sn": "1200948",
+                    "registration_authority": 63,
+                    "secret": {
+                      "erc": "8207878566",
+                      "enrollment_code": "97Q6B,6W",
+                      "pin": "25936657",
+                      "puk": "44024058"
+                    }
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcards',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        sn: '1200948',
+                        registration_authority: 63,
+                        secret: {
+                          erc: '8207878566',
+                          enrollment_code: '97Q6B,6W',
+                          pin: '25936657',
+                          puk: '44024058'
+                        }
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          sn: '1200948',
+                          registration_authority: 63,
+                          secret: {
+                              erc: '8207878566',
+                              enrollment_code: '97Q6B,6W',
+                              pin: '25936657',
+                              puk: '44024058'
+                          }
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
     get: 
       summary: LIST SCRATCHCARDS
@@ -2682,6 +4180,60 @@ paths:
               {
                   "detail": "JSON parse error - Expecting ',' delimiter: line 4 column 2 (char 53)"
               }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/scratchcards
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcards',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/scratchcards"
+
+                  response = requests.get(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcards',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/scratchcards");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/scratchcard/{id}:
     get: 
@@ -2749,6 +4301,60 @@ paths:
                     "id": "c6972c3efdc6db8e",
                     "error": "No ScratchCard matches the given query."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/scratchcard/1200948
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcard/1200948',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/scratchcard/1200948"
+
+                  response = requests.get(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcard/1200948',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/scratchcard/1200948");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
     put: 
       summary: UPDATE A SCRATCHCARD
@@ -2828,18 +4434,100 @@ paths:
                 {
                     "detail": "You do not have permission to perform this action."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X PUT \
+                    https://api.uanataca.com/api/v1/scratchcard/1200948 \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "sn": "1200949"
+                      }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcard/1200948',
+                    {
+                      method: 'PUT',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        sn: '1200949'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/scratchcard/1200948"
+
+                  payload = {
+                    "sn": "1200949"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.put(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcard/1200948',
+                    {
+                      method: 'PUT',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        sn: '1200949'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          sn: '1200949'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/scratchcard/1200948", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
-    post: 
+  /api/v1/scratchcard/isused:
+    post:
       summary: IS USED SCRATCHCARD
       tags:
         - SCRATCHCARDS
       description: Get the status of a known scratchcard.
       parameters:
-        - in: path
-          name: id
-          type: string
-          required: true  
-          description: The scratchcard unique id
         - in: "body"
           name: "body"
           schema:
@@ -2887,6 +4575,86 @@ paths:
                     "id": "168cfa712331f994",
                     "error": "ScratchCard matching query does not exist."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/scratchcards/isused \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "sn": "612900"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcards/isused',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({sn: '612900'})
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/scratchcard/isused"
+
+                  payload = {
+                    "sn": "612900"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcard/isused',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({sn: '612900'})
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{sn: '612900'}");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcard/isused", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/scratchcards/get_first_unused:
     post: 
@@ -2949,6 +4717,86 @@ paths:
                 {
                     "detail": "JSON parse error - Expecting property name enclosed in double quotes: line 3 column 1 (char 14)"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/scratchcards/get_first_unused \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "ra": 232
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcards/get_first_unused',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({ra: 232})
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/scratchcards/get_first_unused"
+
+                  payload = {
+                    "ra": 232
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcards/get_first_unused',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({ra: 232})
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{ra: 232}");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/get_first_unused", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/scratchcards/revoke:
     post: 
@@ -3065,6 +4913,102 @@ paths:
                     "id": "168cfa712331f994",
                     "error": "ScratchCard matching query does not exist."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/scratchcards/revoke \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "scratchcard": "491218",
+                      "erc": "1551329333",
+                      "reason": "UNSPECIFIED"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcards/revoke',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '491218',
+                        erc: '1551329333',
+                        reason: 'UNSPECIFIED'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/scratchcards/revoke"
+
+                  payload = {
+                    "scratchcard": "491218",
+                    "erc": "1551329333",
+                    "reason": "UNSPECIFIED"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcards/revoke',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '491218',
+                        erc: '1551329333',
+                        reason: 'UNSPECIFIED'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          scratchcard: '491218',
+                          erc: '1551329333',
+                          reason: 'UNSPECIFIED'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/revoke", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/scratchcards/whoami:
     post: 
@@ -3247,6 +5191,97 @@ paths:
                     "id": "d516ca618acc4e5b",
                     "error": "Invalid parameters"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/scratchcards/whoami \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "scratchcard": "491218",
+                      "erc": "e8GGAxe6"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcards/whoami',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '491218',
+                        erc: 'e8GGAxe6'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/scratchcards/whoami"
+
+                  payload = {
+                    "scratchcard": "491218",
+                    "erc": "e8GGAxe6"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcards/whoami',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '491218',
+                        erc: 'e8GGAxe6'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          scratchcard: '491218',
+                          erc: 'e8GGAxe6'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/whoami", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/scratchcards/move:
     post: 
@@ -3318,6 +5353,102 @@ paths:
                     "id": "7907af27ea00b32e",
                     "error": "JSON parse error - Expecting ',' delimiter: line 4 column 2 (char 34)"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/scratchcards/move \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "from_ra": 364,
+                      "to_ra": 123,
+                      "amount": 1000
+                     }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcards/move',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        from_ra: 364,
+                        to_ra: 123,
+                        amount: 1000
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/scratchcards/move"
+
+                  payload = {
+                    "from_ra": 364,
+                    "to_ra": 123,
+                    "amount": 1000
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/scratchcards/move',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        from_ra: 364,
+                        to_ra: 123,
+                        amount: 1000
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          from_ra: 364,
+                          to_ra: 123,
+                          amount: 1000
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/move", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/is_renewable:
     post: 
@@ -3562,6 +5693,97 @@ paths:
                     "id": "11ed087a5fed92b2",
                     "error": "Request not enabled for renewal by RAO"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/is_renewable \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "scratchcard": "3002606",
+                      "erc": "7T8xdGBN"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/is_renewable',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '3002606',
+                        erc: '7T8xdGBN'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/is_renewable"
+
+                  payload = {
+                    "scratchcard": "3002606",
+                    "erc": "7T8xdGBN"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/is_renewable',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '3002606',
+                        erc: '7T8xdGBN'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          scratchcard: '3002606',
+                          erc: '7T8xdGBN'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/is_renewable", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}/enable_renewal:
     post: 
@@ -3612,6 +5834,60 @@ paths:
                     "id": "f03579946f89a49e",
                     "error": "No Request matches the given query."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/37037/enable_renewal
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/37037/enable_renewal',
+                    {method: 'POST'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/37037/enable_renewal"
+
+                  response = requests.post(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/37037/enable_renewal',
+                    {method: 'POST'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/37037/enable_renewal", null);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}/disable_renewal:
     post: 
@@ -3662,6 +5938,60 @@ paths:
                     "id": "f03579946f89a49e",
                     "error": "No Request matches the given query."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/37037/disable_renewal
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/37037/disable_renewal',
+                    {method: 'POST'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/37037/disable_renewal"
+
+                  response = requests.post(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/37037/disable_renewal',
+                    {method: 'POST'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/37037/disable_renewal", null);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/cloud_renew:
     post: 
@@ -3735,6 +6065,102 @@ paths:
                     "id": "f78081787c5538a5",
                     "error": "Invalid paramiters"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/cloud_renew \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "username": "5053349",
+                      "password": "3m:Hh91u",
+                      "pin": "belorado74"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/cloud_renew',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        username: '5053349',
+                        password: '3m:Hh91u',
+                        pin: 'belorado74'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/cloud_renew"
+
+                  payload = {
+                    "username": "5053349",
+                    "password": "3m:Hh91u",
+                    "pin": "belorado74"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/cloud_renew',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        username: '5053349',
+                        password: '3m:Hh91u',
+                        pin: 'belorado74'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          username: '5053349',
+                          password: '3m:Hh91u',
+                          pin: 'belorado74'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/cloud_renew", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/soft_renew:
     post: 
@@ -3808,6 +6234,102 @@ paths:
                     "id": "f78081787c5538a5",
                     "error": "Invalid paramiters"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/soft_renew \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "username": "5053349",
+                      "password": "3m:Hh91u",
+                      "pin": "belorado74"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/soft_renew',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        username: '5053349',
+                        password: '3m:Hh91u',
+                        pin: 'belorado74'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/soft_renew"
+
+                  payload = {
+                    "username": "5053349",
+                    "password": "3m:Hh91u",
+                    "pin": "belorado74"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/soft_renew',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        username: '5053349',
+                        password: '3m:Hh91u',
+                        pin: 'belorado74'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          username: '5053349',
+                          password: '3m:Hh91u',
+                          pin: 'belorado74'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/soft_renew", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}/generate_otp_for_unlock:
     get: 
@@ -3862,10 +6384,64 @@ paths:
                     "id": "8a1289c3606148ce",
                     "error": "Request matching query does not exist."
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/requests/37037/generate_otp_for_unlock
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/37037/generate_otp_for_unlock',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/37037/generate_otp_for_unlock"
+
+                  response = requests.get(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/37037/generate_otp_for_unlock',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/37037/generate_otp_for_unlock");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id}/unlock_pin:
     get: 
-      summary: OTP FOR RESET/UNLOCK PIN
+      summary: RESET/UNLOCK PIN
       tags:
         - SCRATCHCARDS
       description: Performs the pin reset or unlock operation
@@ -5101,6 +7677,8 @@ definitions:
           type: "string"
       surname_1:
           type: "string"
+      surname_2:
+          type: "string"
       birth_date:
           type: "string"
       email:
@@ -5108,7 +7686,7 @@ definitions:
       mobile_phone_number:
           type: "string"
       paperless_mode:
-          type: "string"
+          type: "number"
 ###########
   UpdateReqObject:
     type: "object"
@@ -5254,20 +7832,17 @@ definitions:
           type: "object"
           properties:
               erc:
-                  type: "object"
-                  properties:
-                      erc:
-                          type: "string"
-                          description: "Security code used for recovery or revocation purpose"
-                      enrollment_code:
-                          type: "string"
-                          description: "Security code requested for different operations (like certificate enrollment)"
-                      pin:
-                          type: "string"
-                          description: "Default pin assigned to the scratchcard. This will be changed in the enrollment phase."
-                      puk:
-                          type: "string"
-                          description: "Default puk assigned to the scratchcard. This will be changed in the enrollment phase."
+                  type: "string"
+                  description: "Security code used for recovery or revocation purpose"
+              enrollment_code:
+                  type: "string"
+                  description: "Security code requested for different operations (like certificate enrollment)"
+              pin:
+                  type: "string"
+                  description: "Default pin assigned to the scratchcard. This will be changed in the enrollment phase."
+              puk:
+                  type: "string"
+                  description: "Default puk assigned to the scratchcard. This will be changed in the enrollment phase."
 ###########
   UpdScrObject:
     type: "object"
@@ -5387,7 +7962,23 @@ definitions:
           description: "The password associated to the request to be renewed"
       pin:
           type: "string"
-          description: "The pin associated to the request to be renewed"            
+          description: "The pin associated to the request to be renewed"
+###########
+  ResetPinObject:
+    type: "object"
+    properties:
+      scratchcard:
+          type: "string"
+          description: "The scratchcard number (username) associated to the request"
+      enrollment_code:
+          type: "string"
+          description: "The scratchcard enrollment code of the request"
+      newpin:
+          type: "string"
+          description: "The new pin"
+      otp:
+          type: "string"
+          description: "The OTP code sent to the user via SMS"            
 ###########
   CreateRAObject:
     type: "object"
