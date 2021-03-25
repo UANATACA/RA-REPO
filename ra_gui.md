@@ -2,7 +2,6 @@
 
 Globally, digital identity ecosystems are increasingly complex and consist of a wide range of identity models and actors with diverse responsibilities, interests, and priorities.
 
-<td><a href="#pepito">Pepito</a></td>
 
 Digital identities are created and used as part of a life-cycle that includes three fundamental stages:
 
@@ -22,23 +21,23 @@ The RA manages the entire life-cycle of digital identities, from the certificate
 
 >Registration Authority Officer (RAO)
 
-The **RAO** follows strict guidelines and policies defined to ensure the trust of the CA. RAO is responsible for managing the requests for digital certificates and verifying the content of the requests as well as vetting people requesting them.
+The RAO follows strict guidelines and policies defined to ensure the trust of the CA. RAO is responsible for managing the requests for digital certificates and verifying the content of the requests as well as vetting people requesting them.
 
-**API User**
+>API User
 
 The Account having access to the APIs provided by the system. It is generally used for a server to server interaction.
 
 >Certificate Request (Request)
 
-It is a request to issue a new certificate. A request can be associated with only one **RA** and has a status attribute to monitor the progress of the application:
+It is a request to issue a new certificate. A request can be associated with only one RA and has a status attribute to monitor the progress of the application:
 
 1. Created
 2. Enrolled Ready
 3. Issued
 
-**Created:** The request has been created and associated to an **RA**, but the content of the request has not been validated yet. In this state, data can also be inconsistent, the system will not throw an error. The content of the request can be edited at any moment to make it valid.
+**Created:** The request has been created and associated to an RA, but the content of the request has not been validated yet. In this state, data can also be inconsistent, the system will not throw an error. The content of the request can be edited at any moment to make it valid.
 
-Enrolled Ready: The certificates are ready to be issued. The request arrives at this stage, if it has been approved and signed by a **RAO**, who is part of the **RA** in charge of the request.
+**Enrolled Ready**: The certificates are ready to be issued. The request arrives at this stage, if it has been approved and signed by a RAO, who is part of the RA in charge of the request.
 
 **Issued:** Certificates issued. The request is ready to be enrolled from the user's self-service page on the platform. The user must first set PIN and PUK codes of his or her choice and then enable the digital identity.
 
@@ -9153,11 +9152,7 @@ In all the cases, the document is returned encoded in **Base64**.
 
 
 
-## Standard Mode
-
-
-
-# Delete documents
+> Delete documents
 
 In order to delete a document, the Request must be in the status CREATED.
 
@@ -9177,7 +9172,7 @@ If the removal is successful the response by the server is:
     	"status": "Document deleted successfully"
 	}
 
-# Prepare for enrollment
+> Prepare for enrollment
 
 The enrollment for paperless Requests, needs a secret (OTP; One Time Password) that will be sent via SMS to the mobile phone number of Request (So when a new Request is created make sure it contains the correct number with the internation prefix number).
 
@@ -9199,7 +9194,7 @@ For both of the endpoints, if it is the first time that an OTP is generated for 
 
 Once received the secret, it can be used for the next phase: the Request Enrollment.
 
-# Enrollment
+> Enrollment
 
 Depending on the secure element choosen during the creation, or on the Request profile, there are different endpoints to enroll a Request:
 
@@ -9234,6 +9229,6 @@ with the only difference that the **pin** parameter must coincide with the one p
 If no error occures the server reply with a JSON containing a key "status" valued to "OK".
 
 
-# API Reference
 
-<HTML><div id="pepito" style="padding-top: 60px;">PEPITO</div>
+## Standard Mode
+
