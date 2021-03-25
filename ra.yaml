@@ -2982,29 +2982,29 @@ paths:
                       "id": "c6972c3efdc6db8e",
                       "error": "No Request matches the given query."
                   }
-        x-codeSamples:
-          - lang: 'curl'
-            source: |
-                    curl -i -X POST \
-                      https://api.uanataca.com/api/v1/requests/25139/pl_get_document \
-                      -H 'Content-Type: multipart/form-data' \
-                      -F type="48312"
-          - lang: 'Javascript'
-            source: |
-                    var formdata = new FormData();
-                    formdata.append("type", "48312");
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/pl_get_document \
+                    -H 'Content-Type: multipart/form-data' \
+                    -F type="48312"
+        - lang: 'Javascript'
+          source: |
+                  var formdata = new FormData();
+                  formdata.append("type", "48312");
 
-                    var requestOptions = {
-                      method: 'POST',
-                      headers: myHeaders,
-                      body: formdata,
-                      redirect: 'follow'
-                    };
+                  var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: formdata,
+                    redirect: 'follow'
+                  };
 
-                    fetch("https://api.uanataca.com/api/v1/requests/25139/pl_get_document", requestOptions)
-                      .then(response => response.text())
-                      .then(result => console.log(result))
-                      .catch(error => console.log('error', error));
+                  fetch("https://api.uanataca.com/api/v1/requests/25139/pl_get_document", requestOptions)
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
           - lang: 'Python'
             source: |
                     import requests
