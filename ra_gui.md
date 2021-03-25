@@ -304,7 +304,7 @@ Each profile has their set of fields and each field can be mandatory or not.
     <th>Profile</th><th>Description</th><th>Element</th>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFSoftAFCiudadano">PFSoftAFCiudadano</a></td><td>Natural person</td><td>Software</td>
+    <td><a href="#PFSoftAFCiudadano">PFSoftAFCiudadano</a></td><td>Natural person</td><td>Software</td>
   </tr>
   <tr>
     <td><a href="#section/Certificate-Profiles/PFqscdCiudadano">PFqscdCiudadano</a></td></td><td>Natural person</td><td>Smartcard/Token</td>
@@ -407,7 +407,7 @@ Each profile has their set of fields and each field can be mandatory or not.
 </html>
 
 
-## PFSoftAFCiudadano
+###<HTML><div id="PFSoftAFCiudadano" style="padding-top: 60px;">PFSoftAFCiudadano</div>
 
 Certificate of a natural person issued on a cryptographic container in P12 format and intended for authentication and eletronic signature.
 
