@@ -296,111 +296,111 @@ Uanataca provides different certificate profiles for different purpose.
 
 Each profile has their set of fields and each field can be mandatory or not.
 
-## Uanataca Europe
+## Europe (eIDAS)
 
 <html>
 <table>
   <tr>
-    <th>Profile</th>
+    <th>Profile</th><th>Description</th><th>Element</th>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFSoftAFCiudadano">PFSoftAFCiudadano</a></td>
+    <td><a href="#section/Certificate-Profiles/PFSoftAFCiudadano">PFSoftAFCiudadano</a></td><td>Natural person</td><td>Software</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFqscdCiudadano">PFqscdCiudadano</a></td>
+    <td><a href="#section/Certificate-Profiles/PFqscdCiudadano">PFqscdCiudadano</a></td></td><td>Natural person</td><td>Smartcard/Token</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFnubeAFCiudadano">PFnubeAFCiudadano</a></td>
+    <td><a href="#section/Certificate-Profiles/PFnubeAFCiudadano">PFnubeAFCiudadano</a></td></td><td>Natural person</td><td>Cloud</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFnubeQAFCiudadano">PFnubeQAFCiudadano</a></td>
+    <td><a href="#section/Certificate-Profiles/PFnubeQAFCiudadano">PFnubeQAFCiudadano</a></td><td>Natural person</td><td>Cloud-QSCD</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFSoftAFEmpresa">PFSoftAFEmpresa</a></td>
+    <td><a href="#section/Certificate-Profiles/PFSoftAFEmpresa">PFSoftAFEmpresa</a></td><td>Natural person belonging to an organization</td><td>Software</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFqscdEmpresa">PFqscdEmpresa</a></td>
+    <td><a href="#section/Certificate-Profiles/PFqscdEmpresa">PFqscdEmpresa</a></td><td>Natural person belonging to an organization</td><td>Smartcard/Token</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFnubeAFEmpresa">PFnubeAFEmpresa</a></td>
+    <td><a href="#section/Certificate-Profiles/PFnubeAFEmpresa">PFnubeAFEmpresa</a></td><td>Natural person belonging to an organization</td><td>Cloud</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFnubeQAFEmpresa">PFnubeQAFEmpresa</a></td>
+    <td><a href="#section/Certificate-Profiles/PFnubeQAFEmpresa">PFnubeQAFEmpresa</a></td><td>Natural person belonging to an organization</td><td>Cloud-QSCD</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFSoftAFColegiado">PFSoftAFColegiado</a></td>
+    <td><a href="#section/Certificate-Profiles/PFSoftAFColegiado">PFSoftAFColegiado</a></td><td>Natural person belonging to a professional association</td><td>Software</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFqscdColegiado">PFqscdColegiado</a></td>
+    <td><a href="#section/Certificate-Profiles/PFqscdColegiado">PFqscdColegiado</a></td><td>Natural person belonging to a professional association</td><td>Smartcard/Token</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFnubeAFColegiado">PFnubeAFColegiado</a></td>
+    <td><a href="#section/Certificate-Profiles/PFnubeAFColegiado">PFnubeAFColegiado</a></td><td>Natural person belonging to a professional association</td><td>Cloud</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFnubeQAFColegiado">PFnubeQAFColegiado</a></td>
+    <td><a href="#section/Certificate-Profiles/PFnubeQAFColegiado">PFnubeQAFColegiado</a></td><td>Natural person belonging to a professional association</td><td>Cloud-QSCD</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPsoft">REPsoft</a></td>
+    <td><a href="#section/Certificate-Profiles/REPsoft">REPsoft</a></td><td>Natural person representative</td><td>Software</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPqscd">REPqscd</a></td>
+    <td><a href="#section/Certificate-Profiles/REPqscd">REPqscd</a></td><td>Natural person representative (signature only)</td><td>Smartcard/Token</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPnubeQ">REPnubeQ</a></td>
+    <td><a href="#section/Certificate-Profiles/REPnubeQ">REPnubeQ</a></td><td>Natural person representative (signature only)</td><td>Cloud-QSCD</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPPJsoft">REPPJsoft</a></td>
+    <td><a href="#section/Certificate-Profiles/REPPJsoft">REPPJsoft</a></td><td>Natural person representative of legal person with the administration</td><td>Software</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPPJnube">REPPJnube</a></td>
+    <td><a href="#section/Certificate-Profiles/REPPJnube">REPPJnube</a></td><td>Natural person representative of legal person with the administration</td><td>Cloud</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPPJqscd">REPPJqscd</a></td>
+    <td><a href="#section/Certificate-Profiles/REPPJqscd">REPPJqscd</a></td><td>Natural person representative of legal person with the administration</td><td>Smartcard/Token</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPPJnubeQ">REPPJnubeQ</a></td>
+    <td><a href="#section/Certificate-Profiles/REPPJnubeQ">REPPJnubeQ</a></td><td>Natural person representative of legal person with the administration</td><td>Cloud-QSCD</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/EMPUBsoft">EMPUBsoft</a></td>
+    <td><a href="#section/Certificate-Profiles/EMPUBsoft">EMPUBsoft</a></td><td>Public employee - Medium level</td><td>Cloud/Software</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/EMPUBqscd">EMPUBqscd</a></td>
+    <td><a href="#section/Certificate-Profiles/EMPUBqscd">EMPUBqscd</a></td><td>Public employee signature - High level</td><td>Smartcard/Token</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/EMPUBnubeQ">EMPUBnubeQ</a></td>
+    <td><a href="#section/Certificate-Profiles/EMPUBnubeQ">EMPUBnubeQ</a></td><td>Public employee signature - High level</td><td>Cloud-QSCD</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPESPJsoft">REPESPJsoft</a></td>
+    <td><a href="#section/Certificate-Profiles/REPESPJsoft">REPESPJsoft</a></td><td>Natural person representative of entity without legal personality with the administrations</td><td>Software</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPESPJnube">REPESPJnube</a></td>
+    <td><a href="#section/Certificate-Profiles/REPESPJnube">REPESPJnube</a></td><td>Natural person representative of entity without legal personality with the administrations</td><td>Cloud</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPESPJqscd">REPESPJqscd</a></td>
+    <td><a href="#section/Certificate-Profiles/REPESPJqscd">REPESPJqscd</a></td><td>Natural person representative of entity without legal personality with the administrations</td><td>Smartcard/Token</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/REPESPJnubeQ">REPESPJnubeQ</a></td>
+    <td><a href="#section/Certificate-Profiles/REPESPJnubeQ">REPESPJnubeQ</a></td><td>Natural person representative of entity without legal personality with the administrations</td><td>Cloud-QSCD</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/SELLOPJnube">SELLOPJnube</a></td>
+    <td><a href="#section/Certificate-Profiles/SELLOPJnube">SELLOPJnube</a></td><td>Electronic seal</td><td>Cloud</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/SELLOPJsoft">SELLOPJsoft</a></td>
+    <td><a href="#section/Certificate-Profiles/SELLOPJsoft">SELLOPJsoft</a></td><td>Electronic seal</td><td>Software</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/SELLOPJnubeQ">SELLOPJnubeQ</a></td>
+    <td><a href="#section/Certificate-Profiles/SELLOPJnubeQ">SELLOPJnubeQ</a></td><td>Electronic seal</td><td>Cloud-QSCD</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/SELLOPJqscd">SELLOPJqscd</a></td>
+    <td><a href="#section/Certificate-Profiles/SELLOPJqscd">SELLOPJqscd</a></td><td>Electronic seal</td><td>Smartcard/Token</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/SELLOMedio">SELLOMedio</a></td>
+    <td><a href="#section/Certificate-Profiles/SELLOMedio">SELLOMedio</a></td><td>Electronic seal – Medium Level APE</td><td>Cloud/Software</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/SELLOAlto">SELLOAlto</a></td>
+    <td><a href="#section/Certificate-Profiles/SELLOAlto">SELLOAlto</a></td><td>Electronic seal – High Level APE</td><td>Smartcard/Token</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/SelloOrganoAltoNubeQ">SelloOrganoAltoNubeQ</a></td>
+    <td><a href="#section/Certificate-Profiles/SelloOrganoAltoNubeQ">SelloOrganoAltoNubeQ</a></td><td>Electronic seal – High Level APE</td><td>Cloud-QSCD</td>
   </tr>
 </table> 
 </br> 
@@ -8162,7 +8162,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 </table>
 
 
-## Uanataca Peru
+## Peru
 
 <html>
 <table>
@@ -8170,22 +8170,22 @@ TIN - Tax Identification Number according to the European Commission.</td>
     <th>Profile</th><th>Description</th><th>Element</th>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PEPNCiudadano">PEPNCiudadano</a></td><td></td><td></td>
+    <td><a href="#section/Certificate-Profiles/PEPNCiudadano">PEPNCiudadano</a></td><td>Natural person</td><td>Software/Smartcard/Token</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PEPNPerteneciente">PEPNPerteneciente</a></td><td></td><td></td>
+    <td><a href="#section/Certificate-Profiles/PEPNPerteneciente">PEPNPerteneciente</a></td><td>Natural person belonging to an organization</td><td>Software/Smartcard/Token</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PEPNRepresentante">PEPNRepresentante</a></td><td></td><td></td>
+    <td><a href="#section/Certificate-Profiles/PEPNRepresentante">PEPNRepresentante</a></td><td>Legal entity representative</td><td>Software/Smartcard/Token</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PEPNColegiado">PEPNColegiado</a></td><td></td><td></td>
+    <td><a href="#section/Certificate-Profiles/PEPNColegiado">PEPNColegiado</a></td><td>Natural person belonging to a professional association</td><td>Software/Smartcard/Token</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PEFacturacion">PEFacturacion</a></td><td></td><td></td>
+    <td><a href="#section/Certificate-Profiles/PEFacturacion">PEFacturacion</a></td><td>Legal entity for electronic invoicing</td><td>Software/Smartcard/Token</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PESElectronico">PESElectronico</a></td><td></td><td></td>
+    <td><a href="#section/Certificate-Profiles/PESElectronico">PESElectronico</a></td><td>Legal entity for unassisted signature</td><td>Cloud/Software/Smartcard/Token</td>
   </tr>
 </table> 
 </br> 
