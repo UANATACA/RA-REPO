@@ -1,4 +1,9 @@
-# Introduction
+
+# What it is
+
+
+
+# How it works
 
 Globally, digital identity ecosystems are increasingly complex and consist of a wide range of identity models and actors with diverse responsibilities, interests, and priorities.
 
@@ -408,7 +413,7 @@ Each profile has their set of fields and each field can be mandatory or not.
 
 <div id="PFSoftAFCiudadano" style="padding-top: 60px;"><h2>PFSoftAFCiudadano<h2></div>
 
-Certificate of a natural person issued on a cryptographic container in P12 format and intended for authentication and eletronic signature.
+Certificate of a natural person issued on a cryptographic container in P12 format and intended for authentication and electronic signature.
 
 <table>
 <th>Field</th>
@@ -572,7 +577,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="PFqscdCiudadano" style="padding-top: 60px;"><h2>PFqscdCiudadano<h2></div>
 
-Certificate of a natural person issued on a smartcard or a cryptographic token and intended for authentication and eletronic signature.
+Certificate of a natural person issued on a smartcard or a cryptographic token and intended for authentication and electronic signature.
 
 <table>
 <th>Field</th>
@@ -742,7 +747,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="PFnubeAFCiudadano" style="padding-top: 60px;"><h2>PFnubeAFCiudadano<h2></div>
 
-Certificate of a natural person issued in the centralized custody system of Uanataca certificates and intended for authentication and eletronic signature.
+Certificate of a natural person issued in the centralized custody system of Uanataca certificates and intended for authentication and electronic signature.
 
 <table>
 <th>Field</th>
@@ -905,7 +910,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="PFnubeQAFCiudadano" style="padding-top: 60px;"><h2>PFnubeQAFCiudadano<h2></div>
 
-Certificate of a natural person issued in the centralized custody system of Uanataca certificates and intended for authentication and qualified eletronic signature.
+Certificate of a natural person issued in the centralized custody system of Uanataca certificates and intended for authentication and qualified electronic signature.
 
 <table>
 <th>Field</th>
@@ -1068,7 +1073,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="PFSoftAFEmpresa" style="padding-top: 60px;"><h2>PFSoftAFEmpresa<h2></div>
 
-Certificate of a natural person belonging to an organization or company issued on cryptographic token in P12 format and intended for authentication and eletronic signature.
+Certificate of a natural person belonging to an organization or company issued on cryptographic token in P12 format and intended for authentication and electronic signature.
 
 <table>
 <th>Field</th>
@@ -1593,7 +1598,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="PFnubeAFEmpresa" style="padding-top: 60px;"><h2>PFnubeAFEmpresa<h2></div>
 
-Certificate of a natural person belonging to an organization or company issued in the centralized custody system of Uanataca certificates and intended for authentication and eletronic signature.
+Certificate of a natural person belonging to an organization or company issued in the centralized custody system of Uanataca certificates and intended for authentication and electronic signature.
 
 <table>
 <th>Field</th>
@@ -4181,7 +4186,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="REPPJsoft" style="padding-top: 60px;"><h2>REPPJsoft<h2></div>
 
-Certificate of the legal entity representative issued on a cryptographic container in P12 format and intended for authentication and eletronic signature.
+Certificate of the legal entity representative issued on a cryptographic container in P12 format and intended for authentication and electronic signature.
 
 <table>
 <th>Field</th>
@@ -4403,7 +4408,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="REPPJnube" style="padding-top: 60px;"><h2>REPPJnube<h2></div>
 
-Certificate of the legal entity representative issued in the centralized custody system of Uanataca certificates and intended for authentication and eletronic signature.
+Certificate of the legal entity representative issued in the centralized custody system of Uanataca certificates and intended for authentication and electronic signature.
 
 <table>
 <th>Field</th>
@@ -4626,7 +4631,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="REPPJqscd" style="padding-top: 60px;"><h2>REPPJqscd<h2></div>
 
-Certificate of the legal entity representative issued on a smartcard or on a cryptographic token and intended for authentication and eletronic signature.
+Certificate of the legal entity representative issued on a smartcard or on a cryptographic token and intended for authentication and electronic signature.
 
 <table>
 <th>Field</th>
@@ -4855,7 +4860,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="REPPJnubeQ" style="padding-top: 60px;"><h2>REPPJnubeQ<h2></div>
 
-Certificate of representative of legal entity, suitable to interact with Spanish Public Administrations, issued in the centralized custody system of Uanataca certificates and intended for authentication and qualified eletronic signature.
+Certificate of representative of legal entity, suitable to interact with Spanish Public Administrations, issued in the centralized custody system of Uanataca certificates and intended for authentication and qualified electronic signature.
 
 <table>
 <th>Field</th>
@@ -5078,7 +5083,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="EMPUBsoft" style="padding-top: 60px;"><h2>EMPUBsoft<h2></div>
 
-Certificate of public employee of a Spanish Public Administration, issued on a cryptographic container in P12 format and intended for authentication and eletronic signature.
+Certificate of public employee of a Spanish Public Administration, issued on a cryptographic container in P12 format and intended for authentication and electronic signature.
 
 <table>
 <th>Field</th>
@@ -5282,7 +5287,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="EMPUBqscd" style="padding-top: 60px;"><h2>EMPUBqscd<h2></div>
 
-Certificate of public employee of a Spanish Public Administration, issued on a smartcard or a cryptographic token and intended for eletronic signature.
+Certificate of public employee of a Spanish Public Administration, issued on a smartcard or a cryptographic token and intended for electronic signature.
 
 <table>
 <th>Field</th>
@@ -5493,7 +5498,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="EMPUBnubeQ" style="padding-top: 60px;"><h2>EMPUBnubeQ<h2></div>
 
-Certificate of public employee of a Spanish Public Administration, issued in the centralized custody system of Uanataca certificates and intended for the qualified eletronic signature.
+Certificate of public employee of a Spanish Public Administration, issued in the centralized custody system of Uanataca certificates and intended for the qualified electronic signature.
 
 <table>
 <th>Field</th>
@@ -5698,7 +5703,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="REPESPJsoft" style="padding-top: 60px;"><h2>REPESPJsoft<h2></div>
 
-Certificate of representative of entity without legal license issued on a cryptographic container in P12 format and intended for authentication and eletronic signature.
+Certificate of representative of entity without legal license issued on a cryptographic container in P12 format and intended for authentication and electronic signature.
 
 <table>
 <th>Field</th>
@@ -5920,7 +5925,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="REPESPJnube" style="padding-top: 60px;"><h2>REPESPJnube<h2></div>
 
-Certificate of representative of entity without legal license issued in the centralized custody system of Uanataca certificates and intended for authentication and eletronic signature.</p>
+Certificate of representative of entity without legal license issued in the centralized custody system of Uanataca certificates and intended for authentication and electronic signature.</p>
 
 <table>
 <th>Field</th>
@@ -6143,7 +6148,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="REPESPJqscd" style="padding-top: 60px;"><h2>REPESPJqscd<h2></div>
 
-Certificate of representative of entity without legal license issued on a smartcard or on a cryptographic token and intended for authentication and eletronic signature.
+Certificate of representative of entity without legal license issued on a smartcard or on a cryptographic token and intended for authentication and electronic signature.
 
 <table>
 <th>Field</th>
@@ -6372,7 +6377,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="REPESPJnubeQ" style="padding-top: 60px;"><h2>REPESPJnubeQ<h2></div>
 
-Certificate of representative of entity without legal license, suitable to relate with the Spanish Public Administrations, issued in the centralized custody system of Uanataca certificates and intended for authentication and qualified eletronic signature.
+Certificate of representative of entity without legal license, suitable to relate with the Spanish Public Administrations, issued in the centralized custody system of Uanataca certificates and intended for authentication and qualified electronic signature.
 
 <table>
 <th>Field</th>
@@ -6595,7 +6600,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="SELLOPJnube" style="padding-top: 60px;"><h2>SELLOPJnube<h2></div>
 
-Eletronic seal certificate issued in the centralized custody system of Uanataca certificates and intended for electronic signature, usually in unassisted processes.
+Electronic seal certificate issued in the centralized custody system of Uanataca certificates and intended for electronic signature, usually in unassisted processes.
 
 <table>
 <th>Field</th>
@@ -6812,7 +6817,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="SELLOPJsoft" style="padding-top: 60px;"><h2>SELLOPJsoft<h2></div>
 
-Eletronic seal certificate issued in a cryptographic container in P12 format and intended for electronic signature, usually in unassisted processes.
+Electronic seal certificate issued in a cryptographic container in P12 format and intended for electronic signature, usually in unassisted processes.
 
 <table>
 <th>Field</th>
@@ -7028,7 +7033,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="SELLOPJnubeQ" style="padding-top: 60px;"><h2>SELLOPJnubeQ<h2></div>
 
-Eletronic seal certificate issued in the centralized custody system of Uanataca certificates and intended for the qualified eletronic signature, usually in unassisted processes.
+Electronic seal certificate issued in the centralized custody system of Uanataca certificates and intended for the qualified electronic signature, usually in unassisted processes.
 
 <table>
 <th>Field</th>
@@ -7245,7 +7250,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="SELLOPJqscd" style="padding-top: 60px;"><h2>SELLOPJqscd<h2></div>
 
-Eletronic seal certificate, issued on a smartcard or a cryptographic token and intended for the eletronic signature.
+Electronic seal certificate, issued on a smartcard or a cryptographic token and intended for the electronic signature.
 
 <table>
 <th>Field</th>
@@ -8201,7 +8206,7 @@ Certificate of natural person, destined to authentication and digital signature.
 <th>Mandatory</th>
 <tr>
 <td>secure_element</td>
-<td>[0, 1, 2]</td>
+<td>[0, 1]</td>
 <td>
 Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
 </td>
@@ -8303,7 +8308,7 @@ Certificate of a natural person belonging to or linked to a company or organizat
 <th>Mandatory</th>
 <tr>
 <td>secure_element</td>
-<td>[0, 1, 2]</td>
+<td>[0, 1]</td>
 <td>
 Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
 </td>
@@ -8476,7 +8481,7 @@ Certificate of legal entity representative, intended for authentication and digi
 <th>Mandatory</th>
 <tr>
 <td>secure_element</td>
-<td>[0, 1, 2]</td>
+<td>[0, 1]</td>
 <td>
 Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
 </td>
@@ -8602,7 +8607,7 @@ Certificate of a natural person linked to a professional association, destined t
 <th>Mandatory</th>
 <tr>
 <td>secure_element</td>
-<td>[0, 1, 2]</td>
+<td>[0, 1]</td>
 <td>
 Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
 </td>
@@ -8787,7 +8792,7 @@ Certificate of legal entity, intended only for electronic invoicing processes.
 <th>Mandatory</th>
 <tr>
 <td>secure_element</td>
-<td>[0, 1, 2]</td>
+<td>[0, 1]</td>
 <td>
 Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
 </td>
@@ -9040,6 +9045,788 @@ PAS - Passport.
 </tr>
 </table>
 
+
+## Global
+
+<html>
+<table>
+  <tr>
+    <th>Profile</th><th>Description</th><th>Element</th>
+  </tr>
+  <tr>
+    <td><a href="#PFSoftNC">PFSoftNC</a></td><td>Natural person</td><td>Software</td>
+  </tr>
+  <tr>
+    <td><a href="#PFnubeNC">PFnubeNC</a></td></td><td>Natural person</td><td>Cloud/Smartcard/Token</td>
+  </tr>
+  <tr>
+    <td><a href="#SELLOsoftNC">SELLOsoftNC</a></td></td><td>Electronic seal</td><td>Software</td>
+  </tr>
+  <tr>
+    <td><a href="#SELLOnubeNC">SELLOnubeNC</a></td><td>Electronic seal</td><td>Cloud/Smartcard/Token</td>
+  </tr>
+</table> 
+</br> 
+</html>
+
+<div id="PFSoftNC" style="padding-top: 60px;"><h2>PFSoftNC<h2></div>
+
+Certificate of a natural person issued on a cryptographic container in P12 format and intended for authentication and electronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>0</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the software element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PFSoftNC</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_number</td>
+<td></td>
+<td>The cardholder document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</tr>
+</table>
+
+<div id="PFnubeNC" style="padding-top: 60px;"><h2>PFnubeNC<h2></div>
+
+Certificate of a natural person issued in the centralized custody system of Uanataca certificates or on a smartcard or a cryptographic token, and intended for authentication and electronic signature.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>[1, 2]</td>
+<td>
+    Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+    This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>PFnubeNC</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_description</td>
+<td></td>
+<td>The cardholder document description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_issuer</td>
+<td></td>
+<td>The cardholder document issuer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>id_document_number</td>
+<td></td>
+<td>The cardholder document number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_address</td>
+<td></td>
+<td>The cardholder address of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_city</td>
+<td></td>
+<td>The cardholder city of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_province</td>
+<td></td>
+<td>The cardholder province of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence</td>
+<td></td>
+<td>The cardholder country of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_postal_code</td>
+<td></td>
+<td>The cardholder postal code of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_state</td>
+<td></td>
+<td>The cardholder state of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_district</td>
+<td></td>
+<td>The cardholder district of residence</td>
+<td>No</td>
+</tr>
+<tr>
+<td>residence_canton</td>
+<td></td>
+<td>The cardholder canton code of residence</td>
+<td>No</td>
+</table>
+
+<div id="SELLOsoftNC" style="padding-top: 60px;"><h2>SELLOsoftNC<h2></div>
+
+Electronic seal certificate issued in a cryptographic container in P12 format and intended for electronic signature, usually in unassisted processes.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>0</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>SELLOsoftNC</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_email</td>
+<td></td>
+<td>The responsible email</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>process_application</td>
+<td></td>
+<td></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+</table>
+
+
+<div id="SELLOnubeNC" style="padding-top: 60px;"><h2>SELLOnubeNC<h2></div>
+
+Electronic seal certificate issued in the centralized custody system of Uanataca certificates and intended for electronic signature, usually in unassisted processes.
+
+<table>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+<th>Mandatory</th>
+<tr>
+<td>secure_element</td>
+<td>[1, 2]</td>
+<td>
+Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
+This profile only allows the cloud element.
+</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>SELLOnubeNC</td>
+<td>Represents the profile of the request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>validity_time</td>
+<td>[1,3,365,730,1095,1825]</td>
+<td>It's the certificate validity expressed in days</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>registration_authority</td>
+<td></td>
+<td>The Registration Authority id</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>scratchcard</td>
+<td></td>
+<td>The scratchcard serial number that will be associated to the Request</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_type</td>
+<td>[IDC,PAS,PNO,TIN]</td>
+<td>
+The cardholder Id Document Type.
+IDC - Identification based on national identity card number.
+PAS - Identification based on passport number.
+PNO - Identification based on (national) personal number (national civic registration number).
+TIN - Tax Identification Number according to the European Commission.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>id_document_country</td>
+<td>ISO 3166-1 alpha-2</td>
+<td>The cardholder id document country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serial_number</td>
+<td></td>
+<td>The cardholder serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td></td>
+<td>The cardholder given name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>surname_1</td>
+<td></td>
+<td>The cardholder first surname</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_country</td>
+<td></td>
+<td>The organization country</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_identifier</td>
+<td></td>
+<td>The organization identifier</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organization_name</td>
+<td></td>
+<td>The organization name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>organizational_unit_1</td>
+<td></td>
+<td>The cardholder first organizational unit</td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The cardholder email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td></td>
+<td>The cardholder mobile phone number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_name</td>
+<td></td>
+<td>The name of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_first_surname</td>
+<td></td>
+<td>The first surname of the organization rapresentative</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_second_surname</td>
+<td></td>
+<td>The second of the organization rapresentative</td>
+<td>No</td>
+</tr>
+<tr>
+<td>responsible_serial</td>
+<td></td>
+<td>The responsible serial number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>responsible_email</td>
+<td></td>
+<td>The responsible email</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_email</td>
+<td></td>
+<td>The organization email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>process_application</td>
+<td></td>
+<td>The application name that will use the certificate</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+<td>A description</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>representation</td>
+<td></td>
+<td>The cardholder legal representation document</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>empowerment</td>
+<td></td>
+<td>The cardholder legal representation level</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>circumstances</td>
+<td></td>
+<td>The cardholder legal conditions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The cardholder ristrict of representation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration</td>
+<td></td>
+<td>The cardholder representation registry data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_address</td>
+<td></td>
+<td>The organization address</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_city</td>
+<td></td>
+<td>The organization city</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_province</td>
+<td></td>
+<td>The organization province</td>
+<td>No</td>
+</tr>
+<tr>
+<td>organization_postal_code</td>
+<td></td>
+<td>The organization postal code</td>
+<td>No</td>
+</tr>
+</table>
 
 # Workflow
 
