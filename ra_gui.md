@@ -307,7 +307,7 @@ Each profile has their set of fields and each field can be mandatory or not.
     <td><a href="#PFSoftAFCiudadano">PFSoftAFCiudadano</a></td><td>Natural person</td><td>Software</td>
   </tr>
   <tr>
-    <td><a href="#section/Certificate-Profiles/PFqscdCiudadano">PFqscdCiudadano</a></td></td><td>Natural person</td><td>Smartcard/Token</td>
+    <td><a href="#PFqscdCiudadano">PFqscdCiudadano</a></td></td><td>Natural person</td><td>Smartcard/Token</td>
   </tr>
   <tr>
     <td><a href="#section/Certificate-Profiles/PFnubeAFCiudadano">PFnubeAFCiudadano</a></td></td><td>Natural person</td><td>Cloud</td>
@@ -407,7 +407,7 @@ Each profile has their set of fields and each field can be mandatory or not.
 </html>
 
 
-###<HTML><div id="PFSoftAFCiudadano" style="padding-top: 60px;">PFSoftAFCiudadano</div>
+<div id="PFSoftAFCiudadano" style="padding-top: 60px;"><h3>PFSoftAFCiudadano<h3></div>
 
 Certificate of a natural person issued on a cryptographic container in P12 format and intended for authentication and eletronic signature.
 
@@ -571,7 +571,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 </table>
 
 
-## PFqscdCiudadano
+<div id="PFqscdCiudadano" style="padding-top: 60px;"><h2>PFqscdCiudadano<h2></div>
 
 Certificate of a natural person issued on a smartcard or a cryptographic token and intended for authentication and eletronic signature.
 
