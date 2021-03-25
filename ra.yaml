@@ -9429,8 +9429,8 @@ definitions:
           description: "The registration authority master id"
       registration_authority:
           type: "array"
-            items:
-              type: string          
+          items:
+            type: string          
           description: "The list of the RAs where the RAO can operate	"
       certificate:
           type: "string"
