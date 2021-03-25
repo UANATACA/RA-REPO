@@ -2842,79 +2842,79 @@ paths:
                       "id": "7cb82a609ad8e270",
                       "error": "invalid literal for int() with base 10: ''"
                   } 
-        x-codeSamples:
-          - lang: 'curl'
-            source: |
-                    curl -i -X POST \
-                      https://api.uanataca.com/api/v1/requests/25139/pl_delete_document \
-                      -H 'Content-Type: multipart/form-data' \
-                      -F docpk="document_front"
-          - lang: 'Javascript'
-            source: |
-                    var formdata = new FormData();
-                    formdata.append("docpk", "document_front");
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/pl_delete_document \
+                    -H 'Content-Type: multipart/form-data' \
+                    -F docpk="document_front"
+        - lang: 'Javascript'
+          source: |
+                  var formdata = new FormData();
+                  formdata.append("docpk", "document_front");
 
-                    var requestOptions = {
-                      method: 'POST',
-                      headers: myHeaders,
-                      body: formdata,
-                      redirect: 'follow'
-                    };
+                  var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: formdata,
+                    redirect: 'follow'
+                  };
 
-                    fetch("https://api.uanataca.com/api/v1/requests/25139/pl_delete_document", requestOptions)
-                      .then(response => response.text())
-                      .then(result => console.log(result))
-                      .catch(error => console.log('error', error));
-          - lang: 'Python'
-            source: |
-                    import requests
+                  fetch("https://api.uanataca.com/api/v1/requests/25139/pl_delete_document", requestOptions)
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
+        - lang: 'Python'
+          source: |
+                  import requests
 
-                    url = "https://api.uanataca.com/api/v1/requests/25139/pl_delete_document"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_delete_document"
 
-                    payload={'docpk': 'document_front'}
+                  payload={'docpk': 'document_front'}
 
-                    headers = {
-                      'Content-Type': 'multipart/form-data'
+                  headers = {
+                    'Content-Type': 'multipart/form-data'
+                  }
+
+                  response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+                  print(response.text)
+        - lang: 'Node.js'
+          source: |
+                  const fs = require('fs');
+                  const FormData = require('form-data');
+                  const fetch = require('node-fetch');
+                  const formData = new FormData();
+
+                  formData.append('docpk', 'document_front');
+
+                  const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_delete_document';
+
+                  const options = {
+                    method: 'POST',
+                    headers: {
+                      Accept: 'text/plain',
+                      'Content-Type': 'multipart/form-data; boundary=---011000010111000001101001'
                     }
+                  };
 
-                    response = requests.request("POST", url, headers=headers, data=payload, files=files)
+                  options.body = formData;
 
-                    print(response.text)
-          - lang: 'Node.js'
-            source: |
-                    const fs = require('fs');
-                    const FormData = require('form-data');
-                    const fetch = require('node-fetch');
-                    const formData = new FormData();
+                  fetch(url, options)
+                    .then(res => res.json())
+                    .then(json => console.log(json))
+                    .catch(err => console.error('error:' + err));
+        - lang: 'C#'
+          source: |
+                  var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_delete_document");
+                  client.Timeout = -1;
+                  var request = new RestRequest(Method.POST);
+                  request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
+                  request.AddParameter("docpk", "document_front");
 
-                    formData.append('docpk', 'document_front');
-
-                    const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_delete_document';
-
-                    const options = {
-                      method: 'POST',
-                      headers: {
-                        Accept: 'text/plain',
-                        'Content-Type': 'multipart/form-data; boundary=---011000010111000001101001'
-                      }
-                    };
-
-                    options.body = formData;
-
-                    fetch(url, options)
-                      .then(res => res.json())
-                      .then(json => console.log(json))
-                      .catch(err => console.error('error:' + err));
-          - lang: 'C#'
-            source: |
-                    var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_delete_document");
-                    client.Timeout = -1;
-                    var request = new RestRequest(Method.POST);
-                    request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
-                    request.AddParameter("docpk", "document_front");
-
-                    IRestResponse response = client.Execute(request);
-                    Console.WriteLine(response.Content);  
+                  IRestResponse response = client.Execute(request);
+                  Console.WriteLine(response.Content);  
 #############
   /api/v1/requests/{id}/pl_get_document:
     get: 
@@ -2982,79 +2982,79 @@ paths:
                       "id": "c6972c3efdc6db8e",
                       "error": "No Request matches the given query."
                   }
-        x-codeSamples:
-          - lang: 'curl'
-            source: |
-                    curl -i -X POST \
-                      https://api.uanataca.com/api/v1/requests/25139/pl_get_document \
-                      -H 'Content-Type: multipart/form-data' \
-                      -F type="48312"
-          - lang: 'Javascript'
-            source: |
-                    var formdata = new FormData();
-                    formdata.append("type", "48312");
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/pl_get_document \
+                    -H 'Content-Type: multipart/form-data' \
+                    -F type="48312"
+        - lang: 'Javascript'
+          source: |
+                  var formdata = new FormData();
+                  formdata.append("type", "48312");
 
-                    var requestOptions = {
-                      method: 'POST',
-                      headers: myHeaders,
-                      body: formdata,
-                      redirect: 'follow'
-                    };
+                  var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: formdata,
+                    redirect: 'follow'
+                  };
 
-                    fetch("https://api.uanataca.com/api/v1/requests/25139/pl_get_document", requestOptions)
-                      .then(response => response.text())
-                      .then(result => console.log(result))
-                      .catch(error => console.log('error', error));
-          - lang: 'Python'
-            source: |
-                    import requests
+                  fetch("https://api.uanataca.com/api/v1/requests/25139/pl_get_document", requestOptions)
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
+        - lang: 'Python'
+          source: |
+                  import requests
 
-                    url = "https://api.uanataca.com/api/v1/requests/25139/pl_get_document"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_get_document"
 
-                    payload={'type': '48312'}
+                  payload={'type': '48312'}
 
-                    headers = {
-                      'Content-Type': 'multipart/form-data'
+                  headers = {
+                    'Content-Type': 'multipart/form-data'
+                  }
+
+                  response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+                  print(response.text)
+        - lang: 'Node.js'
+          source: |
+                  const fs = require('fs');
+                  const FormData = require('form-data');
+                  const fetch = require('node-fetch');
+                  const formData = new FormData();
+
+                  formData.append('type', '48312');
+
+                  const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_get_document';
+
+                  const options = {
+                    method: 'POST',
+                    headers: {
+                      Accept: 'text/plain',
+                      'Content-Type': 'multipart/form-data; boundary=---011000010111000001101001'
                     }
+                  };
 
-                    response = requests.request("POST", url, headers=headers, data=payload, files=files)
+                  options.body = formData;
 
-                    print(response.text)
-          - lang: 'Node.js'
-            source: |
-                    const fs = require('fs');
-                    const FormData = require('form-data');
-                    const fetch = require('node-fetch');
-                    const formData = new FormData();
+                  fetch(url, options)
+                    .then(res => res.json())
+                    .then(json => console.log(json))
+                    .catch(err => console.error('error:' + err));
+        - lang: 'C#'
+          source: |
+                  var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_get_document");
+                  client.Timeout = -1;
+                  var request = new RestRequest(Method.POST);
+                  request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
+                  request.AddParameter("type", "48312");
 
-                    formData.append('type', '48312');
-
-                    const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_get_document';
-
-                    const options = {
-                      method: 'POST',
-                      headers: {
-                        Accept: 'text/plain',
-                        'Content-Type': 'multipart/form-data; boundary=---011000010111000001101001'
-                      }
-                    };
-
-                    options.body = formData;
-
-                    fetch(url, options)
-                      .then(res => res.json())
-                      .then(json => console.log(json))
-                      .catch(err => console.error('error:' + err));
-          - lang: 'C#'
-            source: |
-                    var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_get_document");
-                    client.Timeout = -1;
-                    var request = new RestRequest(Method.POST);
-                    request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
-                    request.AddParameter("type", "48312");
-
-                    IRestResponse response = client.Execute(request);
-                    Console.WriteLine(response.Content);        
+                  IRestResponse response = client.Execute(request);
+                  Console.WriteLine(response.Content);        
 #############
   /api/v1/requests/{id}/pl_get_documents:
     get: 
@@ -9429,8 +9429,8 @@ definitions:
           description: "The registration authority master id"
       registration_authority:
           type: "array"
-            items:
-              type: string          
+          items:
+            type: string          
           description: "The list of the RAs where the RAO can operate	"
       certificate:
           type: "string"
