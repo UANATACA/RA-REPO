@@ -47,14 +47,14 @@ paths:
           examples:
             application/json:
                 {
-                    "pk": 225,
+                    "pk": 25139,
                     "given_name": "Name",
                     "surname_1": "Surname1",
                     "surname_2": "Surname2",
                     "sex": null,
                     "id_document_type": "TIN",
-                    "id_document_country": "ES",
-                    "serial_number": "TSTAPI74S23C129Y",
+                    "id_document_country": "IT",
+                    "serial_number": "A1111111E",
                     "country_name": "ES",
                     "citizenship": null,
                     "residence": null,
@@ -84,12 +84,12 @@ paths:
                     "description": null,
                     "certificate_set": [],
                     "profile": "PFnubeAFCiudadano",
-                    "scratchcard": "5051760",
+                    "scratchcard": "5053349",
                     "status": "CREATED",
                     "registering_user": {
                         "pk": 53,
                         "permission_profile": 13,
-                        "registration_authority": 68,
+                        "registration_authority": 116,
                         "request": 144
                     },
                     "approving_user": null,
@@ -99,7 +99,7 @@ paths:
                     "validity_time": "730",
                     "smartcard_sn": null,
                     "citizen_tax_number": null,
-                    "birth_date": "16/10/1965",
+                    "birth_date": "09/11/1989",
                     "birth_country": null,
                     "birth_city": null,
                     "birth_province": null,
@@ -110,7 +110,7 @@ paths:
                     "id_document_issuer": null,
                     "organization_rol": null,
                     "professional_id_number": null,
-                    "mobile_phone_number": "+34999999999",
+                    "mobile_phone_number": "+39555555555",
                     "fix_phone_number": null,
                     "residence_address": null,
                     "residence_city": null,
@@ -797,7 +797,7 @@ paths:
                         "erc": "3706008596"
                     },
                     "request": {
-                        "pk": 665,
+                        "pk": 25139,
                         "given_name": "Name",
                         "surname_1": "Surname1",
                         "surname_2": "Surname2",
@@ -837,16 +837,16 @@ paths:
                         "scratchcard": "5053616",
                         "status": "ENROLLREADY",
                         "registering_user": {
-                            "pk": 34,
+                            "pk": 343,
                             "permission_profile": 18,
                             "registration_authority": 39,
-                            "request": 605
+                            "request": 12440
                         },
                         "approving_user": {
-                            "pk": 34,
+                            "pk": 343,
                             "permission_profile": 18,
                             "registration_authority": 39,
-                            "request": 605
+                            "request": 12440
                         },
                         "producing_user": null,
                         "registration_authority": 39,
@@ -888,7 +888,7 @@ paths:
                         "special_conditions": null,
                         "responsible_registry_data": null,
                         "approving_rao": {
-                            "pk": 218,
+                            "pk": 1400,
                             "given_name": "RAO_Name",
                             "surname_1": "RAO_Surname1",
                             "surname_2": "RAO_Surname2",
@@ -1100,14 +1100,14 @@ paths:
             application/json:
                 {
                     "data": "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",
-                    "profile": "PFnubeAF",
+                    "profile": "PFnubeAFCiudadano",
                     "subject": "CN=Name Surname1 Surname2, 2.5.4.5=TINES-11111111B, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
                     "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
                     "valid_from": "2021-03-19T14:12:00",
                     "valid_to": "2022-03-19T14:12:00",
                     "serial_number": "78434ee4745418db",
                     "status": 0,
-                    "pk": 21677,
+                    "pk": 25139,
                     "revokation_reason": null,
                     "type": "FIRSTISSUE"
                 }
@@ -1296,85 +1296,87 @@ paths:
             description: The issued certificate in Base64 format
           examples:
             application/json:
-                [
-                    "-----BEGIN PKCS12-----
-                    MIIN/AIBAzCCDcIGCSqGSIb3DQEHAaCCDbMEgg2vMIINqzCCCCgGCSqGSIb3DQEH
-                    AaCCCBkEgggVMIIIETCCCA0GCyqGSIb3DQEMCgEDoIIH2TCCB9UGCiqGSIb3DQEJ
-                    FgGgggfFBIIHwTCCB70wggWloAMCAQICCAw/8u9JFlHzMA0GCSqGSIb3DQEBCwUA
-                    MIG9MQswCQYDVQQGEwJFUzFEMEIGA1UEBww7QmFyY2Vsb25hIChzZWUgY3VycmVu
-                    dCBhZGRyZXNzIGF0IHd3dy51YW5hdGFjYS5jb20vYWRkcmVzcykxFjAUBgNVBAoM
-                    DVVBTkFUQUNBIFMuQS4xFDASBgNVBAsMC0FDLVVBTkFUQUNBMSAwHgYDVQQDDBdV
-                    QU5BVEFDQSBDQTEgREVWRUwgMjAxNjEYMBYGA1UEYQwPVkFURVMtQTY2NzIxNDk5
-                    MB4XDTE4MTEyMjE1MjgwMFoXDTIwMTEyMTE1MjgwMFoweDELMAkGA1UEBhMCRVMx
-                    GTAXBgNVBAQMEEFQSSBTb2Z0d2FyZSBQMTIxDTALBgNVBCoMBFRFU1QxHzAdBgNV
-                    BAUTFlRJTklULVRTVEFQSTc0UzIzQzEyOVkxHjAcBgNVBAMMFVRFU1QgQVBJIFNv
-                    ZnR3YXJlIFAxMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMf63BEB
-                    eKd1+oBVf8o/ybGCcs4ZUIsLaiI+uo/brGM40Uo0uoD1Y5e1Ewt6GdnB3+OQnCzv
-                    6prb/pSwZ5GxpjkYPjAf+MEyKsJfPTOW0gBQwvzo3oaXq9g/BqYRJcT7heM7knbb
-                    thT5mJTxnGoWAkTuRjwEsiyCAfVYrCwLqE4uNBvXju4nrZ51jA4kQx3oyVpy7Y3O
-                    uuVdIfOmxbKhb/iyBUAzYusRfUv+XVvDqiVLP+9a+i3JUpi2qMQNx4q3B4Ply1Fz
-                    1FgBw4icYtHfMrKHIkoKmYzPpUM97x4GE+Hz8esX98My0NROa59x0uoPuU+d4P1e
-                    e2x+aTKeiadfjkUCAwEAAaOCAwMwggL/MIHXBggrBgEFBQcBAQSByjCBxzBVBggr
-                    BgEFBQcwAoZJaHR0cDovL3d3dy51YW5hdGFjYS5jb20vcHVibGljL2Rvd25sb2Fk
-                    L3RzcF9jZXJ0aWZpY2F0ZXMvc3Vib3JkaW5hdGUxLmNydDA2BggrBgEFBQcwAYYq
-                    aHR0cDovL29jc3AxLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL29jc3AvMDYGCCsG
-                    AQUFBzABhipodHRwOi8vb2NzcDIudWFuYXRhY2EuY29tL3B1YmxpYy9wa2kvb2Nz
-                    cC8wHQYDVR0OBBYEFGDhXkciQE/205bmPJuEnR+ap8YPMAwGA1UdEwEB/wQCMAAw
-                    HwYDVR0jBBgwFoAUysyKpc+kjCJa1vuX90+0Tv3V764wVQYIKwYBBQUHAQMESTBH
-                    MAgGBgQAjkYBATALBgYEAI5GAQMCAQ8wLgYGBACORgEFDCRodHRwczovL3d3dy51
-                    YW5hdGFjYS5jb20vcHVibGljL2Nwcy8wgaEGA1UdIASBmTCBljAJBgcEAIvsQAEA
-                    MIGIBgsrBgEEAYLxNgEBATB5MDAGCCsGAQUFBwIBFiRodHRwczovL3d3dy51YW5h
-                    dGFjYS5jb20vcHVibGljL2Nwcy8wRQYIKwYBBQUHAgIwOQw3Q2VydGlmaWNhZG8g
-                    Y3VhbGlmaWNhZG8gZGUgUGVyc29uYSBGw61zaWNhIGVuIHNvZnR3YXJlLjCBjwYD
-                    VR0fBIGHMIGEMECgPqA8hjpodHRwOi8vY3JsMS51YW5hdGFjYS5jb20vcHVibGlj
-                    L3BraS9jcmwvQ0Exc3Vib3JkaW5hZGEuY3JsMECgPqA8hjpodHRwOi8vY3JsMi51
-                    YW5hdGFjYS5jb20vcHVibGljL3BraS9jcmwvQ0Exc3Vib3JkaW5hZGEuY3JsMA4G
-                    A1UdDwEB/wQEAwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwGQYD
-                    VR0RBBIwEIEOYXNpQGJpdDRpZC5jb20wDQYJKoZIhvcNAQELBQADggIBAJj7bPyq
-                    F+QojTNESKKxw0WdYgFEFF72hA44SZ5oCZ/ZORYZepVJnaI6zjRQ7ezQwNtc87mr
-                    Hdn7Bl9kNkgp1bFtllMzwr2/eg1/UrEE8+oWIXvaTU29/t1QXdPaMi/7Jq01yM1e
-                    VKF0lndz9qBuxlr1RwfcpznOhn+J+C4B6BeK0yc+jELDPpceuG0WNB5FDUrdy5x2
-                    +lYJLfSkg8+3l1mnSHZPUr3c3h2qX17XhV4r6lCFofBekrXfRrKUFmf0V9fs3N+k
-                    ymZQ8NCrOiPoDXTEdrhMvKFUQ7YEniwHJ7alzQGbKMd0X1BmvTw0HugbU6f/oMRM
-                    eDeP17lFbOMXkSdnHp3ly/ppfUJdnias1+vGs6V7HXd1irK+UjSTL6d0Eu64rwQK
-                    e9JY9hlaB9cdjFn4qqo1vDjQXfzIVOa8Xdatv1KXUqv45R3PhdZ3T3UsxXqbfHob
-                    mvR//ycrGZPzHeyqXYfzx1fXXmfrjqjePyzWoCu4HAAZWk+arG5DYEb6kmawK/kC
-                    lbI3nyNXQuUaZr/SxOROdtUH5aXdbhEOQf9voMvsiyhSUp5wCDg/CaSKwB48NWPx
-                    gliB9uuJqGWyub7fMj5OxRZVYlA3QqP7V2PvODE4jITJdOhemnrrdK/mlmIPwSJq
-                    8asL5rfwxyUs58FT2sDd6Qecw6Y5gK+ULgRjMSEwHwYJKoZIhvcNAQkVMRIEEAYu
-                    Zb4L5MZJKP6FifnzQFEwggV7BgkqhkiG9w0BBwagggVsMIIFaAIBADCCBWEGCSqG
-                    SIb3DQEHATAcBgoqhkiG9w0BDAEDMA4ECNOnUDg66SeRAgIIAKCCBTQEggUwTP5i
-                    TS5Uc2nSBvtWP+lNr5Y3PSjvn5or5KQglE0apYhscPQDSCdsTRua5uH6vYT5WcFd
-                    IvboQxlTZRXB0wOfLsAPWRiVB/Ex9IQkf01jQT4Zm4/0fHcAwDW0VlWqe6hTmjIL
-                    ssZKotCGOdJenqCiyqZSzUcfdAGTvKHOKo4fPoHFFiSDQwu0dcX7EKjM25kjXavG
-                    GztAYuxhA1WEYERJgz6R2Ex5QqSpvmLaFFQxrXDl7PZCS8eAdJvmWIZ+1yVudMP+
-                    KGTVED2LOeLoCJkFEESYDk2gHLv3ZVUvqjB/EshBj96UtpAEL+RvMXO8iuzWjIYD
-                    JVokM705iS53W+8Fe/Eq6K7yH3UgE1lCjrrrxuq5aNQ86mgCjXXFi7b8z6g/0Cbs
-                    f+e8kka7lRO+Tda/Iy3gKjnlvySsRGCw/1kOXuA+uFUjXWsA8zVcaKzeot43RoiB
-                    utelt+I8ypktPx2UrULYhPOLt7SJJJ2nngStVWFCmxMVEDrCbvygorePV9XkgTTQ
-                    z8TOpjJvEx/ZR7a5v+11l0KVzykLdU0t47yI3ruioMO64Eu2r+j7toJQv7Uld0Ok
-                    9vzxgjQk+Me+Fv+Bc9BgvXFGGdYcnAL8X60Au5kowHTeX0QdZp39hpNPHIQZHfxG
-                    A4ViZCq5hzCzAPP1kHzJLxus4zlKYON1zNZoTwg2YvySIGlZ6deMdREK7xjpCU6C
-                    aDajhmjEKfdOf1kNyfmjZxjgnY2uRhaEr3zsfaSP+yitrpIfHDSNP0vjanFj7MZX
-                    l0q6F3LPiYV62KBs95i0cBi3UVMfP67QRqeCv6pMCJxAwB0uUqzOQWXXfGVlInQL
-                    19Bi6Cd+aQT9DVZuR3v3mRPikx00v96RDQfaqvqxrXHs2AV/xs85kFUy0uL2VbjQ
-                    774OFLn9WbILgb2e7Mgd0AvIt9MBzbTjn04IWoLe85mi99K6xJFa+VAFvdxrdIcl
-                    DHN2UY+RdDMNddC/1oPdSM+XtnQxTG+VeI9g3du6RWjsLjaZzKuiDeQo5HjB0kSk
-                    6Di6PT0aXrIILlCf0abYJm6+8i7O7BGi25AbNE85j/kfoX+8vUo7Dp/mKb7gLhMY
-                    9HzJW/qrekzHagIqm/r1VreOQq3znciPD6Bfa+xQ4llbrCuY+OCNWWuVm+WuA6DU
-                    NuYy9zNJE0FYe1LQ4PUOiRX/EQHAPms3K2QeyzJ4rI9dXq1wTL1O5JJDAA2ZoBO3
-                    f9apY2e0JJE4RQRPcXBhC0D8ZysS2lMVCTL27DcwEFb8hMJvYTCRLhGu7xvp0Ct6
-                    w7EUyAQ8V6ZYG4IO9BE7u8M5niOcn0Wj2Dfo/VdSwxSAqCHRK5wYS/X/pJgux25M
-                    pu0e0mEChzoIxmBdN8WYLPq0SPrNTst/ljhy2RxS279BrPMgbZU/9hP072oqzzxF
-                    W1tgd/u8fdYKorfsxrtsxgrKJmmW8y7EcrmRj2b58fdEfQ5im76eDBRIaApyqAuT
-                    ta34S0A8aOwoNse4hKRYE6o6M6lhLwA1LTVTVR32hJSdiQoI6FgWFNq/eHfNfHJT
-                    CUIQvzSir0F7W3V27rK+qL/A54xTnXEhaXVXVuVrv2HV2ssD71++KvA0QMXvKdHm
-                    ELLAODHV207YgyCB1bJ3dy09Zc12QJbIoRK43bp0qMxhSPvtLxAiWWIoLuadW049
-                    8djnm0LcQL2lmVNV0niX6FAy2Ke4AcdMZyfFW7FOlAsx0YFh0AvcnG6or7yDeTVF
-                    VRjILhp+w87nLH1piXPyvcgmpg8PhUBsMfIsafswMTAhMAkGBSsOAwIaBQAEFMTL
-                    2+V/OTEk5UPr3hk4UchA399mBAiMGAxbKnlamQICCAA=
-                    -----END PKCS12-----"
-                ]
+                {
+                  [
+                      "-----BEGIN PKCS12-----
+                      MIIN/AIBAzCCDcIGCSqGSIb3DQEHAaCCDbMEgg2vMIINqzCCCCgGCSqGSIb3DQEH
+                      AaCCCBkEgggVMIIIETCCCA0GCyqGSIb3DQEMCgEDoIIH2TCCB9UGCiqGSIb3DQEJ
+                      FgGgggfFBIIHwTCCB70wggWloAMCAQICCAw/8u9JFlHzMA0GCSqGSIb3DQEBCwUA
+                      MIG9MQswCQYDVQQGEwJFUzFEMEIGA1UEBww7QmFyY2Vsb25hIChzZWUgY3VycmVu
+                      dCBhZGRyZXNzIGF0IHd3dy51YW5hdGFjYS5jb20vYWRkcmVzcykxFjAUBgNVBAoM
+                      DVVBTkFUQUNBIFMuQS4xFDASBgNVBAsMC0FDLVVBTkFUQUNBMSAwHgYDVQQDDBdV
+                      QU5BVEFDQSBDQTEgREVWRUwgMjAxNjEYMBYGA1UEYQwPVkFURVMtQTY2NzIxNDk5
+                      MB4XDTE4MTEyMjE1MjgwMFoXDTIwMTEyMTE1MjgwMFoweDELMAkGA1UEBhMCRVMx
+                      GTAXBgNVBAQMEEFQSSBTb2Z0d2FyZSBQMTIxDTALBgNVBCoMBFRFU1QxHzAdBgNV
+                      BAUTFlRJTklULVRTVEFQSTc0UzIzQzEyOVkxHjAcBgNVBAMMFVRFU1QgQVBJIFNv
+                      ZnR3YXJlIFAxMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMf63BEB
+                      eKd1+oBVf8o/ybGCcs4ZUIsLaiI+uo/brGM40Uo0uoD1Y5e1Ewt6GdnB3+OQnCzv
+                      6prb/pSwZ5GxpjkYPjAf+MEyKsJfPTOW0gBQwvzo3oaXq9g/BqYRJcT7heM7knbb
+                      thT5mJTxnGoWAkTuRjwEsiyCAfVYrCwLqE4uNBvXju4nrZ51jA4kQx3oyVpy7Y3O
+                      uuVdIfOmxbKhb/iyBUAzYusRfUv+XVvDqiVLP+9a+i3JUpi2qMQNx4q3B4Ply1Fz
+                      1FgBw4icYtHfMrKHIkoKmYzPpUM97x4GE+Hz8esX98My0NROa59x0uoPuU+d4P1e
+                      e2x+aTKeiadfjkUCAwEAAaOCAwMwggL/MIHXBggrBgEFBQcBAQSByjCBxzBVBggr
+                      BgEFBQcwAoZJaHR0cDovL3d3dy51YW5hdGFjYS5jb20vcHVibGljL2Rvd25sb2Fk
+                      L3RzcF9jZXJ0aWZpY2F0ZXMvc3Vib3JkaW5hdGUxLmNydDA2BggrBgEFBQcwAYYq
+                      aHR0cDovL29jc3AxLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL29jc3AvMDYGCCsG
+                      AQUFBzABhipodHRwOi8vb2NzcDIudWFuYXRhY2EuY29tL3B1YmxpYy9wa2kvb2Nz
+                      cC8wHQYDVR0OBBYEFGDhXkciQE/205bmPJuEnR+ap8YPMAwGA1UdEwEB/wQCMAAw
+                      HwYDVR0jBBgwFoAUysyKpc+kjCJa1vuX90+0Tv3V764wVQYIKwYBBQUHAQMESTBH
+                      MAgGBgQAjkYBATALBgYEAI5GAQMCAQ8wLgYGBACORgEFDCRodHRwczovL3d3dy51
+                      YW5hdGFjYS5jb20vcHVibGljL2Nwcy8wgaEGA1UdIASBmTCBljAJBgcEAIvsQAEA
+                      MIGIBgsrBgEEAYLxNgEBATB5MDAGCCsGAQUFBwIBFiRodHRwczovL3d3dy51YW5h
+                      dGFjYS5jb20vcHVibGljL2Nwcy8wRQYIKwYBBQUHAgIwOQw3Q2VydGlmaWNhZG8g
+                      Y3VhbGlmaWNhZG8gZGUgUGVyc29uYSBGw61zaWNhIGVuIHNvZnR3YXJlLjCBjwYD
+                      VR0fBIGHMIGEMECgPqA8hjpodHRwOi8vY3JsMS51YW5hdGFjYS5jb20vcHVibGlj
+                      L3BraS9jcmwvQ0Exc3Vib3JkaW5hZGEuY3JsMECgPqA8hjpodHRwOi8vY3JsMi51
+                      YW5hdGFjYS5jb20vcHVibGljL3BraS9jcmwvQ0Exc3Vib3JkaW5hZGEuY3JsMA4G
+                      A1UdDwEB/wQEAwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwGQYD
+                      VR0RBBIwEIEOYXNpQGJpdDRpZC5jb20wDQYJKoZIhvcNAQELBQADggIBAJj7bPyq
+                      F+QojTNESKKxw0WdYgFEFF72hA44SZ5oCZ/ZORYZepVJnaI6zjRQ7ezQwNtc87mr
+                      Hdn7Bl9kNkgp1bFtllMzwr2/eg1/UrEE8+oWIXvaTU29/t1QXdPaMi/7Jq01yM1e
+                      VKF0lndz9qBuxlr1RwfcpznOhn+J+C4B6BeK0yc+jELDPpceuG0WNB5FDUrdy5x2
+                      +lYJLfSkg8+3l1mnSHZPUr3c3h2qX17XhV4r6lCFofBekrXfRrKUFmf0V9fs3N+k
+                      ymZQ8NCrOiPoDXTEdrhMvKFUQ7YEniwHJ7alzQGbKMd0X1BmvTw0HugbU6f/oMRM
+                      eDeP17lFbOMXkSdnHp3ly/ppfUJdnias1+vGs6V7HXd1irK+UjSTL6d0Eu64rwQK
+                      e9JY9hlaB9cdjFn4qqo1vDjQXfzIVOa8Xdatv1KXUqv45R3PhdZ3T3UsxXqbfHob
+                      mvR//ycrGZPzHeyqXYfzx1fXXmfrjqjePyzWoCu4HAAZWk+arG5DYEb6kmawK/kC
+                      lbI3nyNXQuUaZr/SxOROdtUH5aXdbhEOQf9voMvsiyhSUp5wCDg/CaSKwB48NWPx
+                      gliB9uuJqGWyub7fMj5OxRZVYlA3QqP7V2PvODE4jITJdOhemnrrdK/mlmIPwSJq
+                      8asL5rfwxyUs58FT2sDd6Qecw6Y5gK+ULgRjMSEwHwYJKoZIhvcNAQkVMRIEEAYu
+                      Zb4L5MZJKP6FifnzQFEwggV7BgkqhkiG9w0BBwagggVsMIIFaAIBADCCBWEGCSqG
+                      SIb3DQEHATAcBgoqhkiG9w0BDAEDMA4ECNOnUDg66SeRAgIIAKCCBTQEggUwTP5i
+                      TS5Uc2nSBvtWP+lNr5Y3PSjvn5or5KQglE0apYhscPQDSCdsTRua5uH6vYT5WcFd
+                      IvboQxlTZRXB0wOfLsAPWRiVB/Ex9IQkf01jQT4Zm4/0fHcAwDW0VlWqe6hTmjIL
+                      ssZKotCGOdJenqCiyqZSzUcfdAGTvKHOKo4fPoHFFiSDQwu0dcX7EKjM25kjXavG
+                      GztAYuxhA1WEYERJgz6R2Ex5QqSpvmLaFFQxrXDl7PZCS8eAdJvmWIZ+1yVudMP+
+                      KGTVED2LOeLoCJkFEESYDk2gHLv3ZVUvqjB/EshBj96UtpAEL+RvMXO8iuzWjIYD
+                      JVokM705iS53W+8Fe/Eq6K7yH3UgE1lCjrrrxuq5aNQ86mgCjXXFi7b8z6g/0Cbs
+                      f+e8kka7lRO+Tda/Iy3gKjnlvySsRGCw/1kOXuA+uFUjXWsA8zVcaKzeot43RoiB
+                      utelt+I8ypktPx2UrULYhPOLt7SJJJ2nngStVWFCmxMVEDrCbvygorePV9XkgTTQ
+                      z8TOpjJvEx/ZR7a5v+11l0KVzykLdU0t47yI3ruioMO64Eu2r+j7toJQv7Uld0Ok
+                      9vzxgjQk+Me+Fv+Bc9BgvXFGGdYcnAL8X60Au5kowHTeX0QdZp39hpNPHIQZHfxG
+                      A4ViZCq5hzCzAPP1kHzJLxus4zlKYON1zNZoTwg2YvySIGlZ6deMdREK7xjpCU6C
+                      aDajhmjEKfdOf1kNyfmjZxjgnY2uRhaEr3zsfaSP+yitrpIfHDSNP0vjanFj7MZX
+                      l0q6F3LPiYV62KBs95i0cBi3UVMfP67QRqeCv6pMCJxAwB0uUqzOQWXXfGVlInQL
+                      19Bi6Cd+aQT9DVZuR3v3mRPikx00v96RDQfaqvqxrXHs2AV/xs85kFUy0uL2VbjQ
+                      774OFLn9WbILgb2e7Mgd0AvIt9MBzbTjn04IWoLe85mi99K6xJFa+VAFvdxrdIcl
+                      DHN2UY+RdDMNddC/1oPdSM+XtnQxTG+VeI9g3du6RWjsLjaZzKuiDeQo5HjB0kSk
+                      6Di6PT0aXrIILlCf0abYJm6+8i7O7BGi25AbNE85j/kfoX+8vUo7Dp/mKb7gLhMY
+                      9HzJW/qrekzHagIqm/r1VreOQq3znciPD6Bfa+xQ4llbrCuY+OCNWWuVm+WuA6DU
+                      NuYy9zNJE0FYe1LQ4PUOiRX/EQHAPms3K2QeyzJ4rI9dXq1wTL1O5JJDAA2ZoBO3
+                      f9apY2e0JJE4RQRPcXBhC0D8ZysS2lMVCTL27DcwEFb8hMJvYTCRLhGu7xvp0Ct6
+                      w7EUyAQ8V6ZYG4IO9BE7u8M5niOcn0Wj2Dfo/VdSwxSAqCHRK5wYS/X/pJgux25M
+                      pu0e0mEChzoIxmBdN8WYLPq0SPrNTst/ljhy2RxS279BrPMgbZU/9hP072oqzzxF
+                      W1tgd/u8fdYKorfsxrtsxgrKJmmW8y7EcrmRj2b58fdEfQ5im76eDBRIaApyqAuT
+                      ta34S0A8aOwoNse4hKRYE6o6M6lhLwA1LTVTVR32hJSdiQoI6FgWFNq/eHfNfHJT
+                      CUIQvzSir0F7W3V27rK+qL/A54xTnXEhaXVXVuVrv2HV2ssD71++KvA0QMXvKdHm
+                      ELLAODHV207YgyCB1bJ3dy09Zc12QJbIoRK43bp0qMxhSPvtLxAiWWIoLuadW049
+                      8djnm0LcQL2lmVNV0niX6FAy2Ke4AcdMZyfFW7FOlAsx0YFh0AvcnG6or7yDeTVF
+                      VRjILhp+w87nLH1piXPyvcgmpg8PhUBsMfIsafswMTAhMAkGBSsOAwIaBQAEFMTL
+                      2+V/OTEk5UPr3hk4UchA399mBAiMGAxbKnlamQICCAA=
+                      -----END PKCS12-----"
+                  ]
+                }
         400:
           description: JSON syntax error 
           schema:
@@ -1545,14 +1547,14 @@ paths:
           examples:
             application/pdf:
                 {
-                    "pk": 36988,
+                    "pk": 25139,
                     "given_name": "Name",
                     "surname_1": "Surname1",
                     "surname_2": "Surname2",
                     "sex": null,
                     "id_document_type": "TIN",
-                    "id_document_country": "ES",
-                    "serial_number": "11111111B",
+                    "id_document_country": "IT",
+                    "serial_number": "A1111111E",
                     "country_name": "ES",
                     "citizenship": null,
                     "residence": null,
@@ -1620,7 +1622,7 @@ paths:
                     "validity_time": "365",
                     "smartcard_sn": null,
                     "citizen_tax_number": null,
-                    "birth_date": "16/10/1990",
+                    "birth_date": "09/11/1989",
                     "birth_country": null,
                     "birth_city": null,
                     "birth_province": null,
@@ -1631,7 +1633,7 @@ paths:
                     "id_document_issuer": null,
                     "organization_rol": null,
                     "professional_id_number": null,
-                    "mobile_phone_number": "+34999999999",
+                    "mobile_phone_number": "+39555555555",
                     "fix_phone_number": null,
                     "residence_address": null,
                     "residence_city": null,
@@ -1818,19 +1820,19 @@ paths:
           examples:
             application/json:
                 {
-                    "pk": 225,
+                    "pk": 25139,
                     "given_name": "Name",
                     "surname_1": "Surname1",
-                    "surname_2": "Surname2",
+                    "surname_2": "New_Surname2",
                     "sex": null,
                     "id_document_type": "TIN",
-                    "id_document_country": "ES",
-                    "serial_number": "TSTAPI74S23C129Y",
+                    "id_document_country": "IT",
+                    "serial_number": "A1111111E",
                     "country_name": "ES",
                     "citizenship": null,
                     "residence": null,
                     "organization_email": null,
-                    "email": "mail@domain",
+                    "email": "New_mail@domain",
                     "title": null,
                     "organization_name": null,
                     "organizational_unit_1": null,
@@ -1855,12 +1857,12 @@ paths:
                     "description": null,
                     "certificate_set": [],
                     "profile": "PFnubeAFCiudadano",
-                    "scratchcard": "5051760",
+                    "scratchcard": "5053349",
                     "status": "CREATED",
                     "registering_user": {
                         "pk": 53,
                         "permission_profile": 13,
-                        "registration_authority": 68,
+                        "registration_authority": 116,
                         "request": 144
                     },
                     "approving_user": null,
@@ -1870,7 +1872,7 @@ paths:
                     "validity_time": "730",
                     "smartcard_sn": null,
                     "citizen_tax_number": null,
-                    "birth_date": "16/10/1965",
+                    "birth_date": "09/11/1989",
                     "birth_country": null,
                     "birth_city": null,
                     "birth_province": null,
@@ -1881,7 +1883,7 @@ paths:
                     "id_document_issuer": null,
                     "organization_rol": null,
                     "professional_id_number": null,
-                    "mobile_phone_number": "+34999999999",
+                    "mobile_phone_number": "+39555555555",
                     "fix_phone_number": null,
                     "residence_address": null,
                     "residence_city": null,
@@ -2099,7 +2101,7 @@ paths:
                 type: string
                 description: The successful cancellation status message
           examples:
-            application/pdf:
+            application/json:
                 {
                     "status": "Request cancelled"
                 }
@@ -2379,7 +2381,7 @@ paths:
             type: object
             description: A JSON object with the request missing parameters (if any)
           examples:
-            text/plain:
+            application/json:
                 [
                     [
                         "serial_number",
@@ -2690,7 +2692,86 @@ paths:
                     "code": "418",
                     "id": "cacfd01333019b5a",
                     "error": "Invalid parameters"
-                }              
+                } 
+        x-codeSamples:
+          - lang: 'curl'
+            source: |
+                    curl -i -X POST \
+                      https://api.uanataca.com/api/v1/requests/25139/pl_upload_document \
+                      -H 'Content-Type: multipart/form-data' \
+                      -F document=@sample_folder/img_front.png \
+                      -F type=document_front
+          - lang: 'Javascript'
+            source: |
+                    var formdata = new FormData();
+                    formdata.append("type", "document_front");
+                    formdata.append("document", fileInput.files[0], "sample_folder/img_front.png");
+
+                    var requestOptions = {
+                      method: 'POST',
+                      headers: myHeaders,
+                      body: formdata,
+                      redirect: 'follow'
+                    };
+
+                    fetch("https://api.uanataca.com/api/v1/requests/25139/pl_upload_document", requestOptions)
+                      .then(response => response.text())
+                      .then(result => console.log(result))
+                      .catch(error => console.log('error', error));
+          - lang: 'Python'
+            source: |
+                    import requests
+
+                    url = "https://api.uanataca.com/api/v1/requests/25139/pl_upload_document"
+
+                    payload={'type': 'document_front'}
+                    files=[
+                      ('document',('file',open('sample_folder/img_front.png','rb'),'image/png'))
+                    ]
+                    headers = {
+                      'Content-Type': 'multipart/form-data'
+                    }
+
+                    response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+                    print(response.text)
+          - lang: 'Node.js'
+            source: |
+                    const fs = require('fs');
+                    const FormData = require('form-data');
+                    const fetch = require('node-fetch');
+                    const formData = new FormData();
+
+                    formData.append('type', 'document_front');
+                    formData.append('document', fs.createReadStream('sample_folder/img_front.png'));
+
+                    const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_upload_document';
+
+                    const options = {
+                      method: 'POST',
+                      headers: {
+                        Accept: 'text/plain',
+                        'Content-Type': 'multipart/form-data; boundary=---011000010111000001101001'
+                      }
+                    };
+
+                    options.body = formData;
+
+                    fetch(url, options)
+                      .then(res => res.json())
+                      .then(json => console.log(json))
+                      .catch(err => console.error('error:' + err));
+          - lang: 'C#'
+            source: |
+                    var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_upload_document");
+                    client.Timeout = -1;
+                    var request = new RestRequest(Method.POST);
+                    request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
+                    request.AddParameter("type", "document_front");
+                    request.AddFile("document", "sample_folder/img_front.png");
+
+                    IRestResponse response = client.Execute(request);
+                    Console.WriteLine(response.Content);           
 #############
   /api/v1/requests/{id}/pl_delete_document:
     get: 
@@ -2760,7 +2841,80 @@ paths:
                       "code": "500",
                       "id": "7cb82a609ad8e270",
                       "error": "invalid literal for int() with base 10: ''"
-                  }  
+                  } 
+        x-codeSamples:
+          - lang: 'curl'
+            source: |
+                    curl -i -X POST \
+                      https://api.uanataca.com/api/v1/requests/25139/pl_delete_document \
+                      -H 'Content-Type: multipart/form-data' \
+                      -F docpk="document_front"
+          - lang: 'Javascript'
+            source: |
+                    var formdata = new FormData();
+                    formdata.append("docpk", "document_front");
+
+                    var requestOptions = {
+                      method: 'POST',
+                      headers: myHeaders,
+                      body: formdata,
+                      redirect: 'follow'
+                    };
+
+                    fetch("https://api.uanataca.com/api/v1/requests/25139/pl_delete_document", requestOptions)
+                      .then(response => response.text())
+                      .then(result => console.log(result))
+                      .catch(error => console.log('error', error));
+          - lang: 'Python'
+            source: |
+                    import requests
+
+                    url = "https://api.uanataca.com/api/v1/requests/25139/pl_delete_document"
+
+                    payload={'docpk': 'document_front'}
+
+                    headers = {
+                      'Content-Type': 'multipart/form-data'
+                    }
+
+                    response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+                    print(response.text)
+          - lang: 'Node.js'
+            source: |
+                    const fs = require('fs');
+                    const FormData = require('form-data');
+                    const fetch = require('node-fetch');
+                    const formData = new FormData();
+
+                    formData.append('docpk', 'document_front');
+
+                    const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_delete_document';
+
+                    const options = {
+                      method: 'POST',
+                      headers: {
+                        Accept: 'text/plain',
+                        'Content-Type': 'multipart/form-data; boundary=---011000010111000001101001'
+                      }
+                    };
+
+                    options.body = formData;
+
+                    fetch(url, options)
+                      .then(res => res.json())
+                      .then(json => console.log(json))
+                      .catch(err => console.error('error:' + err));
+          - lang: 'C#'
+            source: |
+                    var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_delete_document");
+                    client.Timeout = -1;
+                    var request = new RestRequest(Method.POST);
+                    request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
+                    request.AddParameter("docpk", "document_front");
+
+                    IRestResponse response = client.Execute(request);
+                    Console.WriteLine(response.Content);  
 #############
   /api/v1/requests/{id}/pl_get_document:
     get: 
@@ -2802,7 +2956,7 @@ paths:
               application/json:
                   [
                       {
-                          "pk": 48319,
+                          "pk": 48312,
                           "document": "iVBORw0KGgoAAAANSUhEUgAAAPwAAAChCAYAAAGUvOLYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAABU9xJREFUeNqMlmuMXGUZx3/nfmZ257bX7m53t91uKbS1Ak0kIFIwIZHUSP0kBmLiJSIWXa3SBE1TkaZaU2liQFObED9QE0M(...)",
                           "type": "document_front"
                       }
@@ -2827,7 +2981,80 @@ paths:
                       "code": "400",
                       "id": "c6972c3efdc6db8e",
                       "error": "No Request matches the given query."
-                  }      
+                  }
+        x-codeSamples:
+          - lang: 'curl'
+            source: |
+                    curl -i -X POST \
+                      https://api.uanataca.com/api/v1/requests/25139/pl_get_document \
+                      -H 'Content-Type: multipart/form-data' \
+                      -F type="48312"
+          - lang: 'Javascript'
+            source: |
+                    var formdata = new FormData();
+                    formdata.append("type", "48312");
+
+                    var requestOptions = {
+                      method: 'POST',
+                      headers: myHeaders,
+                      body: formdata,
+                      redirect: 'follow'
+                    };
+
+                    fetch("https://api.uanataca.com/api/v1/requests/25139/pl_get_document", requestOptions)
+                      .then(response => response.text())
+                      .then(result => console.log(result))
+                      .catch(error => console.log('error', error));
+          - lang: 'Python'
+            source: |
+                    import requests
+
+                    url = "https://api.uanataca.com/api/v1/requests/25139/pl_get_document"
+
+                    payload={'type': '48312'}
+
+                    headers = {
+                      'Content-Type': 'multipart/form-data'
+                    }
+
+                    response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+                    print(response.text)
+          - lang: 'Node.js'
+            source: |
+                    const fs = require('fs');
+                    const FormData = require('form-data');
+                    const fetch = require('node-fetch');
+                    const formData = new FormData();
+
+                    formData.append('type', '48312');
+
+                    const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_get_document';
+
+                    const options = {
+                      method: 'POST',
+                      headers: {
+                        Accept: 'text/plain',
+                        'Content-Type': 'multipart/form-data; boundary=---011000010111000001101001'
+                      }
+                    };
+
+                    options.body = formData;
+
+                    fetch(url, options)
+                      .then(res => res.json())
+                      .then(json => console.log(json))
+                      .catch(err => console.error('error:' + err));
+          - lang: 'C#'
+            source: |
+                    var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_get_document");
+                    client.Timeout = -1;
+                    var request = new RestRequest(Method.POST);
+                    request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
+                    request.AddParameter("type", "48312");
+
+                    IRestResponse response = client.Execute(request);
+                    Console.WriteLine(response.Content);        
 #############
   /api/v1/requests/{id}/pl_get_documents:
     get: 
@@ -2862,7 +3089,7 @@ paths:
               application/json:
                   [
                       {
-                          "pk": 48319,
+                          "pk": 48312,
                           "document": "iVBORw0KGgoAAAANSUhEUgAAAPwAAAChCAYAAAGUvOLYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAABU9xJREFUeNqMlmuMXGUZx3/nfmZ257bX7m53t91uKbS1Ak0kIFIwIZHUSP0kBmLiJSIWXa3SBE1TkaZaU2liQFObED9QE0M(...)",
                           "type": "document_front"
                       },
@@ -3003,19 +3230,19 @@ paths:
                         "erc": "3706008596"
                     },
                     "request": {
-                        "pk": 665,
-                        "given_name": "TEST",
-                        "surname_1": "API",
-                        "surname_2": "Software P12",
+                        "pk": 25319,
+                        "given_name": "Name",
+                        "surname_1": "Surname1",
+                        "surname_2": "Surname2",
                         "sex": null,
                         "id_document_type": "TIN",
                         "id_document_country": "IT",
-                        "serial_number": "TSTAPI74S23C129Y",
+                        "serial_number": "A1111111E",
                         "country_name": "ES",
                         "citizenship": null,
                         "residence": null,
                         "organization_email": null,
-                        "email": "asi@bit4id.com",
+                        "email": "mail@domain",
                         "title": null,
                         "organization_name": null,
                         "organizational_unit_1": null,
@@ -3040,7 +3267,7 @@ paths:
                         "description": null,
                         "certificate_set": [],
                         "profile": "PFSoftAFCiudadano",
-                        "scratchcard": "120000026",
+                        "scratchcard": "5053349",
                         "status": "ENROLLREADY",
                         "registering_user": {
                             "pk": 34,
@@ -3071,7 +3298,7 @@ paths:
                         "id_document_issuer": null,
                         "organization_rol": null,
                         "professional_id_number": null,
-                        "mobile_phone_number": "3333333333",
+                        "mobile_phone_number": "+34333333333",
                         "fix_phone_number": null,
                         "residence_address": null,
                         "residence_city": null,
@@ -3095,9 +3322,9 @@ paths:
                         "responsible_registry_data": null,
                         "approving_rao": {
                             "pk": 218,
-                            "given_name": "Alessandro",
-                            "surname_1": "Silvestro",
-                            "surname_2": "Bit4id",
+                            "given_name": "RAO_Name",
+                            "surname_1": "RAO_Surname1",
+                            "surname_2": "RAO_Surname2",
                             "certificate": {
                                 "profile": "EXTERNAL",
                                 "status": 0,
@@ -3106,10 +3333,10 @@ paths:
                                 "valid": "VALID",
                                 "revokation_reason": null,
                                 "serial_number": "0d0c1d8b1e4efefa",
-                                "subject": "CN=Alessandro Silvestro Bit4id,
+                                "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2,
                                 2.5.4.5=TINIT-RRRTST84R14F839U,
-                                2.5.4.42=Alessandro,
-                                2.5.4.4=Silvestro Bit4id, C=ES",
+                                2.5.4.42=RAO_Name,
+                                2.5.4.4=RAO_Surname1 RAO_Surname2, C=ES",
                                 "data": "MIIH5zCCBc+gAwIBAgI...",
                                 "issuer": "2.5.4.97=VATES-A66721499,
                                 CN=UANATACA CA1 DEVEL 2016,
@@ -3343,7 +3570,7 @@ paths:
             application/json:
                 [
                     {
-                        "pk": 21671,
+                        "pk": 12601,
                         "data": "MIIH3zCCBcegAwIBAgIISNxC83Y6ScQwDQYJKoZIhvcNAQELBQAwgb0xCzAJBgNVBAYTAkVTMUQwQgYDVQQHDDtCYXJjZWxvbmEgKHNlZSBjdXJyZW50IGFkZHJlc3MgYXQgd3d3LnVhbmF0YWNhLmNvbS9hZGRyZXNzKTEWMBQGA1UECgwNVUFOQVRBQ0EgUy5BLjEUMBIGA1UECwwLQUMtVUFOQVRBQ0ExIDAeBgNVBAMMF1VBTkFUQUNBIENBMSBERVZFTCAyMDE2MRgwFgYDVQRhDA9WQVRFUy1BNjY3MjE0OTkwHhcNMjEwMzE5MDkyMzAwWhcNMjIwMzE5MDkyMzAwWjBzMQswCQYDVQQGEwJFUzEaMBgGA1UEBAwRU3VybmFtZTEgU3VybmFtZTIxDTALBgNVBCoMBE5hbWUxGDAWBgNVBAUTD1RJTkVTLTExMTExMTExQjEfMB0GA1UEAwwWTmFtZSBTdXJuYW1lMSBTdXJuYW1lMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAPkSWAKq2NYFxLL3QyT+fjTPdU6RVDrVXDOc5CjZJMcDuV6AQASfsdssmNm3us6B2l+0pHyPPVlehCEj6HectIB+a1RZ8uSRHyS1fSPHtxvklCw7WPV+2PXKsvVTs953X+3AENy7ZAW8p69kH8nY3nZt6hrAz0ettaHSrDWdBM/5f46FyeKBp+VsFXO0LzCbfQVzX0lePgRnGowC/ekAJe59/ghoJ8KRRdq7b94weSDyKWG6vHHHO6Qdd8gNQPmfLd+Dnvc30ToGk4oXlegYqebesb9BNYknnhbJ2oTOyJqtb8xk6fv214mRtmY3CvrEQSp/owemE4z2kWpoAyVqQnsCAwEAAaOCAyowggMmMHIGCCsGAQUFBwEDBGYwZDAIBgYEAI5GAQEwCwYGBACORgEDAgEPMDYGBgQAjkYBBTAsMCoWJGh0dHBzOi8vd3d3LnVhbmF0YWNhLmNvbS9wdWJsaWMvY3BzLxMCRU4wEwYGBACORgEGMAkGBwQAjkYBBgEwgdcGCCsGAQUFBwEBBIHKMIHHMFUGCCsGAQUFBzAChklodHRwOi8vd3d3LnVhbmF0YWNhLmNvbS9wdWJsaWMvZG93bmxvYWQvdHNwX2NlcnRpZmljYXRlcy9zdWJvcmRpbmF0ZTEuY3J0MDYGCCsGAQUFBzABhipodHRwOi8vb2NzcDEudWFuYXRhY2EuY29tL3B1YmxpYy9wa2kvb2NzcC8wNgYIKwYBBQUHMAGGKmh0dHA6Ly9vY3NwMi51YW5hdGFjYS5jb20vcHVibGljL3BraS9vY3NwLzAdBgNVHQ4EFgQUeRcqxhojZhR419GTZ6JjaDYCKLUwDAYDVR0TAQH/BAIwADAfBgNVHSMEGDAWgBTKzIqlz6SMIlrW+5f3T7RO/dXvrjCBqgYDVR0gBIGiMIGfMIGRBgsrBgEEAYLxNgEBBTCBgTBNBggrBgEFBQcCAjBBDD9DZXJ0aWZpY2FkbyBjdWFsaWZpY2FkbyBkZSBQZXJzb25hIEbDrXNpY2EgZW4gSFNNIGNlbnRyYWxpemFkby4wMAYIKwYBBQUHAgEWJGh0dHBzOi8vd3d3LnVhbmF0YWNhLmNvbS9wdWJsaWMvY3BzLzAJBgcEAIvsQAEAMIGPBgNVHR8EgYcwgYQwQKA+oDyGOmh0dHA6Ly9jcmwxLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL2NybC9DQTFzdWJvcmRpbmFkYS5jcmwwQKA+oDyGOmh0dHA6Ly9jcmwyLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL2NybC9DQTFzdWJvcmRpbmFkYS5jcmwwDgYDVR0PAQH/BAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDAaBgNVHREEEzARgQ9tYWlsQGRvbWFpbi5jb20wDQYJKoZIhvcNAQELBQADggIBADCHnF2XC5YSue6JZSp3ycrPPk6IgAN+esEUPXGLw/jiPJogbGy/Gk1EnJMYT0+81BLgAQQyuX/B3Nrgt+eXZBNIhMQ8fWY4TUlpAzVLXoujR9iPyZoqfRsrai4LgE9EHYfXhXbfPPV1dzbLYEQrlt0g/S+G+l3Hh0Zx8CPqjjBQjk68fBqbp3XLhabay5EWuTgYbbmyK+A7J8uJcM6lyl7BaxEpcbzerv5hDXudKCTyR+40pPQaNBxcUYlrTBC2/Ymv0xekNfFUTMfExYHrx2lUF5fnk/jYO9EA5jgI9PjQ+TwotCLnKE0kFBWkJFNHDy9FTJQpM0GS32J78IhLfrt7y5/lxmUjXXVFJEzmaYv3bDvNMNZGWc13DRugQfXSp3lMLzo20TwFNNdGN51n74T0S9K8NdMjsshp0lOBUc+IbAOaN+EGcUU+VE8KsKSG2J6pXPChQQKh+DBz0PEVpI0DoDZ09fiRA9U9zLsTby44oOBWHY0nhO8k9tH42TgD2RL6ig6ARUZiae+YZLQMEIif4dFlpCKGDELr37QehjT6paT0fjyn39cHWKtPfu2Ayvlm1eGLyLaaoP+t8NHQcHrQbWbKM6sS1uotO8WNt3YGy6dSD1OOKZHT6irdZqB6mkn48PlPVsUa1opal7qMolw50Hc54V22Vft1Bt5ZMmFc",
                         "profile": "PFnubeAF",
                         "subject": "CN=Name Surname1 Surname2, 2.5.4.5=TINES-11111111B, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
@@ -3351,7 +3578,7 @@ paths:
                         "valid_from": "2021-03-19T09:23:00",
                         "valid_to": "2022-03-19T09:23:00",
                         "serial_number": "48dc42f3763a49c4",
-                        "request": 36988,
+                        "request": 25139,
                         "status": 0,
                         "revokation_reason": null
                     }
@@ -3961,8 +4188,8 @@ paths:
           examples:
             application/json:
                 {
-                    "pk": 1245,
-                    "sn": "110000150",
+                    "pk": 1045,
+                    "sn": "1200948",
                     "secrets": "{\"erc\": \"8207878566\", \"enrollment_code\": \"97Q6B,6W\", \"pin\": \"25936657\", \"puk\": \"44024058\"}",
                     "registration_authority": 41
                 }
@@ -4142,27 +4369,27 @@ paths:
           examples:
             application/json:
                 {
-                    "count": 1500,
+                    "count": 550,
                     "next": null,
                     "previous": null,
                     "results": [
                         {
-                            "pk": 1245,
-                            "sn": "110000150",
+                            "pk": 1021,
+                            "sn": "1200946",
                             "secrets": "{\"erc\": \"8207878566\", \"enrollment_code\": \"97Q6B,6W\", \"pin\": \"25936657\", \"puk\": \"25936657\"}",
-                            "registration_authority": 2
+                            "registration_authority": 121
                         },
                         {
-                            "pk": 1193,
-                            "sn": "100000147",
+                            "pk": 1040,
+                            "sn": "1200947",
                             "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
-                            "registration_authority": 2
+                            "registration_authority": 121
                         },
                         {
-                            "pk": 1192,
-                            "sn": "100000146",
+                            "pk": 1045,
+                            "sn": "1200948",
                             "secrets": "{\"erc\": \"8117606937\", \"enrollment_code\": \",8cj6Ax2\", \"pin\": \"85376977\", \"puk\": \"86175206\"}",
-                            "registration_authority": 2
+                            "registration_authority": 121
                         },
                         (...)
                     ]
@@ -4275,10 +4502,10 @@ paths:
           examples:
             application/json:
                 {
-                    "pk": 1245,
-                    "sn": "100000147",
-                    "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
-                    "registration_authority": 2
+                    "pk": 1045,
+                    "sn": "1200948",
+                    "secrets": "{\"erc\": \"8117606937\", \"enrollment_code\": \",8cj6Ax2\", \"pin\": \"85376977\", \"puk\": \"86175206\"}",
+                    "registration_authority": 121
                 }
         404:
           description: Invalid scratchcard id
@@ -4403,10 +4630,10 @@ paths:
           examples:
             application/json:
                 {
-                    "pk": 1193,
-                    "sn": "100000147",
-                    "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
-                    "registration_authority": 41
+                    "pk": 1045,
+                    "sn": "1300000",
+                    "secrets": "{\"erc\": \"8117606937\", \"enrollment_code\": \",8cj6Ax2\", \"pin\": \"85376977\", \"puk\": \"86175206\"}",
+                    "registration_authority": 121
                 }
         400:
           description: Bad Request
@@ -4441,7 +4668,7 @@ paths:
                     https://api.uanataca.com/api/v1/scratchcard/1200948 \
                     -H 'Content-Type: application/json' \
                     -d '{
-                      "sn": "1200949"
+                      "sn": "1300000"
                       }'
         - lang: 'Javascript'
           source: |
@@ -4453,7 +4680,7 @@ paths:
                         'Content-Type': 'application/json'
                       },
                       body: JSON.stringify({
-                        sn: '1200949'
+                        sn: '1300000'
                       })
                     }
                   );
@@ -4467,7 +4694,7 @@ paths:
                   url = "https://api.uanataca.com/api/v1/scratchcard/1200948"
 
                   payload = {
-                    "sn": "1200949"
+                    "sn": "1300000"
                   }
 
                   headers = {"Content-Type": "application/json"}
@@ -4488,7 +4715,7 @@ paths:
                         'Content-Type': 'application/json'
                       },
                       body: JSON.stringify({
-                        sn: '1200949'
+                        sn: '1300000'
                       })
                     }
                   );
@@ -4510,7 +4737,7 @@ paths:
                       using (var client = new HttpClient())
                       {
                         JObject json = JObject.Parse(@"{
-                          sn: '1200949'
+                          sn: '1300000'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
                         var request = await client.PutAsync("https://api.uanataca.com/api/v1/scratchcard/1200948", postData);
@@ -4582,7 +4809,7 @@ paths:
                     https://api.uanataca.com/api/v1/scratchcards/isused \
                     -H 'Content-Type: application/json' \
                     -d '{
-                      "sn": "612900"
+                      "sn": "1200948"
                     }'
         - lang: 'Javascript'
           source: |
@@ -4593,7 +4820,7 @@ paths:
                       headers: {
                         'Content-Type': 'application/json'
                       },
-                      body: JSON.stringify({sn: '612900'})
+                      body: JSON.stringify({sn: '1200948'})
                     }
                   );
 
@@ -4606,7 +4833,7 @@ paths:
                   url = "https://api.uanataca.com/api/v1/scratchcard/isused"
 
                   payload = {
-                    "sn": "612900"
+                    "sn": "1200948"
                   }
 
                   headers = {"Content-Type": "application/json"}
@@ -4626,7 +4853,7 @@ paths:
                       headers: {
                         'Content-Type': 'application/json'
                       },
-                      body: JSON.stringify({sn: '612900'})
+                      body: JSON.stringify({sn: '1200948'})
                     }
                   );
 
@@ -4646,7 +4873,7 @@ paths:
                     {
                       using (var client = new HttpClient())
                       {
-                        JObject json = JObject.Parse(@"{sn: '612900'}");
+                        JObject json = JObject.Parse(@"{sn: '1200948'}");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
                         var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcard/isused", postData);
                         var response = await request.Content.ReadAsStringAsync();
@@ -4700,9 +4927,9 @@ paths:
             application/json:
                 {
                     "pk": 1193,
-                    "sn": "100000147",
+                    "sn": "1256948",
                     "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
-                    "registration_authority": 41
+                    "registration_authority": 121
                 }
         400:
           description: Bad Request
@@ -4724,7 +4951,7 @@ paths:
                     https://api.uanataca.com/api/v1/scratchcards/get_first_unused \
                     -H 'Content-Type: application/json' \
                     -d '{
-                      "ra": 232
+                      "ra": 121
                     }'
         - lang: 'Javascript'
           source: |
@@ -4735,7 +4962,7 @@ paths:
                       headers: {
                         'Content-Type': 'application/json'
                       },
-                      body: JSON.stringify({ra: 232})
+                      body: JSON.stringify({ra: 121})
                     }
                   );
 
@@ -4748,7 +4975,7 @@ paths:
                   url = "https://api.uanataca.com/api/v1/scratchcards/get_first_unused"
 
                   payload = {
-                    "ra": 232
+                    "ra": 121
                   }
 
                   headers = {"Content-Type": "application/json"}
@@ -4768,7 +4995,7 @@ paths:
                       headers: {
                         'Content-Type': 'application/json'
                       },
-                      body: JSON.stringify({ra: 232})
+                      body: JSON.stringify({ra: 121})
                     }
                   );
 
@@ -4788,7 +5015,7 @@ paths:
                     {
                       using (var client = new HttpClient())
                       {
-                        JObject json = JObject.Parse(@"{ra: 232}");
+                        JObject json = JObject.Parse(@"{ra: 121}");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
                         var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/get_first_unused", postData);
                         var response = await request.Content.ReadAsStringAsync();
@@ -4853,7 +5080,7 @@ paths:
                         "valid_to": "2019-01-23T16:42:00Z",
                         "serial_number": "0b7687af3c8a833f",
                         "status": 2,
-                        "pk": 761,
+                        "pk": 25139,
                         "revokation_reason": 1,
                         "type": "FIRSTISSUE"
                     }
@@ -4893,7 +5120,7 @@ paths:
                     "error": "Invalid paramiters"
                 }
         500:
-          description: Invalid request id
+          description: Invalid request id | Scratchcard has no associated request
           schema:
             type: object
             properties:
@@ -4920,7 +5147,7 @@ paths:
                     https://api.uanataca.com/api/v1/scratchcards/revoke \
                     -H 'Content-Type: application/json' \
                     -d '{
-                      "scratchcard": "491218",
+                      "scratchcard": "5053349",
                       "erc": "1551329333",
                       "reason": "UNSPECIFIED"
                     }'
@@ -4934,7 +5161,7 @@ paths:
                         'Content-Type': 'application/json'
                       },
                       body: JSON.stringify({
-                        scratchcard: '491218',
+                        scratchcard: '5053349',
                         erc: '1551329333',
                         reason: 'UNSPECIFIED'
                       })
@@ -4950,7 +5177,7 @@ paths:
                   url = "https://api.uanataca.com/api/v1/scratchcards/revoke"
 
                   payload = {
-                    "scratchcard": "491218",
+                    "scratchcard": "5053349",
                     "erc": "1551329333",
                     "reason": "UNSPECIFIED"
                   }
@@ -4973,7 +5200,7 @@ paths:
                         'Content-Type': 'application/json'
                       },
                       body: JSON.stringify({
-                        scratchcard: '491218',
+                        scratchcard: '5053349',
                         erc: '1551329333',
                         reason: 'UNSPECIFIED'
                       })
@@ -4997,7 +5224,7 @@ paths:
                       using (var client = new HttpClient())
                       {
                         JObject json = JObject.Parse(@"{
-                          scratchcard: '491218',
+                          scratchcard: '5053349',
                           erc: '1551329333',
                           reason: 'UNSPECIFIED'
                         }");
@@ -5034,14 +5261,14 @@ paths:
           examples:
             application/json:
                 {
-                    "pk": 788,
+                    "pk": 25139,
                     "given_name": "Name",
                     "surname_1": "Surname1",
                     "surname_2": "Surname2",
                     "sex": null,
-                    "id_document_type": "IDC",
-                    "id_document_country": "ES",
-                    "serial_number": "12321",
+                    "id_document_type": "TIN",
+                    "id_document_country": "IT",
+                    "serial_number": "A1111111E",
                     "country_name": "ES",
                     "citizenship": null,
                     "residence": "ES",
@@ -5071,7 +5298,7 @@ paths:
                     "description": null,
                     "certificate_set": [],
                     "profile": "PFnubeAFCiudadano",
-                    "scratchcard": "110000150",
+                    "scratchcard": "5053349",
                     "status": "ENROLLREADY",
                     "registering_user": {
                         "pk": 1,
@@ -5102,7 +5329,7 @@ paths:
                     "id_document_issuer": "",
                     "organization_rol": null,
                     "professional_id_number": null,
-                    "mobile_phone_number": "393389827525",
+                    "mobile_phone_number": "+39555555555",
                     "fix_phone_number": "",
                     "residence_address": "",
                     "residence_city": "",
@@ -5126,9 +5353,9 @@ paths:
                     "responsible_registry_data": null,
                     "approving_rao": {
                         "pk": 1,
-                        "given_name": "User",
-                        "surname_1": "Admin",
-                        "surname_2": "",
+                        "given_name": "RAO_Name",
+                        "surname_1": "RAO_Surname1",
+                        "surname_2": "RAO_Surname2",
                         "certificate": {
                             "profile": "PERSONA_FISICA_SOFT",
                             "status": 0,
@@ -5137,13 +5364,13 @@ paths:
                             "valid": "VALID",
                             "revokation_reason": null,
                             "serial_number": "3ef3696d2939241d",
-                            "subject": "CN=User Admin, 2.5.4.5=u12345678, 2.5.4.42=User, 2.5.4.4=Admin, O=no presente, C=IT",
+                            "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=u12345678, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1, O=no presente, C=IT",
                             "data": "MIIIEDCCBfigAwIBAgIIPvNpbSk5JB0wDQYJKoZIhvcNAQELBQ...",
                             "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
                         },
-                        "id_document_number": "5241651",
-                        "id_document_description": "Patente",
-                        "id_document_issuer": "Motorizzazione Civile",
+                        "id_document_number": "A22222222W",
+                        "id_document_description": "",
+                        "id_document_issuer": "",
                         "registration_authority": [
                             1,
                             2
@@ -5198,8 +5425,8 @@ paths:
                     https://api.uanataca.com/api/v1/scratchcards/whoami \
                     -H 'Content-Type: application/json' \
                     -d '{
-                      "scratchcard": "491218",
-                      "erc": "e8GGAxe6"
+                      "scratchcard": "5053349",
+                      "erc": ",_3A26F!"
                     }'
         - lang: 'Javascript'
           source: |
@@ -5211,8 +5438,8 @@ paths:
                         'Content-Type': 'application/json'
                       },
                       body: JSON.stringify({
-                        scratchcard: '491218',
-                        erc: 'e8GGAxe6'
+                        scratchcard: '5053349',
+                        erc: ',_3A26F!'
                       })
                     }
                   );
@@ -5226,8 +5453,8 @@ paths:
                   url = "https://api.uanataca.com/api/v1/scratchcards/whoami"
 
                   payload = {
-                    "scratchcard": "491218",
-                    "erc": "e8GGAxe6"
+                    "scratchcard": "5053349",
+                    "erc": ",_3A26F!"
                   }
 
                   headers = {"Content-Type": "application/json"}
@@ -5248,8 +5475,8 @@ paths:
                         'Content-Type': 'application/json'
                       },
                       body: JSON.stringify({
-                        scratchcard: '491218',
-                        erc: 'e8GGAxe6'
+                        scratchcard: '5053349',
+                        erc: ',_3A26F!'
                       })
                     }
                   );
@@ -5271,8 +5498,8 @@ paths:
                       using (var client = new HttpClient())
                       {
                         JObject json = JObject.Parse(@"{
-                          scratchcard: '491218',
-                          erc: 'e8GGAxe6'
+                          scratchcard: '5053349',
+                          erc: ',_3A26F!'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
                         var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/whoami", postData);
@@ -5313,7 +5540,7 @@ paths:
           examples:
             application/json:
                 {
-                    "moved": 150
+                    "moved": 1000
                 }
         403:
           description: Permission denied
@@ -5361,7 +5588,7 @@ paths:
                     -H 'Content-Type: application/json' \
                     -d '{
                       "from_ra": 364,
-                      "to_ra": 123,
+                      "to_ra": 121,
                       "amount": 1000
                      }'
         - lang: 'Javascript'
@@ -5375,7 +5602,7 @@ paths:
                       },
                       body: JSON.stringify({
                         from_ra: 364,
-                        to_ra: 123,
+                        to_ra: 121,
                         amount: 1000
                       })
                     }
@@ -5391,7 +5618,7 @@ paths:
 
                   payload = {
                     "from_ra": 364,
-                    "to_ra": 123,
+                    "to_ra": 121,
                     "amount": 1000
                   }
 
@@ -5414,7 +5641,7 @@ paths:
                       },
                       body: JSON.stringify({
                         from_ra: 364,
-                        to_ra: 123,
+                        to_ra: 121,
                         amount: 1000
                       })
                     }
@@ -5438,7 +5665,7 @@ paths:
                       {
                         JObject json = JObject.Parse(@"{
                           from_ra: 364,
-                          to_ra: 123,
+                          to_ra: 121,
                           amount: 1000
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
@@ -5489,14 +5716,14 @@ paths:
                     },
                     "renewed": false,
                     "request": {
-                        "pk": 37037,
+                        "pk": 25139,
                         "given_name": "Name",
                         "surname_1": "Surname1",
                         "surname_2": "Surname2",
                         "sex": null,
-                        "id_document_type": "IDC",
-                        "id_document_country": "ES",
-                        "serial_number": "Y3646957E",
+                        "id_document_type": "TIN",
+                        "id_document_country": "IT",
+                        "serial_number": "A1111111E",
                         "country_name": "ES",
                         "citizenship": null,
                         "residence": "ES",
@@ -5559,7 +5786,7 @@ paths:
                             "registration_authority": 303,
                             "request": 28634
                         },
-                        "registration_authority": 303,
+                        "registration_authority": 121,
                         "secure_element": 2,
                         "validity_time": "7",
                         "smartcard_sn": null,
@@ -5700,8 +5927,8 @@ paths:
                     https://api.uanataca.com/api/v1/requests/is_renewable \
                     -H 'Content-Type: application/json' \
                     -d '{
-                      "scratchcard": "3002606",
-                      "erc": "7T8xdGBN"
+                      "scratchcard": "5053349",
+                      "erc": ",_3A26F!"
                     }'
         - lang: 'Javascript'
           source: |
@@ -5713,8 +5940,8 @@ paths:
                         'Content-Type': 'application/json'
                       },
                       body: JSON.stringify({
-                        scratchcard: '3002606',
-                        erc: '7T8xdGBN'
+                        scratchcard: '5053349',
+                        erc: ',_3A26F!'
                       })
                     }
                   );
@@ -5728,8 +5955,8 @@ paths:
                   url = "https://api.uanataca.com/api/v1/requests/is_renewable"
 
                   payload = {
-                    "scratchcard": "3002606",
-                    "erc": "7T8xdGBN"
+                    "scratchcard": "5053349",
+                    "erc": ",_3A26F!"
                   }
 
                   headers = {"Content-Type": "application/json"}
@@ -5750,8 +5977,8 @@ paths:
                         'Content-Type': 'application/json'
                       },
                       body: JSON.stringify({
-                        scratchcard: '3002606',
-                        erc: '7T8xdGBN'
+                        scratchcard: '5053349',
+                        erc: ',_3A26F!'
                       })
                     }
                   );
@@ -5773,8 +6000,8 @@ paths:
                       using (var client = new HttpClient())
                       {
                         JObject json = JObject.Parse(@"{
-                          scratchcard: '3002606',
-                          erc: '7T8xdGBN'
+                          scratchcard: '5053349',
+                          erc: ',_3A26F!'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
                         var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/is_renewable", postData);
@@ -5838,11 +6065,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/37037/enable_renewal
+                    https://api.uanataca.com/api/v1/requests/25139/enable_renewal
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/37037/enable_renewal',
+                    'https://api.uanataca.com/api/v1/requests/25139/enable_renewal',
                     {method: 'POST'}
                   );
 
@@ -5852,7 +6079,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/37037/enable_renewal"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/enable_renewal"
 
                   response = requests.post(url)
 
@@ -5863,7 +6090,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/37037/enable_renewal',
+                    'https://api.uanataca.com/api/v1/requests/25139/enable_renewal',
                     {method: 'POST'}
                   );
 
@@ -5881,7 +6108,7 @@ paths:
                     {
                       using (var client = new HttpClient())
                       {
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/37037/enable_renewal", null);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/enable_renewal", null);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -5942,11 +6169,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/37037/disable_renewal
+                    https://api.uanataca.com/api/v1/requests/25139/disable_renewal
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/37037/disable_renewal',
+                    'https://api.uanataca.com/api/v1/requests/25139/disable_renewal',
                     {method: 'POST'}
                   );
 
@@ -5956,7 +6183,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/37037/disable_renewal"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/disable_renewal"
 
                   response = requests.post(url)
 
@@ -5967,7 +6194,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/37037/disable_renewal',
+                    'https://api.uanataca.com/api/v1/requests/25139/disable_renewal',
                     {method: 'POST'}
                   );
 
@@ -6026,7 +6253,7 @@ paths:
                         "valid_to": "2021-03-29T11:51:00",
                         "serial_number": "611af7c8fdd5cea9",
                         "status": 0,
-                        "pk": 21715,
+                        "pk": 25139,
                         "revokation_reason": null,
                         "type": "RENEWAL"
                     }
@@ -6073,7 +6300,7 @@ paths:
                     -H 'Content-Type: application/json' \
                     -d '{
                       "username": "5053349",
-                      "password": "3m:Hh91u",
+                      "password": ",_3A26F!",
                       "pin": "belorado74"
                     }'
         - lang: 'Javascript'
@@ -6087,7 +6314,7 @@ paths:
                       },
                       body: JSON.stringify({
                         username: '5053349',
-                        password: '3m:Hh91u',
+                        password: ',_3A26F!',
                         pin: 'belorado74'
                       })
                     }
@@ -6103,7 +6330,7 @@ paths:
 
                   payload = {
                     "username": "5053349",
-                    "password": "3m:Hh91u",
+                    "password": ",_3A26F!",
                     "pin": "belorado74"
                   }
 
@@ -6126,7 +6353,7 @@ paths:
                       },
                       body: JSON.stringify({
                         username: '5053349',
-                        password: '3m:Hh91u',
+                        password: ',_3A26F!',
                         pin: 'belorado74'
                       })
                     }
@@ -6150,7 +6377,7 @@ paths:
                       {
                         JObject json = JObject.Parse(@"{
                           username: '5053349',
-                          password: '3m:Hh91u',
+                          password: ',_3A26F!',
                           pin: 'belorado74'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
@@ -6195,7 +6422,7 @@ paths:
                         "valid_to": "2021-03-29T11:51:00",
                         "serial_number": "611af7c8fdd5cea9",
                         "status": 0,
-                        "pk": 21715,
+                        "pk": 25139,
                         "revokation_reason": null,
                         "type": "RENEWAL"
                     }
@@ -6242,7 +6469,7 @@ paths:
                     -H 'Content-Type: application/json' \
                     -d '{
                       "username": "5053349",
-                      "password": "3m:Hh91u",
+                      "password": ",_3A26F!",
                       "pin": "belorado74"
                     }'
         - lang: 'Javascript'
@@ -6256,7 +6483,7 @@ paths:
                       },
                       body: JSON.stringify({
                         username: '5053349',
-                        password: '3m:Hh91u',
+                        password: ',_3A26F!',
                         pin: 'belorado74'
                       })
                     }
@@ -6272,7 +6499,7 @@ paths:
 
                   payload = {
                     "username": "5053349",
-                    "password": "3m:Hh91u",
+                    "password": ",_3A26F!",
                     "pin": "belorado74"
                   }
 
@@ -6295,7 +6522,7 @@ paths:
                       },
                       body: JSON.stringify({
                         username: '5053349',
-                        password: '3m:Hh91u',
+                        password: ',_3A26F!',
                         pin: 'belorado74'
                       })
                     }
@@ -6319,7 +6546,7 @@ paths:
                       {
                         JObject json = JObject.Parse(@"{
                           username: '5053349',
-                          password: '3m:Hh91u',
+                          password: ',_3A26F!',
                           pin: 'belorado74'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
@@ -6388,11 +6615,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/requests/37037/generate_otp_for_unlock
+                    https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/37037/generate_otp_for_unlock',
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock',
                     {method: 'GET'}
                   );
 
@@ -6402,7 +6629,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/37037/generate_otp_for_unlock"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock"
 
                   response = requests.get(url)
 
@@ -6413,7 +6640,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/37037/generate_otp_for_unlock',
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock',
                     {method: 'GET'}
                   );
 
@@ -6431,7 +6658,7 @@ paths:
                     {
                       using (var client = new HttpClient())
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/37037/generate_otp_for_unlock");
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -6523,18 +6750,18 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/requests/37037/unlock_pin \
+                    https://api.uanataca.com/api/v1/requests/25139/unlock_pin \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "scratchcard": "5053349",
-                      "enrollment_code": "7T8xdGBN",
-                      "newpin": "tejedora32",
+                      "enrollment_code": ",_3A26F!",
+                      "newpin": "nuevopin33",
                       "otp": "211489"
                     }'
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/37037/unlock_pin',
+                    'https://api.uanataca.com/api/v1/requests/25139/unlock_pin',
                     {
                       method: 'GET',
                       headers: {
@@ -6543,7 +6770,7 @@ paths:
                       body: JSON.stringify({
                         scratchcard: '5053349',
                         enrollment_code: '7T8xdGBN',
-                        newpin: 'tejedora32',
+                        newpin: 'nuevopin33',
                         otp: '211489'
                       })
                     }
@@ -6555,12 +6782,12 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/37037/unlock_pin"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/unlock_pin"
 
                   payload = {
                     "scratchcard": "5053349",
                     "enrollment_code": "7T8xdGBN",
-                    "newpin": "tejedora32",
+                    "newpin": "nuevopin33",
                     "otp": "211489"
                   }
 
@@ -6575,7 +6802,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/37037/unlock_pin',
+                    'https://api.uanataca.com/api/v1/requests/25139/unlock_pin',
                     {
                       method: 'GET',
                       headers: {
@@ -6584,7 +6811,7 @@ paths:
                       body: JSON.stringify({
                         scratchcard: '5053349',
                         enrollment_code: '7T8xdGBN',
-                        newpin: 'tejedora32',
+                        newpin: 'nuevopin33',
                         otp: '211489'
                       })
                     }
@@ -6609,11 +6836,11 @@ paths:
                         JObject json = JObject.Parse(@"{
                           scratchcard: '5053349',
                           enrollment_code: '7T8xdGBN',
-                          newpin: 'tejedora32',
+                          newpin: 'nuevopin33',
                           otp: '211489'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/:id/unlock_pin");
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/unlock_pin");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -6694,25 +6921,25 @@ paths:
           examples:
             application/json:
               {
-                  "pk": 2,
-                  "name": "Sample New RA",
+                  "pk": 121,
+                  "name": "RA Name",
                   "parent": 1,
                   "operators": [],
-                  "enabled_from": "2021-01-01",
-                  "enabled_until": null,
+                  "enabled_from": "20/07/2020",
+                  "enabled_until": 20/07/2025,
                   "organization_tax_number": "43242414213",
-                  "organization_name": "Organization",
-                  "responsible_name": "Name",
-                  "responsible_first_surname": "Surname1",
-                  "responsible_second_surname": Surname2,
-                  "responsible_serial": "1234567890",
+                  "organization_name": "Name_Org",
+                  "responsible_name": "Name_Resp",
+                  "responsible_first_surname": "Sur1_Resp",
+                  "responsible_second_surname": Sur2_Resp,
+                  "responsible_serial": "X1111111C",
                   "email": "mail@domain",
-                  "fix_phone_number": "391234567890",
-                  "mobile_phone_number": null,
-                  "city": null,
-                  "postal_code": null,
-                  "province": null,
-                  "url": null,
+                  "fix_phone_number": "+34333333333",
+                  "mobile_phone_number": "+34555555555",
+                  "city": City Name,
+                  "postal_code": "1000000",
+                  "province": "Province_Name",
+                  "url": "http://www.organization.com",
                   "address": null,
                   "state": null,
                   "country": "ES",
@@ -6768,7 +6995,7 @@ paths:
                       "responsible_name": "Name_Resp",
                       "responsible_first_surname": "Sur1_Resp",
                       "responsible_second_surname": "Sur2_Resp",
-                      "responsible_serial": "X11111111C",
+                      "responsible_serial": "X1111111C",
                       "email": "mail@domain",
                       "fix_phone_number": "+34333333333",
                       "address": "Address Name",
@@ -6959,8 +7186,8 @@ paths:
                     "previous": null,
                     "results": [
                         {
-                            "pk": 1,
-                            "name": "Uanataca Authority",
+                            "pk": 121,
+                            "name": "RA Name",
                             "parent": null,
                             "operators": [
                                 {
@@ -6984,8 +7211,8 @@ paths:
                             ]
                         },
                         {
-                            "pk": 2,
-                            "name": "Sample New RA",
+                            "pk": 150,
+                            "name": "Another RA",
                             "parent": null,
                             "operators": [
                                 {
@@ -7105,8 +7332,8 @@ paths:
           examples:
             application/json:
                   {
-                      "pk": 2,
-                      "name": "Sample New RA",
+                      "pk": 121,
+                      "name": "RA Name",
                       "parent": null,
                       "operators": [
                           {
@@ -7154,11 +7381,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/registrationauthorities/98
+                    https://api.uanataca.com/api/v1/registrationauthorities/121
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities/98',
+                    'https://api.uanataca.com/api/v1/registrationauthorities/121',
                     {method: 'POST'}
                   );
 
@@ -7168,7 +7395,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/registrationauthorities/98"
+                  url = "https://api.uanataca.com/api/v1/registrationauthorities/121"
 
                   response = requests.post(url)
 
@@ -7179,7 +7406,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities/98',
+                    'https://api.uanataca.com/api/v1/registrationauthorities/121',
                     {method: 'POST'}
                   );
 
@@ -7197,7 +7424,7 @@ paths:
                     {
                       using (var client = new HttpClient())
                       {
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/registrationauthorities/98", null);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/registrationauthorities/121", null);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -7279,25 +7506,25 @@ paths:
           examples:
             application/json:
               {
-                  "pk": 2,
-                  "name": "New RA",
+                  "pk": 121,
+                  "name": "RA Name",
                   "parent": 1,
                   "operators": [],
-                  "enabled_from": "2021-01-01",
-                  "enabled_until": "2023-01-01",
+                  "enabled_from": "20/07/2020",
+                  "enabled_until": 20/07/2028,
                   "organization_tax_number": "43242414213",
-                  "organization_name": "Organization",
-                  "responsible_name": "Name",
-                  "responsible_first_surname": "Surname1",
-                  "responsible_second_surname": "Surname2",
-                  "responsible_serial": "1234567890",
-                  "email": "mail@domain",
-                  "fix_phone_number": "391234567890",
-                  "mobile_phone_number": null,
-                  "city": Barcelona,
-                  "postal_code": null,
-                  "province": null,
-                  "url": www.newra.com,
+                  "organization_name": "Name_Org",
+                  "responsible_name": "Name_Resp",
+                  "responsible_first_surname": "Sur1_Resp",
+                  "responsible_second_surname": Sur2_Resp,
+                  "responsible_serial": "X1111111C",
+                  "email": "new_mail@domain",
+                  "fix_phone_number": "+34333333333",
+                  "mobile_phone_number": "+34555555555",
+                  "city": City Name,
+                  "postal_code": "1000000",
+                  "province": "Province_Name",
+                  "url": "http://www.organization.com",
                   "address": null,
                   "state": null,
                   "country": "ES",
@@ -7341,7 +7568,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X PUT \
-                    https://api.uanataca.com/api/v1/registrationauthorities \
+                    https://api.uanataca.com/api/v1/registrationauthorities/121 \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "enabled_until": "20/07/2028",
@@ -7350,7 +7577,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities',
+                    'https://api.uanataca.com/api/v1/registrationauthorities/121',
                     {
                       method: 'PUT',
                       headers: {
@@ -7369,7 +7596,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/registrationauthorities"
+                  url = "https://api.uanataca.com/api/v1/registrationauthorities/121"
 
                   payload = {
                     "enabled_until": "20/07/2028",
@@ -7387,7 +7614,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities',
+                    'https://api.uanataca.com/api/v1/registrationauthorities/121',
                     {
                       method: 'PUT',
                       headers: {
@@ -7421,7 +7648,7 @@ paths:
                           email: 'new_mail@domain'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/registrationauthorities", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/registrationauthorities/121", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -7496,27 +7723,27 @@ paths:
           examples:
             application/json:
               {
-                    "pk": 30,
+                    "pk": 1400,
                     "given_name": "RAO_Name",
                     "surname_1": "RAO_Surname1",
                     "surname_2": "RAO_Surname2",
                     "certificate": {
                         "profile": "EXTERNAL",
                         "status": 0,
-                        "valid_from": "2019-01-28T16:31:00",
-                        "valid_to": "2021-01-27T16:31:00",
+                        "valid_from": "2020-01-01T16:31:00",
+                        "valid_to": "2022-01-01T16:31:00",
                         "valid": "UNKNOW",
                         "revokation_reason": null,
                         "serial_number": "4501b05b35da0b54",
-                        "subject": "CN=Gnigni Bubu, 2.5.4.5=IDCES-12432143313213, 2.5.4.42=Gnigni, 2.5.4.4=Bubu, C=ES",
+                        "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-12432143313213, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, C=ES",
                         "data": "MIIHyzCCBbOgAwIBAgIIdWWgCtrot88wDQYJKoZIhvcNAQELBQAwgb0xCzAJBgNVBAYTAkVTMUQwQgYDVQQHDDtCYXJjZWxvbmEgKHNlZSBjdXJyZW50IGFkZHJlc3MgYXQgd3d3LnVhbmF0YWNhLmNvbS9hZGR...",
                         "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
                     },
-                    "id_document_number": "12354232414",
+                    "id_document_number": "Y8888888E",
                     "id_document_description": null,
                     "id_document_issuer": null,
                     "registration_authority": [
-                        2
+                        121, 122, 123
                     ],
                     "registration_authority_master": 1
               }
@@ -7562,12 +7789,12 @@ paths:
                     -H 'Content-Type: application/json' \
                     -d '{
                       "registration_authority_master": 1,
-                      "registration_authority": ["63", "64", "65"],
+                      "registration_authority": ["121", "122", "123"],
                       "certificate": "25714",
                       "given_name": "RAO_Name",
                       "surname_1": "RAO_Surname1",
                       "surname_2": "RAO_Surname2",
-                      "id_document_number": "12354232414",
+                      "id_document_number": "Y8888888E",
                       "email": "mail@domain"
                     }'
         - lang: 'Javascript'
@@ -7581,12 +7808,12 @@ paths:
                       },
                       body: JSON.stringify({
                         registration_authority_master: 1,
-                        registration_authority: ["63", "64", "65"],
+                        registration_authority: ["121", "122", "123"],
                         certificate: '25714',
                         given_name: 'RAO_Name',
                         surname_1: 'RAO_Surname1',
                         surname_2: 'RAO_Surname2',
-                        id_document_number: '12354232414',
+                        id_document_number: 'Y8888888E',
                         email: 'mail@domain'
                       })
                     }
@@ -7602,12 +7829,12 @@ paths:
 
                   payload = {
                     "registration_authority_master": 1,
-                    "registration_authority": ["63", "64", "65"],
+                    "registration_authority": ["121", "122", "123"],
                     "certificate": "25714",
                     "given_name": "RAO_Name",
                     "surname_1": "RAO_Surname1",
                     "surname_2": "RAO_Surname2",
-                    "id_document_number": "12354232414",
+                    "id_document_number": "Y8888888E",
                     "email": "mail@domain"
                   }
 
@@ -7630,12 +7857,12 @@ paths:
                       },
                       body: JSON.stringify({
                         registration_authority_master: 1,
-                        registration_authority: ["63", "64", "65"],
+                        registration_authority: ["121", "122", "123"],
                         certificate: '25714',
                         given_name: 'RAO_Name',
                         surname_1: 'RAO_Surname1',
                         surname_2: 'RAO_Surname2',
-                        id_document_number: '12354232414',
+                        id_document_number: 'Y8888888E',
                         email: 'mail@domain'
                       })
                     }
@@ -7659,12 +7886,12 @@ paths:
                       {
                         JObject json = JObject.Parse(@"{
                           registration_authority_master: 1,
-                          registration_authority: ["63", "64", "65"],
+                          registration_authority: ["121", "122", "123"],
                           certificate: '25714',
                           given_name: 'RAO_Name',
                           surname_1: 'RAO_Surname1',
                           surname_2: 'RAO_Surname2',
-                          id_document_number: '12354232414',
+                          id_document_number: 'Y8888888E',
                           email: 'mail@domain'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
@@ -7739,31 +7966,31 @@ paths:
                 type: string
           examples:
             application/json:
-                {
-                    "pk": 30,
-                    "given_name": "RAO_Name",
+              {
+                    "pk": 1400,
+                    "given_name": "RAO_NewName",
                     "surname_1": "RAO_Surname1",
                     "surname_2": "RAO_Surname2",
                     "certificate": {
                         "profile": "EXTERNAL",
                         "status": 0,
-                        "valid_from": "2019-01-28T16:31:00",
-                        "valid_to": "2021-01-27T16:31:00",
+                        "valid_from": "2020-01-01T16:31:00",
+                        "valid_to": "2022-01-01T16:31:00",
                         "valid": "UNKNOW",
                         "revokation_reason": null,
                         "serial_number": "4501b05b35da0b54",
-                        "subject": "CN=Gnigni Bubu, 2.5.4.5=IDCES-12432143313213, 2.5.4.42=Gnigni, 2.5.4.4=Bubu, C=ES",
+                        "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-12432143313213, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, C=ES",
                         "data": "MIIHyzCCBbOgAwIBAgIIdWWgCtrot88wDQYJKoZIhvcNAQELBQAwgb0xCzAJBgNVBAYTAkVTMUQwQgYDVQQHDDtCYXJjZWxvbmEgKHNlZSBjdXJyZW50IGFkZHJlc3MgYXQgd3d3LnVhbmF0YWNhLmNvbS9hZGR...",
                         "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
                     },
-                    "id_document_number": "12354232414",
+                    "id_document_number": "Y8888888E",
                     "id_document_description": null,
                     "id_document_issuer": null,
                     "registration_authority": [
-                        2
+                        121, 122, 123
                     ],
                     "registration_authority_master": 1
-                }
+              }
         400:
           description: Bad Request
           schema:
@@ -7802,7 +8029,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X PUT \
-                    https://api.uanataca.com/api/v1/rao \
+                    https://api.uanataca.com/api/v1/rao/1400 \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "given_name": "RAO_NewName"
@@ -7810,7 +8037,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao',
+                    'https://api.uanataca.com/api/v1/rao/1400',
                     {
                       method: 'PUT',
                       headers: {
@@ -7828,7 +8055,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/rao"
+                  url = "https://api.uanataca.com/api/v1/rao/1400"
 
                   payload = {
                     "given_name": "RAO_NewName"
@@ -7845,7 +8072,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao',
+                    'https://api.uanataca.com/api/v1/rao/1400',
                     {
                       method: 'PUT',
                       headers: {
@@ -7877,7 +8104,7 @@ paths:
                           given_name: 'RAO_NewName'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/rao", postData);
+                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/rao/1400", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -7926,20 +8153,20 @@ paths:
           examples:
             application/json:
                 {
-                    "count": 1,
+                    "count": 25,
                     "next": "null",
                     "previous": null,
                     "results": [
                         {
-                            "pk": 30,
+                            "pk": 1400,
                             "given_name": "RAO_Name",
                             "surname_1": "RAO_Surname1",
                             "surname_2": "RAO_Surname2",
                             "certificate": {
                                 "profile": "EXTERNAL",
                                 "status": 0,
-                                "valid_from": "2019-01-28T16:31:00Z",
-                                "valid_to": "2021-01-27T16:31:00Z",
+                                "valid_from": "2020-01-01T16:31:00Z",
+                                "valid_to": "2022-01-01T16:31:00Z",
                                 "valid": "VALID",
                                 "revokation_reason": null,
                                 "serial_number": "4501b05b35da0b54",
@@ -7947,7 +8174,7 @@ paths:
                                 "data": "MIIHyzCCBbOgAwIBAgIIdWWgCtrot88wDQYJKoZIhvcNAQELBQAwgb0xCzAJBgNVBAYTAkVTMUQwQgYDVQQHDDtCYXJjZWxvbmEgKHNlZSBjdXJyZW50IGFkZHJlc3MgYXQgd3d3LnVhbmF0YWNhLmNvbS9hZGR...",
                                 "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
                             },
-                            "id_document_number": "12354232414",
+                            "id_document_number": "Y8888888E",
                             "id_document_description": null,
                             "id_document_issuer": null,
                             "registration_authority": [
@@ -7961,13 +8188,12 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    'https://api.uanataca.com/api/v1/rao?filter1=string&filter2=string&filterN=string'
+                    'https://api.uanataca.com/api/v1/rao?filter1=registration_authority&filter2=given_name'
         - lang: 'Javascript'
           source: |
                   const query = new URLSearchParams({
-                    filter1: 'string',
-                    filter2: 'string',
-                    filterN: 'string'
+                    filter1: 'registration_authority',
+                    filter2: 'given_name'
                   }).toString();
 
                   const resp = await fetch(
@@ -7984,9 +8210,8 @@ paths:
                   url = "https://api.uanataca.com/api/v1/rao"
 
                   query = {
-                    "filter1": "string",
-                    "filter2": "string",
-                    "filterN": "string"
+                    "filter1": "registration_authority",
+                    "filter2": "given_name"
                   }
 
                   response = requests.get(url, params=query)
@@ -7998,9 +8223,8 @@ paths:
                   const fetch = require('node-fetch');
 
                   const query = new URLSearchParams({
-                    filter1: 'string',
-                    filter2: 'string',
-                    filterN: 'string'
+                    filter1: 'registration_authority',
+                    filter2: 'given_name'
                   }).toString();
 
                   const resp = await fetch(
@@ -8022,7 +8246,7 @@ paths:
                     {
                       using (var client = new HttpClient())
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/rao?filter1=string&filter2=string&filterN=string");
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/rao?filter1=registration_authority&filter2=given_name");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -8095,7 +8319,7 @@ paths:
                         "valid": "VALID",
                         "revokation_reason": null,
                         "serial_number": "4501b05b35da0b54",
-                        "subject": "CN=Gnigni Bubu, 2.5.4.5=IDCES-12432143313213, 2.5.4.42=Gnigni, 2.5.4.4=Bubu, C=ES",
+                        "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-12432143313213, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, C=ES",
                         "data": "MIIHyzCCBbOgAwIBAgIIdWWgCtrot88wDQYJKoZIhvcNAQELBQAwgb0xCzAJBgNVBAYTAkVTMUQwQgYDVQQHDDtCYXJjZWxvbmEgKHNlZSBjdXJyZW50IGFkZHJlc3MgYXQgd3d3LnVhbmF0YWNhLmNvbS9hZGR...",
                         "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
                     },
@@ -8132,17 +8356,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    'https://api.uanataca.com/api/v1/rao?filter1=string&filter2=string&filterN=string'
+                    https://api.uanataca.com/api/v1/rao/1400
         - lang: 'Javascript'
           source: |
-                  const query = new URLSearchParams({
-                    filter1: 'string',
-                    filter2: 'string',
-                    filterN: 'string'
-                  }).toString();
-
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao?' + query,
+                    'https://api.uanataca.com/api/v1/rao/1400',
                     {method: 'GET'}
                   );
 
@@ -8152,15 +8370,9 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/rao"
+                  url = "https://api.uanataca.com/api/v1/rao/1400"
 
-                  query = {
-                    "filter1": "string",
-                    "filter2": "string",
-                    "filterN": "string"
-                  }
-
-                  response = requests.get(url, params=query)
+                  response = requests.get(url)
 
                   data = response.json()
                   print(data)
@@ -8168,14 +8380,8 @@ paths:
           source: |
                   const fetch = require('node-fetch');
 
-                  const query = new URLSearchParams({
-                    filter1: 'string',
-                    filter2: 'string',
-                    filterN: 'string'
-                  }).toString();
-
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao?' + query,
+                    'https://api.uanataca.com/api/v1/rao/1400',
                     {method: 'GET'}
                   );
 
@@ -8193,7 +8399,7 @@ paths:
                     {
                       using (var client = new HttpClient())
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/rao?filter1=string&filter2=string&filterN=string");
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/rao/1400");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
