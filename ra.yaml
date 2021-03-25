@@ -11,12 +11,14 @@ host: api.uanataca.com
 schemes: 
   - https
 
-tags:
-- name: "REQUESTS"
-- name: "REGISTRATION AUTHORITY"
-- name: "REGISTRATION AUTHORITY OFFICER"
-- name: "SCRATCHCARDS"
-- name: "USERS"
+x-tagGroups:
+  - name: API Reference
+    tags:
+      - Requests
+      - Registration Authority
+      - Registration Authority Officer
+      - Scratchcards
+      - Users
 
 paths:
 
@@ -27,7 +29,7 @@ paths:
     post: 
       summary: CREATE REQUEST
       tags:
-        - REQUESTS
+        - Requests
       description: Creates a new request for digital certificate issuance.
       consumes:
         - application/json
@@ -330,7 +332,7 @@ paths:
     get: 
       summary: LIST REQUESTS
       tags:
-        - REQUESTS
+        - Requests
       description: Retrieves the list of requests stored.
       produces:
         - application/json 
@@ -587,7 +589,7 @@ paths:
     post: 
       summary: GENERATE A TBS RECEIPT
       tags:
-        - REQUESTS
+        - Requests
       description: Generates a receipt associated to a request
       consumes:
         - application/json
@@ -751,7 +753,7 @@ paths:
     post: 
       summary: (STANDARD) APPROVE A REQUEST
       tags:
-        - REQUESTS
+        - Requests
       description: Once created a new Request, the next thing to do is approve it.
       consumes:
         - application/json
@@ -1074,7 +1076,7 @@ paths:
     post: 
       summary: (STANDARD) CLOUD ENROLL
       tags:
-        - REQUESTS
+        - Requests
       description: "**Standard Cloud Mode.** The enrollment consists in the generation of a new digital certificate for a request already created and approved."
       consumes:
         - application/json
@@ -1272,7 +1274,7 @@ paths:
     post: 
       summary: (STANDARD) SOFTWARE ENROLL
       tags:
-        - REQUESTS
+        - Requests
       description: "**Standard Software Mode.** The enrollment consists in the generation of a new digital certificate for a request already created and approved. The secure element set to Software."
       consumes:
         - application/json
@@ -1528,7 +1530,7 @@ paths:
     get: 
       summary: GET REQUEST
       tags:
-        - REQUESTS
+        - Requests
       description: Returns full information about a request.
       produces:
         - application/json 
@@ -1795,7 +1797,7 @@ paths:
     put: 
       summary: UPDATE REQUEST
       tags:
-        - REQUESTS
+        - Requests
       description: Updates information about a request.
       consumes:
         - application/json 
@@ -2081,7 +2083,7 @@ paths:
     delete: 
       summary: CANCEL REQUEST
       tags:
-        - REQUESTS
+        - Requests
       description: Change the request status to CANCELLED.
       produces:
         - application/json 
@@ -2206,7 +2208,7 @@ paths:
     post: 
       summary: (STANDARD) GENERATE DOCUMENTS
       tags:
-        - REQUESTS
+        - Requests
       description: Retrieve the documents associated to the Request
       produces:
         - application/json 
@@ -2364,7 +2366,7 @@ paths:
     get: 
       summary: VALIDATE REQUEST
       tags:
-        - REQUESTS
+        - Requests
       description: Validate the request fields.
       produces:
         - application/json 
@@ -2493,7 +2495,7 @@ paths:
     get: 
         summary: GET PRE-AUTHENTICATION LINK
         tags:
-          - REQUESTS
+          - Requests
         description: Create a new pre-authenticated link for the request.
         produces:
           - application/json
@@ -2610,7 +2612,7 @@ paths:
     get: 
       summary: (PAPERLESS) UPLOAD DOCUMENT
       tags:
-        - REQUESTS
+        - Requests
       description: Upload the required documentation for certificate issuance.
       produces:
         - application/json
@@ -2777,7 +2779,7 @@ paths:
     get: 
       summary: (PAPERLESS) DELETE DOCUMENT
       tags:
-        - REQUESTS
+        - Requests
       description: Delete an identification document previously uploaded.
       produces:
         - application/json
@@ -2920,7 +2922,7 @@ paths:
     get: 
       summary: (PAPERLESS) GET A DOCUMENT
       tags:
-        - REQUESTS
+        - Requests
       description: Retrieves a request's associated document in Base64 format.
       produces:
         - application/json
@@ -3060,7 +3062,7 @@ paths:
     get: 
       summary: (PAPERLESS) GET ALL DOCUMENTS
       tags:
-        - REQUESTS
+        - Requests
       description: Retrieves all uploaded documents associated to a request.
       produces:
         - application/json
@@ -3184,7 +3186,7 @@ paths:
     post: 
       summary: (PAPERLESS) APPROVE A REQUEST
       tags:
-        - REQUESTS
+        - Requests
       description: Once created a new request, the next thing to do is to approve it.
       consumes:
         - application/json
@@ -3522,7 +3524,7 @@ paths:
     post: 
       summary: (PAPERLESS) CLOUD ENROLL
       tags:
-        - REQUESTS
+        - Requests
       description: "**Paperless Cloud Mode.** The enrollment consists in the generation of a new digital certificate for a request already created and approved."
       consumes:
         - application/json
@@ -3747,7 +3749,7 @@ paths:
     post: 
       summary: (PAPERLESS) SOFTWARE ENROLL
       tags:
-        - REQUESTS
+        - Requests
       description: "**Paperless Software Mode.** The enrollment consists in the generation of a new digital certificate for a request already created and approved."
       consumes:
         - application/json
@@ -4001,7 +4003,7 @@ paths:
     post: 
       summary: GENERATE OTP
       tags:
-        - REQUESTS
+        - Requests
       description: Used to generate a new One-Time Password (OTP) which will be sent to the client via SMS.
       produces:
         - application/json 
@@ -4149,7 +4151,7 @@ paths:
     post: 
       summary: CREATE SCRATCHCARD
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Create a new scratchcard.
       consumes:
         - application/json
@@ -4344,7 +4346,7 @@ paths:
     get: 
       summary: LIST SCRATCHCARDS
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Gets the list of scratchcards
       produces:
         - application/json
@@ -4466,7 +4468,7 @@ paths:
     get: 
       summary: GET SCRATCHCARD
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Get details from a scratchcard.
       parameters:
         - in: path
@@ -4586,7 +4588,7 @@ paths:
     put: 
       summary: UPDATE A SCRATCHCARD
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Update details from a scratchcard.
       consumes:
         - application/json
@@ -4752,7 +4754,7 @@ paths:
     post:
       summary: IS USED SCRATCHCARD
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Get the status of a known scratchcard.
       parameters:
         - in: "body"
@@ -4887,7 +4889,7 @@ paths:
     post: 
       summary: GET FIRST UNUSED SCRATCHCARD
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Get first unused scratchcard.
       consumes:
         - application/json
@@ -5029,7 +5031,7 @@ paths:
     post: 
       summary: REVOKE SCRATCHCARD
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Revoke certificates associated to the request that use the specified scratchcard.
       consumes:
         - application/json
@@ -5241,7 +5243,7 @@ paths:
     post: 
       summary: WHOAMI
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: 	Get the request associated to the scratchcard.
       consumes:
         - application/json
@@ -5514,7 +5516,7 @@ paths:
     post: 
       summary: MOVE SCRATCHCARDS
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Move scratchcards from an ra to another one.
       consumes:
         - application/json
@@ -5681,7 +5683,7 @@ paths:
     post: 
       summary: IS RENEWABLE
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Find out about whether a request is renewable or not.
       consumes:
         - application/json
@@ -6016,7 +6018,7 @@ paths:
     post: 
       summary: ENABLE RENEWAL
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Activates the renewal option for a certificate
       produces:
         - application/json
@@ -6120,7 +6122,7 @@ paths:
     post: 
       summary: DISABLE RENEWAL
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Deactivates the renewal option for a certificate
       produces:
         - application/json
@@ -6224,7 +6226,7 @@ paths:
     post: 
       summary: CLOUD RENEWAL
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Performs a cloud certificate renewal
       consumes:
         - application/json
@@ -6393,7 +6395,7 @@ paths:
     post: 
       summary: SOFTWARE RENEWAL
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Performs a software certificate renewal
       consumes:
         - application/json
@@ -6562,7 +6564,7 @@ paths:
     get: 
       summary: OTP FOR RESET/UNLOCK PIN
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Sends an OTP code via SMS for PIN reset or unlock.
       produces:
         - application/json
@@ -6670,7 +6672,7 @@ paths:
     get: 
       summary: RESET/UNLOCK PIN
       tags:
-        - SCRATCHCARDS
+        - Scratchcards
       description: Performs the pin reset or unlock operation
       produces:
         - application/json
@@ -6853,7 +6855,7 @@ paths:
     post:
       summary: CREATE RA
       tags:
-        - REGISTRATION AUTHORITY
+        - Registration Authority
       description: Create a new registration authority.
       consumes:
         - application/json
@@ -7154,7 +7156,7 @@ paths:
     get:
       summary: LIST RAs
       tags:
-        - REGISTRATION AUTHORITY
+        - Registration Authority
       description: Get the list of registration authorities
       consumes:
         - application/json
@@ -7297,7 +7299,7 @@ paths:
     post:
       summary: GET RA
       tags:
-        - REGISTRATION AUTHORITY
+        - Registration Authority
       description: Gets data from a specific RA.
       consumes:
         - application/json      
@@ -7435,7 +7437,7 @@ paths:
     put:
       summary: UPDATE RA
       tags:
-        - REGISTRATION AUTHORITY
+        - Registration Authority
       description: Update the info about a registration authority.
       produces:
         - application/json
@@ -7662,7 +7664,7 @@ paths:
     post:
       summary: CREATE RAO
       tags:
-        - REGISTRATION AUTHORITY OFFICER
+        - Registration Authority Officer
       description: Create a new registration authority officer.
       consumes:
         - application/json      
@@ -7906,7 +7908,7 @@ paths:
     put:
       summary: UPDATE RAO
       tags:
-        - REGISTRATION AUTHORITY OFFICER
+        - Registration Authority Officer
       description: Update information about a RAO.
       consumes:
         - application/json      
@@ -8115,7 +8117,7 @@ paths:
     get:
       summary: LIST RAOs
       tags:
-        - REGISTRATION AUTHORITY OFFICER
+        - Registration Authority Officer
       description: "Get the list of RAOs. The result can be filtered with the following query parameters: given_name, surname_1, surname_2, certificate, registration_authority, registration_authority_master"
       produces:
         - application/json
@@ -8258,7 +8260,7 @@ paths:
     get:
       summary: GET RAO
       tags:
-        - REGISTRATION AUTHORITY OFFICER
+        - Registration Authority Officer
       description: Get information about a RAO.
       produces:
         - application/json
@@ -8412,7 +8414,7 @@ paths:
     post:
       summary: CREATE USER
       tags:
-        - USERS
+        - Users
       description: Create a new user.
       consumes:
         - application/json      
@@ -8588,7 +8590,7 @@ paths:
     get:
       summary: LIST USERS
       tags:
-        - USERS
+        - Users
       description: Gets the list of users.
       produces:
         - application/json
@@ -8705,7 +8707,7 @@ paths:
     get:
       summary: GET USER
       tags:
-        - USERS
+        - Users
       description: Get information about an user.
       produces:
         - application/json
@@ -8805,7 +8807,7 @@ paths:
     put:
       summary: UPDATE USER
       tags:
-        - USERS
+        - Users
       description: Update a new user.
       consumes:
         - application/json      
