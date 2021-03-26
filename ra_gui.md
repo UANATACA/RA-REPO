@@ -14,7 +14,7 @@ Digital identities are created and used as part of a life-cycle that includes th
 - issuance of documents or credentials
 - authentication for service delivery
 
-![img](https://i.ibb.co/BPP6yKn/ra-hiw.png)
+![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/ra-hiw.png?token=ATF574VOX5KCM3NWSGWF47DALXLOY)
 
 # Glossary
 
