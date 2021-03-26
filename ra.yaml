@@ -748,783 +748,7 @@ paths:
                       }
                     }
                   }
-#############
-  /api/v1/requests/{id}/approve:
-    post: 
-      summary: (STANDARD) APPROVE A REQUEST
-      tags:
-        - Requests
-      description: Once created a new Request, the next thing to do is approve it.
-      consumes:
-        - application/json
-      produces:
-        - application/json 
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: The unique identifier of the Request
-          required: true
-        - in: "body"
-          name: "body"
-          schema:
-            $ref: "#/definitions/ApproveReqObject"
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: object
-            properties:
-              secrets:
-                type: object
-                properties:
-                  puk: 
-                    type: string
-                  enrollment_code: 
-                    type: string
-                  pin:
-                    type: string
-                  erc:
-                    type: string
-              request:
-                type: object
-                description: The JSON object with the information associated to the approved request
-          examples:
-            application/json:
-                {
-                    "secrets": {
-                        "puk": "06092551",
-                        "enrollment_code": "8N!9xPhB",
-                        "pin": "76293975",
-                        "erc": "3706008596"
-                    },
-                    "request": {
-                        "pk": 25139,
-                        "given_name": "Name",
-                        "surname_1": "Surname1",
-                        "surname_2": "Surname2",
-                        "sex": null,
-                        "id_document_type": "IDC",
-                        "id_document_country": "ES",
-                        "serial_number": "TSTAPI74S23C129Y",
-                        "country_name": "ES",
-                        "citizenship": null,
-                        "residence": null,
-                        "organization_email": null,
-                        "email": "mail@domain",
-                        "title": null,
-                        "organization_name": null,
-                        "organizational_unit_1": null,
-                        "organizational_unit_2": null,
-                        "organization_identifier": null,
-                        "responsible_name": null,
-                        "responsible_first_surname": null,
-                        "responsible_second_surname": null,
-                        "responsible_email": null,
-                        "responsible_serial": null,
-                        "responsible_position": null,
-                        "subscriber_responsible_serial": null,
-                        "administrative_unit": null,
-                        "empowerment": null,
-                        "representation": null,
-                        "circumstances": null,
-                        "limit": null,
-                        "registration": null,
-                        "process_application": null,
-                        "entity_owner": null,
-                        "entity_owner_serial_number": null,
-                        "description": null,
-                        "certificate_set": [],
-                        "profile": "PFSoftAFCiudadano",
-                        "scratchcard": "5053616",
-                        "status": "ENROLLREADY",
-                        "registering_user": {
-                            "pk": 343,
-                            "permission_profile": 18,
-                            "registration_authority": 39,
-                            "request": 12440
-                        },
-                        "approving_user": {
-                            "pk": 343,
-                            "permission_profile": 18,
-                            "registration_authority": 39,
-                            "request": 12440
-                        },
-                        "producing_user": null,
-                        "registration_authority": 39,
-                        "secure_element": 0,
-                        "validity_time": "730",
-                        "smartcard_sn": null,
-                        "citizen_tax_number": null,
-                        "birth_date": "16/10/1965",
-                        "birth_country": null,
-                        "birth_city": null,
-                        "birth_province": null,
-                        "birth_state": null,
-                        "birth_district": null,
-                        "birth_canton": null,
-                        "id_document_description": null,
-                        "id_document_issuer": null,
-                        "organization_rol": null,
-                        "professional_id_number": null,
-                        "mobile_phone_number": "3333333333",
-                        "fix_phone_number": null,
-                        "residence_address": null,
-                        "residence_city": null,
-                        "residence_province": null,
-                        "residence_postal_code": null,
-                        "residence_state": null,
-                        "residence_district": null,
-                        "residence_canton": null,
-                        "organization_tax_number": null,
-                        "organization_address": null,
-                        "organization_city": null,
-                        "organization_province": null,
-                        "organization_country": null,
-                        "organization_postal_code": null,
-                        "organization_state": null,
-                        "organization_url": null,
-                        "responsible_legal_level": null,
-                        "subscriber": null,
-                        "responsible_legal_documents": null,
-                        "special_conditions": null,
-                        "responsible_registry_data": null,
-                        "approving_rao": {
-                            "pk": 1400,
-                            "given_name": "RAO_Name",
-                            "surname_1": "RAO_Surname1",
-                            "surname_2": "RAO_Surname2",
-                            "certificate": {
-                                "profile": "EXTERNAL",
-                                "status": 0,
-                                "valid_from": "2018-10-16T11:07:00Z",
-                                "valid_to": "2020-10-15T11:07:00Z",
-                                "valid": "VALID",
-                                "revokation_reason": null,
-                                "serial_number": "0d0c1d8b1e4efefa",
-                                "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2,
-                                2.5.4.5=TINIT-RRRTST84R14F839U,
-                                2.5.4.42=RAO_Name,
-                                2.5.4.4=RAO_Surname1 RAO_Surname2, C=ES",
-                                "data": "MIIH5zCCBc+gAwIBAgI...",
-                                "issuer": "2.5.4.97=VATES-A66721499,
-                                CN=UANATACA CA1 DEVEL 2016,
-                                OU=AC-UANATACA,
-                                O=UANATACA S.A.,
-                                L=Barcelona C=ES"
-                            },
-                            "id_document_number": "RRRTST84R14F839U",
-                            "id_document_description": null,
-                            "id_document_issuer": null,
-                            "registration_authority": [
-                                39
-                            ],
-                            "registration_authority_master": 39
-                        },
-                        "producing_rao": null,
-                        "id_document_number": null
-                    }
-                }
-        400:
-          description: Bad Request
-          schema:
-            type: object
-            properties:
-              detail:
-                type: string
-                description: JSON syntax error description
-          examples:
-            application/json:
-                {
-                    "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 5 (char 23)"
-                }
-        404:
-          description: Invalid request id
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message    
-          examples:
-            application/json:
-                {
-                    "code": "400",
-                    "id": "b78952287417c96f",
-                    "error": "No Request matches the given query."
-                }
-        412:
-          description: Invalid request parameters
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message    
-          examples:
-            application/json:
-                {
-                    "code": "415",
-                    "id": "5c2ad9880b90970b",
-                    "error": "Invalid request fields: mobile_phone_number"
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/approve \
-                    -H 'Content-Type: application/json' \
-                    -d '{
-                      "rao": "1400",
-                      "receipt": "MIIOgQYJKoZIhvcNAQcCoIIOcjCCDm4CAQExCzAJBgUrDgMCGgUAMIIDcQYJKoZIhvcNAQcBoIIDYgSCA15FbCBvcGVyYWRvciBVc2VyIEFkbWluIGNvbiBuw7ptZXJvIGRlIGlkZW50aWZpY2FjacOzbiAxMjM0NTY3OFANCmFjdHVhbmRvIGVuIGNhbGlkYWQgZGUgb3BlcmFkb3IgYXV0b3JpemFkbyBkZSByZWdpc3RybyBkZWwgcHJlc3RhZG9yIGRlIHNlcnZpY2lvcw0KZGUgY29uZmlhbnphIFVBTkFUQUNBLCBTLkEuIGNvbiBOSUYgQTY2NzIxNDk5LCAoVUFOQVRBQ0EgZW4gbG8gc3VjZXNpdm8pDQoNCkRFQ0xBUkENCg0KUXVlIHByZXZpYSB2ZXJpZmljYWNpw7NuIGRlIGFjdWVyZG8gYSBsYSBEZWNsYXJhY2nDs24gZGUgUHLDoWN0aWNhcyBkZSBVQU5BVEFDQQ0KcHVibGljYWRhcyBlbiB3d3cudWFuYXRhY2EuY29tLCBsYSBpbmZvcm1hY2nDs24gZGV0YWxsYWRhIGEgY29udGludWFjacOzbiBlcw0KY29ycmVjdGEgeSBzZXLDoSBpbmNsdWlkYSAoZG9uZGUgYXBsaWNhYmxlKSBlbiBsYSBzb2xpY2l0dWQgZGUgY2VydGlmaWNhZG9zDQpjdWFsaWZpY2Fkb3M6DQoNCi0gRGF0b3MgZGUgSWRlbnRpZmljYWNpw7NuIGRlIGxhIHNvbGljaXR1ZCBkZSBjZXJ0aWZpY2Fkb3M6IDM2MTcNCi0gTm9tYnJlIHkgQXBlbGxpZG9zIGRlbCBGaXJtYW50ZTogQXVtIEFwaSBDbG91ZF9URVNUDQotIEROSS9OSUUvUEFTQVBPUlRFIGRlbCBGaXJtYW50ZTogMTMyNDU2NzhBDQotIERpcmVjY2nDs24gZGUgY29ycmVvIGVsZWN0csOzbmljbyBkZWwgRmlybWFudGU6IGF1bUB1YW5hdGFjYS5jb20NCg0KDQozMC8wNC8yMDE5DQoNCg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KRmRvLiBVc2VyIEFkbWluDQpPcGVyYWRv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"
-                    }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/approve',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        rao: '1400',
-                        receipt: 'MIIOgQYJKoZIhvcNAQcCoIIOcjCCDm4CAQExCzAJBgUrDgMCGgUAMIIDcQYJKoZIhvcNAQcBoIIDYgSCA15FbCBvcGVyYWRvciBVc2VyIEFkbWluIGNvbiBuw7ptZXJvIGRlIGlkZW50aWZpY2FjacOzbiAxMjM0NTY3OFANCmFjdHVhbmRvIGVuIGNhbGlkYWQgZGUgb3BlcmFkb3IgYXV0b3JpemFkbyBkZSByZWdpc3RybyBkZWwgcHJlc3RhZG9yIGRlIHNlcnZpY2lvcw0KZGUgY29uZmlhbnphIFVBTkFUQUNBLCBTLkEuIGNvbiBOSUYgQTY2NzIxNDk5LCAoVUFOQVRBQ0EgZW4gbG8gc3VjZXNpdm8pDQoNCkRFQ0xBUkENCg0KUXVlIHByZXZpYSB2ZXJpZmljYWNpw7NuIGRlIGFjdWVyZG8gYSBsYSBEZWNsYXJhY2nDs24gZGUgUHLDoWN0aWNhcyBkZSBVQU5BVEFDQQ0KcHVibGljYWRhcyBlbiB3d3cudWFuYXRhY2EuY29tLCBsYSBpbmZvcm1hY2nDs24gZGV0YWxsYWRhIGEgY29udGludWFjacOzbiBlcw0KY29ycmVjdGEgeSBzZXLDoSBpbmNsdWlkYSAoZG9uZGUgYXBsaWNhYmxlKSBlbiBsYSBzb2xpY2l0dWQgZGUgY2VydGlmaWNhZG9zDQpjdWFsaWZpY2Fkb3M6DQoNCi0gRGF0b3MgZGUgSWRlbnRpZmljYWNpw7NuIGRlIGxhIHNvbGljaXR1ZCBkZSBjZXJ0aWZpY2Fkb3M6IDM2MTcNCi0gTm9tYnJlIHkgQXBlbGxpZG9zIGRlbCBGaXJtYW50ZTogQXVtIEFwaSBDbG91ZF9URVNUDQotIEROSS9OSUUvUEFTQVBPUlRFIGRlbCBGaXJtYW50ZTogMTMyNDU2NzhBDQotIERpcmVjY2nDs24gZGUgY29ycmVvIGVsZWN0csOzbmljbyBkZWwgRmlybWFudGU6IGF1bUB1YW5hdGFjYS5jb20NCg0KDQozMC8wNC8yMDE5DQoNCg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KRmRvLiBVc2VyIEFkbWluDQpPcGVyYWRv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'
-                      })
-                    }
-                  );
 
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/requests/25139/approve"
-
-                  payload = {
-                    "rao": "1400",
-                    "receipt": "MIIOgQYJKoZIhvcNAQcCoIIOcjCCDm4CAQExCzAJBgUrDgMCGgUAMIIDcQYJKoZIhvcNAQcBoIIDYgSCA15FbCBvcGVyYWRvciBVc2VyIEFkbWluIGNvbiBuw7ptZXJvIGRlIGlkZW50aWZpY2FjacOzbiAxMjM0NTY3OFANCmFjdHVhbmRvIGVuIGNhbGlkYWQgZGUgb3BlcmFkb3IgYXV0b3JpemFkbyBkZSByZWdpc3RybyBkZWwgcHJlc3RhZG9yIGRlIHNlcnZpY2lvcw0KZGUgY29uZmlhbnphIFVBTkFUQUNBLCBTLkEuIGNvbiBOSUYgQTY2NzIxNDk5LCAoVUFOQVRBQ0EgZW4gbG8gc3VjZXNpdm8pDQoNCkRFQ0xBUkENCg0KUXVlIHByZXZpYSB2ZXJpZmljYWNpw7NuIGRlIGFjdWVyZG8gYSBsYSBEZWNsYXJhY2nDs24gZGUgUHLDoWN0aWNhcyBkZSBVQU5BVEFDQQ0KcHVibGljYWRhcyBlbiB3d3cudWFuYXRhY2EuY29tLCBsYSBpbmZvcm1hY2nDs24gZGV0YWxsYWRhIGEgY29udGludWFjacOzbiBlcw0KY29ycmVjdGEgeSBzZXLDoSBpbmNsdWlkYSAoZG9uZGUgYXBsaWNhYmxlKSBlbiBsYSBzb2xpY2l0dWQgZGUgY2VydGlmaWNhZG9zDQpjdWFsaWZpY2Fkb3M6DQoNCi0gRGF0b3MgZGUgSWRlbnRpZmljYWNpw7NuIGRlIGxhIHNvbGljaXR1ZCBkZSBjZXJ0aWZpY2Fkb3M6IDM2MTcNCi0gTm9tYnJlIHkgQXBlbGxpZG9zIGRlbCBGaXJtYW50ZTogQXVtIEFwaSBDbG91ZF9URVNUDQotIEROSS9OSUUvUEFTQVBPUlRFIGRlbCBGaXJtYW50ZTogMTMyNDU2NzhBDQotIERpcmVjY2nDs24gZGUgY29ycmVvIGVsZWN0csOzbmljbyBkZWwgRmlybWFudGU6IGF1bUB1YW5hdGFjYS5jb20NCg0KDQozMC8wNC8yMDE5DQoNCg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KRmRvLiBVc2VyIEFkbWluDQpPcGVyYWRv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"
-                  }
-
-                  headers = {"Content-Type": "application/json"}
-
-                  response = requests.post(url, json=payload, headers=headers)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/approve',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        rao: '1400',
-                        receipt: 'MIIOgQYJKoZIhvcNAQcCoIIOcjCCDm4CAQExCzAJBgUrDgMCGgUAMIIDcQYJKoZIhvcNAQcBoIIDYgSCA15FbCBvcGVyYWRvciBVc2VyIEFkbWluIGNvbiBuw7ptZXJvIGRlIGlkZW50aWZpY2FjacOzbiAxMjM0NTY3OFANCmFjdHVhbmRvIGVuIGNhbGlkYWQgZGUgb3BlcmFkb3IgYXV0b3JpemFkbyBkZSByZWdpc3RybyBkZWwgcHJlc3RhZG9yIGRlIHNlcnZpY2lvcw0KZGUgY29uZmlhbnphIFVBTkFUQUNBLCBTLkEuIGNvbiBOSUYgQTY2NzIxNDk5LCAoVUFOQVRBQ0EgZW4gbG8gc3VjZXNpdm8pDQoNCkRFQ0xBUkENCg0KUXVlIHByZXZpYSB2ZXJpZmljYWNpw7NuIGRlIGFjdWVyZG8gYSBsYSBEZWNsYXJhY2nDs24gZGUgUHLDoWN0aWNhcyBkZSBVQU5BVEFDQQ0KcHVibGljYWRhcyBlbiB3d3cudWFuYXRhY2EuY29tLCBsYSBpbmZvcm1hY2nDs24gZGV0YWxsYWRhIGEgY29udGludWFjacOzbiBlcw0KY29ycmVjdGEgeSBzZXLDoSBpbmNsdWlkYSAoZG9uZGUgYXBsaWNhYmxlKSBlbiBsYSBzb2xpY2l0dWQgZGUgY2VydGlmaWNhZG9zDQpjdWFsaWZpY2Fkb3M6DQoNCi0gRGF0b3MgZGUgSWRlbnRpZmljYWNpw7NuIGRlIGxhIHNvbGljaXR1ZCBkZSBjZXJ0aWZpY2Fkb3M6IDM2MTcNCi0gTm9tYnJlIHkgQXBlbGxpZG9zIGRlbCBGaXJtYW50ZTogQXVtIEFwaSBDbG91ZF9URVNUDQotIEROSS9OSUUvUEFTQVBPUlRFIGRlbCBGaXJtYW50ZTogMTMyNDU2NzhBDQotIERpcmVjY2nDs24gZGUgY29ycmVvIGVsZWN0csOzbmljbyBkZWwgRmlybWFudGU6IGF1bUB1YW5hdGFjYS5jb20NCg0KDQozMC8wNC8yMDE5DQoNCg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KRmRvLiBVc2VyIEFkbWluDQpPcGVyYWRv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'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-                  using System.Text;
-                  using Newtonsoft.Json.Linq;
-
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      using (var client = new HttpClient())
-                      {
-                        JObject json = JObject.Parse(@"{
-                          rao: '1400',
-                          receipt: 'MIIOgQYJKoZIhvcNAQcCoIIOcjCCDm4CAQExCzAJBgUrDgMCGgUAMIIDcQYJKoZIhvcNAQcBoIIDYgSCA15FbCBvcGVyYWRvciBVc2VyIEFkbWluIGNvbiBuw7ptZXJvIGRlIGlkZW50aWZpY2FjacOzbiAxMjM0NTY3OFANCmFjdHVhbmRvIGVuIGNhbGlkYWQgZGUgb3BlcmFkb3IgYXV0b3JpemFkbyBkZSByZWdpc3RybyBkZWwgcHJlc3RhZG9yIGRlIHNlcnZpY2lvcw0KZGUgY29uZmlhbnphIFVBTkFUQUNBLCBTLkEuIGNvbiBOSUYgQTY2NzIxNDk5LCAoVUFOQVRBQ0EgZW4gbG8gc3VjZXNpdm8pDQoNCkRFQ0xBUkENCg0KUXVlIHByZXZpYSB2ZXJpZmljYWNpw7NuIGRlIGFjdWVyZG8gYSBsYSBEZWNsYXJhY2nDs24gZGUgUHLDoWN0aWNhcyBkZSBVQU5BVEFDQQ0KcHVibGljYWRhcyBlbiB3d3cudWFuYXRhY2EuY29tLCBsYSBpbmZvcm1hY2nDs24gZGV0YWxsYWRhIGEgY29udGludWFjacOzbiBlcw0KY29ycmVjdGEgeSBzZXLDoSBpbmNsdWlkYSAoZG9uZGUgYXBsaWNhYmxlKSBlbiBsYSBzb2xpY2l0dWQgZGUgY2VydGlmaWNhZG9zDQpjdWFsaWZpY2Fkb3M6DQoNCi0gRGF0b3MgZGUgSWRlbnRpZmljYWNpw7NuIGRlIGxhIHNvbGljaXR1ZCBkZSBjZXJ0aWZpY2Fkb3M6IDM2MTcNCi0gTm9tYnJlIHkgQXBlbGxpZG9zIGRlbCBGaXJtYW50ZTogQXVtIEFwaSBDbG91ZF9URVNUDQotIEROSS9OSUUvUEFTQVBPUlRFIGRlbCBGaXJtYW50ZTogMTMyNDU2NzhBDQotIERpcmVjY2nDs24gZGUgY29ycmVvIGVsZWN0csOzbmljbyBkZWwgRmlybWFudGU6IGF1bUB1YW5hdGFjYS5jb20NCg0KDQozMC8wNC8yMDE5DQoNCg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KRmRvLiBVc2VyIEFkbWluDQpPcGVyYWRvciBhdXRvcml6YWRvIGRlIHJlZ2lzdHJvoIIIFDCCCBAwggX4oAMCAQICCD7zaW0pOSQdMA0GCSqGSIb3DQEBCwUAMIG9MQswCQYDVQQGEwJFUzFEMEIGA1UEBww7QmFyY2Vsb25hIChzZWUgY3VycmVudCBhZGRyZXNzIGF0IHd3dy51YW5hdGFjYS5jb20vYWRkcmVzcykxFjAUBgNVBAoMDVVBTkFUQUNBIFMuQS4xFDASBgNVBAsMC0FDLVVBTkFUQUNBMSAwHgYDVQQDDBdVQU5BVEFDQSBDQTEgREVWRUwgMjAxNjEYMBYGA1UEYQwPVkFURVMtQTY2NzIxNDk5MB4XDTE3MDEyNDExMDAzMVoXDTIwMDEyNDExMDAzMVowazELMAkGA1UEBhMCSVQxFDASBgNVBAoMC25vIHByZXNlbnRlMQ4wDAYDVQQEDAVBZG1pbjENMAsGA1UEKgwEVXNlcjESMBAGA1UEBRMJdTEyMzQ1Njc4MRMwEQYDVQQDDApVc2VyIEFkbWluMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7/mWrFTExAFn1Pu7wfBp/PqIRMgN9G9lVatsmibKVsXeBwHXApLDUPOa/ar/0Sow8O4Cl3hQjpi6qBS6zo4ETZ4tW9nsjVUprYY4VzrIngjtrHrg21TvMJKQwSBQRhbko+4nqEH6BXCvLMPGnoYgfQXoHBAdazw+bLGXWh7GGjHqnsNwfyqqLlDU+0I5vY7zLVTNVMpwWaq9XEQ15+B7Etf5arfhytsjk0Msl+2TFXDRqr1DXebcD5wMMgudZ/FDi6BvTWHUqHHEJ4xyG1YGwBwhSlsjYWalopsTTJvepPizpnudLpwzREMOV/qROZU+I4/0mGeJIM1cLOER/AzqyQIDAQABo4IDYzCCA18wLQYDVR0JBCYwJDAQBggrBgEFBQcJBTEEEwJJVDAQBggrBgEFBQcJBDEEEwJJVDCB1gYIKwYBBQUHAQEEgckwgcYwVAYIKwYBBQUHMAKGSGh0dHA6Ly93d3cudWFuYXRhY2EuY29tL3B1YmxpYy9kb3dubG9hZC90c3BfY2VydGlmaWNhdGVzL3RydXN0ZWRSb290LnA3YzA2BggrBgEFBQcwAYYqaHR0cDovL29jc3AxLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL29jc3AvMDYGCCsGAQUFBzABhipodHRwOi8vb2NzcDIudWFuYXRhY2EuY29tL3B1YmxpYy9wa2kvb2NzcC8wHQYDVR0OBBYEFA7B1xRJItN6d6Io/FbL4AhjB/JLMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUysyKpc+kjCJa1vuX90+0Tv3V764wYgYIKwYBBQUHAQMEVjBUMAgGBgQAjkYBATALBgYEAI5GAQMCAQ8wOwYGBACORgEFDDFodHRwOi8vd3d3LnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL1BEUy1QRnNvZnQtRU4vMIHGBgNVHSAEgb4wgbswgbgGCysGAQQBgvE2AQEBMIGoMDMGCCsGAQUFBwIBFidodHRwOi8vd3d3LnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL2RwYy8wcQYIKwYBBQUHAgIwZQxjQ2VydGlmaWNhZG8gcmVjb25vY2lkbyBkZSBwZXJzb25hIGbDrXNpY2EgZW4gc29mdHdhcmUuICBWZXIgaHR0cDovL3d3dy51YW5hdGFjYS5jb20vcHVibGljL3BraS9kcGMvMIGPBgNVHR8EgYcwgYQwQKA+oDyGOmh0dHA6Ly9jcmwxLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL2NybC9DQTFzdWJvcmRpbmFkYS5jcmwwQKA+oDyGOmh0dHA6Ly9jcmwyLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL2NybC9DQTFzdWJvcmRpbmFkYS5jcmwwDgYDVR0PAQH/BAQDAgTwMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDAZBgNVHREEEjAQgQ5mZmlAYml0NGlkLmNvbTANBgkqhkiG9w0BAQsFAAOCAgEAdqvgmUcV5Az9sWht85eyRg2fOKhssvYEZhnzt8Wfiw1F76rUBMKgH0teT3HImozbkAvppZY6uLSLChSzRXGBJ+ThYrnZyC2f99hSAHjw+dcYnPyqrnEi+qgjukTBw15IreVPvYvpuMB+hGLpRx8H0BMGgPgBz+rxbFHtleoTFHerFQREIALl3VCK1uBrHVymIykDit773fLt97vBdrEPhyp/JY8OXTy7FzvS+yLRWpxOuQovx6VxPKEzEcKGYoSVM0Z4h8cOQwr2ZiX8VKMt6DPqnjSzA9U8VVvzsxiEncHLZrxtVBIRGRPxo8qHemzo1LwZcdxTMdReyX64a8nRTjPqjLnc8Uj55ZFnlTPyKtfRA2FoZHYcoB2LAqxJNMIlpVa41wy25aLXzJioZZ5Fx7ydqRlQDDPAMsbgM099veEI0amAfBhP5tJvRTAjjQ7xNo7BIeh8tMMx/lhWlm3w/pXGVJy4Zkzs3b9hQxI/HP4lY7ukgvrv7sgQA2BgCFtfbsmpEmDC0iCSboE6VtzVBkIkRWqIcY1kWv8rq9LW+FJ7j2NjZVRi/dMme23fYOguQ0R6qg2sF5wJwoSTNET4skRaVJdm2LHqgFR3u2aKuV6sOP7g7aZpQVhYxUPo+FEZMKrSOR4ey9weI/zeYIAdVr9gvUlyfvJbkXtST1y2y+AxggLNMIICyQIBATCByjCBvTELMAkGA1UEBhMCRVMxRDBCBgNVBAcMO0JhcmNlbG9uYSAoc2VlIGN1cnJlbnQgYWRkcmVzcyBhdCB3d3cudWFuYXRhY2EuY29tL2FkZHJlc3MpMRYwFAYDVQQKDA1VQU5BVEFDQSBTLkEuMRQwEgYDVQQLDAtBQy1VQU5BVEFDQTEgMB4GA1UEAwwXVUFOQVRBQ0EgQ0ExIERFVkVMIDIwMTYxGDAWBgNVBGEMD1ZBVEVTLUE2NjcyMTQ5OQIIPvNpbSk5JB0wCQYFKw4DAhoFAKCB2DAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA0MzAwOTUxMzVaMCMGCSqGSIb3DQEJBDEWBBR25+DuU9KvyVxmoOyKbXzUaNTJBDB5BgkqhkiG9w0BCQ8xbDBqMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJYIZIAWUDBAECMAoGCCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggqhkiG9w0DAgIBQDAHBgUrDgMCBzANBggqhkiG9w0DAgIBKDANBgkqhkiG9w0BAQEFAASCAQBiUKAPyH3QgYqd7fdHxMWJoGQAocPIHTD4AP0hDjDYuY52OchEbMxzJ3FoHNz/K/UyFdeNzLYqZB+8dDRDxWFsQn/9AsweZ2hUbNf8rGrlpw52jyH5UO8uFRZSA3NuV92csHf5anDBcBbKcNSKkMtpguLRju6N3OXZnA3MpOoGB0Dr4pfCttUoTxZp6goY7xmHaHWrBrGgwO7UxmPgV03VCdLJyK6qv6eoxxMZ7ow751VZxzNCbbyCtS7/iAk74NxXlHhQPAyiwi2E7khcavhSsAWMC3hvGlyOeXpUgItuMuNIc9nZf+tAw6cXFav7ITwp0mGO5cd8sYts7NKlVkjE'
-                        }");
-                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/approve", postData);
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
-#############
-  /api/v1/requests/{id}/cloud_enroll:
-    post: 
-      summary: (STANDARD) CLOUD ENROLL
-      tags:
-        - Requests
-      description: "**Standard Cloud Mode.** The enrollment consists in the generation of a new digital certificate for a request already created and approved."
-      consumes:
-        - application/json
-      produces:
-        - application/json 
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: The unique identifier of the Request
-          required: true
-        - in: "body"
-          name: "body"
-          schema:
-            $ref: "#/definitions/CloudEnrObject"
-      responses:
-        200:
-          description: Successful Response
-          schema:
-              type: object
-              description: The JSON object with the information associated to the approved request
-          examples:
-            application/json:
-                {
-                    "data": "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",
-                    "profile": "PFnubeAFCiudadano",
-                    "subject": "CN=Name Surname1 Surname2, 2.5.4.5=TINES-11111111B, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
-                    "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
-                    "valid_from": "2021-03-19T14:12:00",
-                    "valid_to": "2022-03-19T14:12:00",
-                    "serial_number": "78434ee4745418db",
-                    "status": 0,
-                    "pk": 25139,
-                    "revokation_reason": null,
-                    "type": "FIRSTISSUE"
-                }
-        400:
-          description: Bad Request
-          schema:
-            type: object
-            properties:
-              detail:
-                type: string
-                description: JSON syntax error details
-          examples:
-            application/json:
-                {
-                    "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 5 (char 38)"
-                }
-        404:
-          description: Invalid request id
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message    
-          examples:
-            application/json:
-                {
-                    "code": "400",
-                    "id": "b78952287417c96f",
-                    "error": "No Request matches the given query."
-                }
-        412:
-          description: Invalid request status | request parameters
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message    
-          examples:
-            application/json:
-                {
-                    "code": "412",
-                    "id": "2df6b3bbdd4b86d3",
-                    "error": "Invalid request status"
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/cloud_enroll \
-                    -H 'Content-Type: application/json' \
-                    -d '{
-                      "scratchcard": "5053349",
-                      "erc": ",_3A26F!",
-                      "pin": "belorado74",
-                      "puk": "belorado74"
-                    }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/cloud_enroll',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        scratchcard: '5053349',
-                        erc: ',_3A26F!',
-                        pin: 'belorado74',
-                        puk: 'belorado74'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/requests/25139/cloud_enroll"
-
-                  payload = {
-                    "scratchcard": "5053349",
-                    "erc": ",_3A26F!",
-                    "pin": "belorado74",
-                    "puk": "belorado74"
-                  }
-
-                  headers = {"Content-Type": "application/json"}
-
-                  response = requests.post(url, json=payload, headers=headers)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/cloud_enroll',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        scratchcard: '5053349',
-                        erc: ',_3A26F!',
-                        pin: 'belorado74',
-                        puk: 'belorado74'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-                  using System.Text;
-                  using Newtonsoft.Json.Linq;
-
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      using (var client = new HttpClient())
-                      {
-                        JObject json = JObject.Parse(@"{
-                          scratchcard: '5053349',
-                          erc: ',_3A26F!',
-                          pin: 'belorado74',
-                          puk: 'belorado74'
-                        }");
-                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/cloud_enroll", postData);
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
-#############
-  /api/v1/requests/{id}/p12_enroll:
-    post: 
-      summary: (STANDARD) SOFTWARE ENROLL
-      tags:
-        - Requests
-      description: "**Standard Software Mode.** The enrollment consists in the generation of a new digital certificate for a request already created and approved. The secure element set to Software."
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: The unique identifier of the Request
-          required: true
-        - in: "body"
-          name: "body"
-          schema:
-            $ref: "#/definitions/SoftEnrObject"
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: string
-            description: The issued certificate in Base64 format
-          examples:
-            application/json:
-                {
-                  [
-                      "-----BEGIN PKCS12-----
-                      MIIN/AIBAzCCDcIGCSqGSIb3DQEHAaCCDbMEgg2vMIINqzCCCCgGCSqGSIb3DQEH
-                      AaCCCBkEgggVMIIIETCCCA0GCyqGSIb3DQEMCgEDoIIH2TCCB9UGCiqGSIb3DQEJ
-                      FgGgggfFBIIHwTCCB70wggWloAMCAQICCAw/8u9JFlHzMA0GCSqGSIb3DQEBCwUA
-                      MIG9MQswCQYDVQQGEwJFUzFEMEIGA1UEBww7QmFyY2Vsb25hIChzZWUgY3VycmVu
-                      dCBhZGRyZXNzIGF0IHd3dy51YW5hdGFjYS5jb20vYWRkcmVzcykxFjAUBgNVBAoM
-                      DVVBTkFUQUNBIFMuQS4xFDASBgNVBAsMC0FDLVVBTkFUQUNBMSAwHgYDVQQDDBdV
-                      QU5BVEFDQSBDQTEgREVWRUwgMjAxNjEYMBYGA1UEYQwPVkFURVMtQTY2NzIxNDk5
-                      MB4XDTE4MTEyMjE1MjgwMFoXDTIwMTEyMTE1MjgwMFoweDELMAkGA1UEBhMCRVMx
-                      GTAXBgNVBAQMEEFQSSBTb2Z0d2FyZSBQMTIxDTALBgNVBCoMBFRFU1QxHzAdBgNV
-                      BAUTFlRJTklULVRTVEFQSTc0UzIzQzEyOVkxHjAcBgNVBAMMFVRFU1QgQVBJIFNv
-                      ZnR3YXJlIFAxMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMf63BEB
-                      eKd1+oBVf8o/ybGCcs4ZUIsLaiI+uo/brGM40Uo0uoD1Y5e1Ewt6GdnB3+OQnCzv
-                      6prb/pSwZ5GxpjkYPjAf+MEyKsJfPTOW0gBQwvzo3oaXq9g/BqYRJcT7heM7knbb
-                      thT5mJTxnGoWAkTuRjwEsiyCAfVYrCwLqE4uNBvXju4nrZ51jA4kQx3oyVpy7Y3O
-                      uuVdIfOmxbKhb/iyBUAzYusRfUv+XVvDqiVLP+9a+i3JUpi2qMQNx4q3B4Ply1Fz
-                      1FgBw4icYtHfMrKHIkoKmYzPpUM97x4GE+Hz8esX98My0NROa59x0uoPuU+d4P1e
-                      e2x+aTKeiadfjkUCAwEAAaOCAwMwggL/MIHXBggrBgEFBQcBAQSByjCBxzBVBggr
-                      BgEFBQcwAoZJaHR0cDovL3d3dy51YW5hdGFjYS5jb20vcHVibGljL2Rvd25sb2Fk
-                      L3RzcF9jZXJ0aWZpY2F0ZXMvc3Vib3JkaW5hdGUxLmNydDA2BggrBgEFBQcwAYYq
-                      aHR0cDovL29jc3AxLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL29jc3AvMDYGCCsG
-                      AQUFBzABhipodHRwOi8vb2NzcDIudWFuYXRhY2EuY29tL3B1YmxpYy9wa2kvb2Nz
-                      cC8wHQYDVR0OBBYEFGDhXkciQE/205bmPJuEnR+ap8YPMAwGA1UdEwEB/wQCMAAw
-                      HwYDVR0jBBgwFoAUysyKpc+kjCJa1vuX90+0Tv3V764wVQYIKwYBBQUHAQMESTBH
-                      MAgGBgQAjkYBATALBgYEAI5GAQMCAQ8wLgYGBACORgEFDCRodHRwczovL3d3dy51
-                      YW5hdGFjYS5jb20vcHVibGljL2Nwcy8wgaEGA1UdIASBmTCBljAJBgcEAIvsQAEA
-                      MIGIBgsrBgEEAYLxNgEBATB5MDAGCCsGAQUFBwIBFiRodHRwczovL3d3dy51YW5h
-                      dGFjYS5jb20vcHVibGljL2Nwcy8wRQYIKwYBBQUHAgIwOQw3Q2VydGlmaWNhZG8g
-                      Y3VhbGlmaWNhZG8gZGUgUGVyc29uYSBGw61zaWNhIGVuIHNvZnR3YXJlLjCBjwYD
-                      VR0fBIGHMIGEMECgPqA8hjpodHRwOi8vY3JsMS51YW5hdGFjYS5jb20vcHVibGlj
-                      L3BraS9jcmwvQ0Exc3Vib3JkaW5hZGEuY3JsMECgPqA8hjpodHRwOi8vY3JsMi51
-                      YW5hdGFjYS5jb20vcHVibGljL3BraS9jcmwvQ0Exc3Vib3JkaW5hZGEuY3JsMA4G
-                      A1UdDwEB/wQEAwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwGQYD
-                      VR0RBBIwEIEOYXNpQGJpdDRpZC5jb20wDQYJKoZIhvcNAQELBQADggIBAJj7bPyq
-                      F+QojTNESKKxw0WdYgFEFF72hA44SZ5oCZ/ZORYZepVJnaI6zjRQ7ezQwNtc87mr
-                      Hdn7Bl9kNkgp1bFtllMzwr2/eg1/UrEE8+oWIXvaTU29/t1QXdPaMi/7Jq01yM1e
-                      VKF0lndz9qBuxlr1RwfcpznOhn+J+C4B6BeK0yc+jELDPpceuG0WNB5FDUrdy5x2
-                      +lYJLfSkg8+3l1mnSHZPUr3c3h2qX17XhV4r6lCFofBekrXfRrKUFmf0V9fs3N+k
-                      ymZQ8NCrOiPoDXTEdrhMvKFUQ7YEniwHJ7alzQGbKMd0X1BmvTw0HugbU6f/oMRM
-                      eDeP17lFbOMXkSdnHp3ly/ppfUJdnias1+vGs6V7HXd1irK+UjSTL6d0Eu64rwQK
-                      e9JY9hlaB9cdjFn4qqo1vDjQXfzIVOa8Xdatv1KXUqv45R3PhdZ3T3UsxXqbfHob
-                      mvR//ycrGZPzHeyqXYfzx1fXXmfrjqjePyzWoCu4HAAZWk+arG5DYEb6kmawK/kC
-                      lbI3nyNXQuUaZr/SxOROdtUH5aXdbhEOQf9voMvsiyhSUp5wCDg/CaSKwB48NWPx
-                      gliB9uuJqGWyub7fMj5OxRZVYlA3QqP7V2PvODE4jITJdOhemnrrdK/mlmIPwSJq
-                      8asL5rfwxyUs58FT2sDd6Qecw6Y5gK+ULgRjMSEwHwYJKoZIhvcNAQkVMRIEEAYu
-                      Zb4L5MZJKP6FifnzQFEwggV7BgkqhkiG9w0BBwagggVsMIIFaAIBADCCBWEGCSqG
-                      SIb3DQEHATAcBgoqhkiG9w0BDAEDMA4ECNOnUDg66SeRAgIIAKCCBTQEggUwTP5i
-                      TS5Uc2nSBvtWP+lNr5Y3PSjvn5or5KQglE0apYhscPQDSCdsTRua5uH6vYT5WcFd
-                      IvboQxlTZRXB0wOfLsAPWRiVB/Ex9IQkf01jQT4Zm4/0fHcAwDW0VlWqe6hTmjIL
-                      ssZKotCGOdJenqCiyqZSzUcfdAGTvKHOKo4fPoHFFiSDQwu0dcX7EKjM25kjXavG
-                      GztAYuxhA1WEYERJgz6R2Ex5QqSpvmLaFFQxrXDl7PZCS8eAdJvmWIZ+1yVudMP+
-                      KGTVED2LOeLoCJkFEESYDk2gHLv3ZVUvqjB/EshBj96UtpAEL+RvMXO8iuzWjIYD
-                      JVokM705iS53W+8Fe/Eq6K7yH3UgE1lCjrrrxuq5aNQ86mgCjXXFi7b8z6g/0Cbs
-                      f+e8kka7lRO+Tda/Iy3gKjnlvySsRGCw/1kOXuA+uFUjXWsA8zVcaKzeot43RoiB
-                      utelt+I8ypktPx2UrULYhPOLt7SJJJ2nngStVWFCmxMVEDrCbvygorePV9XkgTTQ
-                      z8TOpjJvEx/ZR7a5v+11l0KVzykLdU0t47yI3ruioMO64Eu2r+j7toJQv7Uld0Ok
-                      9vzxgjQk+Me+Fv+Bc9BgvXFGGdYcnAL8X60Au5kowHTeX0QdZp39hpNPHIQZHfxG
-                      A4ViZCq5hzCzAPP1kHzJLxus4zlKYON1zNZoTwg2YvySIGlZ6deMdREK7xjpCU6C
-                      aDajhmjEKfdOf1kNyfmjZxjgnY2uRhaEr3zsfaSP+yitrpIfHDSNP0vjanFj7MZX
-                      l0q6F3LPiYV62KBs95i0cBi3UVMfP67QRqeCv6pMCJxAwB0uUqzOQWXXfGVlInQL
-                      19Bi6Cd+aQT9DVZuR3v3mRPikx00v96RDQfaqvqxrXHs2AV/xs85kFUy0uL2VbjQ
-                      774OFLn9WbILgb2e7Mgd0AvIt9MBzbTjn04IWoLe85mi99K6xJFa+VAFvdxrdIcl
-                      DHN2UY+RdDMNddC/1oPdSM+XtnQxTG+VeI9g3du6RWjsLjaZzKuiDeQo5HjB0kSk
-                      6Di6PT0aXrIILlCf0abYJm6+8i7O7BGi25AbNE85j/kfoX+8vUo7Dp/mKb7gLhMY
-                      9HzJW/qrekzHagIqm/r1VreOQq3znciPD6Bfa+xQ4llbrCuY+OCNWWuVm+WuA6DU
-                      NuYy9zNJE0FYe1LQ4PUOiRX/EQHAPms3K2QeyzJ4rI9dXq1wTL1O5JJDAA2ZoBO3
-                      f9apY2e0JJE4RQRPcXBhC0D8ZysS2lMVCTL27DcwEFb8hMJvYTCRLhGu7xvp0Ct6
-                      w7EUyAQ8V6ZYG4IO9BE7u8M5niOcn0Wj2Dfo/VdSwxSAqCHRK5wYS/X/pJgux25M
-                      pu0e0mEChzoIxmBdN8WYLPq0SPrNTst/ljhy2RxS279BrPMgbZU/9hP072oqzzxF
-                      W1tgd/u8fdYKorfsxrtsxgrKJmmW8y7EcrmRj2b58fdEfQ5im76eDBRIaApyqAuT
-                      ta34S0A8aOwoNse4hKRYE6o6M6lhLwA1LTVTVR32hJSdiQoI6FgWFNq/eHfNfHJT
-                      CUIQvzSir0F7W3V27rK+qL/A54xTnXEhaXVXVuVrv2HV2ssD71++KvA0QMXvKdHm
-                      ELLAODHV207YgyCB1bJ3dy09Zc12QJbIoRK43bp0qMxhSPvtLxAiWWIoLuadW049
-                      8djnm0LcQL2lmVNV0niX6FAy2Ke4AcdMZyfFW7FOlAsx0YFh0AvcnG6or7yDeTVF
-                      VRjILhp+w87nLH1piXPyvcgmpg8PhUBsMfIsafswMTAhMAkGBSsOAwIaBQAEFMTL
-                      2+V/OTEk5UPr3hk4UchA399mBAiMGAxbKnlamQICCAA=
-                      -----END PKCS12-----"
-                  ]
-                }
-        400:
-          description: JSON syntax error 
-          schema:
-            type: object
-            properties:
-              detail:
-                type: string
-                description: The response status code              
-          examples:
-            application/json:
-                {
-                    "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 5 (char 37)"
-                }
-        404:
-          description: Invalid request id
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "400",
-                    "id": "20b4ed5104b56a2b",
-                    "error": "No Request matches the given query."
-                }
-        412:
-          description: Invalid parameters
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "418",
-                    "id": "52e66b8c518f2c3b",
-                    "error": "Invalid parameters"
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/p12_enroll \
-                    -H 'Content-Type: application/json' \
-                    -d '{
-                      "scratchcard": "5053349",
-                      "enrollment_code": ",_3A26F!"
-                    }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/p12_enroll',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        scratchcard: '5053349',
-                        enrollment_code: ',_3A26F!'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/requests/25139/p12_enroll"
-
-                  payload = {
-                    "scratchcard": "5053349",
-                    "enrollment_code": ",_3A26F!"
-                  }
-
-                  headers = {"Content-Type": "application/json"}
-
-                  response = requests.post(url, json=payload, headers=headers)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/p12_enroll',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        scratchcard: '5053349',
-                        enrollment_code: ',_3A26F!'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-                  using System.Text;
-                  using Newtonsoft.Json.Linq;
-
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      using (var client = new HttpClient())
-                      {
-                        JObject json = JObject.Parse(@"{
-                          scratchcard: '5053349',
-                          enrollment_code: ',_3A26F!'
-                        }");
-                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/p12_enroll", postData);
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
 #############
   /api/v1/requests/{id}:
     get: 
@@ -2206,7 +1430,7 @@ paths:
 #############
   /api/v1/requests/{id}/generate_document:
     post: 
-      summary: (STANDARD) GENERATE DOCUMENTS
+      summary: GENERATE DOCUMENTS
       tags:
         - Requests
       description: Retrieve the documents associated to the Request
@@ -2610,7 +1834,7 @@ paths:
 #############
   /api/v1/requests/{id}/pl_upload_document:
     get: 
-      summary: (PAPERLESS) UPLOAD DOCUMENT
+      summary: UPLOAD DOCUMENT
       tags:
         - Requests
       description: Upload the required documentation for certificate issuance.
@@ -2777,7 +2001,7 @@ paths:
 #############
   /api/v1/requests/{id}/pl_delete_document:
     get: 
-      summary: (PAPERLESS) DELETE DOCUMENT
+      summary: DELETE DOCUMENT
       tags:
         - Requests
       description: Delete an identification document previously uploaded.
@@ -2920,7 +2144,7 @@ paths:
 #############
   /api/v1/requests/{id}/pl_get_document:
     get: 
-      summary: (PAPERLESS) GET A DOCUMENT
+      summary: GET A DOCUMENT
       tags:
         - Requests
       description: Retrieves a request's associated document in Base64 format.
@@ -3060,7 +2284,7 @@ paths:
 #############
   /api/v1/requests/{id}/pl_get_documents:
     get: 
-      summary: (PAPERLESS) GET ALL DOCUMENTS
+      summary: GET ALL DOCUMENTS
       tags:
         - Requests
       description: Retrieves all uploaded documents associated to a request.
@@ -3184,7 +2408,7 @@ paths:
 #############
   /api/v1/requests/{id}/pl_approve:
     post: 
-      summary: (PAPERLESS) APPROVE A REQUEST
+      summary: APPROVE A REQUEST
       tags:
         - Requests
       description: Once created a new request, the next thing to do is to approve it.
@@ -3522,7 +2746,7 @@ paths:
 #############
   /api/v1/requests/{id}/pl_cloud_enroll:
     post: 
-      summary: (PAPERLESS) CLOUD ENROLL
+      summary: CLOUD ENROLL
       tags:
         - Requests
       description: "**Paperless Cloud Mode.** The enrollment consists in the generation of a new digital certificate for a request already created and approved."
@@ -3747,7 +2971,7 @@ paths:
 #############
   /api/v1/requests/{id}/pl_p12_enroll:
     post: 
-      summary: (PAPERLESS) SOFTWARE ENROLL
+      summary: SOFTWARE ENROLL
       tags:
         - Requests
       description: "**Paperless Software Mode.** The enrollment consists in the generation of a new digital certificate for a request already created and approved."
@@ -4144,6 +3368,1180 @@ paths:
                       }
                     }
                   }
+
+#############
+  /api/v1/requests/is_renewable:
+    post: 
+      summary: IS RENEWABLE
+      tags:
+        - Scratchcards
+      description: Find out about whether a request is renewable or not.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/IsRenScrObject"
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            description: A JSON object containing full information about the renewable request
+          examples:
+            application/json:
+                {
+                    "torenew": {
+                        "data": "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",
+                        "profile": "PFnubeAF",
+                        "subject": "CN=Name Surname1 Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
+                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
+                        "valid_from": "2021-03-19T15:58:00Z",
+                        "valid_to": "2021-03-26T15:58:00Z",
+                        "serial_number": "1862295652b6e042",
+                        "status": 0,
+                        "pk": 21686,
+                        "revokation_reason": null,
+                        "type": "FIRSTISSUE"
+                    },
+                    "renewed": false,
+                    "request": {
+                        "pk": 25139,
+                        "given_name": "Name",
+                        "surname_1": "Surname1",
+                        "surname_2": "Surname2",
+                        "sex": null,
+                        "id_document_type": "TIN",
+                        "id_document_country": "IT",
+                        "serial_number": "A1111111E",
+                        "country_name": "ES",
+                        "citizenship": null,
+                        "residence": "ES",
+                        "organization_email": null,
+                        "email": "mail@domain",
+                        "title": null,
+                        "organization_name": null,
+                        "organizational_unit_1": null,
+                        "organizational_unit_2": null,
+                        "organization_identifier": null,
+                        "responsible_name": null,
+                        "responsible_first_surname": null,
+                        "responsible_second_surname": null,
+                        "responsible_email": null,
+                        "responsible_serial": null,
+                        "responsible_position": null,
+                        "subscriber_responsible_serial": null,
+                        "administrative_unit": null,
+                        "empowerment": null,
+                        "representation": null,
+                        "circumstances": null,
+                        "limit": null,
+                        "registration": null,
+                        "process_application": null,
+                        "entity_owner": null,
+                        "entity_owner_serial_number": null,
+                        "description": null,
+                        "certificate_set": [
+                            {
+                                "profile": "PFnubeAF",
+                                "status": 0,
+                                "valid_from": "2021-03-19T15:58:00Z",
+                                "valid_to": "2021-03-26T15:58:00Z",
+                                "valid": "VALID",
+                                "revokation_reason": null,
+                                "serial_number": "1862295652b6e042",
+                                "subject": "CN=Name Surname1 Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
+                                "data": "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",
+                                "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                            }
+                        ],
+                        "profile": "PFnubeAFCiudadano",
+                        "scratchcard": "5056027",
+                        "status": "ISSUED",
+                        "registering_user": {
+                            "pk": 578,
+                            "permission_profile": 1,
+                            "registration_authority": 303,
+                            "request": 25935
+                        },
+                        "approving_user": {
+                            "pk": 578,
+                            "permission_profile": 1,
+                            "registration_authority": 303,
+                            "request": 25935
+                        },
+                        "producing_user": {
+                            "pk": 527,
+                            "permission_profile": 19,
+                            "registration_authority": 303,
+                            "request": 28634
+                        },
+                        "registration_authority": 121,
+                        "secure_element": 2,
+                        "validity_time": "7",
+                        "smartcard_sn": null,
+                        "citizen_tax_number": "",
+                        "birth_date": null,
+                        "birth_country": null,
+                        "birth_city": "",
+                        "birth_province": "",
+                        "birth_state": "",
+                        "birth_district": "",
+                        "birth_canton": "",
+                        "id_document_description": "",
+                        "id_document_issuer": "",
+                        "organization_rol": null,
+                        "professional_id_number": null,
+                        "mobile_phone_number": "+34999999999",
+                        "fix_phone_number": "",
+                        "residence_address": "",
+                        "residence_city": "",
+                        "residence_province": "",
+                        "residence_postal_code": "",
+                        "residence_state": "",
+                        "residence_district": "",
+                        "residence_canton": "",
+                        "organization_tax_number": null,
+                        "organization_address": null,
+                        "organization_city": null,
+                        "organization_province": null,
+                        "organization_country": null,
+                        "organization_postal_code": null,
+                        "organization_state": null,
+                        "organization_url": null,
+                        "responsible_legal_level": null,
+                        "subscriber": null,
+                        "responsible_legal_documents": null,
+                        "special_conditions": null,
+                        "responsible_registry_data": null,
+                        "approving_rao": {
+                            "pk": 1400,
+                            "given_name": "RAO_Name",
+                            "surname_1": "RAO_Surname1",
+                            "surname_2": "RAO_Surname2",
+                            "certificate": {
+                                "profile": "PFnubeNC",
+                                "status": 0,
+                                "valid_from": "2020-12-01T14:52:00Z",
+                                "valid_to": "2022-12-01T14:52:00Z",
+                                "valid": "VALID",
+                                "revokation_reason": null,
+                                "serial_number": "28a70ba50632ba07",
+                                "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, OU=RAO_Name Gonzalez DPR:www.uanataca.com, C=ES",
+                                "data": "MIIIATCCBemgAwIBAgIIKKcLpQYyugcwDQYJKoZIhvcNAQELBQAwgb0xCzAJBgNVBAYTAkVTMUQwQgYDVQQHDDtCYXJjZWxvbmEgKHNlZSBjdXJyZW50IGFkZHJlc3MgYXQgd3d3LnVhbmF0YWNhLmNvbS9hZGRyZXNzKTEWMBQGA1UECgwNVUFOQVRBQ0EgUy5BLjEUMBIGA1UECwwLQUMtVUFOQVRBQ0ExIDAeBgNVBAMMF1VBTkFUQUNBIENBMSBERVZFTCAyMDE2MRgwFgYDVQRhDA9WQVRFUy1BNjY3MjE0OTkwHhcNMjAxMjAxMTQ1MjAwWhcNMjIxMjAxMTQ1MjAwWjCBpTELMAkGA1UEBhMCRVMxLDAqBgNVBAsMI0pvbmFzIEdvbnphbGV6IERQUjp3d3cudWFuYXRhY2EuY29tMRswGQYDVQQEDBJQcsOhY3RpY2FzIFBydWViYXMxDjAMBgNVBCoMBUpvbmFzMRgwFgYDVQQFEw9JRENFUy1ZMzY0Njk1N0UxITAfBgNVBAMMGEpvbmFzIFByw6FjdGljYXMgUHJ1ZWJhczCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKxvZH+LeZSEQvej37oShotApnQqlMWG91bLW8JL1XZklAVpvjldUc4UgEewcT+u3vuVbKikTfjw9u94AOu+sRyD9VQ76y5l93jhqquod4aVPpkB0PIc4Tjcr/7hA5heKKCV4fsxI3xnHv/CuNlXDB5jK6o9hkUKMkZl9NpveV4mPFTD+5qqeZJgxxkJFrA7SQSoV6jGnOBmzvPsosOjMEdsRoREsUtPWmkY6qeG470THxbjUmUC+/9ozbnxm1PggaZ8azqDfgD/rzziIYFz5RAvEJOjznShvRRyi11bc+A7z3hyskPjFWxK41coSvH0zmkdwZ2ftGxhxX9gKL0VX1MCAwEAAaOCAxkwggMVMIHXBggrBgEFBQcBAQSByjCBxzBVBggrBgEFBQcwAoZJaHR0cDovL3d3dy51YW5hdGFjYS5jb20vcHVibGljL2Rvd25sb2FkL3RzcF9jZXJ0aWZpY2F0ZXMvc3Vib3JkaW5hdGUxLmNydDA2BggrBgEFBQcwAYYqaHR0cDovL29jc3AxLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL29jc3AvMDYGCCsGAQUFBzABhipodHRwOi8vb2NzcDIudWFuYXRhY2EuY29tL3B1YmxpYy9wa2kvb2NzcC8wHQYDVR0OBBYEFLn/HGQM26X2iyrzB+XqvAb3/YjAMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUysyKpc+kjCJa1vuX90+0Tv3V764wVQYIKwYBBQUHAQMESTBHMAgGBgQAjkYBATALBgYEAI5GAQMCAQ8wLgYGBACORgEFDCRodHRwczovL3d3dy51YW5hdGFjYS5jb20vcHVibGljL2Nwcy8wga4GA1UdIASBpjCBozBBBgsrBgEEAYLxNgEUBTAyMDAGCCsGAQUFBwIBFiRodHRwczovL3d3dy51YW5hdGFjYS5jb20vcHVibGljL2Nwcy8wXgYLKwYBBAGC8TYBAQUwTzBNBggrBgEFBQcCAjBBDD9DZXJ0aWZpY2FkbyBjdWFsaWZpY2FkbyBkZSBQZXJzb25hIEbDrXNpY2EgZW4gSFNNIGNlbnRyYWxpemFkby4wgY8GA1UdHwSBhzCBhDBAoD6gPIY6aHR0cDovL2NybDEudWFuYXRhY2EuY29tL3B1YmxpYy9wa2kvY3JsL0NBMXN1Ym9yZGluYWRhLmNybDBAoD6gPIY6aHR0cDovL2NybDIudWFuYXRhY2EuY29tL3B1YmxpYy9wa2kvY3JsL0NBMXN1Ym9yZGluYWRhLmNybDAOBgNVHQ8BAf8EBAMCBeAwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMCIGA1UdEQQbMBmBF2pvbmFzaXNhaWFzOTlAZ21haWwuY29tMA0GCSqGSIb3DQEBCwUAA4ICAQAeuuN7s8OK8YFaAkRjQY9RoX4onQmxBceLiaKjvXs4Dr/p1sHGyN3nutIMa4JhdPC8wNEy1t3O3nDEfsLdF1LyxSe0CZuHnkMlsr2V8uZXjA4xwwUMEBYwEsGapggN0DuZzDKRC6tkD2q1GkiabfH5UPJs4L1k/zcay549CwZ75K2Me/dommlVIN639oiPw55tByCGH/RtR8CO60PqbiKbW2oPdeIOIfVeaaQDFzTNOoFRT/8snzklm8oGSFjf038vUnNh4VL5wQx2xwe53xKTr9kJar51+u3qq+n6vq4iv1VqUqvvybE3UDr+lnJVjWMNXURl0ZfeVslAHFwQKfO8jGjtX5uq4iRGjcAehs8dgtQ4be+zwoP0XVG/LP/+k+uBmDzGiSOozbrHSkGRkJ+pAU9jUroivk3WeUhGgTM7+e9QCGhcK3eUxR6KSY8JkF2kHd5/Vi258NR2AHyYlRgyg/WyJ0/9rT1Mp57uIOh4N7fLG9qMaBGAlI8Kb5JusfI5nCEoRfyGpQTqOX4jI5glT5UNpdmW/4GSXVYIuA/m0NOqnjD6e4ZOmF/O1PlOSIM4pc4u5aWK79CpqPgyR9fMSXheZoFMrfBX5HTQV8JfWWiO8nXDqFT/HwPdTTyLVgKZYv2hWYL91xMCAePaC24QYgXO+g55r7WB6bPRO3hkAw==",
+                                "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                            },
+                            "id_document_number": "Y3646959E",
+                            "id_document_description": "Mi descripcion",
+                            "id_document_issuer": "aASSAD",
+                            "registration_authority": [],
+                            "registration_authority_master": 327,
+                            "is_identificator": false
+                        },
+                        "producing_rao": {
+                            "pk": 1400,
+                            "given_name": "RAO_Name",
+                            "surname_1": "RAO_Surname1",
+                            "surname_2": "RAO_Surname2",
+                            "certificate": {
+                                "profile": "PFnubeNC",
+                                "status": 0,
+                                "valid_from": "2020-12-01T14:52:00Z",
+                                "valid_to": "2022-12-01T14:52:00Z",
+                                "valid": "VALID",
+                                "revokation_reason": null,
+                                "serial_number": "28a70ba50632ba07",
+                                "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, OU=RAO_Name Gonzalez DPR:www.uanataca.com, C=ES",
+                                "data": "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",
+                                "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                            },
+                            "id_document_number": "Y3646959E",
+                            "id_document_description": "Mi descripcion",
+                            "id_document_issuer": "aASSAD",
+                            "registration_authority": [],
+                            "registration_authority_master": 327,
+                            "is_identificator": false
+                        },
+                        "id_document_number": "",
+                        "id_responsible_document_type": null,
+                        "id_responsible_document_country": null,
+                        "id_responsible_document_number": null,
+                        "organizational_unit_3": null,
+                        "paperless_mode": true,
+                        "ext_recognition_data": "",
+                        "complement_number": null,
+                        "id_responsible_document_issuer": null,
+                        "provider_registration_number": null,
+                        "communication_language": "es",
+                        "identification_rao": null
+                    }
+                }
+        400:
+          description: JSON syntax error
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: The response status message             
+          examples:
+            application/json:
+                {
+                    "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 5 (char 38)"
+                }
+        412:
+          description: Request disabled | not enabled for renewal | Invalid parameters | Maximum renewals reached
+          schema:
+            type: object
+            properties:
+              code:
+                type: number
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message           
+          examples:
+            application/json:
+                {
+                    "code": 426,
+                    "id": "11ed087a5fed92b2",
+                    "error": "Request not enabled for renewal by RAO"
+                }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/is_renewable \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "scratchcard": "5053349",
+                      "erc": ",_3A26F!"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/is_renewable',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '5053349',
+                        erc: ',_3A26F!'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/is_renewable"
+
+                  payload = {
+                    "scratchcard": "5053349",
+                    "erc": ",_3A26F!"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/is_renewable',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '5053349',
+                        erc: ',_3A26F!'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          scratchcard: '5053349',
+                          erc: ',_3A26F!'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/is_renewable", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
+#############
+  /api/v1/requests/{id}/enable_renewal:
+    post: 
+      summary: ENABLE RENEWAL
+      tags:
+        - Scratchcards
+      description: Activates the renewal option for a certificate
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The response status message
+          required: true
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: The response status message (renewal enabled)
+          examples:
+            application/json:
+                {
+                    "status": "Renewal enabled for request"
+                }
+        404:
+          description: Invalid parameters
+          schema:
+            type: object
+            properties:
+              code:
+                type: number
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message           
+          examples:
+            application/json:
+                {
+                    "code": "400",
+                    "id": "f03579946f89a49e",
+                    "error": "No Request matches the given query."
+                }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/enable_renewal
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/enable_renewal',
+                    {method: 'POST'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/enable_renewal"
+
+                  response = requests.post(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/enable_renewal',
+                    {method: 'POST'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/enable_renewal", null);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
+#############
+  /api/v1/requests/{id}/disable_renewal:
+    post: 
+      summary: DISABLE RENEWAL
+      tags:
+        - Scratchcards
+      description: Deactivates the renewal option for a certificate
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The response status message
+          required: true
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: The response status message (renewal disabled)
+          examples:
+            application/json:
+                {
+                    "status": "Renewal disabled for request"
+                }
+        404:
+          description: Invalid parameters
+          schema:
+            type: object
+            properties:
+              code:
+                type: number
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message           
+          examples:
+            application/json:
+                {
+                    "code": "400",
+                    "id": "f03579946f89a49e",
+                    "error": "No Request matches the given query."
+                }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/disable_renewal
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/disable_renewal',
+                    {method: 'POST'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/disable_renewal"
+
+                  response = requests.post(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/disable_renewal',
+                    {method: 'POST'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/37037/disable_renewal", null);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
+#############
+  /api/v1/requests/cloud_renew:
+    post: 
+      summary: CLOUD RENEWAL
+      tags:
+        - Scratchcards
+      description: Performs a cloud certificate renewal
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/ClRenScrObject"
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            description: A JSON object containing information about the renewed request
+          examples:
+            application/json:
+                [
+                    {
+                        "data": "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",
+                        "profile": "PFnubeAF",
+                        "subject": "CN=Name Surname1 Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
+                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
+                        "valid_from": "2021-03-22T11:51:00",
+                        "valid_to": "2021-03-29T11:51:00",
+                        "serial_number": "611af7c8fdd5cea9",
+                        "status": 0,
+                        "pk": 25139,
+                        "revokation_reason": null,
+                        "type": "RENEWAL"
+                    }
+                ]
+        400:
+          description: JSON syntax error
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: The response status message             
+          examples:
+            application/json:
+                {
+                    "detail": "JSON parse error - Expecting ',' delimiter: line 4 column 5 (char 68)"
+                }
+        412:
+          description: Invalid parameters
+          schema:
+            type: object
+            properties:
+              code:
+                type: number
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message           
+          examples:
+            application/json:
+                {
+                    "code": "418",
+                    "id": "f78081787c5538a5",
+                    "error": "Invalid paramiters"
+                }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/cloud_renew \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "username": "5053349",
+                      "password": ",_3A26F!",
+                      "pin": "belorado74"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/cloud_renew',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        username: '5053349',
+                        password: ',_3A26F!',
+                        pin: 'belorado74'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/cloud_renew"
+
+                  payload = {
+                    "username": "5053349",
+                    "password": ",_3A26F!",
+                    "pin": "belorado74"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/cloud_renew',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        username: '5053349',
+                        password: ',_3A26F!',
+                        pin: 'belorado74'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          username: '5053349',
+                          password: ',_3A26F!',
+                          pin: 'belorado74'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/cloud_renew", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
+#############
+  /api/v1/requests/soft_renew:
+    post: 
+      summary: SOFTWARE RENEWAL
+      tags:
+        - Scratchcards
+      description: Performs a software certificate renewal
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/SoRenScrObject"
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            description: A JSON object containing information about the renewed request
+          examples:
+            application/json:
+                [
+                    {
+                        "data": "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",
+                        "profile": "PFnubeAF",
+                        "subject": "CN=Name Surname1 Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
+                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
+                        "valid_from": "2021-03-22T11:51:00",
+                        "valid_to": "2021-03-29T11:51:00",
+                        "serial_number": "611af7c8fdd5cea9",
+                        "status": 0,
+                        "pk": 25139,
+                        "revokation_reason": null,
+                        "type": "RENEWAL"
+                    }
+                ]
+        400:
+          description: JSON syntax error
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: The response status message             
+          examples:
+            application/json:
+                {
+                    "detail": "JSON parse error - Expecting ',' delimiter: line 4 column 5 (char 68)"
+                }
+        412:
+          description: Invalid parameters
+          schema:
+            type: object
+            properties:
+              code:
+                type: number
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message           
+          examples:
+            application/json:
+                {
+                    "code": "418",
+                    "id": "f78081787c5538a5",
+                    "error": "Invalid paramiters"
+                }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/soft_renew \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "username": "5053349",
+                      "password": ",_3A26F!",
+                      "pin": "belorado74"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/soft_renew',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        username: '5053349',
+                        password: ',_3A26F!',
+                        pin: 'belorado74'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/soft_renew"
+
+                  payload = {
+                    "username": "5053349",
+                    "password": ",_3A26F!",
+                    "pin": "belorado74"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/soft_renew',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        username: '5053349',
+                        password: ',_3A26F!',
+                        pin: 'belorado74'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          username: '5053349',
+                          password: ',_3A26F!',
+                          pin: 'belorado74'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/soft_renew", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
+#############
+  /api/v1/requests/{id}/generate_otp_for_unlock:
+    get: 
+      summary: OTP FOR RESET/UNLOCK PIN
+      tags:
+        - Scratchcards
+      description: Sends an OTP code via SMS for PIN reset or unlock.
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: Successful status message
+              message: 
+                type: number
+                description: Successful status description
+          examples:
+            application/json:
+                {
+                    "status": "success",
+                    "message": "OTP sent via SMS"
+                }
+        500:
+          description: Invalid request id
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message                
+          examples:
+            application/json:
+                {
+                    "code": "500",
+                    "id": "8a1289c3606148ce",
+                    "error": "Request matching query does not exist."
+                }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock"
+
+                  response = requests.get(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock',
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
+#############
+  /api/v1/requests/{id}/unlock_pin:
+    get: 
+      summary: RESET/UNLOCK PIN
+      tags:
+        - Scratchcards
+      description: Performs the pin reset or unlock operation
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/ResetPinObject"
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: The response status code
+              message:
+                type: string
+                description: The response status message
+          examples:
+            application/json:
+                {
+                    "status": "success",
+                    "message": "Pin unlocked successfully"
+                }
+        412:
+          description: Invalid request id | parameters | invalid otp 
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message                
+          examples:
+            application/json:
+                {
+                    "code": "412",
+                    "id": "64943e09cbd42ea7",
+                    "error": "Invalid Request"
+                }
+        500:
+          description: JSON syntax error | Pin not locked
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message                
+          examples:
+            application/json:
+                {
+                    "code": "500",
+                    "id": "21484514a0d347f7",
+                    "error": "JSON parse error - Expecting ',' delimiter: line 4 column 5 (char 75)"
+                }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/requests/25139/unlock_pin \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "scratchcard": "5053349",
+                      "enrollment_code": ",_3A26F!",
+                      "newpin": "nuevopin33",
+                      "otp": "211489"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/unlock_pin',
+                    {
+                      method: 'GET',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '5053349',
+                        enrollment_code: '7T8xdGBN',
+                        newpin: 'nuevopin33',
+                        otp: '211489'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/unlock_pin"
+
+                  payload = {
+                    "scratchcard": "5053349",
+                    "enrollment_code": "7T8xdGBN",
+                    "newpin": "nuevopin33",
+                    "otp": "211489"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.get(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/unlock_pin',
+                    {
+                      method: 'GET',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '5053349',
+                        enrollment_code: '7T8xdGBN',
+                        newpin: 'nuevopin33',
+                        otp: '211489'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          scratchcard: '5053349',
+                          enrollment_code: '7T8xdGBN',
+                          newpin: 'nuevopin33',
+                          otp: '211489'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/unlock_pin");
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
+
+
 ###### scratchcards ######
 ###############################################################################
 
@@ -5678,1177 +6076,7 @@ paths:
                       }
                     }
                   }
-#############
-  /api/v1/requests/is_renewable:
-    post: 
-      summary: IS RENEWABLE
-      tags:
-        - Scratchcards
-      description: Find out about whether a request is renewable or not.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: "body"
-          name: "body"
-          schema:
-            $ref: "#/definitions/IsRenScrObject"
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: object
-            description: A JSON object containing full information about the renewable request
-          examples:
-            application/json:
-                {
-                    "torenew": {
-                        "data": "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",
-                        "profile": "PFnubeAF",
-                        "subject": "CN=Name Surname1 Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
-                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
-                        "valid_from": "2021-03-19T15:58:00Z",
-                        "valid_to": "2021-03-26T15:58:00Z",
-                        "serial_number": "1862295652b6e042",
-                        "status": 0,
-                        "pk": 21686,
-                        "revokation_reason": null,
-                        "type": "FIRSTISSUE"
-                    },
-                    "renewed": false,
-                    "request": {
-                        "pk": 25139,
-                        "given_name": "Name",
-                        "surname_1": "Surname1",
-                        "surname_2": "Surname2",
-                        "sex": null,
-                        "id_document_type": "TIN",
-                        "id_document_country": "IT",
-                        "serial_number": "A1111111E",
-                        "country_name": "ES",
-                        "citizenship": null,
-                        "residence": "ES",
-                        "organization_email": null,
-                        "email": "mail@domain",
-                        "title": null,
-                        "organization_name": null,
-                        "organizational_unit_1": null,
-                        "organizational_unit_2": null,
-                        "organization_identifier": null,
-                        "responsible_name": null,
-                        "responsible_first_surname": null,
-                        "responsible_second_surname": null,
-                        "responsible_email": null,
-                        "responsible_serial": null,
-                        "responsible_position": null,
-                        "subscriber_responsible_serial": null,
-                        "administrative_unit": null,
-                        "empowerment": null,
-                        "representation": null,
-                        "circumstances": null,
-                        "limit": null,
-                        "registration": null,
-                        "process_application": null,
-                        "entity_owner": null,
-                        "entity_owner_serial_number": null,
-                        "description": null,
-                        "certificate_set": [
-                            {
-                                "profile": "PFnubeAF",
-                                "status": 0,
-                                "valid_from": "2021-03-19T15:58:00Z",
-                                "valid_to": "2021-03-26T15:58:00Z",
-                                "valid": "VALID",
-                                "revokation_reason": null,
-                                "serial_number": "1862295652b6e042",
-                                "subject": "CN=Name Surname1 Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
-                                "data": "MIIH7zCCBdegAwIBAgIIGGIpVlK24EIwDQYJKoZIhvcNAQELBQAwgb0xCzAJBgNVBAYTAkVTMUQwQgYDVQQHDDtCYXJjZWxvbmEgKHNlZSBjdXJyZW50IGFkZHJlc3MgYXQgd3d3LnVhbmF0YWNhLmNvbS9hZGRyZXNzKTEWMBQGA1UECgwNVUFOQVRBQ0EgUy5BLjEUMBIGA1UECwwLQUMtVUFOQVRBQ0ExIDAeBgNVBAMMF1VBTkFUQUNBIENBMSBERVZFTCAyMDE2MRgwFgYDVQRhDA9WQVRFUy1BNjY3MjE0OTkwHhcNMjEwMzE5MTU1ODAwWhcNMjEwMzI2MTU1ODAwWjB7MQswCQYDVQQGEwJFUzEcMBoGA1UEBAwTYXNkYXNkYXNkIEdvbnrDoWxlejEPMA0GA1UEKgwGSm9uw6FzMRgwFgYDVQQFEw9JRENFUy1ZMzY0Njk1N0UxIzAhBgNVBAMMGkpvbsOhcyBhc2Rhc2Rhc2QgR29uesOhbGV6MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4sHkrVdVBLkx1u9scu1EqzBazA1v3zKZUKKOOndDLO/aTo50klV23siMKk2ySiA7ApnumBPG2X2Ff6MkZZy7QnQlhpRvweZrU5ZMBy01USvf0Em0rCEjAcOP+x5/g8WFgmI0i9k4YKAtQS36iJPbLYXlVYIrQRa9RmTq/Qz3SxCg+0jXo13rkfz1ygzEbqNJWstJhCK+sAM8srXFMpxbc7HZU2vXcWqfS0wztLCywcFMpfykmsA2hdNwug5DEa2YB6h0W0KZLQmnJgz65lCICGsRn/fKT+bYe7GTw+e7Ben4mwERK6VDByhaP+PjGZeNvXY7PHgb3cFoij5xAj+DmQIDAQABo4IDMjCCAy4wcgYIKwYBBQUHAQMEZjBkMAgGBgQAjkYBATALBgYEAI5GAQMCAQ8wNgYGBACORgEFMCwwKhYkaHR0cHM6Ly93d3cudWFuYXRhY2EuY29tL3B1YmxpYy9jcHMvEwJFTjATBgYEAI5GAQYwCQYHBACORgEGATCB1wYIKwYBBQUHAQEEgcowgccwVQYIKwYBBQUHMAKGSWh0dHA6Ly93d3cudWFuYXRhY2EuY29tL3B1YmxpYy9kb3dubG9hZC90c3BfY2VydGlmaWNhdGVzL3N1Ym9yZGluYXRlMS5jcnQwNgYIKwYBBQUHMAGGKmh0dHA6Ly9vY3NwMS51YW5hdGFjYS5jb20vcHVibGljL3BraS9vY3NwLzA2BggrBgEFBQcwAYYqaHR0cDovL29jc3AyLnVhbmF0YWNhLmNvbS9wdWJsaWMvcGtpL29jc3AvMB0GA1UdDgQWBBRHGTQPlKNDgg/Fr29jmC4i0dg9/TAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFMrMiqXPpIwiWtb7l/dPtE791e+uMIGqBgNVHSAEgaIwgZ8wgZEGCysGAQQBgvE2AQEFMIGBME0GCCsGAQUFBwICMEEMP0NlcnRpZmljYWRvIGN1YWxpZmljYWRvIGRlIFBlcnNvbmEgRsOtc2ljYSBlbiBIU00gY2VudHJhbGl6YWRvLjAwBggrBgEFBQcCARYkaHR0cHM6Ly93d3cudWFuYXRhY2EuY29tL3B1YmxpYy9jcHMvMAkGBwQAi+xAAQAwgY8GA1UdHwSBhzCBhDBAoD6gPIY6aHR0cDovL2NybDEudWFuYXRhY2EuY29tL3B1YmxpYy9wa2kvY3JsL0NBMXN1Ym9yZGluYWRhLmNybDBAoD6gPIY6aHR0cDovL2NybDIudWFuYXRhY2EuY29tL3B1YmxpYy9wa2kvY3JsL0NBMXN1Ym9yZGluYWRhLmNybDAOBgNVHQ8BAf8EBAMCBeAwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMCIGA1UdEQQbMBmBF2pvbmFzaXNhaWFzOTlAZ21haWwuY29tMA0GCSqGSIb3DQEBCwUAA4ICAQBanzu5IGI3joLuDUm3yUXjkj9HJjHOqR3zzgSIE+IuwZvJHiqOcmnysyugpgPL+x+jjM4szbV3ji4c8nQicdi0EjHrMkjwH6sEbyg/yilaxCMHs0uPUJM1XdVCuHW6yc7hIeTiExvl9QRJTG3+rKYyRnjh0TRBrX0IVZYmWYUJu1+ZOfTQHYh1NqnB58hPsHEcAVaMqcbuwaPUMLGXZxzZagTL+yqF1ugrUpfm0aiOeObJzQuFv/l2B712HDGYgCDA271XT11LQT6bRc+nf0w5vdD52VoitmcEF+ab+mKGVSBzVow755beMh9TB6oeFr1MytjnN0s9iRYeaIDmdY3IojL2E/Cu9O+kZ76MT+r41IoiZdSALtaj1ACN29RwFAe0EkNdRJsrUMb1LPCzaTCSZHpywhDX/bmOt/tNQM0JtRbCfe+rnyAKG5oXk5KrIoP8CS20mT0OO6x9cfEJ1vHzUDvnlgoxkhpXcQ41JY2ok0a+5nNX1j1VFRhTP8jY35le7j5FnSHNik76/QrI5SCFUsO5sOsOxUR7/mgcQJ7QFtdXEdY1SPPAmsNSvlUCfUmvwMUwboLgakD54Tg79pfa7rl44XGEJugNihnFrMUFrJWQYhQxXKbvDi46/KHo5b6zUpZUEDa9UIKhiI9qZDb8XsqxnwYePwSta/OjQtDSbg==",
-                                "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
-                            }
-                        ],
-                        "profile": "PFnubeAFCiudadano",
-                        "scratchcard": "5056027",
-                        "status": "ISSUED",
-                        "registering_user": {
-                            "pk": 578,
-                            "permission_profile": 1,
-                            "registration_authority": 303,
-                            "request": 25935
-                        },
-                        "approving_user": {
-                            "pk": 578,
-                            "permission_profile": 1,
-                            "registration_authority": 303,
-                            "request": 25935
-                        },
-                        "producing_user": {
-                            "pk": 527,
-                            "permission_profile": 19,
-                            "registration_authority": 303,
-                            "request": 28634
-                        },
-                        "registration_authority": 121,
-                        "secure_element": 2,
-                        "validity_time": "7",
-                        "smartcard_sn": null,
-                        "citizen_tax_number": "",
-                        "birth_date": null,
-                        "birth_country": null,
-                        "birth_city": "",
-                        "birth_province": "",
-                        "birth_state": "",
-                        "birth_district": "",
-                        "birth_canton": "",
-                        "id_document_description": "",
-                        "id_document_issuer": "",
-                        "organization_rol": null,
-                        "professional_id_number": null,
-                        "mobile_phone_number": "+34999999999",
-                        "fix_phone_number": "",
-                        "residence_address": "",
-                        "residence_city": "",
-                        "residence_province": "",
-                        "residence_postal_code": "",
-                        "residence_state": "",
-                        "residence_district": "",
-                        "residence_canton": "",
-                        "organization_tax_number": null,
-                        "organization_address": null,
-                        "organization_city": null,
-                        "organization_province": null,
-                        "organization_country": null,
-                        "organization_postal_code": null,
-                        "organization_state": null,
-                        "organization_url": null,
-                        "responsible_legal_level": null,
-                        "subscriber": null,
-                        "responsible_legal_documents": null,
-                        "special_conditions": null,
-                        "responsible_registry_data": null,
-                        "approving_rao": {
-                            "pk": 1400,
-                            "given_name": "RAO_Name",
-                            "surname_1": "RAO_Surname1",
-                            "surname_2": "RAO_Surname2",
-                            "certificate": {
-                                "profile": "PFnubeNC",
-                                "status": 0,
-                                "valid_from": "2020-12-01T14:52:00Z",
-                                "valid_to": "2022-12-01T14:52:00Z",
-                                "valid": "VALID",
-                                "revokation_reason": null,
-                                "serial_number": "28a70ba50632ba07",
-                                "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, OU=RAO_Name Gonzalez DPR:www.uanataca.com, C=ES",
-                                "data": "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",
-                                "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
-                            },
-                            "id_document_number": "Y3646959E",
-                            "id_document_description": "Mi descripcion",
-                            "id_document_issuer": "aASSAD",
-                            "registration_authority": [],
-                            "registration_authority_master": 327,
-                            "is_identificator": false
-                        },
-                        "producing_rao": {
-                            "pk": 1400,
-                            "given_name": "RAO_Name",
-                            "surname_1": "RAO_Surname1",
-                            "surname_2": "RAO_Surname2",
-                            "certificate": {
-                                "profile": "PFnubeNC",
-                                "status": 0,
-                                "valid_from": "2020-12-01T14:52:00Z",
-                                "valid_to": "2022-12-01T14:52:00Z",
-                                "valid": "VALID",
-                                "revokation_reason": null,
-                                "serial_number": "28a70ba50632ba07",
-                                "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, OU=RAO_Name Gonzalez DPR:www.uanataca.com, C=ES",
-                                "data": "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",
-                                "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
-                            },
-                            "id_document_number": "Y3646959E",
-                            "id_document_description": "Mi descripcion",
-                            "id_document_issuer": "aASSAD",
-                            "registration_authority": [],
-                            "registration_authority_master": 327,
-                            "is_identificator": false
-                        },
-                        "id_document_number": "",
-                        "id_responsible_document_type": null,
-                        "id_responsible_document_country": null,
-                        "id_responsible_document_number": null,
-                        "organizational_unit_3": null,
-                        "paperless_mode": true,
-                        "ext_recognition_data": "",
-                        "complement_number": null,
-                        "id_responsible_document_issuer": null,
-                        "provider_registration_number": null,
-                        "communication_language": "es",
-                        "identification_rao": null
-                    }
-                }
-        400:
-          description: JSON syntax error
-          schema:
-            type: object
-            properties:
-              detail:
-                type: string
-                description: The response status message             
-          examples:
-            application/json:
-                {
-                    "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 5 (char 38)"
-                }
-        412:
-          description: Request disabled | not enabled for renewal | Invalid parameters | Maximum renewals reached
-          schema:
-            type: object
-            properties:
-              code:
-                type: number
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message           
-          examples:
-            application/json:
-                {
-                    "code": 426,
-                    "id": "11ed087a5fed92b2",
-                    "error": "Request not enabled for renewal by RAO"
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/is_renewable \
-                    -H 'Content-Type: application/json' \
-                    -d '{
-                      "scratchcard": "5053349",
-                      "erc": ",_3A26F!"
-                    }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/is_renewable',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        scratchcard: '5053349',
-                        erc: ',_3A26F!'
-                      })
-                    }
-                  );
 
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/requests/is_renewable"
-
-                  payload = {
-                    "scratchcard": "5053349",
-                    "erc": ",_3A26F!"
-                  }
-
-                  headers = {"Content-Type": "application/json"}
-
-                  response = requests.post(url, json=payload, headers=headers)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/is_renewable',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        scratchcard: '5053349',
-                        erc: ',_3A26F!'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-                  using System.Text;
-                  using Newtonsoft.Json.Linq;
-
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      using (var client = new HttpClient())
-                      {
-                        JObject json = JObject.Parse(@"{
-                          scratchcard: '5053349',
-                          erc: ',_3A26F!'
-                        }");
-                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/is_renewable", postData);
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
-#############
-  /api/v1/requests/{id}/enable_renewal:
-    post: 
-      summary: ENABLE RENEWAL
-      tags:
-        - Scratchcards
-      description: Activates the renewal option for a certificate
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: The response status message
-          required: true
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: The response status message (renewal enabled)
-          examples:
-            application/json:
-                {
-                    "status": "Renewal enabled for request"
-                }
-        404:
-          description: Invalid parameters
-          schema:
-            type: object
-            properties:
-              code:
-                type: number
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message           
-          examples:
-            application/json:
-                {
-                    "code": "400",
-                    "id": "f03579946f89a49e",
-                    "error": "No Request matches the given query."
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/enable_renewal
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/enable_renewal',
-                    {method: 'POST'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/requests/25139/enable_renewal"
-
-                  response = requests.post(url)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/enable_renewal',
-                    {method: 'POST'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      using (var client = new HttpClient())
-                      {
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/enable_renewal", null);
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
-#############
-  /api/v1/requests/{id}/disable_renewal:
-    post: 
-      summary: DISABLE RENEWAL
-      tags:
-        - Scratchcards
-      description: Deactivates the renewal option for a certificate
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: The response status message
-          required: true
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: The response status message (renewal disabled)
-          examples:
-            application/json:
-                {
-                    "status": "Renewal disabled for request"
-                }
-        404:
-          description: Invalid parameters
-          schema:
-            type: object
-            properties:
-              code:
-                type: number
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message           
-          examples:
-            application/json:
-                {
-                    "code": "400",
-                    "id": "f03579946f89a49e",
-                    "error": "No Request matches the given query."
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/disable_renewal
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/disable_renewal',
-                    {method: 'POST'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/requests/25139/disable_renewal"
-
-                  response = requests.post(url)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/disable_renewal',
-                    {method: 'POST'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      using (var client = new HttpClient())
-                      {
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/37037/disable_renewal", null);
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
-#############
-  /api/v1/requests/cloud_renew:
-    post: 
-      summary: CLOUD RENEWAL
-      tags:
-        - Scratchcards
-      description: Performs a cloud certificate renewal
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: "body"
-          name: "body"
-          schema:
-            $ref: "#/definitions/ClRenScrObject"
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: object
-            description: A JSON object containing information about the renewed request
-          examples:
-            application/json:
-                [
-                    {
-                        "data": "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",
-                        "profile": "PFnubeAF",
-                        "subject": "CN=Name Surname1 Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
-                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
-                        "valid_from": "2021-03-22T11:51:00",
-                        "valid_to": "2021-03-29T11:51:00",
-                        "serial_number": "611af7c8fdd5cea9",
-                        "status": 0,
-                        "pk": 25139,
-                        "revokation_reason": null,
-                        "type": "RENEWAL"
-                    }
-                ]
-        400:
-          description: JSON syntax error
-          schema:
-            type: object
-            properties:
-              detail:
-                type: string
-                description: The response status message             
-          examples:
-            application/json:
-                {
-                    "detail": "JSON parse error - Expecting ',' delimiter: line 4 column 5 (char 68)"
-                }
-        412:
-          description: Invalid parameters
-          schema:
-            type: object
-            properties:
-              code:
-                type: number
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message           
-          examples:
-            application/json:
-                {
-                    "code": "418",
-                    "id": "f78081787c5538a5",
-                    "error": "Invalid paramiters"
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/cloud_renew \
-                    -H 'Content-Type: application/json' \
-                    -d '{
-                      "username": "5053349",
-                      "password": ",_3A26F!",
-                      "pin": "belorado74"
-                    }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/cloud_renew',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        username: '5053349',
-                        password: ',_3A26F!',
-                        pin: 'belorado74'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/requests/cloud_renew"
-
-                  payload = {
-                    "username": "5053349",
-                    "password": ",_3A26F!",
-                    "pin": "belorado74"
-                  }
-
-                  headers = {"Content-Type": "application/json"}
-
-                  response = requests.post(url, json=payload, headers=headers)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/cloud_renew',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        username: '5053349',
-                        password: ',_3A26F!',
-                        pin: 'belorado74'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-                  using System.Text;
-                  using Newtonsoft.Json.Linq;
-
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      using (var client = new HttpClient())
-                      {
-                        JObject json = JObject.Parse(@"{
-                          username: '5053349',
-                          password: ',_3A26F!',
-                          pin: 'belorado74'
-                        }");
-                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/cloud_renew", postData);
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
-#############
-  /api/v1/requests/soft_renew:
-    post: 
-      summary: SOFTWARE RENEWAL
-      tags:
-        - Scratchcards
-      description: Performs a software certificate renewal
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: "body"
-          name: "body"
-          schema:
-            $ref: "#/definitions/SoRenScrObject"
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: object
-            description: A JSON object containing information about the renewed request
-          examples:
-            application/json:
-                [
-                    {
-                        "data": "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",
-                        "profile": "PFnubeAF",
-                        "subject": "CN=Name Surname1 Surname2, 2.5.4.5=IDCES-Y3646957E, 2.5.4.42=Name, 2.5.4.4=Surname1 Surname2, C=ES",
-                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES",
-                        "valid_from": "2021-03-22T11:51:00",
-                        "valid_to": "2021-03-29T11:51:00",
-                        "serial_number": "611af7c8fdd5cea9",
-                        "status": 0,
-                        "pk": 25139,
-                        "revokation_reason": null,
-                        "type": "RENEWAL"
-                    }
-                ]
-        400:
-          description: JSON syntax error
-          schema:
-            type: object
-            properties:
-              detail:
-                type: string
-                description: The response status message             
-          examples:
-            application/json:
-                {
-                    "detail": "JSON parse error - Expecting ',' delimiter: line 4 column 5 (char 68)"
-                }
-        412:
-          description: Invalid parameters
-          schema:
-            type: object
-            properties:
-              code:
-                type: number
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message           
-          examples:
-            application/json:
-                {
-                    "code": "418",
-                    "id": "f78081787c5538a5",
-                    "error": "Invalid paramiters"
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/soft_renew \
-                    -H 'Content-Type: application/json' \
-                    -d '{
-                      "username": "5053349",
-                      "password": ",_3A26F!",
-                      "pin": "belorado74"
-                    }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/soft_renew',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        username: '5053349',
-                        password: ',_3A26F!',
-                        pin: 'belorado74'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/requests/soft_renew"
-
-                  payload = {
-                    "username": "5053349",
-                    "password": ",_3A26F!",
-                    "pin": "belorado74"
-                  }
-
-                  headers = {"Content-Type": "application/json"}
-
-                  response = requests.post(url, json=payload, headers=headers)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/soft_renew',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        username: '5053349',
-                        password: ',_3A26F!',
-                        pin: 'belorado74'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-                  using System.Text;
-                  using Newtonsoft.Json.Linq;
-
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      using (var client = new HttpClient())
-                      {
-                        JObject json = JObject.Parse(@"{
-                          username: '5053349',
-                          password: ',_3A26F!',
-                          pin: 'belorado74'
-                        }");
-                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/soft_renew", postData);
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
-#############
-  /api/v1/requests/{id}/generate_otp_for_unlock:
-    get: 
-      summary: OTP FOR RESET/UNLOCK PIN
-      tags:
-        - Scratchcards
-      description: Sends an OTP code via SMS for PIN reset or unlock.
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: The unique identifier of the Request
-          required: true
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: Successful status message
-              message: 
-                type: number
-                description: Successful status description
-          examples:
-            application/json:
-                {
-                    "status": "success",
-                    "message": "OTP sent via SMS"
-                }
-        500:
-          description: Invalid request id
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "500",
-                    "id": "8a1289c3606148ce",
-                    "error": "Request matching query does not exist."
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X GET \
-                    https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock',
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock"
-
-                  response = requests.get(url)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock',
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      using (var client = new HttpClient())
-                      {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock");
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
-#############
-  /api/v1/requests/{id}/unlock_pin:
-    get: 
-      summary: RESET/UNLOCK PIN
-      tags:
-        - Scratchcards
-      description: Performs the pin reset or unlock operation
-      produces:
-        - application/json
-      consumes:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: The unique identifier of the Request
-          required: true
-        - in: "body"
-          name: "body"
-          schema:
-            $ref: "#/definitions/ResetPinObject"
-      responses:
-        200:
-          description: Successful response
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: The response status code
-              message:
-                type: string
-                description: The response status message
-          examples:
-            application/json:
-                {
-                    "status": "success",
-                    "message": "Pin unlocked successfully"
-                }
-        412:
-          description: Invalid request id | parameters | invalid otp 
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "412",
-                    "id": "64943e09cbd42ea7",
-                    "error": "Invalid Request"
-                }
-        500:
-          description: JSON syntax error | Pin not locked
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "500",
-                    "id": "21484514a0d347f7",
-                    "error": "JSON parse error - Expecting ',' delimiter: line 4 column 5 (char 75)"
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X GET \
-                    https://api.uanataca.com/api/v1/requests/25139/unlock_pin \
-                    -H 'Content-Type: application/json' \
-                    -d '{
-                      "scratchcard": "5053349",
-                      "enrollment_code": ",_3A26F!",
-                      "newpin": "nuevopin33",
-                      "otp": "211489"
-                    }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/unlock_pin',
-                    {
-                      method: 'GET',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        scratchcard: '5053349',
-                        enrollment_code: '7T8xdGBN',
-                        newpin: 'nuevopin33',
-                        otp: '211489'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/requests/25139/unlock_pin"
-
-                  payload = {
-                    "scratchcard": "5053349",
-                    "enrollment_code": "7T8xdGBN",
-                    "newpin": "nuevopin33",
-                    "otp": "211489"
-                  }
-
-                  headers = {"Content-Type": "application/json"}
-
-                  response = requests.get(url, json=payload, headers=headers)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/unlock_pin',
-                    {
-                      method: 'GET',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        scratchcard: '5053349',
-                        enrollment_code: '7T8xdGBN',
-                        newpin: 'nuevopin33',
-                        otp: '211489'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-                  using System.Text;
-                  using Newtonsoft.Json.Linq;
-
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      using (var client = new HttpClient())
-                      {
-                        JObject json = JObject.Parse(@"{
-                          scratchcard: '5053349',
-                          enrollment_code: '7T8xdGBN',
-                          newpin: 'nuevopin33',
-                          otp: '211489'
-                        }");
-                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/unlock_pin");
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
 ###### registration authority ######
 ###############################################################################
   /api/v1/registrationauthorities:
