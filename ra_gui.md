@@ -4195,7 +4195,7 @@ Certificate of the legal entity representative issued on a cryptographic contain
 <th>Mandatory</th>
 <tr>
 <td>secure_element</td>
-<td>[0, 2]</td>
+<td>0</td>
 <td>
 Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
 </td>
@@ -5712,7 +5712,7 @@ Certificate of representative of entity without legal license issued on a crypto
 <th>Mandatory</th>
 <tr>
 <td>secure_element</td>
-<td>[0, 2]</td>
+<td>0</td>
 <td>
 Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
 </td>
@@ -6826,7 +6826,7 @@ Electronic seal certificate issued in a cryptographic container in P12 format an
 <th>Mandatory</th>
 <tr>
 <td>secure_element</td>
-<td>[0, 2]</td>
+<td>0</td>
 <td>
 Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
 </td>
@@ -7482,7 +7482,7 @@ Electronic seal certificate for Spanish Public Administrations, intended for adv
 <th>Mandatory</th>
 <tr>
 <td>secure_element</td>
-<td>0</td>
+<td>[0, 2]</td>
 <td>
 Represents the device where the keys will be enrolled and can assume the values of 0, 1 or 2 that respectively are Software, Smartcard and Cloud.
 This profile only allows the software element.
@@ -9613,7 +9613,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 <div id="SELLOnubeNC" style="padding-top: 60px;"><h2>SELLOnubeNC<h2></div>
 
-Electronic seal certificate issued in the centralized custody system of Uanataca certificates and intended for electronic signature, usually in unassisted processes.
+Electronic seal certificate issued in the centralized custody system of Uanataca certificates or on a smartcard or a cryptographic token, and intended for electronic signature, usually in unassisted processes.
 
 <table>
 <th>Field</th>
@@ -9830,8 +9830,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 
 # Workflow
 
-## Paperless Mode
-
 The paperless mode is a new feature added to Uanataca that permits the generation of digital certificates without the use of eventual papery contracts. In this way every Request has its own digital contract that will be signed by the two sides of the transaction, the RAO that will approve the Request and the certificate holder, with their respective digital certificates.
 
 This document will guide you through:
@@ -10015,7 +10013,4 @@ with the only difference that the **pin** parameter must coincide with the one p
 
 If no error occures the server reply with a JSON containing a key "status" valued to "OK".
 
-
-
-## Standard Mode
 
