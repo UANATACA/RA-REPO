@@ -15,10 +15,10 @@ x-tagGroups:
   - name: API Reference
     tags:
       - Registration Authority
-      - Scratchcards
-      - Requests
       - Registration Authority Officer
       - Users
+      - Scratchcards
+      - Requests
 
 paths:
 
