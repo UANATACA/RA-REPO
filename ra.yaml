@@ -14,10 +14,10 @@ schemes:
 x-tagGroups:
   - name: API Reference
     tags:
-      - Requests
       - Registration Authority
-      - Registration Authority Officer
       - Scratchcards
+      - Requests
+      - Registration Authority Officer
       - Users
 
 paths:
@@ -3374,7 +3374,7 @@ paths:
     post: 
       summary: IS RENEWABLE
       tags:
-        - Scratchcards
+        - Requests
       description: Find out about whether a request is renewable or not.
       consumes:
         - application/json
@@ -3709,7 +3709,7 @@ paths:
     post: 
       summary: ENABLE RENEWAL
       tags:
-        - Scratchcards
+        - Requests
       description: Activates the renewal option for a certificate
       produces:
         - application/json
@@ -3813,7 +3813,7 @@ paths:
     post: 
       summary: DISABLE RENEWAL
       tags:
-        - Scratchcards
+        - Requests
       description: Deactivates the renewal option for a certificate
       produces:
         - application/json
@@ -3917,7 +3917,7 @@ paths:
     post: 
       summary: CLOUD RENEWAL
       tags:
-        - Scratchcards
+        - Requests
       description: Performs a cloud certificate renewal
       consumes:
         - application/json
@@ -4086,7 +4086,7 @@ paths:
     post: 
       summary: SOFTWARE RENEWAL
       tags:
-        - Scratchcards
+        - Requests
       description: Performs a software certificate renewal
       consumes:
         - application/json
@@ -4255,7 +4255,7 @@ paths:
     get: 
       summary: OTP FOR RESET/UNLOCK PIN
       tags:
-        - Scratchcards
+        - Requests
       description: Sends an OTP code via SMS for PIN reset or unlock.
       produces:
         - application/json
@@ -4363,7 +4363,7 @@ paths:
     get: 
       summary: RESET/UNLOCK PIN
       tags:
-        - Scratchcards
+        - Requests
       description: Performs the pin reset or unlock operation
       produces:
         - application/json
