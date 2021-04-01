@@ -25,7 +25,7 @@ paths:
 ###### requests ######
 ###############################################################################
 
-  /api/v1/requests:
+  /api/v1/requests/:
     post: 
       summary: CREATE REQUEST
       tags:
@@ -176,7 +176,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests \
+                    https://api.uanataca.com/api/v1/requests/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "profile": "PFnubeAFCiudadano",
@@ -195,12 +195,27 @@ paths:
                       "mobile_phone_number": "+39555555555",
                       "paperless_mode": 1
                     }'
+                    --cert './path/to/certificate/cer.pem' \
+                    --key './path/to/private-key/key.pem'
         - lang: 'Javascript'
           source: |
+                  const options = {
+                    cert: fs.readFileSync(
+                      path.resolve(__dirname, './path/to/certificate/cer.pem'),
+                      `utf-8`,
+                    ),
+                    key: fs.readFileSync(
+                      path.resolve(__dirname, './path/to/private-key/key.pem'),
+                      'utf-8',
+                    ),
+
+                  const sslConfiguredAgent = new https.Agent(options);
+
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests',
+                    'https://api.uanataca.com/api/v1/requests/',
                     {
                       method: 'POST',
+                      agent: sslConfiguredAgent,
                       headers: {
                         'Content-Type': 'application/json'
                       },
@@ -230,7 +245,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests"
+                  url = "https://api.uanataca.com/api/v1/requests/"
 
                   payload = {
                       "profile": "PFnubeAFCiudadano",
@@ -252,7 +267,7 @@ paths:
 
                   headers = {"Content-Type": "application/json"}
 
-                  response = requests.post(url, json=payload, headers=headers)
+                  response = requests.post(url, json=payload, headers=headers, cert=('./path/to/certificate/cer.pem', './path/to/private-key/key.pem'))
 
                   data = response.json()
                   print(data)
@@ -260,10 +275,23 @@ paths:
           source: |
                   const fetch = require('node-fetch');
 
+                  const options = {
+                    cert: fs.readFileSync(
+                      path.resolve(__dirname, './path/to/public-cert.pem'),
+                      `utf-8`,
+                    ),
+                    key: fs.readFileSync(
+                      path.resolve(__dirname, './path/to/private-key.key'),
+                      'utf-8',
+                    ),
+
+                  const sslConfiguredAgent = new https.Agent(options);
+                  
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests',
+                    'https://api.uanataca.com/api/v1/requests/',
                     {
                       method: 'POST',
+                      agent: sslConfiguredAgent,
                       headers: {
                         'Content-Type': 'application/json'
                       },
@@ -296,12 +324,24 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           profile: 'PFnubeAFCiudadano',
@@ -321,7 +361,7 @@ paths:
                           paperless_mode: 1
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -534,11 +574,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/requests
+                    https://api.uanataca.com/api/v1/requests/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests',
+                    'https://api.uanataca.com/api/v1/requests/',
                     {method: 'GET'}
                   );
 
@@ -548,7 +588,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests"
+                  url = "https://api.uanataca.com/api/v1/requests/"
 
                   response = requests.get(url)
 
@@ -559,7 +599,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests',
+                    'https://api.uanataca.com/api/v1/requests/',
                     {method: 'GET'}
                   );
 
@@ -570,14 +610,26 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests");
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -585,7 +637,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/generates_tbs_receipt:
+  /api/v1/requests/{id}/generates_tbs_receipt/:
     post: 
       summary: GENERATE A TBS RECEIPT
       tags:
@@ -661,7 +713,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt \
+                    https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "rao": "1400",
@@ -670,7 +722,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt',
+                    'https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/',
                     {
                       method: 'POST',
                       headers: {
@@ -689,7 +741,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/"
 
                   payload = {
                     "rao": "1400",
@@ -707,7 +759,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt',
+                    'https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/',
                     {
                       method: 'POST',
                       headers: {
@@ -729,19 +781,31 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           rao: '1400',
                           type: 'APPROVE'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -750,7 +814,7 @@ paths:
                   }
 
 #############
-  /api/v1/requests/{id}:
+  /api/v1/requests/{id}/:
     get: 
       summary: GET REQUEST
       tags:
@@ -967,11 +1031,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/requests/25139
+                    https://api.uanataca.com/api/v1/requests/25139/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139',
+                    'https://api.uanataca.com/api/v1/requests/25139/',
                     {method: 'GET'}
                   );
 
@@ -981,7 +1045,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/"
 
                   response = requests.get(url)
 
@@ -992,7 +1056,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139',
+                    'https://api.uanataca.com/api/v1/requests/25139/',
                     {method: 'GET'}
                   );
 
@@ -1003,14 +1067,26 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139");
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -1215,7 +1291,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139 \
+                    https://api.uanataca.com/api/v1/requests/25139/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "surname_2": "New_Surname2",
@@ -1224,7 +1300,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139',
+                    'https://api.uanataca.com/api/v1/requests/25139/',
                     {
                       method: 'POST',
                       headers: {
@@ -1243,7 +1319,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/"
 
                   payload = {
                       "surname_2": "New_Surname2",
@@ -1261,7 +1337,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139',
+                    'https://api.uanataca.com/api/v1/requests/25139/',
                     {
                       method: 'POST',
                       headers: {
@@ -1283,19 +1359,31 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           surname_2: 'New_Surname2',
                           email: 'New_mail@domain'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -1303,7 +1391,7 @@ paths:
                     }
                   }       
 #############
-  /api/v1/requests/{id}/cancel:
+  /api/v1/requests/{id}/cancel/:
     delete: 
       summary: CANCEL REQUEST
       tags:
@@ -1377,11 +1465,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X DELETE \
-                    https://api.uanataca.com/api/v1/requests/25139/cancel
+                    https://api.uanataca.com/api/v1/requests/25139/cancel/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/cancel',
+                    'https://api.uanataca.com/api/v1/requests/25139/cancel/',
                     {method: 'DELETE'}
                   );
 
@@ -1391,7 +1479,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/cancel"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/cancel/"
 
                   response = requests.delete(url)
 
@@ -1402,7 +1490,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/cancel',
+                    'https://api.uanataca.com/api/v1/requests/25139/cancel/',
                     {method: 'DELETE'}
                   );
 
@@ -1413,14 +1501,26 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.DeleteAsync("https://api.uanataca.com/api/v1/requests/25139/cancel");
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.DeleteAsync("https://api.uanataca.com/api/v1/requests/25139/cancel/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -1428,7 +1528,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/generate_document:
+  /api/v1/requests/{id}/generate_document/:
     post: 
       summary: GENERATE DOCUMENTS
       tags:
@@ -1498,7 +1598,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/generate_document \
+                    https://api.uanataca.com/api/v1/requests/25139/generate_document/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "doctype": "contract",
@@ -1507,7 +1607,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_document',
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_document/',
                     {
                       method: 'POST',
                       headers: {
@@ -1526,7 +1626,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_document"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_document/"
 
                   payload = {
                     "doctype": "contract",
@@ -1544,7 +1644,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_document',
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_document/',
                     {
                       method: 'POST',
                       headers: {
@@ -1566,19 +1666,31 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           doctype: 'contract',
                           lang: 'en'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generate_document", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generate_document/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -1586,7 +1698,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/validate:
+  /api/v1/requests/{id}/validate/:
     get: 
       summary: VALIDATE REQUEST
       tags:
@@ -1664,11 +1776,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/requests/25139/validate
+                    https://api.uanataca.com/api/v1/requests/25139/validate/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/validate',
+                    'https://api.uanataca.com/api/v1/requests/25139/validate/',
                     {method: 'GET'}
                   );
 
@@ -1678,7 +1790,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/validate"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/validate/"
 
                   response = requests.get(url)
 
@@ -1689,7 +1801,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/validate',
+                    'https://api.uanataca.com/api/v1/requests/25139/validate/',
                     {method: 'GET'}
                   );
 
@@ -1700,14 +1812,26 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/validate");
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/validate/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -1715,7 +1839,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/preauthlink:
+  /api/v1/requests/{id}/preauthlink/:
     get: 
         summary: GET PRE-AUTHENTICATION LINK
         tags:
@@ -1781,11 +1905,11 @@ paths:
           - lang: 'curl'
             source: |
                     curl -i -X GET \
-                      https://api.uanataca.com/api/v1/requests/25139/preauthlink
+                      https://api.uanataca.com/api/v1/requests/25139/preauthlink/
           - lang: 'Javascript'
             source: |
                     const resp = await fetch(
-                      'https://api.uanataca.com/api/v1/requests/25139/preauthlink',
+                      'https://api.uanataca.com/api/v1/requests/25139/preauthlink/',
                       {method: 'GET'}
                     );
 
@@ -1795,7 +1919,7 @@ paths:
             source: |
                     import requests
 
-                    url = "https://api.uanataca.com/api/v1/requests/25139/preauthlink"
+                    url = "https://api.uanataca.com/api/v1/requests/25139/preauthlink/"
 
                     response = requests.get(url)
 
@@ -1806,7 +1930,7 @@ paths:
                     const fetch = require('node-fetch');
 
                     const resp = await fetch(
-                      'https://api.uanataca.com/api/v1/requests/25139/preauthlink',
+                      'https://api.uanataca.com/api/v1/requests/25139/preauthlink/',
                       {method: 'GET'}
                     );
 
@@ -1814,17 +1938,29 @@ paths:
                     console.log(data);
           - lang: 'C#'
             source: |
-                    using System;
-                    using System.Net.Http;
-                    using System.Threading.Tasks;
-
-                    public class Program
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Security.Cryptography.X509Certificates;
+                  
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
                     {
-                      public static async Task Main(string[] args)
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        using (var client = new HttpClient())
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                         {
-                          var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/preauthlink");
+                          var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/preauthlink/");
                           var response = await request.Content.ReadAsStringAsync();
 
                           Console.WriteLine(response);
@@ -1832,7 +1968,7 @@ paths:
                       }
                     }
 #############
-  /api/v1/requests/{id}/pl_upload_document:
+  /api/v1/requests/{id}/pl_upload_document/:
     get: 
       summary: UPLOAD DOCUMENT
       tags:
@@ -1923,7 +2059,7 @@ paths:
           - lang: 'curl'
             source: |
                     curl -i -X POST \
-                      https://api.uanataca.com/api/v1/requests/25139/pl_upload_document \
+                      https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/ \
                       -H 'Content-Type: multipart/form-data' \
                       -F document=@sample_folder/img_front.png \
                       -F type=document_front
@@ -1940,7 +2076,7 @@ paths:
                       redirect: 'follow'
                     };
 
-                    fetch("https://api.uanataca.com/api/v1/requests/25139/pl_upload_document", requestOptions)
+                    fetch("https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/", requestOptions)
                       .then(response => response.text())
                       .then(result => console.log(result))
                       .catch(error => console.log('error', error));
@@ -1948,7 +2084,7 @@ paths:
             source: |
                     import requests
 
-                    url = "https://api.uanataca.com/api/v1/requests/25139/pl_upload_document"
+                    url = "https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/"
 
                     payload={'type': 'document_front'}
                     files=[
@@ -1971,7 +2107,7 @@ paths:
                     formData.append('type', 'document_front');
                     formData.append('document', fs.createReadStream('sample_folder/img_front.png'));
 
-                    const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_upload_document';
+                    const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/';
 
                     const options = {
                       method: 'POST',
@@ -1989,7 +2125,7 @@ paths:
                       .catch(err => console.error('error:' + err));
           - lang: 'C#'
             source: |
-                    var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_upload_document");
+                    var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/");
                     client.Timeout = -1;
                     var request = new RestRequest(Method.POST);
                     request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
@@ -1999,7 +2135,7 @@ paths:
                     IRestResponse response = client.Execute(request);
                     Console.WriteLine(response.Content);           
 #############
-  /api/v1/requests/{id}/pl_delete_document:
+  /api/v1/requests/{id}/pl_delete_document/:
     get: 
       summary: DELETE DOCUMENT
       tags:
@@ -2072,7 +2208,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/pl_delete_document \
+                    https://api.uanataca.com/api/v1/requests/25139/pl_delete_document/ \
                     -H 'Content-Type: multipart/form-data' \
                     -F docpk="document_front"
         - lang: 'Javascript'
@@ -2087,7 +2223,7 @@ paths:
                     redirect: 'follow'
                   };
 
-                  fetch("https://api.uanataca.com/api/v1/requests/25139/pl_delete_document", requestOptions)
+                  fetch("https://api.uanataca.com/api/v1/requests/25139/pl_delete_document/", requestOptions)
                     .then(response => response.text())
                     .then(result => console.log(result))
                     .catch(error => console.log('error', error));
@@ -2095,7 +2231,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_delete_document"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_delete_document/"
 
                   payload={'docpk': 'document_front'}
 
@@ -2115,7 +2251,7 @@ paths:
 
                   formData.append('docpk', 'document_front');
 
-                  const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_delete_document';
+                  const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_delete_document/';
 
                   const options = {
                     method: 'POST',
@@ -2133,7 +2269,7 @@ paths:
                     .catch(err => console.error('error:' + err));
         - lang: 'C#'
           source: |
-                  var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_delete_document");
+                  var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_delete_document/");
                   client.Timeout = -1;
                   var request = new RestRequest(Method.POST);
                   request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
@@ -2142,7 +2278,7 @@ paths:
                   IRestResponse response = client.Execute(request);
                   Console.WriteLine(response.Content);  
 #############
-  /api/v1/requests/{id}/pl_get_document:
+  /api/v1/requests/{id}/pl_get_document/:
     get: 
       summary: GET A DOCUMENT
       tags:
@@ -2212,7 +2348,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/pl_get_document \
+                    https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
                     -H 'Content-Type: multipart/form-data' \
                     -F type="48312"
         - lang: 'Javascript'
@@ -2227,7 +2363,7 @@ paths:
                     redirect: 'follow'
                   };
 
-                  fetch("https://api.uanataca.com/api/v1/requests/25139/pl_get_document", requestOptions)
+                  fetch("https://api.uanataca.com/api/v1/requests/25139/pl_get_document/", requestOptions)
                     .then(response => response.text())
                     .then(result => console.log(result))
                     .catch(error => console.log('error', error));
@@ -2235,7 +2371,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_get_document"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_get_document/"
 
                   payload={'type': '48312'}
 
@@ -2255,7 +2391,7 @@ paths:
 
                   formData.append('type', '48312');
 
-                  const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_get_document';
+                  const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_get_document/';
 
                   const options = {
                     method: 'POST',
@@ -2273,7 +2409,7 @@ paths:
                     .catch(err => console.error('error:' + err));
         - lang: 'C#'
           source: |
-                  var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_get_document");
+                  var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_get_document/");
                   client.Timeout = -1;
                   var request = new RestRequest(Method.POST);
                   request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
@@ -2282,7 +2418,7 @@ paths:
                   IRestResponse response = client.Execute(request);
                   Console.WriteLine(response.Content);        
 #############
-  /api/v1/requests/{id}/pl_get_documents:
+  /api/v1/requests/{id}/pl_get_documents/:
     get: 
       summary: GET ALL DOCUMENTS
       tags:
@@ -2355,11 +2491,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/requests/25139/pl_get_documents
+                    https://api.uanataca.com/api/v1/requests/25139/pl_get_documents/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/pl_get_documents',
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_get_documents/',
                     {method: 'GET'}
                   );
 
@@ -2369,7 +2505,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_get_documents"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_get_documents/"
 
                   response = requests.get(url)
 
@@ -2380,7 +2516,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/pl_get_documents',
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_get_documents/',
                     {method: 'GET'}
                   );
 
@@ -2391,14 +2527,26 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/pl_get_documents");
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/pl_get_documents/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -2406,7 +2554,7 @@ paths:
                     }
                   } 
 #############
-  /api/v1/requests/{id}/pl_approve:
+  /api/v1/requests/{id}/pl_approve/:
     post: 
       summary: APPROVE A REQUEST
       tags:
@@ -2641,7 +2789,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/pl_approve \
+                    https://api.uanataca.com/api/v1/requests/25139/pl_approve/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "username": "RAO_Name",
@@ -2653,7 +2801,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/pl_approve',
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_approve/',
                     {
                       method: 'POST',
                       headers: {
@@ -2675,7 +2823,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_approve"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_approve/"
 
                   payload = {
                     "username": "RAO_Name",
@@ -2696,7 +2844,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/pl_approve',
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_approve/',
                     {
                       method: 'POST',
                       headers: {
@@ -2721,12 +2869,24 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           username: 'RAO_Name',
@@ -2736,7 +2896,7 @@ paths:
                           lang: 'ES'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/:id/pl_approve", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/:id/pl_approve/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -2744,7 +2904,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/pl_cloud_enroll:
+  /api/v1/requests/{id}/pl_cloud_enroll/:
     post: 
       summary: CLOUD ENROLL
       tags:
@@ -2881,7 +3041,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll \
+                    https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "secret": "014566",
@@ -2890,7 +3050,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll',
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll/',
                     {
                       method: 'POST',
                       headers: {
@@ -2909,7 +3069,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll/"
 
                   payload = {
                     "secret": "014566",
@@ -2927,7 +3087,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll',
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll/',
                     {
                       method: 'POST',
                       headers: {
@@ -2949,19 +3109,31 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           secret: '014566',
                           pin: 'belorado74'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -2969,7 +3141,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/pl_p12_enroll:
+  /api/v1/requests/{id}/pl_p12_enroll/:
     post: 
       summary: SOFTWARE ENROLL
       tags:
@@ -3135,7 +3307,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll \
+                    https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "secret": "014566",
@@ -3144,7 +3316,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll',
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll/',
                     {
                       method: 'POST',
                       headers: {
@@ -3163,7 +3335,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll/"
 
                   payload = {
                     "secret": "014566",
@@ -3181,7 +3353,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll',
+                    'https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll/',
                     {
                       method: 'POST',
                       headers: {
@@ -3203,19 +3375,31 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           secret: '014566',
                           p12password: 'belorado74'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -3223,7 +3407,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/generate_otp:
+  /api/v1/requests/{id}/generate_otp/:
     post: 
       summary: GENERATE OTP
       tags:
@@ -3318,11 +3502,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/generate_otp
+                    https://api.uanataca.com/api/v1/requests/25139/generate_otp/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp',
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp/',
                     {method: 'POST'}
                   );
 
@@ -3332,7 +3516,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_otp"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_otp/"
 
                   response = requests.post(url)
 
@@ -3343,7 +3527,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp',
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp/',
                     {method: 'POST'}
                   );
 
@@ -3354,14 +3538,26 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generate_otp", null);
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generate_otp/", null);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -3370,7 +3566,7 @@ paths:
                   }
 
 #############
-  /api/v1/requests/is_renewable:
+  /api/v1/requests/is_renewable/:
     post: 
       summary: IS RENEWABLE
       tags:
@@ -3617,7 +3813,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/is_renewable \
+                    https://api.uanataca.com/api/v1/requests/is_renewable/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "scratchcard": "5053349",
@@ -3626,7 +3822,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/is_renewable',
+                    'https://api.uanataca.com/api/v1/requests/is_renewable/',
                     {
                       method: 'POST',
                       headers: {
@@ -3645,7 +3841,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/is_renewable"
+                  url = "https://api.uanataca.com/api/v1/requests/is_renewable/"
 
                   payload = {
                     "scratchcard": "5053349",
@@ -3663,7 +3859,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/is_renewable',
+                    'https://api.uanataca.com/api/v1/requests/is_renewable/',
                     {
                       method: 'POST',
                       headers: {
@@ -3685,19 +3881,31 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           scratchcard: '5053349',
                           erc: ',_3A26F!'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/is_renewable", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/is_renewable/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -3705,7 +3913,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/enable_renewal:
+  /api/v1/requests/{id}/enable_renewal/:
     post: 
       summary: ENABLE RENEWAL
       tags:
@@ -3758,11 +3966,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/enable_renewal
+                    https://api.uanataca.com/api/v1/requests/25139/enable_renewal/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/enable_renewal',
+                    'https://api.uanataca.com/api/v1/requests/25139/enable_renewal/',
                     {method: 'POST'}
                   );
 
@@ -3772,7 +3980,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/enable_renewal"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/enable_renewal/"
 
                   response = requests.post(url)
 
@@ -3783,7 +3991,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/enable_renewal',
+                    'https://api.uanataca.com/api/v1/requests/25139/enable_renewal/',
                     {method: 'POST'}
                   );
 
@@ -3794,14 +4002,26 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/enable_renewal", null);
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/enable_renewal/", null);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -3809,7 +4029,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/disable_renewal:
+  /api/v1/requests/{id}/disable_renewal/:
     post: 
       summary: DISABLE RENEWAL
       tags:
@@ -3862,11 +4082,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/disable_renewal
+                    https://api.uanataca.com/api/v1/requests/25139/disable_renewal/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/disable_renewal',
+                    'https://api.uanataca.com/api/v1/requests/25139/disable_renewal/',
                     {method: 'POST'}
                   );
 
@@ -3876,7 +4096,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/disable_renewal"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/disable_renewal/"
 
                   response = requests.post(url)
 
@@ -3887,7 +4107,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/disable_renewal',
+                    'https://api.uanataca.com/api/v1/requests/25139/disable_renewal/',
                     {method: 'POST'}
                   );
 
@@ -3898,14 +4118,26 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/37037/disable_renewal", null);
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/37037/disable_renewal/", null);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -3913,7 +4145,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/cloud_renew:
+  /api/v1/requests/cloud_renew/:
     post: 
       summary: CLOUD RENEWAL
       tags:
@@ -3989,7 +4221,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/cloud_renew \
+                    https://api.uanataca.com/api/v1/requests/cloud_renew/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "username": "5053349",
@@ -3999,7 +4231,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/cloud_renew',
+                    'https://api.uanataca.com/api/v1/requests/cloud_renew/',
                     {
                       method: 'POST',
                       headers: {
@@ -4019,7 +4251,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/cloud_renew"
+                  url = "https://api.uanataca.com/api/v1/requests/cloud_renew/"
 
                   payload = {
                     "username": "5053349",
@@ -4038,7 +4270,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/cloud_renew',
+                    'https://api.uanataca.com/api/v1/requests/cloud_renew/',
                     {
                       method: 'POST',
                       headers: {
@@ -4061,12 +4293,24 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           username: '5053349',
@@ -4074,7 +4318,7 @@ paths:
                           pin: 'belorado74'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/cloud_renew", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/cloud_renew/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -4082,7 +4326,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/soft_renew:
+  /api/v1/requests/soft_renew/:
     post: 
       summary: SOFTWARE RENEWAL
       tags:
@@ -4158,7 +4402,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/soft_renew \
+                    https://api.uanataca.com/api/v1/requests/soft_renew/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "username": "5053349",
@@ -4168,7 +4412,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/soft_renew',
+                    'https://api.uanataca.com/api/v1/requests/soft_renew/',
                     {
                       method: 'POST',
                       headers: {
@@ -4188,7 +4432,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/soft_renew"
+                  url = "https://api.uanataca.com/api/v1/requests/soft_renew/"
 
                   payload = {
                     "username": "5053349",
@@ -4207,7 +4451,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/soft_renew',
+                    'https://api.uanataca.com/api/v1/requests/soft_renew/',
                     {
                       method: 'POST',
                       headers: {
@@ -4230,12 +4474,24 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           username: '5053349',
@@ -4243,7 +4499,7 @@ paths:
                           pin: 'belorado74'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/soft_renew", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/soft_renew/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -4251,7 +4507,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/generate_otp_for_unlock:
+  /api/v1/requests/{id}/generate_otp_for_unlock/:
     get: 
       summary: OTP FOR RESET/UNLOCK PIN
       tags:
@@ -4308,11 +4564,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock
+                    https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock',
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock/',
                     {method: 'GET'}
                   );
 
@@ -4322,7 +4578,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock/"
 
                   response = requests.get(url)
 
@@ -4333,7 +4589,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock',
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock/',
                     {method: 'GET'}
                   );
 
@@ -4344,14 +4600,28 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock");
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -4443,7 +4713,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/requests/25139/unlock_pin \
+                    https://api.uanataca.com/api/v1/requests/25139/unlock_pin/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "scratchcard": "5053349",
@@ -4454,7 +4724,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/unlock_pin',
+                    'https://api.uanataca.com/api/v1/requests/25139/unlock_pin/',
                     {
                       method: 'GET',
                       headers: {
@@ -4475,7 +4745,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/requests/25139/unlock_pin"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/unlock_pin/"
 
                   payload = {
                     "scratchcard": "5053349",
@@ -4495,7 +4765,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/unlock_pin',
+                    'https://api.uanataca.com/api/v1/requests/25139/unlock_pin/',
                     {
                       method: 'GET',
                       headers: {
@@ -4519,12 +4789,24 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           scratchcard: '5053349',
@@ -4533,7 +4815,7 @@ paths:
                           otp: '211489'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/unlock_pin");
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/unlock_pin/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -4623,7 +4905,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/scratchcards \
+                    https://api.uanataca.com/api/v1/scratchcards/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "sn": "1200948",
@@ -4638,7 +4920,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards',
+                    'https://api.uanataca.com/api/v1/scratchcards/',
                     {
                       method: 'POST',
                       headers: {
@@ -4663,7 +4945,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/scratchcards"
+                  url = "https://api.uanataca.com/api/v1/scratchcards/"
 
                   payload = {
                     "sn": "1200948",
@@ -4687,7 +4969,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards',
+                    'https://api.uanataca.com/api/v1/scratchcards/',
                     {
                       method: 'POST',
                       headers: {
@@ -4715,12 +4997,24 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           sn: '1200948',
@@ -4733,7 +5027,7 @@ paths:
                           }
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -4811,11 +5105,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/scratchcards
+                    https://api.uanataca.com/api/v1/scratchcards/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards',
+                    'https://api.uanataca.com/api/v1/scratchcards/',
                     {method: 'GET'}
                   );
 
@@ -4825,7 +5119,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/scratchcards"
+                  url = "https://api.uanataca.com/api/v1/scratchcards/"
 
                   response = requests.get(url)
 
@@ -4836,7 +5130,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards',
+                    'https://api.uanataca.com/api/v1/scratchcards/',
                     {method: 'GET'}
                   );
 
@@ -4847,14 +5141,26 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/scratchcards");
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/scratchcards/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -4862,7 +5168,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/scratchcard/{id}:
+  /api/v1/scratchcards/{id}/:
     get: 
       summary: GET SCRATCHCARD
       tags:
@@ -4932,11 +5238,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/scratchcard/1200948
+                    https://api.uanataca.com/api/v1/scratchcards/1200948/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcard/1200948',
+                    'https://api.uanataca.com/api/v1/scratchcards/1200948/',
                     {method: 'GET'}
                   );
 
@@ -4946,7 +5252,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/scratchcard/1200948"
+                  url = "https://api.uanataca.com/api/v1/scratchcards/1200948/"
 
                   response = requests.get(url)
 
@@ -4957,7 +5263,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcard/1200948',
+                    'https://api.uanataca.com/api/v1/scratchcards/1200948/',
                     {method: 'GET'}
                   );
 
@@ -4968,14 +5274,28 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/scratchcard/1200948");
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/scratchcards/1200948/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -5065,7 +5385,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X PUT \
-                    https://api.uanataca.com/api/v1/scratchcard/1200948 \
+                    https://api.uanataca.com/api/v1/scratchcards/1200948/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "sn": "1300000"
@@ -5073,7 +5393,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcard/1200948',
+                    'https://api.uanataca.com/api/v1/scratchcards/1200948/',
                     {
                       method: 'PUT',
                       headers: {
@@ -5091,7 +5411,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/scratchcard/1200948"
+                  url = "https://api.uanataca.com/api/v1/scratchcards/1200948/"
 
                   payload = {
                     "sn": "1300000"
@@ -5108,7 +5428,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcard/1200948',
+                    'https://api.uanataca.com/api/v1/scratchcards/1200948/',
                     {
                       method: 'PUT',
                       headers: {
@@ -5129,18 +5449,30 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           sn: '1300000'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/scratchcard/1200948", postData);
+                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/scratchcards/1200948/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -5148,7 +5480,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/scratchcard/isused:
+  /api/v1/scratchcards/isused/:
     post:
       summary: IS USED SCRATCHCARD
       tags:
@@ -5206,7 +5538,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/scratchcards/isused \
+                    https://api.uanataca.com/api/v1/scratchcards/isused/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "sn": "1200948"
@@ -5214,7 +5546,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/isused',
+                    'https://api.uanataca.com/api/v1/scratchcards/isused/',
                     {
                       method: 'POST',
                       headers: {
@@ -5230,7 +5562,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/scratchcard/isused"
+                  url = "https://api.uanataca.com/api/v1/scratchcards/isused/"
 
                   payload = {
                     "sn": "1200948"
@@ -5247,7 +5579,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcard/isused',
+                    'https://api.uanataca.com/api/v1/scratchcards/isused/',
                     {
                       method: 'POST',
                       headers: {
@@ -5266,16 +5598,28 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{sn: '1200948'}");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcard/isused", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/isused/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -5283,7 +5627,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/scratchcards/get_first_unused:
+  /api/v1/scratchcards/get_first_unused/:
     post: 
       summary: GET FIRST UNUSED SCRATCHCARD
       tags:
@@ -5348,7 +5692,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/scratchcards/get_first_unused \
+                    https://api.uanataca.com/api/v1/scratchcards/get_first_unused/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "ra": 121
@@ -5356,7 +5700,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/get_first_unused',
+                    'https://api.uanataca.com/api/v1/scratchcards/get_first_unused/',
                     {
                       method: 'POST',
                       headers: {
@@ -5372,7 +5716,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/scratchcards/get_first_unused"
+                  url = "https://api.uanataca.com/api/v1/scratchcards/get_first_unused/"
 
                   payload = {
                     "ra": 121
@@ -5389,7 +5733,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/get_first_unused',
+                    'https://api.uanataca.com/api/v1/scratchcards/get_first_unused/',
                     {
                       method: 'POST',
                       headers: {
@@ -5408,16 +5752,28 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{ra: 121}");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/get_first_unused", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/get_first_unused/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -5425,7 +5781,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/scratchcards/revoke:
+  /api/v1/scratchcards/revoke/:
     post: 
       summary: REVOKE SCRATCHCARD
       tags:
@@ -5544,7 +5900,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/scratchcards/revoke \
+                    https://api.uanataca.com/api/v1/scratchcards/revoke/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "scratchcard": "5053349",
@@ -5554,7 +5910,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/revoke',
+                    'https://api.uanataca.com/api/v1/scratchcards/revoke/',
                     {
                       method: 'POST',
                       headers: {
@@ -5574,7 +5930,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/scratchcards/revoke"
+                  url = "https://api.uanataca.com/api/v1/scratchcards/revoke/"
 
                   payload = {
                     "scratchcard": "5053349",
@@ -5593,7 +5949,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/revoke',
+                    'https://api.uanataca.com/api/v1/scratchcards/revoke/',
                     {
                       method: 'POST',
                       headers: {
@@ -5616,12 +5972,24 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           scratchcard: '5053349',
@@ -5629,7 +5997,7 @@ paths:
                           reason: 'UNSPECIFIED'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/revoke", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/revoke/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -5637,7 +6005,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/scratchcards/whoami:
+  /api/v1/scratchcards/whoami/:
     post: 
       summary: WHOAMI
       tags:
@@ -5822,7 +6190,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/scratchcards/whoami \
+                    https://api.uanataca.com/api/v1/scratchcards/whoami/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "scratchcard": "5053349",
@@ -5831,7 +6199,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/whoami',
+                    'https://api.uanataca.com/api/v1/scratchcards/whoami/',
                     {
                       method: 'POST',
                       headers: {
@@ -5850,7 +6218,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/scratchcards/whoami"
+                  url = "https://api.uanataca.com/api/v1/scratchcards/whoami/"
 
                   payload = {
                     "scratchcard": "5053349",
@@ -5868,7 +6236,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/whoami',
+                    'https://api.uanataca.com/api/v1/scratchcards/whoami/',
                     {
                       method: 'POST',
                       headers: {
@@ -5890,19 +6258,31 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           scratchcard: '5053349',
                           erc: ',_3A26F!'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/whoami", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/whoami/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -5910,7 +6290,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/scratchcards/move:
+  /api/v1/scratchcards/move/:
     post: 
       summary: MOVE SCRATCHCARDS
       tags:
@@ -5984,7 +6364,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/scratchcards/move \
+                    https://api.uanataca.com/api/v1/scratchcards/move/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "from_ra": 364,
@@ -5994,7 +6374,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/move',
+                    'https://api.uanataca.com/api/v1/scratchcards/move/',
                     {
                       method: 'POST',
                       headers: {
@@ -6014,7 +6394,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/scratchcards/move"
+                  url = "https://api.uanataca.com/api/v1/scratchcards/move/"
 
                   payload = {
                     "from_ra": 364,
@@ -6033,7 +6413,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/move',
+                    'https://api.uanataca.com/api/v1/scratchcards/move/',
                     {
                       method: 'POST',
                       headers: {
@@ -6056,12 +6436,24 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           from_ra: 364,
@@ -6069,7 +6461,7 @@ paths:
                           amount: 1000
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/move", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/move/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -6079,7 +6471,7 @@ paths:
 
 ###### registration authority ######
 ###############################################################################
-  /api/v1/registrationauthorities:
+  /api/v1/registrationauthorities/:
     post:
       summary: CREATE RA
       tags:
@@ -6155,15 +6547,15 @@ paths:
                   "name": "RA Name",
                   "parent": 1,
                   "operators": [],
-                  "enabled_from": "20/07/2020",
-                  "enabled_until": 20/07/2025,
+                  "enabled_from": "2020-07-20",
+                  "enabled_until": "2025-07-20",
                   "organization_tax_number": "43242414213",
                   "organization_name": "Name_Org",
                   "responsible_name": "Name_Resp",
                   "responsible_first_surname": "Sur1_Resp",
                   "responsible_second_surname": Sur2_Resp,
                   "responsible_serial": "X1111111C",
-                  "email": "mail@domain",
+                  "email": "mail@domain.com",
                   "fix_phone_number": "+34333333333",
                   "mobile_phone_number": "+34555555555",
                   "city": City Name,
@@ -6213,20 +6605,20 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/registrationauthorities \
+                    https://api.uanataca.com/api/v1/registrationauthorities/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "name": "RA Name",
                       "parent": "1",
-                      "enabled_from": "20/07/2020",
-                      "enabled_until": "20/07/2025",
+                      "enabled_from": "2020-07-20",
+                      "enabled_until": "2025-07-20",
                       "organization_tax_number": "A9999999W",
                       "organization_name": "Name_Org",
                       "responsible_name": "Name_Resp",
                       "responsible_first_surname": "Sur1_Resp",
                       "responsible_second_surname": "Sur2_Resp",
                       "responsible_serial": "X1111111C",
-                      "email": "mail@domain",
+                      "email": "mail@domain.com",
                       "fix_phone_number": "+34333333333",
                       "address": "Address Name",
                       "city": "City Name",
@@ -6238,7 +6630,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities',
+                    'https://api.uanataca.com/api/v1/registrationauthorities/',
                     {
                       method: 'POST',
                       headers: {
@@ -6247,15 +6639,15 @@ paths:
                       body: JSON.stringify({
                         name: 'RA Name',
                         parent: '1',
-                        enabled_from: '20/07/2020',
-                        enabled_until: '20/07/2025',
+                        enabled_from: '2020-07-20',
+                        enabled_until: '2020-07-20',
                         organization_tax_number: 'A9999999W',
                         organization_name: 'Name_Org',
                         responsible_name: 'Name_Resp',
                         responsible_first_surname: 'Sur1_Resp',
                         responsible_second_surname: 'Sur2_Resp',
                         responsible_serial: 'X11111111C',
-                        email: 'mail@domain',
+                        email: 'mail@domain.com',
                         fix_phone_number: '+34333333333',
                         address: 'Address Name',
                         city: 'City Name',
@@ -6273,20 +6665,20 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/registrationauthorities"
+                  url = "https://api.uanataca.com/api/v1/registrationauthorities/"
 
                   payload = {
                     "name": "RA Name",
                     "parent": "1",
-                    "enabled_from": "20/07/2020",
-                    "enabled_until": "20/07/2025",
+                    "enabled_from": "2020-07-20",
+                    "enabled_until": "2025-07-20",
                     "organization_tax_number": "A9999999W",
                     "organization_name": "Name_Org",
                     "responsible_name": "Name_Resp",
                     "responsible_first_surname": "Sur1_Resp",
                     "responsible_second_surname": "Sur2_Resp",
                     "responsible_serial": "X11111111C",
-                    "email": "mail@domain",
+                    "email": "mail@domain.com",
                     "fix_phone_number": "+34333333333",
                     "address": "Address Name",
                     "city": "City Name",
@@ -6307,7 +6699,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities',
+                    'https://api.uanataca.com/api/v1/registrationauthorities/',
                     {
                       method: 'POST',
                       headers: {
@@ -6316,15 +6708,15 @@ paths:
                       body: JSON.stringify({
                         name: 'RA Name',
                         parent: '1',
-                        enabled_from: '20/07/2020',
-                        enabled_until: '20/07/2025',
+                        enabled_from: '2020-07-20',
+                        enabled_until: '2025-07-20',
                         organization_tax_number: 'A9999999W',
                         organization_name: 'Name_Org',
                         responsible_name: 'Name_Resp',
                         responsible_first_surname: 'Sur1_Resp',
                         responsible_second_surname: 'Sur2_Resp',
                         responsible_serial: 'X11111111C',
-                        email: 'mail@domain',
+                        email: 'mail@domain.com',
                         fix_phone_number: '+34333333333',
                         address: 'Address Name',
                         city: 'City Name',
@@ -6345,25 +6737,37 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           name: 'RA Name',
                           parent: '1',
-                          enabled_from: '20/07/2020',
-                          enabled_until: '20/07/2025',
+                          enabled_from: '2020-07-20',
+                          enabled_until: '2025-07-20',
                           organization_tax_number: 'A9999999W',
                           organization_name: 'Name_Org',
                           responsible_name: 'Name_Resp',
                           responsible_first_surname: 'Sur1_Resp',
                           responsible_second_surname: 'Sur2_Resp',
                           responsible_serial: 'X11111111C',
-                          email: 'mail@domain',
+                          email: 'mail@domain.com',
                           fix_phone_number: '+34333333333',
                           address: 'Address Name',
                           city: 'City Name',
@@ -6373,7 +6777,7 @@ paths:
                           country: 'ES'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/registrationauthorities", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/registrationauthorities/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -6472,11 +6876,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/registrationauthorities
+                    https://api.uanataca.com/api/v1/registrationauthorities/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities',
+                    'https://api.uanataca.com/api/v1/registrationauthorities/',
                     {method: 'GET'}
                   );
 
@@ -6486,7 +6890,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/registrationauthorities"
+                  url = "https://api.uanataca.com/api/v1/registrationauthorities/"
 
                   response = requests.get(url)
 
@@ -6497,7 +6901,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities',
+                    'https://api.uanataca.com/api/v1/registrationauthorities/',
                     {method: 'GET'}
                   );
 
@@ -6508,14 +6912,26 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/registrationauthorities");
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/registrationauthorities/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -6523,7 +6939,7 @@ paths:
                     }
                   } 
 #############
-  /api/v1/registrationauthorities/{id}:
+  /api/v1/registrationauthorities/{id}/:
     post:
       summary: GET RA
       tags:
@@ -6611,11 +7027,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/registrationauthorities/121
+                    https://api.uanataca.com/api/v1/registrationauthorities/121/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities/121',
+                    'https://api.uanataca.com/api/v1/registrationauthorities/121/',
                     {method: 'POST'}
                   );
 
@@ -6625,7 +7041,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/registrationauthorities/121"
+                  url = "https://api.uanataca.com/api/v1/registrationauthorities/121/"
 
                   response = requests.post(url)
 
@@ -6636,7 +7052,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities/121',
+                    'https://api.uanataca.com/api/v1/registrationauthorities/121/',
                     {method: 'POST'}
                   );
 
@@ -6647,14 +7063,26 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/registrationauthorities/121", null);
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/registrationauthorities/121/", null);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -6740,15 +7168,15 @@ paths:
                   "name": "RA Name",
                   "parent": 1,
                   "operators": [],
-                  "enabled_from": "20/07/2020",
-                  "enabled_until": 20/07/2028,
+                  "enabled_from": "2020-07-20",
+                  "enabled_until": "2028-07-20",
                   "organization_tax_number": "43242414213",
                   "organization_name": "Name_Org",
                   "responsible_name": "Name_Resp",
                   "responsible_first_surname": "Sur1_Resp",
                   "responsible_second_surname": Sur2_Resp,
                   "responsible_serial": "X1111111C",
-                  "email": "new_mail@domain",
+                  "email": "new_mail@domain.com",
                   "fix_phone_number": "+34333333333",
                   "mobile_phone_number": "+34555555555",
                   "city": City Name,
@@ -6798,24 +7226,24 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X PUT \
-                    https://api.uanataca.com/api/v1/registrationauthorities/121 \
+                    https://api.uanataca.com/api/v1/registrationauthorities/121/ \
                     -H 'Content-Type: application/json' \
                     -d '{
-                      "enabled_until": "20/07/2028",
-                      "email": "new_mail@domain"
+                      "enabled_until": "2028-07-20",
+                      "email": "new_mail@domain.com"
                     }'
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities/121',
+                    'https://api.uanataca.com/api/v1/registrationauthorities/121/',
                     {
                       method: 'PUT',
                       headers: {
                         'Content-Type': 'application/json'
                       },
                       body: JSON.stringify({
-                        enabled_until: '20/07/2028',
-                        email: 'new_mail@domain'
+                        enabled_until: '2028-07-20',
+                        email: 'new_mail@domain.com'
                       })
                     }
                   );
@@ -6826,11 +7254,11 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/registrationauthorities/121"
+                  url = "https://api.uanataca.com/api/v1/registrationauthorities/121/"
 
                   payload = {
-                    "enabled_until": "20/07/2028",
-                    "new_email": "mail@domain"
+                    "enabled_until": "2028-07-20",
+                    "new_email": "mail@domain.com"
                    }
 
                   headers = {"Content-Type": "application/json"}
@@ -6844,15 +7272,15 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities/121',
+                    'https://api.uanataca.com/api/v1/registrationauthorities/121/',
                     {
                       method: 'PUT',
                       headers: {
                         'Content-Type': 'application/json'
                       },
                       body: JSON.stringify({
-                        enabled_until: '20/07/2028',
-                        email: 'new_mail@domain'
+                        enabled_until: '2028-07-20',
+                        email: 'new_mail@domain.com'
                       })
                     }
                   );
@@ -6866,19 +7294,31 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
-                          enabled_until: '20/07/2028',
-                          email: 'new_mail@domain'
+                          enabled_until: '2028-07-20',
+                          email: 'new_mail@domain.com'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/registrationauthorities/121", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/registrationauthorities/121/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -6888,7 +7328,7 @@ paths:
 ###### registration authority officer ######
 ###############################################################################
 
-  /api/v1/rao:
+  /api/v1/rao/:
     post:
       summary: CREATE RAO
       tags:
@@ -7015,7 +7455,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/rao \
+                    https://api.uanataca.com/api/v1/rao/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "registration_authority_master": 1,
@@ -7030,7 +7470,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao',
+                    'https://api.uanataca.com/api/v1/rao/',
                     {
                       method: 'POST',
                       headers: {
@@ -7055,7 +7495,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/rao"
+                  url = "https://api.uanataca.com/api/v1/rao/"
 
                   payload = {
                     "registration_authority_master": 1,
@@ -7079,7 +7519,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao',
+                    'https://api.uanataca.com/api/v1/rao/',
                     {
                       method: 'POST',
                       headers: {
@@ -7107,12 +7547,24 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           registration_authority_master: 1,
@@ -7125,7 +7577,7 @@ paths:
                           email: 'mail@domain'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/rao", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/rao/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -7259,7 +7711,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X PUT \
-                    https://api.uanataca.com/api/v1/rao/1400 \
+                    https://api.uanataca.com/api/v1/rao/1400/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "given_name": "RAO_NewName"
@@ -7267,7 +7719,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao/1400',
+                    'https://api.uanataca.com/api/v1/rao/1400/',
                     {
                       method: 'PUT',
                       headers: {
@@ -7285,7 +7737,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/rao/1400"
+                  url = "https://api.uanataca.com/api/v1/rao/1400/"
 
                   payload = {
                     "given_name": "RAO_NewName"
@@ -7302,7 +7754,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao/1400',
+                    'https://api.uanataca.com/api/v1/rao/1400/',
                     {
                       method: 'PUT',
                       headers: {
@@ -7323,18 +7775,30 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           given_name: 'RAO_NewName'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/rao/1400", postData);
+                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/rao/1400/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -7437,7 +7901,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/rao"
+                  url = "https://api.uanataca.com/api/v1/rao/"
 
                   query = {
                     "filter1": "registration_authority",
@@ -7469,12 +7933,24 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         var request = await client.GetAsync("https://api.uanataca.com/api/v1/rao?filter1=registration_authority&filter2=given_name");
                         var response = await request.Content.ReadAsStringAsync();
@@ -7484,7 +7960,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/rao/{id}:
+  /api/v1/rao/{id}/:
     get:
       summary: GET RAO
       tags:
@@ -7586,11 +8062,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/rao/1400
+                    https://api.uanataca.com/api/v1/rao/1400/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao/1400',
+                    'https://api.uanataca.com/api/v1/rao/1400/',
                     {method: 'GET'}
                   );
 
@@ -7600,7 +8076,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/rao/1400"
+                  url = "https://api.uanataca.com/api/v1/rao/1400/"
 
                   response = requests.get(url)
 
@@ -7611,7 +8087,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao/1400',
+                    'https://api.uanataca.com/api/v1/rao/1400/',
                     {method: 'GET'}
                   );
 
@@ -7622,14 +8098,26 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/rao/1400");
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/rao/1400/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -7638,7 +8126,7 @@ paths:
                   }
 ###### registration authority user ######
 ###############################################################################
-  /api/v1/users:
+  /api/v1/users/:
     post:
       summary: CREATE USER
       tags:
@@ -7717,7 +8205,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/users \
+                    https://api.uanataca.com/api/v1/users/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "registration_authority": 1,
@@ -7728,7 +8216,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/users',
+                    'https://api.uanataca.com/api/v1/users/',
                     {
                       method: 'POST',
                       headers: {
@@ -7749,7 +8237,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/users"
+                  url = "https://api.uanataca.com/api/v1/users/"
 
                   payload = {
                     "registration_authority": 1,
@@ -7769,7 +8257,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/users',
+                    'https://api.uanataca.com/api/v1/users/',
                     {
                       method: 'POST',
                       headers: {
@@ -7793,12 +8281,24 @@ paths:
                   using System.Threading.Tasks;
                   using System.Text;
                   using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           registration_authority: 1,
@@ -7807,7 +8307,7 @@ paths:
                           rao: 1400
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/users", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/users/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -7880,11 +8380,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/users
+                    https://api.uanataca.com/api/v1/users/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/users',
+                    'https://api.uanataca.com/api/v1/users/',
                     {method: 'GET'}
                   );
 
@@ -7894,7 +8394,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/users"
+                  url = "https://api.uanataca.com/api/v1/users/"
 
                   response = requests.get(url)
 
@@ -7905,7 +8405,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/users',
+                    'https://api.uanataca.com/api/v1/users/',
                     {method: 'GET'}
                   );
 
@@ -7916,14 +8416,26 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/users");
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/users/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -7931,7 +8443,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/users/{id}:
+  /api/v1/users/{id}/:
     get:
       summary: GET USER
       tags:
@@ -7981,11 +8493,11 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/users/36
+                    https://api.uanataca.com/api/v1/users/36/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/users/36',
+                    'https://api.uanataca.com/api/v1/users/36/',
                     {method: 'GET'}
                   );
 
@@ -7995,7 +8507,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/users/36"
+                  url = "https://api.uanataca.com/api/v1/users/36/"
 
                   response = requests.get(url)
 
@@ -8006,7 +8518,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/users/36',
+                    'https://api.uanataca.com/api/v1/users/36/',
                     {method: 'GET'}
                   );
 
@@ -8017,14 +8529,26 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/users/36");
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/users/36/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -8115,7 +8639,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X PUT \
-                    https://api.uanataca.com/api/v1/users \
+                    https://api.uanataca.com/api/v1/users/ \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "request": 150
@@ -8123,7 +8647,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/users',
+                    'https://api.uanataca.com/api/v1/users/',
                     {
                       method: 'PUT',
                       headers: {
@@ -8141,7 +8665,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/users"
+                  url = "https://api.uanataca.com/api/v1/users/"
 
                   payload = {
                     "request": 150
@@ -8158,7 +8682,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/users',
+                    'https://api.uanataca.com/api/v1/users/',
                     {
                       method: 'PUT',
                       headers: {
@@ -8177,20 +8701,30 @@ paths:
                   using System;
                   using System.Net.Http;
                   using System.Threading.Tasks;
-                  using System.Text;
-                  using Newtonsoft.Json.Linq;
-
+                  using System.Security.Cryptography.X509Certificates;
+                  
                   public class Program
                   {
                     public static async Task Main(string[] args)
                     {
-                      using (var client = new HttpClient())
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
                       {
                         JObject json = JObject.Parse(@"{
                           request: 150
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/users", postData);
+                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/users/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
