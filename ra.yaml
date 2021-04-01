@@ -25,7 +25,7 @@ paths:
 ###### requests ######
 ###############################################################################
 
-  /api/v1/requests/:
+  /api/v1/requests:
     post: 
       summary: CREATE REQUEST
       tags:
@@ -637,7 +637,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/generates_tbs_receipt/:
+  /api/v1/requests/{id}/generates_tbs_receipt:
     post: 
       summary: GENERATE A TBS RECEIPT
       tags:
@@ -814,7 +814,7 @@ paths:
                   }
 
 #############
-  /api/v1/requests/{id}/:
+  /api/v1/requests/{id}:
     get: 
       summary: GET REQUEST
       tags:
@@ -1391,7 +1391,7 @@ paths:
                     }
                   }       
 #############
-  /api/v1/requests/{id}/cancel/:
+  /api/v1/requests/{id}/cancel:
     delete: 
       summary: CANCEL REQUEST
       tags:
@@ -1528,7 +1528,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/generate_document/:
+  /api/v1/requests/{id}/generate_document:
     post: 
       summary: GENERATE DOCUMENTS
       tags:
@@ -1698,7 +1698,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/validate/:
+  /api/v1/requests/{id}/validate:
     get: 
       summary: VALIDATE REQUEST
       tags:
@@ -1839,7 +1839,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/preauthlink/:
+  /api/v1/requests/{id}/preauthlink:
     get: 
         summary: GET PRE-AUTHENTICATION LINK
         tags:
@@ -1968,7 +1968,7 @@ paths:
                       }
                     }
 #############
-  /api/v1/requests/{id}/pl_upload_document/:
+  /api/v1/requests/{id}/pl_upload_document:
     get: 
       summary: UPLOAD DOCUMENT
       tags:
@@ -2135,7 +2135,7 @@ paths:
                     IRestResponse response = client.Execute(request);
                     Console.WriteLine(response.Content);           
 #############
-  /api/v1/requests/{id}/pl_delete_document/:
+  /api/v1/requests/{id}/pl_delete_document:
     get: 
       summary: DELETE DOCUMENT
       tags:
@@ -2278,7 +2278,7 @@ paths:
                   IRestResponse response = client.Execute(request);
                   Console.WriteLine(response.Content);  
 #############
-  /api/v1/requests/{id}/pl_get_document/:
+  /api/v1/requests/{id}/pl_get_document:
     get: 
       summary: GET A DOCUMENT
       tags:
@@ -2418,7 +2418,7 @@ paths:
                   IRestResponse response = client.Execute(request);
                   Console.WriteLine(response.Content);        
 #############
-  /api/v1/requests/{id}/pl_get_documents/:
+  /api/v1/requests/{id}/pl_get_documents:
     get: 
       summary: GET ALL DOCUMENTS
       tags:
@@ -2554,7 +2554,7 @@ paths:
                     }
                   } 
 #############
-  /api/v1/requests/{id}/pl_approve/:
+  /api/v1/requests/{id}/pl_approve:
     post: 
       summary: APPROVE A REQUEST
       tags:
@@ -2896,7 +2896,7 @@ paths:
                           lang: 'ES'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/:id/pl_approve/", postData);
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests:id/pl_approve/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -2904,7 +2904,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/pl_cloud_enroll/:
+  /api/v1/requests/{id}/pl_cloud_enroll:
     post: 
       summary: CLOUD ENROLL
       tags:
@@ -3141,7 +3141,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/pl_p12_enroll/:
+  /api/v1/requests/{id}/pl_p12_enroll:
     post: 
       summary: SOFTWARE ENROLL
       tags:
@@ -3407,7 +3407,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/generate_otp/:
+  /api/v1/requests/{id}/generate_otp:
     post: 
       summary: GENERATE OTP
       tags:
@@ -3566,7 +3566,7 @@ paths:
                   }
 
 #############
-  /api/v1/requests/is_renewable/:
+  /api/v1/requests/is_renewable:
     post: 
       summary: IS RENEWABLE
       tags:
@@ -3913,7 +3913,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/enable_renewal/:
+  /api/v1/requests/{id}/enable_renewal:
     post: 
       summary: ENABLE RENEWAL
       tags:
@@ -4029,7 +4029,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/disable_renewal/:
+  /api/v1/requests/{id}/disable_renewal:
     post: 
       summary: DISABLE RENEWAL
       tags:
@@ -4145,7 +4145,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/cloud_renew/:
+  /api/v1/requests/cloud_renew:
     post: 
       summary: CLOUD RENEWAL
       tags:
@@ -4326,7 +4326,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/soft_renew/:
+  /api/v1/requests/soft_renew:
     post: 
       summary: SOFTWARE RENEWAL
       tags:
@@ -4507,7 +4507,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/requests/{id}/generate_otp_for_unlock/:
+  /api/v1/requests/{id}/generate_otp_for_unlock:
     get: 
       summary: OTP FOR RESET/UNLOCK PIN
       tags:
@@ -5168,7 +5168,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/scratchcards/{id}/:
+  /api/v1/scratchcards/{id}:
     get: 
       summary: GET SCRATCHCARD
       tags:
@@ -5480,7 +5480,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/scratchcards/isused/:
+  /api/v1/scratchcards/isused:
     post:
       summary: IS USED SCRATCHCARD
       tags:
@@ -5627,7 +5627,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/scratchcards/get_first_unused/:
+  /api/v1/scratchcards/get_first_unused:
     post: 
       summary: GET FIRST UNUSED SCRATCHCARD
       tags:
@@ -5781,7 +5781,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/scratchcards/revoke/:
+  /api/v1/scratchcards/revoke:
     post: 
       summary: REVOKE SCRATCHCARD
       tags:
@@ -6005,7 +6005,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/scratchcards/whoami/:
+  /api/v1/scratchcards/whoami:
     post: 
       summary: WHOAMI
       tags:
@@ -6290,7 +6290,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/scratchcards/move/:
+  /api/v1/scratchcards/move:
     post: 
       summary: MOVE SCRATCHCARDS
       tags:
@@ -6471,7 +6471,7 @@ paths:
 
 ###### registration authority ######
 ###############################################################################
-  /api/v1/registrationauthorities/:
+  /api/v1/registrationauthorities:
     post:
       summary: CREATE RA
       tags:
@@ -6939,7 +6939,7 @@ paths:
                     }
                   } 
 #############
-  /api/v1/registrationauthorities/{id}/:
+  /api/v1/registrationauthorities/{id}:
     post:
       summary: GET RA
       tags:
@@ -7328,7 +7328,7 @@ paths:
 ###### registration authority officer ######
 ###############################################################################
 
-  /api/v1/rao/:
+  /api/v1/rao:
     post:
       summary: CREATE RAO
       tags:
@@ -7960,7 +7960,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/rao/{id}/:
+  /api/v1/rao/{id}:
     get:
       summary: GET RAO
       tags:
@@ -8126,7 +8126,7 @@ paths:
                   }
 ###### registration authority user ######
 ###############################################################################
-  /api/v1/users/:
+  /api/v1/users:
     post:
       summary: CREATE USER
       tags:
@@ -8443,7 +8443,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/users/{id}/:
+  /api/v1/users/{id}:
     get:
       summary: GET USER
       tags:
