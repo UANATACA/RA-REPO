@@ -57,6 +57,35 @@ The card contains:
 
 It is important to notice that a **scratchcard** can be used only once. Every **request** must be associated with a different **scratchcard**.
 
+
+# Flow chart
+
+<div style="text-align: justify">
+The following image summarizes the common digital certificate request and issue flow:
+</div>
+<br></br>
+
+![img](https://github.com/UANATACA/RA-REPO/blob/main/img/ra-flc.png?raw=true)
+
+</br>
+
+1. An end user requests a digital certificate to the Registration Authority (RA)
+2. A Registration Authority Officer (RAO) identifies the user and requests the required documentation
+3. The user sends the required documentation according to the certificate profile
+4. The RAO creates a digital certificate request
+5. The response returns a request ID
+6. The RAO uploads the required documentation according to the request
+7. The RAO verifies all request data and documentation
+8. The RAO approves the digital certificate request to allow the certificate issue
+9. The user receives an email with a link to start the certificate generation process
+10. The user access to the online digital certificate generation process
+11. During the process, an OTP code is sent to the user via sms
+12. The user inserts the OTP code and creates a custom PIN
+13. The certificate is generated
+14. Finallly, the user receives an email with the certificate credentials and instructions
+<br></br>
+
+
 # Making Requests
 
 ## Endpoints
@@ -4329,7 +4358,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>description</td>
 <td></td>
-<td>A description</td>
+<td>One of the following options:<br>
+- Registro Mercantil: Reg: XXX /Hoja: XXX /Tomo:XXX /Sección:XXX /Libro:XXX /Folio:XXX /Fecha: dd-mm-aaaa /Inscripción: XXX.<br>
+- Poder Notarial: Notario: Nombre Apellido1 Apellido2 /Núm Protocolo: XXX /Fecha Otorgamiento: dd-mm-aaaa.<br>
+- Boletines Oficiales: Boletín: XXX /Fecha: dd-mm-aaaa /Numero resolución: XXX.<br>
+- Otros: Documento: XXX /Fecha: dd-mm-aaaa
+</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -4552,7 +4586,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>description</td>
 <td></td>
-<td>A description</td>
+<td>One of the following options:<br>
+- Registro Mercantil: Reg: XXX /Hoja: XXX /Tomo:XXX /Sección:XXX /Libro:XXX /Folio:XXX /Fecha: dd-mm-aaaa /Inscripción: XXX.<br>
+- Poder Notarial: Notario: Nombre Apellido1 Apellido2 /Núm Protocolo: XXX /Fecha Otorgamiento: dd-mm-aaaa.<br>
+- Boletines Oficiales: Boletín: XXX /Fecha: dd-mm-aaaa /Numero resolución: XXX.<br>
+- Otros: Documento: XXX /Fecha: dd-mm-aaaa
+</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -4781,7 +4820,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>description</td>
 <td></td>
-<td>A description</td>
+<td>One of the following options:<br>
+- Registro Mercantil: Reg: XXX /Hoja: XXX /Tomo:XXX /Sección:XXX /Libro:XXX /Folio:XXX /Fecha: dd-mm-aaaa /Inscripción: XXX.<br>
+- Poder Notarial: Notario: Nombre Apellido1 Apellido2 /Núm Protocolo: XXX /Fecha Otorgamiento: dd-mm-aaaa.<br>
+- Boletines Oficiales: Boletín: XXX /Fecha: dd-mm-aaaa /Numero resolución: XXX.<br>
+- Otros: Documento: XXX /Fecha: dd-mm-aaaa
+</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -5004,7 +5048,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>description</td>
 <td></td>
-<td>A description</td>
+<td>One of the following options:<br>
+- Registro Mercantil: Reg: XXX /Hoja: XXX /Tomo:XXX /Sección:XXX /Libro:XXX /Folio:XXX /Fecha: dd-mm-aaaa /Inscripción: XXX.<br>
+- Poder Notarial: Notario: Nombre Apellido1 Apellido2 /Núm Protocolo: XXX /Fecha Otorgamiento: dd-mm-aaaa.<br>
+- Boletines Oficiales: Boletín: XXX /Fecha: dd-mm-aaaa /Numero resolución: XXX.<br>
+- Otros: Documento: XXX /Fecha: dd-mm-aaaa
+</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -5846,7 +5895,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>description</td>
 <td></td>
-<td>A description</td>
+<td>One of the following options:<br>
+- Registro Mercantil: Reg: XXX /Hoja: XXX /Tomo:XXX /Sección:XXX /Libro:XXX /Folio:XXX /Fecha: dd-mm-aaaa /Inscripción: XXX.<br>
+- Poder Notarial: Notario: Nombre Apellido1 Apellido2 /Núm Protocolo: XXX /Fecha Otorgamiento: dd-mm-aaaa.<br>
+- Boletines Oficiales: Boletín: XXX /Fecha: dd-mm-aaaa /Numero resolución: XXX.<br>
+- Otros: Documento: XXX /Fecha: dd-mm-aaaa
+</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -6069,7 +6123,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>description</td>
 <td></td>
-<td>A description</td>
+<td>One of the following options:<br>
+- Registro Mercantil: Reg: XXX /Hoja: XXX /Tomo:XXX /Sección:XXX /Libro:XXX /Folio:XXX /Fecha: dd-mm-aaaa /Inscripción: XXX.<br>
+- Poder Notarial: Notario: Nombre Apellido1 Apellido2 /Núm Protocolo: XXX /Fecha Otorgamiento: dd-mm-aaaa.<br>
+- Boletines Oficiales: Boletín: XXX /Fecha: dd-mm-aaaa /Numero resolución: XXX.<br>
+- Otros: Documento: XXX /Fecha: dd-mm-aaaa
+</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -6298,7 +6357,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>description</td>
 <td></td>
-<td>A description</td>
+<td>One of the following options:<br>
+- Registro Mercantil: Reg: XXX /Hoja: XXX /Tomo:XXX /Sección:XXX /Libro:XXX /Folio:XXX /Fecha: dd-mm-aaaa /Inscripción: XXX.<br>
+- Poder Notarial: Notario: Nombre Apellido1 Apellido2 /Núm Protocolo: XXX /Fecha Otorgamiento: dd-mm-aaaa.<br>
+- Boletines Oficiales: Boletín: XXX /Fecha: dd-mm-aaaa /Numero resolución: XXX.<br>
+- Otros: Documento: XXX /Fecha: dd-mm-aaaa
+</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -6521,7 +6585,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>description</td>
 <td></td>
-<td>A description</td>
+<td>One of the following options:<br>
+- Registro Mercantil: Reg: XXX /Hoja: XXX /Tomo:XXX /Sección:XXX /Libro:XXX /Folio:XXX /Fecha: dd-mm-aaaa /Inscripción: XXX.<br>
+- Poder Notarial: Notario: Nombre Apellido1 Apellido2 /Núm Protocolo: XXX /Fecha Otorgamiento: dd-mm-aaaa.<br>
+- Boletines Oficiales: Boletín: XXX /Fecha: dd-mm-aaaa /Numero resolución: XXX.<br>
+- Otros: Documento: XXX /Fecha: dd-mm-aaaa
+</td>
 <td>Yes</td>
 </tr>
 <tr>
