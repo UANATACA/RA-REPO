@@ -1,17 +1,16 @@
 
 # What it is
 
-
+A Registration Authority is a public key infraestructure role delegated by a Certificaction Authority to manage the entire life-cycle of digital certificates.
 
 # How it works
 
-Globally, digital identity ecosystems are increasingly complex and consist of a wide range of identity models and actors with diverse responsibilities, interests, and priorities.
+The Uanataca Registration Authority service allows the generation and distribution of digital certificates, either by integrating the issuance and management into a business application through an API.
 
-
-Digital identities are created and used as part of a life-cycle that includes three fundamental stages:
+Digital certificates are created and used as part of a life-cycle that includes three fundamental stages:
 
 - registration, including enrollment and validation
-- issuance of documents or credentials
+- issuance of documents and credentials
 - authentication for service delivery
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/ra-hiw.png?token=ATF574VOX5KCM3NWSGWF47DALXLOY)
@@ -39,12 +38,19 @@ It is a request to issue a new certificate. A request can be associated with onl
 1. Created
 2. Enrolled Ready
 3. Issued
+4. Renewed
+5. Cancelled
 
 **Created:** The request has been created and associated to an RA, but the content of the request has not been validated yet. In this state, data can also be inconsistent, the system will not throw an error. The content of the request can be edited at any moment to make it valid.
 
 **Enrolled Ready**: The certificates are ready to be issued. The request arrives at this stage, if it has been approved and signed by a RAO, who is part of the RA in charge of the request.
 
-**Issued:** Certificates issued. The request is ready to be enrolled from the user's self-service page on the platform. The user must first set PIN and PUK codes of his or her choice and then enable the digital identity.
+**Issued:** The certificate is issued by the user's self-service page on the platform. The user must first set a PIN code or a password regarding the secure element.
+
+**Renewed:** The certificate is renewed by the user's self-service page on the platform.
+
+**Cancelled:** The request is cancelled and the digital certificate can not be issued.
+
 
 >Scratchcard
 
