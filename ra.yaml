@@ -46,7 +46,6 @@ A Registration Authority (RA) is an organization delegated by a Certification Au
 </html>
   "
 
-tags:
 - name: "Registration Authority Officer"
   description: "
   
@@ -72,7 +71,6 @@ A Registration Authority Officer (RAO) is a role responsible for managing reques
 </html>
   "
 
-tags:
 - name: "Users"
   description: "
   
@@ -98,7 +96,6 @@ A user is the account having access to the Registration Authority platform accor
 </html>
   "
 
-tags:
 - name: "Scratchcards"
   description: "
   
@@ -133,7 +130,6 @@ A scratchcard is a virtual card containing the initial secret codes of a digital
 </html>
   "
 
-tags:
 - name: "Requests"
   description: "
   
