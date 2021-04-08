@@ -20,6 +20,202 @@ x-tagGroups:
       - Scratchcards
       - Requests
 
+tags:
+- name: "Registration Authority"
+  description: "
+  
+<html>
+A Registration Authority (RA) is an organization delegated by a Certification Authority allowed to manage the life-cyle of digital certificates.</br>
+<table>
+  <tr>
+    <th>Method</th><th>Endpoint</th><th>Action</th>
+  </tr>
+  <tr>
+    <td>POST</td><td><a href='#tag/Registration-Authority/paths/~1api~1v1~1registrationauthorities/post'>/registrationauthorities/</a></td><td>Create a new Registration Authority</td>
+  </tr>
+  <tr>
+    <td>GET</td><td><a href='#tag/Registration-Authority/paths/~1api~1v1~1registrationauthorities/get'>/registrationauthorities/</a></td><td>List all Registration Authorities</td>
+  </tr>
+  <tr>
+    <td>GET</td><td><a href='#tag/Registration-Authority/paths/~1api~1v1~1registrationauthorities~1{id}/post'>/registrationauthorities/{id}/</a></td><td>Get data from a specific Registration Authority</td>
+  </tr>
+ <tr>
+    <td>PUT</td><td><a href='#tag/Registration-Authority/paths/~1api~1v1~1registrationauthorities~1{id}/put'>/registrationauthorities/{id}/</a></td><td>Update info about a Registration Authority</td>
+  </tr>
+</table> 
+</html>
+  "
+
+tags:
+- name: "Registration Authority Officer"
+  description: "
+  
+<html>
+A Registration Authority Officer (RAO) is a role responsible for managing requests and verify its content.</br>
+<table>
+  <tr>
+    <th>Method</th><th>Endpoint</th><th>Action</th>
+  </tr>
+  <tr>
+    <td>POST</td><td><a href='#tag/Registration-Authority-Officer/paths/~1api~1v1~1rao/post'>/rao/</a></td><td>Create a new Registration Authority Officer</td>
+  </tr>
+  <tr>
+    <td>GET</td><td><a href='#tag/Registration-Authority-Officer/paths/~1api~1v1~1rao/get'>/rao/</a></td><td>List all Registration Authority Officers</td>
+  </tr>
+ <tr>
+    <td>GET</td><td><a href='#tag/Registration-Authority-Officer/paths/~1api~1v1~1rao~1{id}/get'>/rao/{id}/</a></td><td>Get data from a specific Registration Authority Officer</td>
+  </tr>
+  <tr>
+    <td>PUT</td><td><a href='#tag/Registration-Authority-Officer/paths/~1api~1v1~1rao~1{id}/put'>/rao/{id}/</a></td><td>Update info about a Registration Authority Officer</td>
+  </tr>
+</table> 
+</html>
+  "
+
+tags:
+- name: "Users"
+  description: "
+  
+<html>
+A user is the account having access to the Registration Authority platform according to its permissions.</br>
+<table>
+  <tr>
+    <th>Method</th><th>Endpoint</th><th>Action</th>
+  </tr>
+  <tr>
+    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users/post'>/users/</a></td><td>Create a new user</td>
+  </tr>
+  <tr>
+    <td>GET</td><td><a href='#tag/Users/paths/~1api~1v1~1users/get'>/users/</a></td><td>List all users</td>
+  </tr>
+ <tr>
+    <td>GET</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/get'>/users/{id}/</a></td><td>Get data from a specific user</td>
+  </tr>
+  <tr>
+    <td>PUT</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/put'>/users/{id}/</a></td><td>Update info about a user</td>
+  </tr>
+</table> 
+</html>
+  "
+
+tags:
+- name: "Scratchcards"
+  description: "
+  
+<html>
+A scratchcard is a virtual card containing the initial secret codes of a digital certificate. Every request requires a scratchcard.</br>
+<table>
+  <tr>
+    <th>Method</th><th>Endpoint</th><th>Action</th>
+  </tr>
+  <tr>
+    <td>GET</td><td><a href='#tag/Scratchcards/paths/~1api~1v1~1scratchcards/get'>/scratchards/</a></td><td>List all available scratchcards</td>
+  </tr>
+ <tr>
+    <td>GET</td><td><a href='#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1{id}/get'>/scratchards/{id}/</a></td><td>Get data from a specific scratchcard</td>
+  </tr>
+ <tr>
+    <td>GET</td><td><a href='#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1get_first_unused/get'>/scratchards/get_first_unused/</a></td><td>Get first unused scratchcard</td>
+  </tr>
+ <tr>
+    <td>POST</td><td><a href='#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1isused/post'>/scratchards/isused/</a></td><td>Get the status of a scratchcard</td>
+  </tr>
+ <tr>
+    <td>POST</td><td><a href='#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1revoke/post'>/scratchards/revoke/</a></td><td>Revoke the digital certificate associated to a scratchcard</td>
+  </tr>
+ <tr>
+    <td>POST</td><td><a href='#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1whoami/post'>/scratchards/whoami/</a></td><td>Get the request assocaited to a scratchcard</td>
+  </tr>
+ <tr>
+    <td>POST</td><td><a href='#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1move/post'>/scratchards/move/</a></td><td>Move scratchcards from a Registration Authority to another one</td>
+  </tr>
+</table> 
+</html>
+  "
+
+tags:
+- name: "Requests"
+  description: "
+  
+<html>
+Manage digital certicate requests life-cycle.</br>
+<table>
+  <tr>
+    <th>Method</th><th>Endpoint</th><th>Action</th>
+  </tr>
+  <tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests/post'>/requests/</a></td><td>Create a digital certificate request</td>
+  </tr>
+ <tr>
+    <td>GET</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests/get'>/requests/</a></td><td>List all requests</td>
+  </tr>
+ <tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post'>/requests/generates_tbs_receipt/</a></td><td>Generates a receipt associated to a request that must be signed by a RAO</td>
+  </tr>
+ <tr>
+    <td>GET</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}/get'>/requests/{id}/</a></td><td>Get data from a request</td>
+  </tr>
+ <tr>
+    <td>PUT</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}/put'>/requests/{id}/</a></td><td>Update info about a request</td>
+  </tr>
+ <tr>
+    <td>DELETE</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1cancel/delete'>/requests/{id}/cancel/</a></td><td>Cancel a request</td>
+  </tr>
+ <tr>
+    <td>GET</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1validate/get'>/requests/{id}/validate/</a></td><td>Validate the request fields</td>
+  </tr>
+ <tr>
+    <td>GET</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1preauthlink/get'>/requests/{id}/preauthlink/</a></td><td>Get the certificate generation process pre-authenticated link</td>
+  </tr>
+ <tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_upload_document/post'>/requests/{id}/pl_upload_document/</a></td><td>Upload required documentation</td>
+  </tr>
+ <tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_delete_document/post'>/requests/{id}/pl_delete_document/</a></td><td>Delete a document</td>
+  </tr>
+ <tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post'>/requests/{id}/pl_get_document/</a></td><td>Retrieve a document</td>
+  </tr>
+ <tr>
+    <td>GET</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_documents/get'>/requests/{id}/pl_get_documents/</a></td><td>Retrieve all documents</td>
+  </tr>
+ <tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post'>/requests/{id}/pl_approve/</a></td><td>Approve a request</td>
+  </tr>
+<tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post'>/requests/{id}/generate_otp/</a></td><td>Send an OTP code for certificate generation</td>
+  </tr>  
+ <tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post'>/requests/{id}/pl_cloud_enroll/</a></td><td>Generate a cloud certificate</td>
+  </tr>
+<tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post'>/requests/{id}/pl_p12_enroll/</a></td><td>Generate a software certificate</td>
+  </tr>
+<tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1is_renewable/post'>/requests/{id}/is_renewable/</a></td><td>Check if a request certificate is renewable or not</td>
+  </tr>
+<tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1enable_renewal/post'>/requests/{id}/enable_renewal/</a></td><td>Enable the renewal option for a request's certificate</td>
+  </tr>
+<tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1disable_renewal/post'>/requests/{id}/disable_renewal/</a></td><td>Disable the renewal option for a request's certificate</td>
+  </tr>
+<tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1cloud_renew/post'>/requests/{id}/cloud_renew/</a></td><td>Renew a cloud certificate</td>
+  </tr>
+<tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1soft_renew/post'>/requests/{id}/soft_renew/</a></td><td>Renew a software certificate</td>
+  </tr>
+<tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_unlock/get'>/requests/{id}/generate_otp_for_unlock/</a></td><td>Send an OTP code for reset or unlock PIN</td>
+  </tr>
+<tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1unlock_pin/get'>/requests/{id}/unlock_pin/</a></td><td>Reset or unlock PIN</td>
+  </tr>
+</table> 
+</html>
+  "
+  
 paths:
 
 ###### requests ######
@@ -30,7 +226,8 @@ paths:
       summary: CREATE REQUEST
       tags:
         - Requests
-      description: Creates a new request for digital certificate issuance.
+      description: "Creates a new request for digital certificate issuance.</br>
+                    <html><blockquote style='background-color:#faf3ac; border-color:#DFDFDF; color:#3b3b3b;'><b>⚠ Each certificate profile has its own set of fields. Please check the list of fields in the <a href='#section/Certificate-Profiles'>Certificate Profiles</a> section.</b></blockquote></html>"
       consumes:
         - application/json
       produces:
@@ -642,7 +839,8 @@ paths:
       summary: GENERATE A TBS RECEIPT
       tags:
         - Requests
-      description: Generates a receipt associated to a request
+      description: "Generates a receipt associated to a request that must be signed by a RAO.<br>
+                    The receipt is signed in the <HTML><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post'>approve request</a></HTML> call."
       consumes:
         - application/json
       produces:
@@ -1396,7 +1594,7 @@ paths:
       summary: CANCEL REQUEST
       tags:
         - Requests
-      description: Change the request status to CANCELLED.
+      description: Change the request status to CANCELLED. Requests can be cancelled only if the digital certificate is not issued yet.
       produces:
         - application/json 
       parameters:
@@ -1527,176 +1725,7 @@ paths:
                       }
                     }
                   }
-#############
-  /api/v1/requests/{id}/generate_document:
-    post: 
-      summary: GENERATE DOCUMENTS
-      tags:
-        - Requests
-      description: Retrieve the documents associated to the Request
-      produces:
-        - application/json 
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: The unique identifier of the Request
-          required: true
-        - in: "body"
-          name: "body"
-          schema:
-            $ref: "#/definitions/GenDocObject"
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: object
-            properties:
-              document:
-                type: string
-                description: The specified document associated to the request 
-          examples:
-            application/json:
-                {
-                    "document": "%PDF-1.4\n%���� ReportLab Generated PDF document http://www.reportlab.com\n1 0 obj\n<<\n/F1 2 0 R\n>>\nendobj\n2 0 obj\n<<\n/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font\n>>\nendobj\n3 0 obj\n<<\n/BitsPerComponent 8 /ColorSpace /DeviceRGB /Filter [ /ASCII85Decode /FlateDecode ] /Height 111 /Length 13170 /Subtype /Image \n  /Type /XObject /Width 300\n>>\nstream\nGb\"/,M-CZaqYkPbM:kU4>YX4t(o&(...)%%EOF\n"
-                }
-        400:
-          description: Bad Request
-          schema:
-            type: object
-            properties:
-              detail:
-                type: string
-                description: JSON syntax error
-          examples:
-            application/json:
-              {
-                  "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 2 (char 30)"
-              }
-        412:
-          description: Invalid request id
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "412",
-                    "id": "478492eec17596d3",
-                    "error": "Invalid request status"
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/generate_document/ \
-                    -H 'Content-Type: application/json' \
-                    -d '{
-                      "doctype": "contract",
-                      "lang": "en"
-                    }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_document/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        doctype: 'contract',
-                        lang: 'en'
-                      })
-                    }
-                  );
 
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_document/"
-
-                  payload = {
-                    "doctype": "contract",
-                    "lang": "en"
-                  }
-
-                  headers = {"Content-Type": "application/json"}
-
-                  response = requests.post(url, json=payload, headers=headers)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_document/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        doctype: 'contract',
-                        lang: 'en'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-                  using System.Text;
-                  using Newtonsoft.Json.Linq;
-                  using System.Security.Cryptography.X509Certificates;
-                  
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
-                      HttpClientHandler handler = new HttpClientHandler();
-
-                      // This disables the SSL verification in TEST mode
-                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
-                      {
-                          return true;
-                      };
-                      
-                      handler.ClientCertificates.Add(clientCert);
-                      
-                      using (var client = new HttpClient(handler))
-                      {
-                        JObject json = JObject.Parse(@"{
-                          doctype: 'contract',
-                          lang: 'en'
-                        }");
-                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generate_document/", postData);
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
 #############
   /api/v1/requests/{id}/validate:
     get: 
@@ -1844,7 +1873,7 @@ paths:
         summary: GET PRE-AUTHENTICATION LINK
         tags:
           - Requests
-        description: Create a new pre-authenticated link for the request.
+        description: Get the pre-authenticated link to start the online certificate generation process for a specific request.
         produces:
           - application/json
         parameters:
@@ -1969,7 +1998,7 @@ paths:
                     }
 #############
   /api/v1/requests/{id}/pl_upload_document:
-    get: 
+    post: 
       summary: UPLOAD DOCUMENT
       tags:
         - Requests
@@ -2136,7 +2165,7 @@ paths:
                     Console.WriteLine(response.Content);           
 #############
   /api/v1/requests/{id}/pl_delete_document:
-    get: 
+    post: 
       summary: DELETE DOCUMENT
       tags:
         - Requests
@@ -2279,7 +2308,7 @@ paths:
                   Console.WriteLine(response.Content);  
 #############
   /api/v1/requests/{id}/pl_get_document:
-    get: 
+    post: 
       summary: GET A DOCUMENT
       tags:
         - Requests
@@ -2559,7 +2588,7 @@ paths:
       summary: APPROVE A REQUEST
       tags:
         - Requests
-      description: Once created a new request, the next thing to do is to approve it.
+      description: Approval of a request by a RAO. At this moment the RAO will sign the receipt and the contract.
       consumes:
         - application/json
       produces:
@@ -2904,12 +2933,171 @@ paths:
                     }
                   }
 #############
+  /api/v1/requests/{id}/generate_otp:
+    post: 
+      summary: GENERATE OTP
+      tags:
+        - Requests
+      description: Used to generate a new One-Time Password (OTP) which will be sent to the client via SMS. The OTP code is required to generate the certificate.
+      produces:
+        - application/json 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            properties:
+              delivery_method:
+                type: string
+                description: The delivery method specification
+          examples:
+            application/json:
+                {
+                    "delivery_method": "sms"
+                }
+        412:
+          description: Not approved request id
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message                
+          examples:
+            application/json:
+                {
+                    "code": "412",
+                    "id": "41d6b0e578dd222f",
+                    "error": "Invalid request status"
+                }
+        404:
+          description: Invalid request id
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message                
+          examples:
+            application/json:
+                {
+                    "code": "400",
+                    "id": "642393a5d86069b7",
+                    "error": "No Request matches the given query."
+                }
+        500:
+          description: Invalid scratchcard or JSON syntax error
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message                
+          examples:
+            application/json:
+                {
+                    "code": "500",
+                    "id": "2a871f452832f624",
+                    "error": "ScratchCard matching query does not exist."
+                }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/generate_otp/
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp/',
+                    {method: 'POST'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_otp/"
+
+                  response = requests.post(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp/',
+                    {method: 'POST'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Security.Cryptography.X509Certificates;
+                  
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generate_otp/", null);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
+
+#############
   /api/v1/requests/{id}/pl_cloud_enroll:
     post: 
       summary: CLOUD ENROLL
       tags:
         - Requests
-      description: "**Paperless Cloud Mode.** The enrollment consists in the generation of a new digital certificate for a request already created and approved."
+      description: The enrollment consists in the generation of a new cloud digital certificate for a request already approved.
       consumes:
         - application/json
       produces:
@@ -3146,7 +3334,7 @@ paths:
       summary: SOFTWARE ENROLL
       tags:
         - Requests
-      description: "**Paperless Software Mode.** The enrollment consists in the generation of a new digital certificate for a request already created and approved."
+      description: The enrollment consists in the generation of a new software digital certificate for a request already approved. The result is a p12 file.
       consumes:
         - application/json
       produces:
@@ -3400,164 +3588,6 @@ paths:
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
                         var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll/", postData);
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
-#############
-  /api/v1/requests/{id}/generate_otp:
-    post: 
-      summary: GENERATE OTP
-      tags:
-        - Requests
-      description: Used to generate a new One-Time Password (OTP) which will be sent to the client via SMS.
-      produces:
-        - application/json 
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: The unique identifier of the Request
-          required: true
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: object
-            properties:
-              delivery_method:
-                type: string
-                description: The delivery method specification
-          examples:
-            application/json:
-                {
-                    "delivery_method": "sms"
-                }
-        412:
-          description: Not approved request id
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "412",
-                    "id": "41d6b0e578dd222f",
-                    "error": "Invalid request status"
-                }
-        404:
-          description: Invalid request id
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "400",
-                    "id": "642393a5d86069b7",
-                    "error": "No Request matches the given query."
-                }
-        500:
-          description: Invalid scratchcard or JSON syntax error
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "500",
-                    "id": "2a871f452832f624",
-                    "error": "ScratchCard matching query does not exist."
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X POST \
-                    https://api.uanataca.com/api/v1/requests/25139/generate_otp/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp/',
-                    {method: 'POST'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_otp/"
-
-                  response = requests.post(url)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp/',
-                    {method: 'POST'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-                  using System.Security.Cryptography.X509Certificates;
-                  
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
-                      HttpClientHandler handler = new HttpClientHandler();
-
-                      // This disables the SSL verification in TEST mode
-                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
-                      {
-                          return true;
-                      };
-                      
-                      handler.ClientCertificates.Add(clientCert);
-                      
-                      using (var client = new HttpClient(handler))
-                      {
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generate_otp/", null);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -4150,7 +4180,7 @@ paths:
       summary: CLOUD RENEWAL
       tags:
         - Requests
-      description: Performs a cloud certificate renewal
+      description: Performs a cloud certificate renewal. The certificate is renewed for the same period time as the initial request.
       consumes:
         - application/json
       produces:
@@ -4331,7 +4361,7 @@ paths:
       summary: SOFTWARE RENEWAL
       tags:
         - Requests
-      description: Performs a software certificate renewal
+      description: Performs a software certificate renewal. The certificate is renewed for the same period time as the initial request.
       consumes:
         - application/json
       produces:
@@ -4508,7 +4538,7 @@ paths:
                   }
 #############
   /api/v1/requests/{id}/generate_otp_for_unlock:
-    get: 
+    post: 
       summary: OTP FOR RESET/UNLOCK PIN
       tags:
         - Requests
@@ -4563,13 +4593,13 @@ paths:
       x-codeSamples:
         - lang: 'curl'
           source: |
-                  curl -i -X GET \
+                  curl -i -X POST \
                     https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock/',
-                    {method: 'GET'}
+                    {method: 'POST'}
                   );
 
                   const data = await resp.text();
@@ -4580,7 +4610,7 @@ paths:
 
                   url = "https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock/"
 
-                  response = requests.get(url)
+                  response = requests.post(url)
 
                   data = response.json()
                   print(data)
@@ -4590,7 +4620,7 @@ paths:
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock/',
-                    {method: 'GET'}
+                    {method: 'POST'}
                   );
 
                   const data = await resp.text();
@@ -4621,7 +4651,7 @@ paths:
                       
                       using (var client = new HttpClient(handler))
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock/");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -4630,11 +4660,11 @@ paths:
                   }
 #############
   /api/v1/requests/{id}/unlock_pin:
-    get: 
+    post: 
       summary: RESET/UNLOCK PIN
       tags:
         - Requests
-      description: Performs the pin reset or unlock operation
+      description: Performs the PIN reset or unlock operation
       produces:
         - application/json
       consumes:
@@ -4712,7 +4742,7 @@ paths:
       x-codeSamples:
         - lang: 'curl'
           source: |
-                  curl -i -X GET \
+                  curl -i -X POST \
                     https://api.uanataca.com/api/v1/requests/25139/unlock_pin/ \
                     -H 'Content-Type: application/json' \
                     -d '{
@@ -4726,7 +4756,7 @@ paths:
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/unlock_pin/',
                     {
-                      method: 'GET',
+                      method: 'POST',
                       headers: {
                         'Content-Type': 'application/json'
                       },
@@ -4756,7 +4786,7 @@ paths:
 
                   headers = {"Content-Type": "application/json"}
 
-                  response = requests.get(url, json=payload, headers=headers)
+                  response = requests.post(url, json=payload, headers=headers)
 
                   data = response.json()
                   print(data)
@@ -4767,7 +4797,7 @@ paths:
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/unlock_pin/',
                     {
-                      method: 'GET',
+                      method: 'POST',
                       headers: {
                         'Content-Type': 'application/json'
                       },
@@ -4815,7 +4845,7 @@ paths:
                           otp: '211489'
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/requests/25139/unlock_pin/");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/unlock_pin/");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -4828,213 +4858,6 @@ paths:
 ###############################################################################
 
   /api/v1/scratchcards:
-    post: 
-      summary: CREATE SCRATCHCARD
-      tags:
-        - Scratchcards
-      description: Create a new scratchcard.
-      consumes:
-        - application/json
-      produces:
-        - application/json 
-      parameters:
-        - in: "body"
-          name: "body"
-          schema:
-            $ref: "#/definitions/CreateScrObject"
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: object
-            properties:
-              pk:
-                type: number
-                description: The scratchcard database id
-              sn: 
-                type: string
-                description: The scratchcard serial number
-              secrets:
-                type: object
-                properties:
-                    erc:
-                      type: string
-                    enrollment_code:
-                      type: string
-                    pin:
-                      type: string
-                    puk:
-                      type: string
-              registration_authority:
-                type: number
-          examples:
-            application/json:
-                {
-                    "pk": 1045,
-                    "sn": "1200948",
-                    "secrets": "{\"erc\": \"8207878566\", \"enrollment_code\": \"97Q6B,6W\", \"pin\": \"25936657\", \"puk\": \"44024058\"}",
-                    "registration_authority": 41
-                }
-        400:
-          description: Bad Request
-          schema:
-            type: object
-            properties:
-              detail:
-                type: string
-                description: JSON syntax error
-          examples:
-            application/json:
-              {
-                  "detail": "JSON parse error - Expecting ',' delimiter: line 4 column 2 (char 53)"
-              }
-        403:
-          description: Permission denied
-          schema:
-            type: object
-            properties:
-              detail:
-                type: string
-                description: The response status message
-          examples:
-            application/json:
-                {
-                    "detail": "You do not have permission to perform this action."
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X POST \
-                    https://api.uanataca.com/api/v1/scratchcards/ \
-                    -H 'Content-Type: application/json' \
-                    -d '{
-                      "sn": "1200948",
-                      "registration_authority": 63,
-                      "secret": {
-                          "erc": "8207878566",
-                          "enrollment_code": "97Q6B,6W",
-                          "pin": "25936657",
-                          "puk": "44024058"
-                        }
-                      }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        sn: '1200948',
-                        registration_authority: 63,
-                        secret: {
-                          erc: '8207878566',
-                          enrollment_code: '97Q6B,6W',
-                          pin: '25936657',
-                          puk: '44024058'
-                        }
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/scratchcards/"
-
-                  payload = {
-                    "sn": "1200948",
-                    "registration_authority": 63,
-                    "secret": {
-                      "erc": "8207878566",
-                      "enrollment_code": "97Q6B,6W",
-                      "pin": "25936657",
-                      "puk": "44024058"
-                    }
-                  }
-
-                  headers = {"Content-Type": "application/json"}
-
-                  response = requests.post(url, json=payload, headers=headers)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        sn: '1200948',
-                        registration_authority: 63,
-                        secret: {
-                          erc: '8207878566',
-                          enrollment_code: '97Q6B,6W',
-                          pin: '25936657',
-                          puk: '44024058'
-                        }
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-                  using System.Text;
-                  using Newtonsoft.Json.Linq;
-                  using System.Security.Cryptography.X509Certificates;
-                  
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
-                      HttpClientHandler handler = new HttpClientHandler();
-
-                      // This disables the SSL verification in TEST mode
-                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
-                      {
-                          return true;
-                      };
-                      
-                      handler.ClientCertificates.Add(clientCert);
-                      
-                      using (var client = new HttpClient(handler))
-                      {
-                        JObject json = JObject.Parse(@"{
-                          sn: '1200948',
-                          registration_authority: 63,
-                          secret: {
-                              erc: '8207878566',
-                              enrollment_code: '97Q6B,6W',
-                              pin: '25936657',
-                              puk: '44024058'
-                          }
-                        }");
-                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/", postData);
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
-#############
     get: 
       summary: LIST SCRATCHCARDS
       tags:
@@ -5302,26 +5125,23 @@ paths:
                       }
                     }
                   }
+
 #############
-    put: 
-      summary: UPDATE A SCRATCHCARD
+  /api/v1/scratchcards/get_first_unused:
+    get: 
+      summary: GET FIRST UNUSED SCRATCHCARD
       tags:
         - Scratchcards
-      description: Update details from a scratchcard.
+      description: Get first unused scratchcard.
       consumes:
         - application/json
       produces:
         - application/json
       parameters:
-        - in: path
-          name: id
-          type: string
-          description: The scratchcard unique id
-          required: true  
         - in: "body"
           name: "body"
           schema:
-            $ref: "#/definitions/UpdScrObject"
+            $ref: "#/definitions/FUScrObject"
       responses:
         200:
           description: Successful Response
@@ -5350,9 +5170,9 @@ paths:
           examples:
             application/json:
                 {
-                    "pk": 1045,
-                    "sn": "1300000",
-                    "secrets": "{\"erc\": \"8117606937\", \"enrollment_code\": \",8cj6Ax2\", \"pin\": \"85376977\", \"puk\": \"86175206\"}",
+                    "pk": 1193,
+                    "sn": "1256948",
+                    "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
                     "registration_authority": 121
                 }
         400:
@@ -5365,43 +5185,28 @@ paths:
                 description: JSON syntax error
           examples:
             application/json:
-              {
-                  "detail": "JSON parse error - Expecting ',' delimiter: line 4 column 2 (char 53)"
-              }
-        403:
-          description: Permission denied
-          schema:
-            type: object
-            properties:
-              detail:
-                type: string
-                description: The response status message
-          examples:
-            application/json:
                 {
-                    "detail": "You do not have permission to perform this action."
+                    "detail": "JSON parse error - Expecting property name enclosed in double quotes: line 3 column 1 (char 14)"
                 }
       x-codeSamples:
         - lang: 'curl'
           source: |
-                  curl -i -X PUT \
-                    https://api.uanataca.com/api/v1/scratchcards/1200948/ \
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/scratchcards/get_first_unused/ \
                     -H 'Content-Type: application/json' \
                     -d '{
-                      "sn": "1300000"
-                      }'
+                      "ra": 121
+                    }'
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/1200948/',
+                    'https://api.uanataca.com/api/v1/scratchcards/get_first_unused/',
                     {
-                      method: 'PUT',
+                      method: 'GET',
                       headers: {
                         'Content-Type': 'application/json'
                       },
-                      body: JSON.stringify({
-                        sn: '1300000'
-                      })
+                      body: JSON.stringify({ra: 121})
                     }
                   );
 
@@ -5411,15 +5216,15 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/scratchcards/1200948/"
+                  url = "https://api.uanataca.com/api/v1/scratchcards/get_first_unused/"
 
                   payload = {
-                    "sn": "1300000"
+                    "ra": 121
                   }
 
                   headers = {"Content-Type": "application/json"}
 
-                  response = requests.put(url, json=payload, headers=headers)
+                  response = requests.get(url, json=payload, headers=headers)
 
                   data = response.json()
                   print(data)
@@ -5428,15 +5233,13 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/1200948/',
+                    'https://api.uanataca.com/api/v1/scratchcards/get_first_unused/',
                     {
-                      method: 'PUT',
+                      method: 'GET',
                       headers: {
                         'Content-Type': 'application/json'
                       },
-                      body: JSON.stringify({
-                        sn: '1300000'
-                      })
+                      body: JSON.stringify({ra: 121})
                     }
                   );
 
@@ -5468,17 +5271,16 @@ paths:
                       
                       using (var client = new HttpClient(handler))
                       {
-                        JObject json = JObject.Parse(@"{
-                          sn: '1300000'
-                        }");
-                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/scratchcards/1200948/", postData);
+                        JObject json = JObject.Parse(@"{ra: 121}");
+                        var getData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/scratchcards/get_first_unused/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
                       }
                     }
                   }
+
 #############
   /api/v1/scratchcards/isused:
     post:
@@ -5626,160 +5428,7 @@ paths:
                       }
                     }
                   }
-#############
-  /api/v1/scratchcards/get_first_unused:
-    post: 
-      summary: GET FIRST UNUSED SCRATCHCARD
-      tags:
-        - Scratchcards
-      description: Get first unused scratchcard.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: "body"
-          name: "body"
-          schema:
-            $ref: "#/definitions/FUScrObject"
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: object
-            properties:
-              pk:
-                type: number
-                description: The scratchcard database id
-              sn: 
-                type: number
-                description: The scratchcard serial number
-              secrets:
-                type: object
-                properties:
-                    erc:
-                      type: string
-                    enrollment_code:
-                      type: string
-                    pin:
-                      type: string
-                    puk:
-                      type: string
-              registration_authority:
-                type: number
-          examples:
-            application/json:
-                {
-                    "pk": 1193,
-                    "sn": "1256948",
-                    "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
-                    "registration_authority": 121
-                }
-        400:
-          description: Bad Request
-          schema:
-            type: object
-            properties:
-              detail:
-                type: string
-                description: JSON syntax error
-          examples:
-            application/json:
-                {
-                    "detail": "JSON parse error - Expecting property name enclosed in double quotes: line 3 column 1 (char 14)"
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X POST \
-                    https://api.uanataca.com/api/v1/scratchcards/get_first_unused/ \
-                    -H 'Content-Type: application/json' \
-                    -d '{
-                      "ra": 121
-                    }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/get_first_unused/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({ra: 121})
-                    }
-                  );
 
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/scratchcards/get_first_unused/"
-
-                  payload = {
-                    "ra": 121
-                  }
-
-                  headers = {"Content-Type": "application/json"}
-
-                  response = requests.post(url, json=payload, headers=headers)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/get_first_unused/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({ra: 121})
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-                  using System.Text;
-                  using Newtonsoft.Json.Linq;
-                  using System.Security.Cryptography.X509Certificates;
-                  
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
-                      HttpClientHandler handler = new HttpClientHandler();
-
-                      // This disables the SSL verification in TEST mode
-                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
-                      {
-                          return true;
-                      };
-                      
-                      handler.ClientCertificates.Add(clientCert);
-                      
-                      using (var client = new HttpClient(handler))
-                      {
-                        JObject json = JObject.Parse(@"{ra: 121}");
-                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/scratchcards/get_first_unused/", postData);
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
 #############
   /api/v1/scratchcards/revoke:
     post: 
@@ -6940,7 +6589,7 @@ paths:
                   } 
 #############
   /api/v1/registrationauthorities/{id}:
-    post:
+    get:
       summary: GET RA
       tags:
         - Registration Authority
@@ -7026,13 +6675,13 @@ paths:
       x-codeSamples:
         - lang: 'curl'
           source: |
-                  curl -i -X POST \
+                  curl -i -X GET \
                     https://api.uanataca.com/api/v1/registrationauthorities/121/
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/registrationauthorities/121/',
-                    {method: 'POST'}
+                    {method: 'GET'}
                   );
 
                   const data = await resp.text();
@@ -7043,7 +6692,7 @@ paths:
 
                   url = "https://api.uanataca.com/api/v1/registrationauthorities/121/"
 
-                  response = requests.post(url)
+                  response = requests.get(url)
 
                   data = response.json()
                   print(data)
@@ -7053,7 +6702,7 @@ paths:
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/registrationauthorities/121/',
-                    {method: 'POST'}
+                    {method: 'GET'}
                   );
 
                   const data = await resp.text();
@@ -7082,7 +6731,7 @@ paths:
                       
                       using (var client = new HttpClient(handler))
                       {
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/registrationauthorities/121/", null);
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/registrationauthorities/121/", null);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -7584,227 +7233,7 @@ paths:
                       }
                     }
                   }
-#############
-    put:
-      summary: UPDATE RAO
-      tags:
-        - Registration Authority Officer
-      description: Update information about a RAO.
-      consumes:
-        - application/json      
-      produces:
-        - application/json
-      parameters:
-        - in: "body"
-          name: "body"
-          schema:
-            $ref: "#/definitions/UpdateRAOObject"
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: object
-            properties:
-              pk:
-                type: number
-              given_name: 
-                type: string
-              surname_1:
-                type: number
-              surname_2: 
-                type: string
-              certificate:
-                type: object
-                properties:
-                  profile:
-                    type: string
-                  status:
-                    type: number
-                  valid_from:
-                    type: string
-                  valid_to:
-                    type: string
-                  revokation_season:
-                    type: string
-                  serial_number:
-                    type: string
-                  subject:
-                    type: string
-                  data:
-                    type: string
-                  issuer:
-                    type: string
-              id_document_number: 
-                type: string
-              id_document_description:
-                type: string
-              id_document_issuer: 
-                type: string
-              registration_authority:
-                type: array
-                items:
-                  type: number
-              registration_authority_master: 
-                type: string
-          examples:
-            application/json:
-              {
-                    "pk": 1400,
-                    "given_name": "RAO_NewName",
-                    "surname_1": "RAO_Surname1",
-                    "surname_2": "RAO_Surname2",
-                    "certificate": {
-                        "profile": "EXTERNAL",
-                        "status": 0,
-                        "valid_from": "2020-01-01T16:31:00",
-                        "valid_to": "2022-01-01T16:31:00",
-                        "valid": "UNKNOW",
-                        "revokation_reason": null,
-                        "serial_number": "4501b05b35da0b54",
-                        "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-12432143313213, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, C=ES",
-                        "data": "MIIHyzCCBbOgAwIBAgIIdWWgCtrot88wDQYJKoZIhvcNAQELBQAwgb0xCzAJBgNVBAYTAkVTMUQwQgYDVQQHDDtCYXJjZWxvbmEgKHNlZSBjdXJyZW50IGFkZHJlc3MgYXQgd3d3LnVhbmF0YWNhLmNvbS9hZGR...",
-                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
-                    },
-                    "id_document_number": "Y8888888E",
-                    "id_document_description": null,
-                    "id_document_issuer": null,
-                    "registration_authority": [
-                        121, 122, 123
-                    ],
-                    "registration_authority_master": 1
-              }
-        400:
-          description: Bad Request
-          schema:
-            type: object
-            properties:
-              detail:
-                type: string
-                description: JSON syntax error
-          examples:
-            application/json:
-              {
-                  "detail": "JSON parse error - Expecting ',' delimiter: line 12 column 5 (char 361)"
-              }
-        500:
-          description: Invalid or missing parameters | Permission denied
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
-          examples:
-            application/json:
-                {
-                    "code": "500",
-                    "id": "572b9094bafb7cc3",
-                    "error": "You do not have permission to perform this action."
-                }
-      x-codeSamples:
-        - lang: 'curl'
-          source: |
-                  curl -i -X PUT \
-                    https://api.uanataca.com/api/v1/rao/1400/ \
-                    -H 'Content-Type: application/json' \
-                    -d '{
-                      "given_name": "RAO_NewName"
-                    }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao/1400/',
-                    {
-                      method: 'PUT',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        given_name: 'RAO_NewName'
-                      })
-                    }
-                  );
 
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'Python'
-          source: |
-                  import requests
-
-                  url = "https://api.uanataca.com/api/v1/rao/1400/"
-
-                  payload = {
-                    "given_name": "RAO_NewName"
-                  }
-
-                  headers = {"Content-Type": "application/json"}
-
-                  response = requests.put(url, json=payload, headers=headers)
-
-                  data = response.json()
-                  print(data)
-        - lang: 'Node.js'
-          source: |
-                  const fetch = require('node-fetch');
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao/1400/',
-                    {
-                      method: 'PUT',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        given_name: 'RAO_NewName'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
-        - lang: 'C#'
-          source: |
-                  using System;
-                  using System.Net.Http;
-                  using System.Threading.Tasks;
-                  using System.Text;
-                  using Newtonsoft.Json.Linq;
-                  using System.Security.Cryptography.X509Certificates;
-                  
-                  public class Program
-                  {
-                    public static async Task Main(string[] args)
-                    {
-                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
-                      HttpClientHandler handler = new HttpClientHandler();
-
-                      // This disables the SSL verification in TEST mode
-                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
-                      {
-                          return true;
-                      };
-                      
-                      handler.ClientCertificates.Add(clientCert);
-                      
-                      using (var client = new HttpClient(handler))
-                      {
-                        JObject json = JObject.Parse(@"{
-                          given_name: 'RAO_NewName'
-                        }");
-                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/rao/1400/", postData);
-                        var response = await request.Content.ReadAsStringAsync();
-
-                        Console.WriteLine(response);
-                      }
-                    }
-                  }
 #############
     get:
       summary: LIST RAOs
@@ -8124,6 +7553,229 @@ paths:
                       }
                     }
                   }
+
+#############
+    put:
+      summary: UPDATE RAO
+      tags:
+        - Registration Authority Officer
+      description: Update information about a RAO.
+      consumes:
+        - application/json      
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/UpdateRAOObject"
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            properties:
+              pk:
+                type: number
+              given_name: 
+                type: string
+              surname_1:
+                type: number
+              surname_2: 
+                type: string
+              certificate:
+                type: object
+                properties:
+                  profile:
+                    type: string
+                  status:
+                    type: number
+                  valid_from:
+                    type: string
+                  valid_to:
+                    type: string
+                  revokation_season:
+                    type: string
+                  serial_number:
+                    type: string
+                  subject:
+                    type: string
+                  data:
+                    type: string
+                  issuer:
+                    type: string
+              id_document_number: 
+                type: string
+              id_document_description:
+                type: string
+              id_document_issuer: 
+                type: string
+              registration_authority:
+                type: array
+                items:
+                  type: number
+              registration_authority_master: 
+                type: string
+          examples:
+            application/json:
+              {
+                    "pk": 1400,
+                    "given_name": "RAO_NewName",
+                    "surname_1": "RAO_Surname1",
+                    "surname_2": "RAO_Surname2",
+                    "certificate": {
+                        "profile": "EXTERNAL",
+                        "status": 0,
+                        "valid_from": "2020-01-01T16:31:00",
+                        "valid_to": "2022-01-01T16:31:00",
+                        "valid": "UNKNOW",
+                        "revokation_reason": null,
+                        "serial_number": "4501b05b35da0b54",
+                        "subject": "CN=RAO_Name RAO_Surname1 RAO_Surname2, 2.5.4.5=IDCES-12432143313213, 2.5.4.42=RAO_Name, 2.5.4.4=RAO_Surname1 RAO_Surname2, C=ES",
+                        "data": "MIIHyzCCBbOgAwIBAgIIdWWgCtrot88wDQYJKoZIhvcNAQELBQAwgb0xCzAJBgNVBAYTAkVTMUQwQgYDVQQHDDtCYXJjZWxvbmEgKHNlZSBjdXJyZW50IGFkZHJlc3MgYXQgd3d3LnVhbmF0YWNhLmNvbS9hZGR...",
+                        "issuer": "2.5.4.97=VATES-A66721499, CN=UANATACA CA1 DEVEL 2016, OU=AC-UANATACA, O=UANATACA S.A., L=Barcelona (see current address at www.uanataca.com/address), C=ES"
+                    },
+                    "id_document_number": "Y8888888E",
+                    "id_document_description": null,
+                    "id_document_issuer": null,
+                    "registration_authority": [
+                        121, 122, 123
+                    ],
+                    "registration_authority_master": 1
+              }
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: JSON syntax error
+          examples:
+            application/json:
+              {
+                  "detail": "JSON parse error - Expecting ',' delimiter: line 12 column 5 (char 361)"
+              }
+        500:
+          description: Invalid or missing parameters | Permission denied
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message                
+          examples:
+            application/json:
+                {
+                    "code": "500",
+                    "id": "572b9094bafb7cc3",
+                    "error": "You do not have permission to perform this action."
+                }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X PUT \
+                    https://api.uanataca.com/api/v1/rao/1400/ \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "given_name": "RAO_NewName"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/rao/1400/',
+                    {
+                      method: 'PUT',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        given_name: 'RAO_NewName'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/rao/1400/"
+
+                  payload = {
+                    "given_name": "RAO_NewName"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.put(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/rao/1400/',
+                    {
+                      method: 'PUT',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        given_name: 'RAO_NewName'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+                  using System.Security.Cryptography.X509Certificates;
+                  
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        JObject json = JObject.Parse(@"{
+                          given_name: 'RAO_NewName'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/rao/1400/", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
+
 ###### registration authority user ######
 ###############################################################################
   /api/v1/users:
@@ -8844,7 +8496,7 @@ definitions:
           description: "The enrollment code associated to the scratchcard"
       pin:
           type: "string"
-          description: "A new pin to assign. Must contain at least 2 letters, 2 numbers and must be at least 8 characters long"
+          description: "A new PIN code to assign. Must contain at least 2 letters, 2 numbers and must be at least 8 characters long"
       puk:
           type: "string"
           description: "A new puk to assign. Must contain at least 2 letters, 2 numbers and must be at least 8 characters long"
@@ -8858,16 +8510,7 @@ definitions:
       enrollment_code:
           type: "string"
           description: "The enrollment code associated to the scratchcard"
-###########
-  GenDocObject:  
-    type: "object"
-    properties:
-      doctype:
-          type: "string"
-          description: "It represents the type of doc to retrieve. It can assume the values of: 'acceptance', 'contract' and 'credentials'"
-      lang:
-          type: "string"
-          description: "The enrollment code associated to the scratchcard"
+
 ###########
   PlApproveReqObject:
     type: "object"
@@ -8880,13 +8523,13 @@ definitions:
           description: "The RAO's password"
       pin:
           type: "string"
-          description: "The RAO's pin"
+          description: "The RAO's PIN"
       rao_id:
           type: "string"
           description: "The RAO's id"
       lang:
           type: "string"
-          description: "The RAO's pin"
+          description: "The contract language"
 ###########
   PlCloudEnrObject:
     type: "object"
@@ -8956,10 +8599,10 @@ definitions:
                           description: "Security code requested for different operations (like certificate enrollment)"
                       pin:
                           type: "string"
-                          description: "Default pin assigned to the scratchcard. This will be changed in the enrollment phase."
+                          description: "Default PIN assigned to the scratchcard. This will be changed in the enrollment phase."
                       puk:
                           type: "string"
-                          description: "Default puk assigned to the scratchcard. This will be changed in the enrollment phase."
+                          description: "Default PUK assigned to the scratchcard. This will be changed in the enrollment phase."
 ###########
   FUScrObject:
     type: "object"
@@ -9038,7 +8681,7 @@ definitions:
           description: "The password associated to the request to be renewed"
       pin:
           type: "string"
-          description: "The pin associated to the request to be renewed"
+          description: "The PIN associated to the request to be renewed"
 ###########
   SoRenScrObject:
     type: "object"
@@ -9051,7 +8694,7 @@ definitions:
           description: "The password associated to the request to be renewed"
       pin:
           type: "string"
-          description: "The pin associated to the request to be renewed"
+          description: "The PIN associated to the request to be renewed"
 ###########
   ResetPinObject:
     type: "object"
