@@ -3,66 +3,25 @@
 
 A Registration Authority is a public key infraestructure role delegated by a Certificaction Authority to manage the entire life-cycle of digital certificates.
 
+The Registration Authority is composed of people and processes, with the main function of identifying applicants for a certificate and sending verified data to the Certification Authority for the issuance of the certificate.
+
 # How it works
 
 The Uanataca Registration Authority service allows the generation and distribution of digital certificates, either by integrating the issuance and management into a business application through an API.
 
+The Registration Authority is in charge of managing to request the issuance of digital certificates from the Certification Authority once the required process flow has been duly carried out.
+
 Digital certificates are created and used as part of a life-cycle that includes three fundamental stages:
 
-- registration, including enrollment and validation
-- issuance of documents and credentials
-- authentication for service delivery
+- registration including documentation
+- data validation
+- certificate issuance
+
+The complete flow is explained in the next section <a href="#section/Flow-chart">Flow chart</a> 
+
+Uanataca Registration Authority is paperless so permits the generation of digital certificates without the use of eventual papery contracts. In this way every Request has its own digital contract that will be electronically signed by the two sides of the transaction, the RAO that will approve the Request and the certificate holder, with their respective digital certificates.
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/ra-hiw.png?token=ATF574VOX5KCM3NWSGWF47DALXLOY)
-
-# Glossary
-
-List of entities and names used to describe UANATACA's services
-
->Registration Authority (RA)
-
-The RA manages the entire life-cycle of digital identities, from the certificate issuance to suspension, reactivation, renewal and revocation of the PKI credentials.
-
->Registration Authority Officer (RAO)
-
-The RAO follows strict guidelines and policies defined to ensure the trust of the CA. RAO is responsible for managing the requests for digital certificates and verifying the content of the requests as well as vetting people requesting them.
-
->API User
-
-The Account having access to the APIs provided by the system. It is generally used for a server to server interaction.
-
->Certificate Request (Request)
-
-It is a request to issue a new certificate. A request can be associated with only one RA and has a status attribute to monitor the progress of the application:
-
-1. Created
-2. Enrolled Ready
-3. Issued
-4. Renewed
-5. Cancelled
-
-**Created:** The request has been created and associated to an RA, but the content of the request has not been validated yet. In this state, data can also be inconsistent, the system will not throw an error. The content of the request can be edited at any moment to make it valid.
-
-**Enrolled Ready**: The certificates are ready to be issued. The request arrives at this stage, if it has been approved and signed by a RAO, who is part of the RA in charge of the request.
-
-**Issued:** The certificate is issued by the user's self-service page on the platform. The user must first set a PIN code or a password regarding the secure element.
-
-**Renewed:** The certificate is renewed by the user's self-service page on the platform.
-
-**Cancelled:** The request is cancelled and the digital certificate can not be issued.
-
-
->Scratchcard
-
-It is a virtual scratch card containing the secret codes of the user.
-
-The card contains:
-
-- a serial number: it uniquely identifies the user
-- an enrollment code: secret code, that is sent to the user by email
-
-It is important to notice that a **scratchcard** can be used only once. Every **request** must be associated with a different **scratchcard**.
-
 
 # Flow chart
 
@@ -89,47 +48,90 @@ The following image summarizes the common digital certificate request and issue 
 12. The user inserts the OTP code and creates a custom PIN
 13. The certificate is generated
 14. Finallly, the user receives an email with the certificate credentials and instructions
-<br></br>
 
 
-# Making Requests
+# Glossary
 
-## Endpoints
+List of entities and names used to describe UANATACA's services
+
+>Certification Authority (CA)
+
+The CA is the issuer of the certificates requested by the Registration Authority.
+
+>Registration Authority (RA)
+
+The RA manages the entire life-cycle of digital identities, from the certificate issuance to suspension, reactivation, renewal and revocation of the PKI credentials. Reuests are generated and verified by a Registration Authority Officer.
+
+>Registration Authority Officer (RAO)
+
+The RAO follows strict guidelines and policies defined to ensure the trust of the CA. RAO is responsible for managing the requests for digital certificates and verifying the content of the requests as well as identifying people requesting them.
+
+>API User
+
+The Account having access to the APIs provided by the system. It is generally used for a server to server interaction.
+
+>Certificate Request (Request)
+
+It is a request to issue a new certificate. A request can be associated with only one RA and has a status attribute to monitor the progress of the application:
+
+**Created:** The request has been created and associated to an RA, but the content of the request has not been validated yet. In this state, data can also be inconsistent, the system will not throw an error. The content of the request can be edited at any moment to make it valid.
+
+**Enrolled Ready**: The certificates are ready to be issued. The request arrives at this stage, if it has been approved and signed by a RAO, who is part of the RA in charge of the request.
+
+**Issued:** The certificate is issued by the user's self-service page on the platform. The user must first set a PIN code or a password regarding the secure element.
+
+**Renewed:** The certificate is renewed by the user's self-service page on the platform.
+
+**Cancelled:** The request is cancelled and the digital certificate can not be issued.
+
+
+>Scratchcard
+
+It is a virtual scratch card containing the secret codes of the user.
+
+The card contains:
+
+- a serial number: it uniquely identifies the user
+- an enrollment code: secret code, that is sent to the user by email
+
+It is important to notice that a **scratchcard** can be used only once. Every **request** must be associated with a different **scratchcard**.
+
+
+# Endpoint URLs
 
 Uanataca expose its API on urls composed as follows:
 
 	https://{uanatacahost}/api/{version}/{resource}/
 
-The {uanatacahost} changes according to the environment:
-
-- access.bit4id.org:13035 if the environment is test
-- api.uanataca.com if the environment is production
-
-**{version}** is the api version (currently **v1**) and **{resource} is the name of the resource of our interest.
-
-<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ In test environment you need to trust the certificate Bit4idCA.crt</blockquote>
-
-Each resource can also have path parameters and sub-resources:
-
-	https://{uanatacahost}/api/{version}/{resource}/{param}/{sub-resources}/
-
 <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ Make sure the URL always ends with a forward slash ("/")</blockquote>
 
-These are some examples of endpoints exposed by Uanataca:
+> uanatacahost
+ 
+The host changes according to the environment:
 
-	https://api.uanataca.com/api/v1/requests/
+- **access.bit4id.org:13035** for test environment
+- **api.uanataca.com** for production environment
 
-</br>
-	
-	https://api.uanataca.com/api/v1/requests/123/
+<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ In test environment you need to trust the certificate <a href="https://cdn.bit4id.com/es/uanataca/public/ra/Bit4idCA.crt">Bit4idCA.crt</a></blockquote>
 
-</br>
+> version
+ 
+It is the api version (currently **v1**)
+
+> resource
+ 
+It is the name of the resource of our interest.
+
+Each resource can also have path parameters and sub-resources that are defined in the <a href="#APIReference">API Reference</a> below:
+
+This is an example of endpoint exposed by Uanataca:
 
 	https://api.uanataca.com/api/v1/requests/123/cloud_enroll/
 
-## Authentication
 
-The API authentication is perfomed providing to the server the certificate and the key of an enabled User.
+# Authentication
+
+The API authentication is perfomed providing to the server the certificate and the key of an enabled API User.
 
 This is an example HTTP POST request perfomed with curl:
 
@@ -142,6 +144,7 @@ and a Python with requests package example:
 	3 |     'https://api.uanataca.com/api/v1/scratchcards/',
 	4 |     cert = ('/path/to/cert.pem', '/path/to/key.pem')
 	5 | )
+
 
 # Responses
 
@@ -160,7 +163,7 @@ Instead, the error response is always composed of these keys:
     <td><b>error</b></td><td>A string that describe the error occured</td>
   </tr>
   <tr>
-    <td><b>code</b></td><td>The HTTP error code related</td>
+    <td><b>code</b></td><td>The HTTP response code related. See <a href="#section/Responses/HTTP-Status-Codes">table descriptions</a></td>
   </tr>
   <tr>
     <td><b>id</b></td><td>The unique identifier of the error generated by Uanataca</td>
@@ -168,6 +171,8 @@ Instead, the error response is always composed of these keys:
 </table> 
 </br> 
 </html>
+
+In the <a href="#APIReference">API Reference</a> are described the response structures for each API call.
 
 A successful response:
 
@@ -195,13 +200,59 @@ An error response:
 	4 |     "error": "Invalid ScratchCard"
 	5 | }
 
-Another error response:
 
-	1 | {
-	2 |    "code": "418",
-	3 |    "id": "551eb335898f79e4",
-	4 |    "error": "Invalid paramiters"
-	5 | }
+## HTTP Status Codes
+
+<html>
+<table>
+  <tr>
+    <th>Code</th><th>Description</th>
+  </tr>
+  <tr>
+    <td>200</td><td>Everything went <b>OK</b>. The server elaborated correctly the request and returned the response to the client.</td>
+  </tr>
+  <tr>
+    <td>201</td><td>The object is successfully <b>Created</b> with the parameters sent by the client.</td>
+  </tr>
+  <tr>
+    <td>202</td><td>The request sent by the client has been <b>Accepted</b> and is under process.</td>
+  </tr>
+  <tr>
+    <td>204</td><td><b>No Content.</b> The operation was successful but no content is provided in the response body.</td>
+  </tr>
+  <tr>
+    <td>400</td><td><b>Bad Request.</b> The parameters sent, are not well formatted or are missing.</td>
+  </tr>
+  <tr>
+    <td>401</td><td><b>Unauthorized.</b> The user used for making the request is not authorized to consume that resource.</td>
+  </tr>
+  <tr>
+    <td>403</td><td><b>Forbidden.</b>The user used for making the request has no permissions to do it.</td>
+  </tr>  
+  <tr>
+    <td>404</td><td>The resource requested is <b>Not Found.</b></td>
+  </tr>
+  <tr>
+    <td>405</td><td><b>Method not allowed.</b> The endpoint called has not the method specified.</td>
+  </tr>
+  <tr>
+    <td>412</td><td><b>Precondition Failed.</b> The operation has some requirements that are not satisfied. For example if a Request is in a wrong state for the operation requested.</td>
+  </tr>
+  <tr>
+    <td>429</td><td><b>Too Many Requests.</b></td>
+  </tr>
+  <tr>
+    <td>500</td><td><b>Internal Server Error.</b> An error occured during the elaboration of the request.</td>
+  </tr>
+  <tr>
+    <td>502</td><td><b>Bad Gateway.</b></td>
+  </tr>
+  <tr>
+    <td>503</td><td><b>Service Unavailable.</b></td>
+  </tr>
+</table> 
+</br> 
+</html>
 
 ## Pagination
 
@@ -276,58 +327,167 @@ A list of Requests:
 	15|     ]
 	16| }
 
-## HTTP Status Codes
 
-<html>
-<table>
-  <tr>
-    <th>Code</th><th>Description</th>
-  </tr>
-  <tr>
-    <td>200</td><td>Everything went <b>OK</b>. The server elaborated correctly the request and returned the response to the client.</td>
-  </tr>
-  <tr>
-    <td>201</td><td>The object is successfully <b>Created</b> with the parameters sent by the client.</td>
-  </tr>
-  <tr>
-    <td>202</td><td>The request sent by the client has been <b>Accepted</b> and is under process.</td>
-  </tr>
-  <tr>
-    <td>204</td><td><b>No Content.</b> The operation was successful but no content is provided in the response body.</td>
-  </tr>
-  <tr>
-    <td>400</td><td><b>Bad Request.</b> The parameters sent, are not well formatted or are missing.</td>
-  </tr>
-  <tr>
-    <td>401</td><td><b>Unauthorized.</b> The user used for making the request is not authorized to consume that resource.</td>
-  </tr>
-  <tr>
-    <td>403</td><td><b>Forbidden.</b>The user used for making the request has no permissions to do it.</td>
-  </tr>  
-  <tr>
-    <td>404</td><td>The resource requested is <b>Not Found.</b></td>
-  </tr>
-  <tr>
-    <td>405</td><td><b>Method not allowed.</b> The endpoint called has not the method specified.</td>
-  </tr>
-  <tr>
-    <td>412</td><td><b>Precondition Failed.</b> The operation has some requirements that are not satisfied. For example if a Request is in a wrong state for the operation requested.</td>
-  </tr>
-  <tr>
-    <td>429</td><td><b>Too Many Requests.</b></td>
-  </tr>
-  <tr>
-    <td>500</td><td><b>Internal Server Error.</b> An error occured during the elaboration of the request.</td>
-  </tr>
-  <tr>
-    <td>502</td><td><b>Bad Gateway.</b></td>
-  </tr>
-  <tr>
-    <td>503</td><td><b>Service Unavailable.</b></td>
-  </tr>
-</table> 
-</br> 
+# Workflow
+
+This section section presents the workflow for a common digital certificate generation with a step-by-step description of the API calls required.
+
+The common digital certificate generation process involves the following steps:
+
+- Request creation
+- Upload required documents
+- Approval by a RAO
+- Cloud/Software Enrollment
+
+> STEP 1: Create a Request
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create request</a>
+
+This call must include enough information to identify the requester user. The full description of the arguments accepted by this endpoint can be found in the API call detailed documentation.
+
+	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
+	2 | -H 'Content-Type: application/json' \
+	3 | --cert 'cer.pem' --key 'key.pem'
+	4 | -d '{
+	5 |     "profile": "PFnubeAFCiudadano",
+	6 |     "scratchcard": "5053311",
+	7 |     "secure_element": "2",
+	8 |     "registration_authority": "116",
+	9 |     "country_name": "ES",
+    10|     "serial_number": "12345678A",
+    11|     "id_document_country": "ES",
+    12|     "id_document_type": "IDC",
+    13|     "given_name": "Name",
+    14|     "surname_1": "Surname1",
+    15|     "surname_2" "Surname2"
+    16|     "email": "mail@domain.com",
+    17|     "mobile_phone_number": "+34611223344",
+    18|     "paperless_mode": 1
+    19|     }'
+
+
+The return response is the a JSON containing the info of the Request just created. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
+
+	1 | {
+	2 | "pk": 11223,
+	3 | "given_name": "Name",
+	4 | "surname_1": "Surname1",
+	5 | "surname_2": "Surname2",
+	6 | "sex": null,
+	7 | "id_document_type": "IDC",
+	8 | "id_document_country": "ES",
+	9 | "serial_number": "12345678A",
+	10| "country_name": "ES",
+	11| "citizenship": null,
+	12| "residence": null,
+	13| "organization_email": null,
+	14| "email": "mail@domain.com",
+	15| "title": null,
+	16| "organization_name": null,
+	17| "organizational_unit_1": null,
+	18| ...
+	19| }
+
+> STEP 2: Upload documents
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_upload_document/post">Upload document</a>
+
+The Request created needs documents, so we can query with an HTTP POST request to upload the files.
+
+The required documents for every request are:<br>
+`document_front` : The photo of the front side of the requester ID card<br>
+`document_rear` : The photo of the rear side of the requester ID card<br>
+`extra_document` : If necessary, it is possibile to upload extra documents that represents additional requester information
+
+
+Additionally a selfie of the requester showing the ID card under the chin can be uploaded as an evidence under the type `document_owner`.
+
+Note that this endpoint has to be queried for every document type that the Request needs.
+
+	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/11223/pl_upload_document/' \
+	2 | --cert 'cer.pem' --key 'key.pem'
+	3 | -H 'Content-Type: multipart/form-data' \
+	4 | -F document=@/idc_front.jpg \
+	5 | -F type=document_front
+
+The return response contains the uploaded document unique identifier associated to the request.
+
+	1 | {
+	2 | "pk": 11314,
+	3 | "type": "document_front"
+	4 | }
+
+> STEP 3: Approve Request
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve a request</a>
+
+A Registration Authority Officer must first validate the request data and documentation. If the information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate.
+
+In order to approve a Request, this must be in the status of CREATED and must have at least the required documents (document_front and document_rear).
+
+	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
+	2 | -H 'Content-Type: application/json' \
+	3 | --cert 'cer.pem' --key 'key.pem'
+	4 | -d '{
+	5 | {
+    6 | 	"username": "1000279",
+    7 | 	"password": "3DPTm:N4",
+    8 | 	"pin": "23bYQq9a",
+    9 |		"rao_id": 123
+	10|	}
+
+
+> STEP 4: Enrollment
+
+There are different endpoints to enroll a Request, depending on the secure element choosen.
+
+For all requests is required to send an otp code to the requester. Software and cloud certificates use the same call to send the otp code, while cloud-qscd certificates use another.
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post">Send OTP code for software and cloud</a>
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Send OTP code for cloud-QSCD</a>
+
+**Software**
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post">Software enrollment</a>
+
+For the Software enrollemnt the parameters required are the secret OTP code send to the requester and the p12password set by the requester to import the generated p12:
+
+	1 | {
+	2 |     "secret": "000000",
+	3 |     "p12password": "password12"
+	4 | }
+
+At the end of the enrollment the server replies with the P12 generated in PEM format.
+
+**Cloud**
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud enrollment</a>
+
+For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
+
+	1 | {
+	2 |     "secret": "000000",
+	3 |     "pin": "pincode12"
+	4 | }
+
+At the end of the enrollment the server replies with a JSON containing all requesta data.
+
+**Cloud_QSCD**
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post">Cloud-QSCD enrollment</a>
+
+For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
+
+	1 | {
+	2 |     "secret": "000000",
+	3 |     "pin": "pincode12"
+	4 | }
+
+At the end of the enrollment the server replies with a JSON containing all requesta data.
+
 </html>
+
 
 # Certificate Profiles
 
@@ -9903,189 +10063,34 @@ TIN - Tax Identification Number according to the European Commission.</td>
 </tr>
 </table>
 
-# Workflow
+# Postman collection
 
-The paperless mode is a new feature added to Uanataca that permits the generation of digital certificates without the use of eventual papery contracts. In this way every Request has its own digital contract that will be signed by the two sides of the transaction, the RAO that will approve the Request and the certificate holder, with their respective digital certificates.
+A postman collection is available as a support for a quick start.<br>
 
-This document will guide you through:
+<a href="https://cdn.bit4id.com/es/uanataca/public/ra/Uanataca_RA_Postman.zip">Registration Authority Postman collection download</a>
 
-- Request creation in paperless mode
-- Managing documents
-- Approval
-- Cloud/Software Enrollment
+> Postman settings
 
-> Create a paperless Request
+It is required to add the authentication API certificate provided according to the environment.
+The certificates  are added in:
 
-In order to create a new Request in paperless mode, we need to set the parameter **paperless_mode** to **1**:
+**Postman settings > Certificates > Client certificates**
 
-	1 | {
-	2 |     "secure_element": "2",
-	3 |     "profile": "PFnubeAFCiudadano",
-	4 |     "validity_time": "365",
-	5 |     "scratchcard": "120000804",
-	6 |     "registration_authority": "41",
-	7 |     "country_name": "IT",
-	8 |     "id_document_type" : "TIN",
-	9 |     "id_document_country": "IT",
-	10|     "serial_number": "TSTAPI74S23C129Y",
-	11|     "id_document_description": "IDC",
-	12|     "id_document_issuer": "IKANSD",
-	13|     "id_document_number": "12345678A",
-	14|     "given_name": "Test",
-	15|     "surname_1": "Paperless",
-	16|     "surname_2": "Api",
-	17|     "email": "email@uanataca.com",
-	18|     "mobile_phone_number": "+393331122333",
-	19|     "paperless_mode": 1
-	20| }
+The required fields are:
 
-and query the same endpoint with an HTTP POST request:
+`host` and `port`: The endpoint host and port regarding the environment
 
-	/api/v1/requests/
+- **access.bit4id.org** in port **13035** for test environment
+- **api.uanataca.com** in port **443** for production environment
 
-The return response is the same: a JSON containing the info of the Request just created. One of the most important parameters from this JSON is the "pk" which represents the Request unique identifier and is used for every operation related to this Request.
+`CRT file`: the file containing the public certificate
 
-> Upload documents
+`KEY file`: the file containing the certificate private key
 
-The Request created needs documents, so we can query with an HTTP POST request this endpoint to upload the files:
+For test environment is also required to disable the SSL certificate verification in:. 
 
-	/api/v1/pl_upload_document/
+**Postman settings > General > Request**
 
-The required documents for every Request are: **document\_front** (the photo of the front side of the requester ID card), **document\_rear** (the photo of the rear side if the requester ID card) and **document\_owner** (the photo of the requester with the ID card under the chin).
+`SSL certificate verification` must be set OFF.
 
-If necessary it is possibile to upload extra documents that represents additional requester informations. This documents goes under the type of **extra\_document**.
-
-It is also possible to upload optional documents that are not strictly related to the requester informations, like a **tbs** document or the **raw** document.
-
-The tbs, to-be-signed, document (in pdf format) will be signed with the certificate that will be enrolled. Instead the raw document is a simple txt file that contain an hash to be signed. The output of the sign process for this file, is a new file containing the original hash and the signature generated.
-
-So to be able to upload documents, the query must contain a multipart/form-data header and the parameters: **"type"**, the type of the document (document\_front, document\_rear, extra\_document, ...) and **"document"**, the actual file to upload.
-
-Note that this endpoint has to be queried for every document that the Request needs.
-
-Another important aspect, is that the Request **must be** in the status **CREATED** in order to be able to upload documents.
-
-
-> Approve Request
-
-In order to approve a Request, this must be in the status of CREATED and must have at least the required documents (document_front, document_rear, document_owner).
-
-A Request can only be approved by a RAO which have associated a cloud user. In fact an example of the parameters accepted is this:
-
-	1 | {
-    2 | 	"username": "2000279",
-    3 | 	"password": "3DPTm:N4",
-    4 | 	"pin": "belorado74",
-    5 |		"rao_id": 233
-	6 |	}
-
-where "username", "password" and "pin" are the cloud user credentials, "rao_id" the unique identifier of the RAO that will approve the Request.
-
-	/api/v1/requests/{pk}/pl_approve/
-
-
-> Retrieving documents
-
-The documents associated to a Request, can always be retrieved, even if the Request is not in the status CREATED.
-
-It is possibile to retrieve documents by type or just all of them together.
-
-By querying with this json
-
-	1 | {
-	2 |     "type": "signed_raw"
-	3 | }
-
-the endpoint:
-
-	/api/v1/requests/{pk}/pl_get_document/
-
-we will get the documents that have as type "signed_raw".
-
-Instead to get all the documents as a list, we can query the endpoint:
-
-	/api/v1/requests/{pk}/pl_get_documents/
-
-which will return the documents and their unique identifier number.
-
-In all the cases, the document is returned encoded in **Base64**.
-
-
-
-> Delete documents
-
-In order to delete a document, the Request must be in the status CREATED.
-
-The only parameter needed by the endpoint
-
-	/api/v1/requests/{pk}/pl_delete_document/
-
-is the document unique identifier:
-
-	1 | {
-    2 | 	"docpk": 123
-	3 | }
-
-If the removal is successful the response by the server is:
-
-	{
-    	"status": "Document deleted successfully"
-	}
-
-> Prepare for enrollment
-
-The enrollment for paperless Requests, needs a secret (OTP; One Time Password) that will be sent via SMS to the mobile phone number of Request (So when a new Request is created make sure it contains the correct number with the internation prefix number).
-
-The generation of the OTP code, changes according to the Request profile. If the Request has a standard profile, it is necessary to query this endpoint with a POST request passing the correct scratchcard number:
-
-	1 | {
-	2 |     "scratchcard": "110003051"
-	3 | }
-
-	/api/v1/requests/{pk}/generate_otp/
-
-Instead in case that the Request has a qualified profile (see Profiles), the generation of the otp changes. It must be performed with the endpoint:
-
-	/api/v1/requests/{pk}/generate_otp_for_qs/
-
-that accepts as parameters the **pin** and **puk** that will be assigned to the cloud identity.
-
-For both of the endpoints, if it is the first time that an OTP is generated for the specified Request, than it is simply sent to the mobile phone number registered. Instead if these endpoints are queried in less than one minute since the previous generated OTP, it will not generate a new OTP, but the previous one is still valid.
-
-Once received the secret, it can be used for the next phase: the Request Enrollment.
-
-> Enrollment
-
-Depending on the secure element choosen during the creation, or on the Request profile, there are different endpoints to enroll a Request:
-
-	/api/v1/requests/{pk}/pl_p12_enroll/
-
-</br>
-
-	/api/v1/requests/{pk}/pl_cloud_enroll/
-
-</br>
-
-	/api/v1/requests/{pk}/plq_cloud_enroll/
-
-The first one is used for the Software Requests and accept as parameters the secret and the p12password to set to the generated p12:
-
-	1 | {
-	2 |     "secret": "000000",
-	3 |     "p12password": "belorado74"
-	4 | }
-
-At the end of the enrollment the server reply with the P12 generated in PEM format.
-
-Instead the second one is for Cloud Requests. In addition to the secret it is necessary a pin code (the puk is generated in a cryptographic secure way by the server) assigned to the generated remote token:
-
-	1 | {
-    2 |		"secret": "000000",
-    3 |		"pin": "belorado74"
-	4 | }
-
-with the only difference that the **pin** parameter must coincide with the one passed to **generate\_otp\_for_qs** endpoint.
-
-If no error occures the server reply with a JSON containing a key "status" valued to "OK".
-
-
+<div id="APIReference" style="padding-top: 60px;"><h1>API Reference<h1></div>
