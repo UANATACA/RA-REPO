@@ -74,15 +74,15 @@ The Account having access to the APIs provided by the system. It is generally us
 
 It is a request to issue a new certificate. A request can be associated with only one RA and has a status attribute to monitor the progress of the application:
 
-**Created:** The request has been created and associated to an RA, but the content of the request has not been validated yet. In this state, data can also be inconsistent, the system will not throw an error. The content of the request can be edited at any moment to make it valid.
+**CREATED:** The request has been created and associated to an RA, but the content of the request has not been validated yet. In this state, data can also be inconsistent, the system will not throw an error. The content of the request can be edited at any moment to make it valid.
 
-**Enrolled Ready**: The certificates are ready to be issued. The request arrives at this stage, if it has been approved and signed by a RAO, who is part of the RA in charge of the request.
+**ENROLLREADY**: The certificates are ready to be issued. The request arrives at this stage, if it has been approved and signed by a RAO, who is part of the RA in charge of the request.
 
-**Issued:** The certificate is issued by the user's self-service page on the platform. The user must first set a PIN code or a password regarding the secure element.
+**ISSUED:** The certificate is issued by the user's self-service page on the platform. The user must first set a PIN code or a password regarding the secure element.
 
-**Renewed:** The certificate is renewed by the user's self-service page on the platform.
+**RENEWED:** The certificate is renewed by the user's self-service page on the platform.
 
-**Cancelled:** The request is cancelled and the digital certificate can not be issued.
+**CANCELLED:** The request is cancelled and the digital certificate can not be issued.
 
 
 >Scratchcard
@@ -133,7 +133,7 @@ This is an example of endpoint exposed by Uanataca:
 
 The API authentication is perfomed providing to the server the certificate and the key of an enabled API User.
 
-This is an example HTTP POST request perfomed with curl:
+This is an example HTTP POST request perfomed with cURL:
 
 	1 | curl --key key.pem --cert cert.pem -H "Content-Type: application/json" -d @params.json -X POST https://api.uanataca.com/api/v1/requests/
 
@@ -473,7 +473,7 @@ For the cloud enrollemnt the parameters required are the secret OTP code send to
 
 At the end of the enrollment the server replies with a JSON containing all requesta data.
 
-**Cloud_QSCD**
+**Cloud-QSCD**
 
 API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post">Cloud-QSCD enrollment</a>
 

@@ -179,13 +179,19 @@ Manage digital certicate requests life-cycle.</br>
     <td>GET</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1preauthlink/get'>/requests/{id}/preauthlink/</a></td><td>Get the certificate generation process pre-authenticated link</td>
   </tr>
 <tr>
-    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post'>/requests/{id}/generate_otp/</a></td><td>Send an OTP code for certificate generation</td>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post'>/requests/{id}/generate_otp/</a></td><td>Send an OTP code for cloud or software certificate generation</td>
   </tr>  
  <tr>
     <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post'>/requests/{id}/pl_cloud_enroll/</a></td><td>Generate a cloud certificate</td>
   </tr>
 <tr>
     <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post'>/requests/{id}/pl_p12_enroll/</a></td><td>Generate a software certificate</td>
+  </tr>
+<tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post'>/requests/{id}/generate_otp_for_qs/</a></td><td>Send an OTP code for cloud-QSCD certificate generation</td>
+  </tr>  
+ <tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post'>/requests/{id}/plq_cloud_enroll/</a></td><td>Generate a cloud-QSCD certificate</td>
   </tr>
 <tr>
     <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1is_renewable/post'>/requests/{id}/is_renewable/</a></td><td>Check if a request certificate is renewable or not</td>
