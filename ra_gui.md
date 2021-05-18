@@ -1,15 +1,19 @@
 
 # What it is
 
-A Registration Authority is a public key infraestructure role delegated by a Certificaction Authority to manage the entire life-cycle of digital certificates.
-
-The Registration Authority is composed of people and processes, with the main function of identifying applicants for a certificate and sending verified data to the Certification Authority for the issuance of the certificate.
+<div style="text-align: justify">
+The Registration Authority (RA) solution to manage the entire digital certificates life cycle. 
+<br></br>
+The service facilitates the automation of processes through integration via API, allowing you to incorporate the process of issuing digital certificates into your business flows or procedures.
+<br></br>
+The issuance of digital certificates generates 100% paperless. All information related with the registration and contract issuance is electronically signed and saved in the system to avoid storing physical documentation for years.
+</div>
 
 # How it works
 
-The Uanataca Registration Authority service allows the generation and distribution of digital certificates, either by integrating the issuance and management into a business application through an API.
+Uanataca RA API allows the generation and distribution of digital certificates, either by integrating the issuance and management into a business application.
 
-The Registration Authority is in charge of managing to request the issuance of digital certificates from the Certification Authority once the required process flow has been duly carried out.
+The Registration Authority is composed of people and processes, with the main function of identifying applicants of digital certificates and sending verified data for the issuance of the certificate.
 
 Digital certificates are created and used as part of a life-cycle that includes three fundamental stages:
 
@@ -19,35 +23,9 @@ Digital certificates are created and used as part of a life-cycle that includes 
 
 The complete flow is explained in the next section <a href="#section/Flow-chart">Flow chart</a> 
 
-Uanataca Registration Authority is paperless so permits the generation of digital certificates without the use of eventual papery contracts. In this way every Request has its own digital contract that will be electronically signed by the two sides of the transaction, the RAO that will approve the Request and the certificate holder, with their respective digital certificates.
+As part of the paperless procedure, every Request has its own digital contract that has to be electronically signed by the RA Operator (in charge of approving the Request) and the certificate subscriber, each one with their respective digital certificates.
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/ra-hiw.png?token=ATF574VOX5KCM3NWSGWF47DALXLOY)
-
-# Flow chart
-
-<div style="text-align: justify">
-The following image summarizes the common digital certificate request and issue flow:
-</div>
-<br></br>
-
-![img](https://github.com/UANATACA/RA-REPO/blob/main/img/ra-flc.png?raw=true)
-
-</br>
-
-1. An end user requests a digital certificate to the Registration Authority (RA)
-2. A Registration Authority Officer (RAO) identifies the user and requests the required documentation
-3. The user sends the required documentation according to the certificate profile
-4. The RAO creates a digital certificate request
-5. The response returns a request ID
-6. The RAO uploads the required documentation according to the request
-7. The RAO verifies all request data and documentation
-8. The RAO approves the digital certificate request to allow the certificate issue
-9. The user receives an email with a link to start the certificate generation process
-10. The user access to the online digital certificate generation process
-11. During the process, an OTP code is sent to the user via sms
-12. The user inserts the OTP code and creates a custom PIN
-13. The certificate is generated
-14. Finallly, the user receives an email with the certificate credentials and instructions
 
 
 # Glossary
@@ -95,6 +73,32 @@ The card contains:
 - an enrollment code: secret code, that is sent to the user by email
 
 It is important to notice that a **scratchcard** can be used only once. Every **request** must be associated with a different **scratchcard**.
+
+# Flow chart
+
+<div style="text-align: justify">
+The following image summarizes the common digital certificate request and issue flow:
+</div>
+<br></br>
+
+![img](https://github.com/UANATACA/RA-REPO/blob/main/img/ra-flc.png?raw=true)
+
+</br>
+
+1. An end user requests a digital certificate to the Registration Authority (RA)
+2. A Registration Authority Officer (RAO) identifies the user and requests the required documentation
+3. The user sends the required documentation according to the certificate profile
+4. The RAO creates a digital certificate request
+5. The response returns a request ID
+6. The RAO uploads the required documentation according to the request
+7. The RAO verifies all request data and documentation
+8. The RAO approves the digital certificate request to allow the certificate issue
+9. The user receives an email with a link to start the certificate generation process
+10. The user access to the online digital certificate generation process
+11. During the process, an OTP code is sent to the user via sms
+12. The user inserts the OTP code and creates a custom PIN
+13. The certificate is generated
+14. Finallly, the user receives an email with the certificate credentials and instructions
 
 
 # Endpoint URLs
@@ -10068,6 +10072,7 @@ TIN - Tax Identification Number according to the European Commission.</td>
 A postman collection is available as a support for a quick start.<br>
 
 <a href="https://cdn.bit4id.com/es/uanataca/public/ra/Uanataca_RA_Postman.zip">Registration Authority Postman collection download</a>
+<br>
 
 > Postman settings
 
