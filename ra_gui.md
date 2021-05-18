@@ -25,8 +25,7 @@ The complete flow is explained in the next section <a href="#section/Flow-chart"
 
 As part of the paperless procedure, every Request has its own digital contract that has to be electronically signed by the RA Operator (in charge of approving the Request) and the certificate subscriber, each one with their respective digital certificates.
 
-![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/ra-hiw.png?token=ATF574VOX5KCM3NWSGWF47DALXLOY)
-
+<img style="width: 80%; display: block; margin-left: auto; margin-right: auto" src="https://github.com/UANATACA/RA-REPO/raw/main/img/ra-hiw.png"/> 
 
 # Glossary
 
@@ -81,7 +80,7 @@ The following image summarizes the common digital certificate request and issue 
 </div>
 <br></br>
 
-![img](https://github.com/UANATACA/RA-REPO/blob/main/img/ra-flc.png?raw=true)
+![img](https://github.com/UANATACA/RA-REPO/raw/main/img/ra-flc.png)
 
 </br>
 
