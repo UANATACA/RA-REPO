@@ -24,6 +24,7 @@ Digital certificates are created and used as part of a life-cycle that includes 
 The complete flow is explained in the next section <a href="#section/Flow-chart">Flow chart</a> 
 
 As part of the paperless procedure, every Request has its own digital contract that has to be electronically signed by the RA Operator (in charge of approving the Request) and the certificate subscriber, each one with their respective digital certificates.
+<br></br>
 
 <img style="width: 80%; display: block; margin-left: auto; margin-right: auto" src="https://github.com/UANATACA/RA-REPO/raw/main/img/ra-hiw.png"/> 
 
