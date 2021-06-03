@@ -688,6 +688,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td>Yes</td>
 </tr>
 <tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
 <td>email</td>
 <td></td>
 <td>The cardholder email</td>
@@ -698,12 +704,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td></td>
 <td>The cardholder mobile phone number</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>surname_2</td>
-<td></td>
-<td>The cardholder second surname</td>
-<td>No</td>
 </tr>
 <tr>
 <td>id_document_description</td>
@@ -858,6 +858,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td>Yes</td>
 </tr>
 <tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
 <td>email</td>
 <td></td>
 <td>The cardholder email</td>
@@ -868,12 +874,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td></td>
 <td>The cardholder mobile phone number</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>surname_2</td>
-<td></td>
-<td>The cardholder second surname</td>
-<td>No</td>
 </tr>
 <tr>
 <td>id_document_description</td>
@@ -1022,6 +1022,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td>Yes</td>
 </tr>
 <tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
 <td>email</td>
 <td></td>
 <td>The cardholder email</td>
@@ -1032,12 +1038,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td></td>
 <td>The cardholder mobile phone number</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>surname_2</td>
-<td></td>
-<td>The cardholder second surname</td>
-<td>No</td>
 </tr>
 <tr>
 <td>id_document_description</td>
@@ -1185,6 +1185,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td>Yes</td>
 </tr>
 <tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
 <td>email</td>
 <td></td>
 <td>The cardholder email</td>
@@ -1195,12 +1201,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td></td>
 <td>The cardholder mobile phone number</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>surname_2</td>
-<td></td>
-<td>The cardholder second surname</td>
-<td>No</td>
 </tr>
 <tr>
 <td>id_document_description</td>
@@ -1386,19 +1386,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -1652,19 +1652,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -1911,19 +1911,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -2170,19 +2170,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -2429,19 +2429,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -2694,19 +2694,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -2953,19 +2953,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -3212,19 +3212,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -3638,19 +3638,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -3981,19 +3981,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -4324,19 +4324,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -4460,6 +4460,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td>Yes</td>
 </tr>
 <tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
 <td>title</td>
 <td></td>
 <td>The cardholder professional title</td>
@@ -4486,19 +4492,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -4547,12 +4553,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td></td>
 <td>The cardholder legal representation document</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>surname_2</td>
-<td></td>
-<td>The cardholder second surname</td>
-<td>No</td>
 </tr>
 <tr>
 <td>subscriber_responsible_serial</td>
@@ -4688,6 +4688,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td>Yes</td>
 </tr>
 <tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
 <td>title</td>
 <td></td>
 <td>The cardholder professional title</td>
@@ -4714,19 +4720,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -4775,12 +4781,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td></td>
 <td>The cardholder legal representation document</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>surname_2</td>
-<td></td>
-<td>The cardholder second surname</td>
-<td>No</td>
 </tr>
 <tr>
 <td>subscriber_responsible_serial</td>
@@ -4922,6 +4922,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td>Yes</td>
 </tr>
 <tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
 <td>title</td>
 <td></td>
 <td>The cardholder professional title</td>
@@ -4948,19 +4954,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -5009,12 +5015,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td></td>
 <td>The cardholder legal representation document</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>surname_2</td>
-<td></td>
-<td>The cardholder second surname</td>
-<td>No</td>
 </tr>
 <tr>
 <td>subscriber_responsible_serial</td>
@@ -5150,6 +5150,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td>Yes</td>
 </tr>
 <tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
 <td>title</td>
 <td></td>
 <td>The cardholder professional title</td>
@@ -5176,19 +5182,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -5237,12 +5243,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td></td>
 <td>The cardholder legal representation document</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>surname_2</td>
-<td></td>
-<td>The cardholder second surname</td>
-<td>No</td>
 </tr>
 <tr>
 <td>subscriber_responsible_serial</td>
@@ -5409,19 +5409,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -5620,19 +5620,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -5825,19 +5825,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -5997,6 +5997,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td>Yes</td>
 </tr>
 <tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
 <td>title</td>
 <td></td>
 <td>The cardholder professional title</td>
@@ -6023,19 +6029,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -6084,12 +6090,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td></td>
 <td>The cardholder legal representation document</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>surname_2</td>
-<td></td>
-<td>The cardholder second surname</td>
-<td>No</td>
 </tr>
 <tr>
 <td>subscriber_responsible_serial</td>
@@ -6225,6 +6225,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td>Yes</td>
 </tr>
 <tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
 <td>title</td>
 <td></td>
 <td>The cardholder professional title</td>
@@ -6251,19 +6257,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -6312,12 +6318,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td></td>
 <td>The cardholder legal representation document</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>surname_2</td>
-<td></td>
-<td>The cardholder second surname</td>
-<td>No</td>
 </tr>
 <tr>
 <td>subscriber_responsible_serial</td>
@@ -6459,6 +6459,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td>Yes</td>
 </tr>
 <tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
 <td>title</td>
 <td></td>
 <td>The cardholder professional title</td>
@@ -6485,19 +6491,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -6546,12 +6552,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td></td>
 <td>The cardholder legal representation document</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>surname_2</td>
-<td></td>
-<td>The cardholder second surname</td>
-<td>No</td>
 </tr>
 <tr>
 <td>subscriber_responsible_serial</td>
@@ -6687,6 +6687,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td>Yes</td>
 </tr>
 <tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
 <td>title</td>
 <td></td>
 <td>The cardholder professional title</td>
@@ -6713,19 +6719,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -6774,12 +6780,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td></td>
 <td>The cardholder legal representation document</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>surname_2</td>
-<td></td>
-<td>The cardholder second surname</td>
-<td>No</td>
 </tr>
 <tr>
 <td>subscriber_responsible_serial</td>
@@ -6953,19 +6953,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -7169,19 +7169,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -7386,19 +7386,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -7609,19 +7609,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -7838,19 +7838,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -8073,19 +8073,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -8302,19 +8302,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -8692,19 +8692,19 @@ PAS - Passport.
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 </table>
@@ -9003,19 +9003,19 @@ PAS - Passport.
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 </table>
@@ -9386,6 +9386,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td>Yes</td>
 </tr>
 <tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
 <td>email</td>
 <td></td>
 <td>The cardholder email</td>
@@ -9396,12 +9402,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td></td>
 <td>The cardholder mobile phone number</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>surname_2</td>
-<td></td>
-<td>The cardholder second surname</td>
-<td>No</td>
 </tr>
 <tr>
 <td>id_document_description</td>
@@ -9549,6 +9549,12 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td>Yes</td>
 </tr>
 <tr>
+<td>surname_2</td>
+<td></td>
+<td>The cardholder second surname</td>
+<td>No</td>
+</tr>
+<tr>
 <td>email</td>
 <td></td>
 <td>The cardholder email</td>
@@ -9559,12 +9565,6 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <td></td>
 <td>The cardholder mobile phone number</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>surname_2</td>
-<td></td>
-<td>The cardholder second surname</td>
-<td>No</td>
 </tr>
 <tr>
 <td>id_document_description</td>
@@ -9748,19 +9748,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>
@@ -9966,19 +9966,19 @@ TIN - Tax Identification Number according to the European Commission.</td>
 <tr>
 <td>responsible_name</td>
 <td></td>
-<td>The name of the organization rapresentative</td>
+<td>The name of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_first_surname</td>
 <td></td>
-<td>The first surname of the organization rapresentative</td>
+<td>The first surname of the organization representative</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>responsible_second_surname</td>
 <td></td>
-<td>The second of the organization rapresentative</td>
+<td>The second of the organization representative</td>
 <td>No</td>
 </tr>
 <tr>

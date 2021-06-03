@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
-  version: '1.0'
-  title: UANATACA RA API DOCUMENTATION FOR DEVELOPERS
+  version: 'v1'
+  title: UANATACA RA API DOCUMENTATION
   x-logo:
       url: https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/ra_logo.png?token=ATF574SLFVT2PB666U5MTODALW5UE
       altText: RA logo
@@ -1891,7 +1891,7 @@ paths:
           type: string
         - in: formData
           name: type
-          enum: [document_front, document_rear, document_owner]
+          enum: [document_front, document_rear, document_owner, extra_document]
           description: The type of the document to be uploaded
           required: true
           type: string
