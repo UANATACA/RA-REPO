@@ -2941,6 +2941,8 @@ paths:
       tags:
         - Requests
       description: Used to generate a new One-Time Password (OTP) which will be sent to the client via SMS, for cloud or software certificates secure element. The OTP code is required to generate the certificate.
+      consumes:
+        - application/json
       produces:
         - application/json 
       parameters:
@@ -2949,6 +2951,10 @@ paths:
           type: string
           description: The unique identifier of the Request
           required: true
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/GenOTPObject"
       responses:
         200:
           description: Successful Response
@@ -3031,13 +3037,24 @@ paths:
           source: |
                   curl -i -X POST \
                     https://api.uanataca.com/api/v1/requests/25139/generate_otp/
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "scratchcard": "5113598"
+                    }'
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/generate_otp/',
-                    {method: 'POST'}
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratcard: '5113598'
+                      })
+                    }
                   );
-
                   const data = await resp.text();
                   console.log(data);
         - lang: 'Python'
@@ -3046,7 +3063,11 @@ paths:
 
                   url = "https://api.uanataca.com/api/v1/requests/25139/generate_otp/"
 
-                  response = requests.post(url)
+                  payload = {
+                    "scratchcard": "5113598"
+                  }
+
+                  response = requests.post(url, json=payload, headers=headers)
 
                   data = response.json()
                   print(data)
@@ -3056,7 +3077,15 @@ paths:
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/generate_otp/',
-                    {method: 'POST'}
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        scratchcard: '5113598'
+                      })
+                    }
                   );
 
                   const data = await resp.text();
@@ -3081,12 +3110,14 @@ paths:
                           return true;
                       };
                       
-                      handler.ClientCertificates.Add(clientCert);
-                      
-                      using (var client = new HttpClient(handler))
-                      {
-                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generate_otp/", null);
-                        var response = await request.Content.ReadAsStringAsync();
+                  using (var client = new HttpClient(handler))
+                  {
+                    JObject json = JObject.Parse(@"{
+                      scratchcard: '5113598'
+                    }");
+                    var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                    var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generate_otp/", postData);
+                    var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
                       }
@@ -8991,6 +9022,13 @@ definitions:
           type: "string"
           description: "The PIN code created by the client (must contain at least 2 letters, 2 numbers and must be at least 8 characters long)"
 ###########
+  GenOTPObject:
+    type: "object"
+    properties:
+      scratchcard:
+          type: "string"
+          description: "The scratchcard serial number"    
+###########
   GenOTPforQS:
     type: "object"
     properties:
@@ -9006,7 +9044,7 @@ definitions:
     properties:
       sn:
           type: "string"
-          description: "The scratchcard serial number  "
+          description: "The scratchcard serial number"
       registration_authority:
           type: "string"
           description: "The registration authority id"
