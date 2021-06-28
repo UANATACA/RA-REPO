@@ -9319,6 +9319,8 @@ paths:
         schema:
           $ref: "#/definitions/UploadData_VID"
       responses:
+        200:
+          description: Successful Response      
 
 #############
   /api/v1/requests/{id_request}/upload_videoid_result_x:
@@ -9342,7 +9344,9 @@ paths:
         schema:
           $ref: "#/definitions/UploadVideo_VID"
       responses:
-
+        200:
+          description: Successful Response
+          
 ###### definitions ######
 ###############################################################################
 definitions:
