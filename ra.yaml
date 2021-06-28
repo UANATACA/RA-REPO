@@ -9215,7 +9215,7 @@ paths:
         - application/json
       parameters:
       - in: path
-        name: id
+        name: id_request
         type: string
         description: The Request unique identifier
         required: true
@@ -9318,6 +9318,7 @@ paths:
         name: "body"
         schema:
           $ref: "#/definitions/UploadData_VID"
+      responses:
 
 #############
   /api/v1/requests/{id_request}/upload_videoid_result_x:
@@ -9340,7 +9341,7 @@ paths:
         name: "body"
         schema:
           $ref: "#/definitions/UploadVideo_VID"
-
+      responses:
 
 ###### definitions ######
 ###############################################################################
