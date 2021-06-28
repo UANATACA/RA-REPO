@@ -9320,7 +9320,7 @@ paths:
           $ref: "#/definitions/UploadData_VID"
 
 #############
-  /api/v1/requests/{id_request}/upload_videoid_result:
+  /api/v1/requests/{id_request}/upload_videoid_result_x:
     post: 
       summary: UPLOAD VIDEO ID DATA
       tags:
