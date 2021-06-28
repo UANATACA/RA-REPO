@@ -9310,7 +9310,7 @@ paths:
         - application/json
       parameters:
       - in: path
-        name: id
+        name: id_request
         type: string
         description: The Request unique identifier
         required: true
@@ -9332,7 +9332,7 @@ paths:
         - application/json
       parameters:
       - in: path
-        name: id
+        name: id_request
         type: string
         description: The Request unique identifier
         required: true
@@ -9927,6 +9927,71 @@ definitions:
       reason:
           type: "string"
           description: "Reason that caused VideoID refusal"
+
+###########
+  UploadVideo_VID:
+    type: "object"
+    properties:
+      acceptance:
+        type: "object"
+        description: acceptance description
+        properties:
+          acceptance_test_data:
+            type: "boolean"
+            description: acceptance_test_data description
+          another_field:
+            type: "number"
+            description: another_field description
+      data:
+        type: "object"
+        description: data description
+        properties:
+          images:
+            type: "object"
+            description: images description
+            properties:
+              document_front:
+                type: "string"
+                description: document_front description
+              document_rear:
+                type: string
+                description: document_rear description
+              document_photo:
+                type: string
+                description: document_photo description
+              document_owner:
+                type: string
+                description: document_owner description
+          ocr_data:
+            type: "object"
+            description: ocr_data description
+            properties:
+              given_name:
+                type: string
+                description: given_name description
+              surname_1:
+                type: string
+                description: surname_1 description
+              mobile_phone_number:
+                type: string
+                description: surname_2 description
+              serial_number:
+                type: string
+                description: surname_2 description
+          security_checks:
+            type: "object"
+            description: ocr_data description
+            properties:
+              a_test_check:
+                type: boolean
+                description: a_test_check description
+              another_check:
+                type: boolean
+                description: another_check description
+          similarity_level:
+            type: "string"
+            description: similarity_level description 
+
 ###########
   UploadData_VID:
     type: "object"
