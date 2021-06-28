@@ -8902,7 +8902,7 @@ paths:
         - application/json
       parameters:
       - in: path
-        name: id
+        name: id_request
         type: string
         description: The Request unique identifier
         required: true
@@ -9164,15 +9164,15 @@ paths:
             schema:
               type: object
               properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
+                code:
+                  type: string
+                  description: The response status code
+                id:
+                  type: string
+                  description: The response status id
+                error:
+                  type: string
+                  description: The response status message                
             examples:
               application/json:              
                 {
@@ -9229,7 +9229,7 @@ paths:
           schema:
             type: object
             description: A JSON object with full information about the created request 
-            parameters:
+            properties:
               videoid_status:
                 type: string
                 description: The request status (REFUSED)
@@ -9260,15 +9260,15 @@ paths:
             schema:
               type: object
               properties:
-              code:
-                type: string
-                description: The response status code
-              id:
-                type: string
-                description: The response status id
-              error:
-                type: string
-                description: The response status message                
+                code:
+                  type: string
+                  description: The response status code
+                id:
+                  type: string
+                  description: The response status id
+                error:
+                  type: string
+                  description: The response status message                
             examples:
               application/json:              
                 {
