@@ -19,7 +19,7 @@ x-tagGroups:
       - Users
       - Scratchcards
       - Requests
-      - VideoID
+      - Video ID
 
 tags:
 - name: "Registration Authority"
@@ -230,16 +230,16 @@ This allows the management of certificate issuing by establishing a video call f
     <th>Method</th><th>Endpoint</th><th>Action</th>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users/get'>/users/</a></td>Validate VideoID Request<td></td>
+    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users/get'>/users/</a></td><td>Validate VideoID Request<td></td>
   </tr>
  <tr>
     <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/get'>/users/{id}/</a></td><td>Refuse VideoID Request</td>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/put'>/users/{id}/</a></td><td>Upload VideoID Data</td>
+    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/put'>/users/{id}/</a></td><td>Upload data (except video) for a Request</td>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/put'>/users/{id}/</a></td><td>Upload VideoID Video</td>
+    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/put'>/users/{id}/</a></td><td>Upload video for a Request</td>
   </tr>
 </table> 
 </html>
@@ -9346,7 +9346,7 @@ paths:
       responses:
         200:
           description: Successful Response
-          
+
 ###### definitions ######
 ###############################################################################
 definitions:
