@@ -74,7 +74,11 @@ The card contains:
 
 It is important to notice that a **scratchcard** can be used only once. Every **request** must be associated with a different **scratchcard**.
 
-# Flow chart
+
+# Paperless Non-Video ID mode
+
+
+## Flow Chart
 
 <div style="text-align: justify">
 The following image summarizes the common digital certificate request and issue flow:
@@ -98,7 +102,231 @@ The following image summarizes the common digital certificate request and issue 
 11. During the process, an OTP code is sent to the user via sms
 12. The user inserts the OTP code and creates a custom PIN
 13. The certificate is generated
-14. Finallly, the user receives an email with the certificate credentials and instructions
+14. Finally, the user receives an email with the certificate credentials and instructions
+
+
+## Workflow
+
+
+This section section presents the workflow for a common digital certificate generation with a step-by-step description of the API calls required.
+
+The common digital certificate generation process involves the following steps:
+
+- Request creation
+- Upload required documents
+- Approval by a RAO
+- Cloud/Software Enrollment
+
+> STEP 1: Create a Request
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create request</a>
+
+This call must include enough information to identify the requester user. The full description of the arguments accepted by this endpoint can be found in the API call detailed documentation.
+
+	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
+	2 | -H 'Content-Type: application/json' \
+	3 | --cert 'cer.pem' --key 'key.pem'
+	4 | -d '{
+	5 |     "profile": "PFnubeAFCiudadano",
+	6 |     "scratchcard": "5053311",
+	7 |     "secure_element": "2",
+	8 |     "registration_authority": "116",
+	9 |     "country_name": "ES",
+  10|     "serial_number": "12345678A",
+  11|     "id_document_country": "ES",
+  12|     "id_document_type": "IDC",
+  13|     "given_name": "Name",
+  14|     "surname_1": "Surname1",
+  15|     "surname_2" "Surname2"
+  16|     "email": "mail@domain.com",
+  17|     "mobile_phone_number": "+34611223344",
+  18|     "paperless_mode": 1
+  19|     }'
+
+
+The return response is the a JSON containing the info of the Request just created. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
+
+	1 | {
+	2 | "pk": 11223,
+	3 | "given_name": "Name",
+	4 | "surname_1": "Surname1",
+	5 | "surname_2": "Surname2",
+	6 | "sex": null,
+	7 | "id_document_type": "IDC",
+	8 | "id_document_country": "ES",
+	9 | "serial_number": "12345678A",
+	10| "country_name": "ES",
+	11| "citizenship": null,
+	12| "residence": null,
+	13| "organization_email": null,
+	14| "email": "mail@domain.com",
+	15| "title": null,
+	16| "organization_name": null,
+	17| "organizational_unit_1": null,
+	18| ...
+	19| }
+
+> STEP 2: Upload documents
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_upload_document/post">Upload document</a>
+
+The Request created needs documents, so we can query with an HTTP POST request to upload the files.
+
+The required documents for every request are:<br>
+`document_front` : The photo of the front side of the requester ID card<br>
+`document_rear` : The photo of the rear side of the requester ID card<br>
+`extra_document` : If necessary, it is possibile to upload extra documents that represents additional requester information
+
+
+Additionally a selfie of the requester showing the ID card under the chin can be uploaded as an evidence under the type `document_owner`.
+
+Note that this endpoint has to be queried for every document type that the Request needs.
+
+	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/11223/pl_upload_document/' \
+	2 | --cert 'cer.pem' --key 'key.pem'
+	3 | -H 'Content-Type: multipart/form-data' \
+	4 | -F document=@/idc_front.jpg \
+	5 | -F type=document_front
+
+The return response contains the uploaded document unique identifier associated to the request.
+
+	1 | {
+	2 | "pk": 11314,
+	3 | "type": "document_front"
+	4 | }
+
+> STEP 3: Approve Request
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve a request</a>
+
+A Registration Authority Officer must first validate the request data and documentation. If the information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate.
+
+In order to approve a Request, this must be in the status of CREATED and must have at least the required documents (document_front and document_rear).
+
+	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
+	2 | -H 'Content-Type: application/json' \
+	3 | --cert 'cer.pem' --key 'key.pem'
+	4 | -d '{
+	5 | {
+    6 | 	"username": "1000279",
+    7 | 	"password": "3DPTm:N4",
+    8 | 	"pin": "23bYQq9a",
+    9 |		"rao_id": 123
+	10|	}
+
+
+> STEP 4: Enrollment
+
+There are different endpoints to enroll a Request, depending on the secure element choosen.
+
+For all requests is required to send an otp code to the requester. Software and cloud certificates use the same call to send the otp code, while cloud-qscd certificates use another.
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post">Send OTP code for software and cloud</a>
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Send OTP code for cloud-QSCD</a>
+
+**Software**
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post">Software enrollment</a>
+
+For the Software enrollemnt the parameters required are the secret OTP code send to the requester and the p12password set by the requester to import the generated p12:
+
+	1 | {
+	2 |     "secret": "000000",
+	3 |     "p12password": "password12"
+	4 | }
+
+At the end of the enrollment the server replies with the P12 generated in PEM format.
+
+**Cloud**
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud enrollment</a>
+
+For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
+
+	1 | {
+	2 |     "secret": "000000",
+	3 |     "pin": "pincode12"
+	4 | }
+
+At the end of the enrollment the server replies with a JSON containing all requesta data.
+
+**Cloud-QSCD**
+
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post">Cloud-QSCD enrollment</a>
+
+For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
+
+	1 | {
+	2 |     "secret": "000000",
+	3 |     "pin": "pincode12"
+	4 | }
+
+At the end of the enrollment the server replies with a JSON containing all requesta data.
+
+</html>
+
+
+
+
+
+# Paperless Video ID mode
+
+
+## 1-step validation 
+
+
+### Flow Chart
+
+![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_1step.png)
+
+</br>
+
+(*) The validation of the VideoID can be done by using the customer’s dashboard (as shown in the current example), or using the CMS dashboard.
+(**) In case the validation of the VideoID if performed by an external party, several webhooks are implemented in order to notify the customer’s app regarding any change on the requests’ status (Video ID completed, validated, etc.)
+
+
+### Workflow
+
+> STEP 1: 
+> STEP 2: 
+> STEP 3: 
+> STEP 4: 
+> STEP 5: 
+
+
+
+## 2-steps validation Flow Chart
+
+![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_2step.png)
+
+</br>
+
+(*) The validation of the VideoID can be done by using the customer’s dashboard (as shown in the current example), or using the CMS dashboard.
+(**) In case the validation of the VideoID if performed by an external party, several webhooks are implemented in order to notify the customer’s app regarding any change on the requests’ status (Video ID completed, validated, etc.)
+
+### Workflow
+
+> STEP 1: 
+> STEP 2: 
+> STEP 3: 
+> STEP 4: 
+> STEP 5: 
+
+
+## External validation Flow Chart
+
+![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_External.png)
+
+### Workflow
+
+> STEP 1: 
+> STEP 2: 
+> STEP 3: 
+> STEP 4: 
+> STEP 5: 
+
+
 
 
 # Endpoint URLs
@@ -330,167 +558,6 @@ A list of Requests:
 	14|         ....
 	15|     ]
 	16| }
-
-
-# Workflow
-
-This section section presents the workflow for a common digital certificate generation with a step-by-step description of the API calls required.
-
-The common digital certificate generation process involves the following steps:
-
-- Request creation
-- Upload required documents
-- Approval by a RAO
-- Cloud/Software Enrollment
-
-> STEP 1: Create a Request
-
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create request</a>
-
-This call must include enough information to identify the requester user. The full description of the arguments accepted by this endpoint can be found in the API call detailed documentation.
-
-	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
-	2 | -H 'Content-Type: application/json' \
-	3 | --cert 'cer.pem' --key 'key.pem'
-	4 | -d '{
-	5 |     "profile": "PFnubeAFCiudadano",
-	6 |     "scratchcard": "5053311",
-	7 |     "secure_element": "2",
-	8 |     "registration_authority": "116",
-	9 |     "country_name": "ES",
-    10|     "serial_number": "12345678A",
-    11|     "id_document_country": "ES",
-    12|     "id_document_type": "IDC",
-    13|     "given_name": "Name",
-    14|     "surname_1": "Surname1",
-    15|     "surname_2" "Surname2"
-    16|     "email": "mail@domain.com",
-    17|     "mobile_phone_number": "+34611223344",
-    18|     "paperless_mode": 1
-    19|     }'
-
-
-The return response is the a JSON containing the info of the Request just created. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
-
-	1 | {
-	2 | "pk": 11223,
-	3 | "given_name": "Name",
-	4 | "surname_1": "Surname1",
-	5 | "surname_2": "Surname2",
-	6 | "sex": null,
-	7 | "id_document_type": "IDC",
-	8 | "id_document_country": "ES",
-	9 | "serial_number": "12345678A",
-	10| "country_name": "ES",
-	11| "citizenship": null,
-	12| "residence": null,
-	13| "organization_email": null,
-	14| "email": "mail@domain.com",
-	15| "title": null,
-	16| "organization_name": null,
-	17| "organizational_unit_1": null,
-	18| ...
-	19| }
-
-> STEP 2: Upload documents
-
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_upload_document/post">Upload document</a>
-
-The Request created needs documents, so we can query with an HTTP POST request to upload the files.
-
-The required documents for every request are:<br>
-`document_front` : The photo of the front side of the requester ID card<br>
-`document_rear` : The photo of the rear side of the requester ID card<br>
-`extra_document` : If necessary, it is possibile to upload extra documents that represents additional requester information
-
-
-Additionally a selfie of the requester showing the ID card under the chin can be uploaded as an evidence under the type `document_owner`.
-
-Note that this endpoint has to be queried for every document type that the Request needs.
-
-	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/11223/pl_upload_document/' \
-	2 | --cert 'cer.pem' --key 'key.pem'
-	3 | -H 'Content-Type: multipart/form-data' \
-	4 | -F document=@/idc_front.jpg \
-	5 | -F type=document_front
-
-The return response contains the uploaded document unique identifier associated to the request.
-
-	1 | {
-	2 | "pk": 11314,
-	3 | "type": "document_front"
-	4 | }
-
-> STEP 3: Approve Request
-
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve a request</a>
-
-A Registration Authority Officer must first validate the request data and documentation. If the information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate.
-
-In order to approve a Request, this must be in the status of CREATED and must have at least the required documents (document_front and document_rear).
-
-	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
-	2 | -H 'Content-Type: application/json' \
-	3 | --cert 'cer.pem' --key 'key.pem'
-	4 | -d '{
-	5 | {
-    6 | 	"username": "1000279",
-    7 | 	"password": "3DPTm:N4",
-    8 | 	"pin": "23bYQq9a",
-    9 |		"rao_id": 123
-	10|	}
-
-
-> STEP 4: Enrollment
-
-There are different endpoints to enroll a Request, depending on the secure element choosen.
-
-For all requests is required to send an otp code to the requester. Software and cloud certificates use the same call to send the otp code, while cloud-qscd certificates use another.
-
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post">Send OTP code for software and cloud</a>
-
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Send OTP code for cloud-QSCD</a>
-
-**Software**
-
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post">Software enrollment</a>
-
-For the Software enrollemnt the parameters required are the secret OTP code send to the requester and the p12password set by the requester to import the generated p12:
-
-	1 | {
-	2 |     "secret": "000000",
-	3 |     "p12password": "password12"
-	4 | }
-
-At the end of the enrollment the server replies with the P12 generated in PEM format.
-
-**Cloud**
-
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud enrollment</a>
-
-For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
-
-	1 | {
-	2 |     "secret": "000000",
-	3 |     "pin": "pincode12"
-	4 | }
-
-At the end of the enrollment the server replies with a JSON containing all requesta data.
-
-**Cloud-QSCD**
-
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post">Cloud-QSCD enrollment</a>
-
-For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
-
-	1 | {
-	2 |     "secret": "000000",
-	3 |     "pin": "pincode12"
-	4 | }
-
-At the end of the enrollment the server replies with a JSON containing all requesta data.
-
-</html>
 
 
 # Certificate Profiles
