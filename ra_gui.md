@@ -276,17 +276,21 @@ At the end of the enrollment the server replies with a JSON containing all reque
 ## 1-Step validation 
 
 
-### Flow Chart
+### **Flow Chart**
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_1step.png)
 
 </br>
 
-(*) The validation of the VideoID can be done by using the customer’s dashboard (as shown in the current example), or using the CMS dashboard.
-(**) In case the validation of the VideoID if performed by an external party, several webhooks are implemented in order to notify the customer’s app regarding any change on the requests’ status (Video ID completed, validated, etc.)
+- (*) The validation of the VideoID can be done by using the customer’s dashboard (as shown in the current example), or using the CMS dashboard.
 
+</br>
 
-### Workflow
+- (**) In case the validation of the VideoID if performed by an external party, several webhooks are implemented in order to notify the customer’s app regarding any change on the requests’ status (Video ID completed, validated, etc.)
+
+</br>
+
+### **Workflow**
 
 > STEP 1: 
 > STEP 2: 
@@ -298,13 +302,14 @@ At the end of the enrollment the server replies with a JSON containing all reque
 
 ## 2-Step validation
 
-### Flow Chart
+### **Flow Chart**
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_2step.png)
 
 </br>
 
 - (*) The validation of the VideoID can be done by using the customer’s dashboard (as shown in the current example), or using the CMS dashboard. 
+
 </br>
 
 - (**) In case the validation of the VideoID if performed by an external party, several webhooks are implemented in order to notify the customer’s app regarding any change on the requests’ status (Video ID completed, validated, etc.)
