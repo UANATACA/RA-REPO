@@ -9751,6 +9751,17 @@ paths:
       responses:
         200:
           description: Successful Response
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: Successful response status message          
+          examples:
+            application/json:
+                {
+                    "status": "200 OK"
+                }
         400:
           description: Bad Request | Invalid Request id
           schema:
@@ -9849,7 +9860,7 @@ paths:
 
 #############
   /api/v1/download/video/{video_identifier}:
-    post: 
+    get: 
       summary: DOWNLOAD VIDEO
       tags:
         - Video ID
@@ -9865,7 +9876,60 @@ paths:
       responses:
         200:
           description: Successful Response
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X GET \
+                    https://api.uanataca.com/api/v1/download/video/25139
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    `https://api.uanataca.com/api/v1/download/video/25139`,
+                    {method: 'GET'}
+                  );
 
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/download/video/25139"
+
+                  response = requests.get(url)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    `https://api.uanataca.com/api/v1/download/video/25139`,
+                    {method: 'GET'}
+                  );
+
+                  const data = await resp.text();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/download/video/25139", null);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }         
 ###### definitions ######
 ###############################################################################
 definitions:
@@ -10451,134 +10515,87 @@ definitions:
       reason:
           type: "string"
           description: "Reason that caused VideoID refusal"
-
-###########
-  UploadVideo_VID:
-    type: "object"
-    properties:
-      acceptance:
-        type: "object"
-        description: acceptance description
-        properties:
-          acceptance_test_data:
-            type: "boolean"
-            description: acceptance_test_data description
-          another_field:
-            type: "number"
-            description: another_field description
-      data:
-        type: "object"
-        description: data description
-        properties:
-          images:
-            type: "object"
-            description: images description
-            properties:
-              document_front:
-                type: "string"
-                description: document_front description
-              document_rear:
-                type: string
-                description: document_rear description
-              document_photo:
-                type: string
-                description: document_photo description
-              document_owner:
-                type: string
-                description: document_owner description
-          ocr_data:
-            type: "object"
-            description: ocr_data description
-            properties:
-              given_name:
-                type: string
-                description: given_name description
-              surname_1:
-                type: string
-                description: surname_1 description
-              mobile_phone_number:
-                type: string
-                description: surname_2 description
-              serial_number:
-                type: string
-                description: surname_2 description
-          security_checks:
-            type: "object"
-            description: ocr_data description
-            properties:
-              a_test_check:
-                type: boolean
-                description: a_test_check description
-              another_check:
-                type: boolean
-                description: another_check description
-          similarity_level:
-            type: "string"
-            description: similarity_level description 
-
 ###########
   UploadData_VID:
     type: "object"
     properties:
       acceptance:
         type: "object"
-        description: acceptance description
+        description: Service Terms and Conditions acceptance parameters
         properties:
-          acceptance_test_data:
-            type: "boolean"
-            description: acceptance_test_data description
-          another_field:
-            type: "number"
-            description: another_field description
+          description:
+            type: "string"
+          url-doc-privacypolicy:
+            type: "string"
+          ip:
+            type: "string"
+          url-web-videoid:
+            type: "string"
+          user-agent:
+            type: "string"
+          date:
+            type: "string"
+          url-doc-termsconditions:
+            type: "string"
       data:
         type: "object"
-        description: data description
+        description: Data to upload for Video ID
         properties:
           images:
             type: "object"
-            description: images description
+            description: Document images
             properties:
               document_front:
                 type: "string"
-                description: document_front description
+                description: Base64 document front image
               document_rear:
                 type: string
-                description: document_rear description
+                description: Base64 document rear image
               document_photo:
                 type: string
-                description: document_photo description
+                description: Base64 document client picture (extracted from document)
               document_owner:
                 type: string
-                description: document_owner description
+                description: Base64 client selfie
           ocr_data:
             type: "object"
             description: ocr_data description
             properties:
               given_name:
                 type: string
-                description: given_name description
+                description: Client's given name
               surname_1:
                 type: string
-                description: surname_1 description
+                description: Client's first surname
+              surname_2:
+                type: string
+                description: Client's second surname              
               mobile_phone_number:
                 type: string
-                description: surname_2 description
+                description: Client's mobile phone number
               serial_number:
                 type: string
-                description: surname_2 description
+                description: Client's serial number
           security_checks:
             type: "object"
-            description: ocr_data description
+            description: Security checks related to document integrity
             properties:
-              a_test_check:
+              otp_validation:
                 type: boolean
-                description: a_test_check description
-              another_check:
+              documents_match:
                 type: boolean
-                description: another_check description
+              data_integrity:
+                type: boolean
+              document_notcopy:
+                type: boolean
+              document_notexpired:
+                type: boolean
+              document_notunderage:
+                type: boolean
+              liveliness:
+                type: boolean
           similarity_level:
             type: "string"
-            description: similarity_level description      
-
+            description: similarity_level description 
 
          
