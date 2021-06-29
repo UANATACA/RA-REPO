@@ -9741,10 +9741,10 @@ paths:
         description: The Request unique identifier
         required: true
       - in: formData
-          name: video
-          description: The video to be uploaded
-          required: true
-          type: string
+        name: video
+        description: The video to be uploaded
+        required: true
+        type: string
       responses:
         200:
           description: Successful Response
