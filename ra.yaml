@@ -230,16 +230,16 @@ This allows the management of certificate issuing by establishing a video call f
     <th>Method</th><th>Endpoint</th><th>Action</th>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users/get'>/users/</a></td><td>Validate VideoID Request<td></td>
+    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users/get'>/users/</a></td><td>Validate Request<td></td>
   </tr>
  <tr>
-    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/get'>/users/{id}/</a></td><td>Refuse VideoID Request</td>
+    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/get'>/users/{id}/</a></td><td>Refuse Request</td>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/put'>/users/{id}/</a></td><td>Upload data (except video) for a Request</td>
+    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/put'>/users/{id}/</a></td><td>Upload data evidence</td>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/put'>/users/{id}/</a></td><td>Upload video for a Request</td>
+    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/put'>/users/{id}/</a></td><td>Upload video</td>
   </tr>
 </table> 
 </html>
@@ -8892,7 +8892,7 @@ paths:
 
   /api/v1/requests/{id_request}/validate_videoid:
     post: 
-      summary: VALIDATE VIDEO ID REQUEST
+      summary: VALIDATE REQUEST
       tags:
         - Video ID
       description: "Validation of a Video ID Request"
@@ -9205,10 +9205,10 @@ paths:
 #############
   /api/v1/requests/{id_request}/refuse_videoid:
     post: 
-      summary: REFUSE VIDEO ID REQUEST
+      summary: REFUSE REQUEST
       tags:
         - Video ID
-      description: "Refuse validation for a Request id"
+      description: "Refuse validation for a Video ID Request"
       consumes:
         - application/json
       produces:
@@ -9298,19 +9298,19 @@ paths:
                     "error": "Invalid ScratchCard"
                 }
 #############
-  /api/v1/requests/{id_request}/upload_videoid_result:
+  /api/v1/upload/data/{video_identifier}:
     post: 
-      summary: UPLOAD VIDEO ID DATA
+      summary: UPLOAD DATA EVIDENCE
       tags:
         - Video ID
-      description: "Upload data (except video) for a Request"
+      description: "Upload Request associated data"
       consumes:
         - application/json
       produces:
         - application/json
       parameters:
       - in: path
-        name: id_request
+        name: video_identifier
         type: string
         description: The Request unique identifier
         required: true
@@ -9323,29 +9323,31 @@ paths:
           description: Successful Response      
 
 #############
-  /api/v1/requests/{id_request}/upload_videoid_result_x:
+  /api/v1/upload/video/{video_identifier}:
     post: 
-      summary: UPLOAD VIDEO ID DATA
+      summary: UPLOAD VIDEO
       tags:
         - Video ID
-      description: "Upload data (except video) for a Request"
+      description: "Upload Request associated video"
       consumes:
-        - application/json
+        - multipart/form-data
       produces:
         - application/json
       parameters:
       - in: path
-        name: id_request
+        name: video_identifier
         type: string
         description: The Request unique identifier
         required: true
-      - in: "body"
-        name: "body"
-        schema:
-          $ref: "#/definitions/UploadVideo_VID"
+        - in: formData
+          name: video
+          description: The video to be uploaded
+          required: true
+          type: string
       responses:
         200:
           description: Successful Response
+
 
 ###### definitions ######
 ###############################################################################
