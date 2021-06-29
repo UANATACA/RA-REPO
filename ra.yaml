@@ -241,6 +241,9 @@ This allows the management of certificate issuing by establishing a video call f
   <tr>
     <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/put'>/users/{id}/</a></td><td>Upload video</td>
   </tr>
+  <tr>
+    <td>GET</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/put'>/users/{id}/</a></td><td>Download video</td>
+  </tr>
 </table> 
 </html>
   "
@@ -9748,6 +9751,23 @@ paths:
       responses:
         200:
           description: Successful Response
+        400:
+          description: Bad Request | Invalid Request id
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                description: Error message title
+              description:
+                type: string
+                description: Error message descritpion              
+          examples:
+            application/json:
+                {
+                    "title": "Upload Video Error",
+                    "description": "No video file provided"
+                }
       x-codeSamples:
         - lang: 'curl'
           source: |
@@ -9826,6 +9846,44 @@ paths:
 
                   IRestResponse response = client.Execute(request);
                   Console.WriteLine(response.Content);           
+
+#############
+  /api/v1/download/video/{video_identifier}:
+    post: 
+      summary: DOWNLOAD VIDEO
+      tags:
+        - Video ID
+      description: "Download previously uploaded video associated to a Request"
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: video_identifier
+        type: string
+        description: The Request unique identifier
+        required: true
+      responses:
+        200:
+          description: Successful Response
+
+#############
+  /api/v1/download/video/{video_identifier}:
+    post: 
+      summary: DOWNLOAD VIDEO
+      tags:
+        - Video ID
+      description: "Download previously uploaded video associated to a Request"
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: video_identifier
+        type: string
+        description: The Request unique identifier
+        required: true
+      responses:
+        200:
+          description: Successful Response
 
 ###### definitions ######
 ###############################################################################
