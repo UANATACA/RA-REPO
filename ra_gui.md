@@ -276,7 +276,7 @@ At the end of the enrollment the server replies with a JSON containing all reque
 ## 1-Step validation 
 
 
-### **Flow Chart**
+<div id="APIReference" style="padding-top: 60px;"><h2>Flow Chart<h2></div>
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_1step.png)
 
@@ -290,7 +290,7 @@ At the end of the enrollment the server replies with a JSON containing all reque
 
 </br>
 
-### **Workflow**
+<div id="APIReference" style="padding-top: 60px;"><h2>Workflow<h2></div>
 
 > STEP 1: 
 > STEP 2: 
@@ -302,7 +302,8 @@ At the end of the enrollment the server replies with a JSON containing all reque
 
 ## 2-Step validation
 
-### **Flow Chart**
+
+<div id="APIReference" style="padding-top: 60px;"><h2>Flow Chart<h2></div>
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_2step.png)
 
@@ -316,7 +317,7 @@ At the end of the enrollment the server replies with a JSON containing all reque
 
 </br>
 
-### Workflow
+<div id="APIReference" style="padding-top: 60px;"><h2>Workflow<h2></div>
 
 > STEP 1: 
 > STEP 2: 
@@ -327,11 +328,13 @@ At the end of the enrollment the server replies with a JSON containing all reque
 
 ## External validation
 
-### Flow Chart
+
+<div id="APIReference" style="padding-top: 60px;"><h2>Flow Chart<h2></div>
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_External.png)
 
-### Workflow
+
+<div id="APIReference" style="padding-top: 60px;"><h2>Workflow<h2></div>
 
 > STEP 1: 
 > STEP 2: 
