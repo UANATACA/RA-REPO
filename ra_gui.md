@@ -293,9 +293,13 @@ At the end of the enrollment the server replies with a JSON containing all reque
 <div id="APIReference" style="padding-top: 60px;"><h3><b>Workflow</b><h3></div>
 
 > STEP 1: 
+</br>
 > STEP 2: 
+</br>
 > STEP 3: 
+</br>
 > STEP 4: 
+</br>
 > STEP 5: 
 
 
@@ -320,9 +324,13 @@ At the end of the enrollment the server replies with a JSON containing all reque
 <div id="APIReference" style="padding-top: 60px;"><h3><b>Workflow</b><h3></div>
 
 > STEP 1: 
+</br>
 > STEP 2: 
+</br>
 > STEP 3: 
+</br>
 > STEP 4: 
+</br>
 > STEP 5: 
 
 
@@ -337,9 +345,13 @@ At the end of the enrollment the server replies with a JSON containing all reque
 <div id="APIReference" style="padding-top: 60px;"><h3><b>Workflow</b><h3></div>
 
 > STEP 1: 
+</br>
 > STEP 2: 
+</br>
 > STEP 3: 
+</br>
 > STEP 4: 
+</br>
 > STEP 5: 
 
 
