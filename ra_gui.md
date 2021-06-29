@@ -75,7 +75,7 @@ The card contains:
 It is important to notice that a **scratchcard** can be used only once. Every **request** must be associated with a different **scratchcard**.
 
 
-# Paperless Non-Video ID mode
+# Paperless mode
 
 
 ## Flow Chart
@@ -270,7 +270,7 @@ At the end of the enrollment the server replies with a JSON containing all reque
 
 
 
-# Paperless Video ID mode
+# Video ID mode
 
 
 ## 1-Step validation 
@@ -334,7 +334,7 @@ At the end of the enrollment the server replies with a JSON containing all reque
 > STEP 5: 
 
 
-## External validation
+## External 
 
 
 <div id="APIReference" style="padding-top: 60px;"><h3><b>Flow Chart</b><h3></div>
