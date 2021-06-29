@@ -1983,85 +1983,85 @@ paths:
                     "id": "cacfd01333019b5a",
                     "error": "Invalid parameters"
                 } 
-        x-codeSamples:
-          - lang: 'curl'
-            source: |
-                    curl -i -X POST \
-                      https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/ \
-                      -H 'Content-Type: multipart/form-data' \
-                      -F document=@sample_folder/img_front.png \
-                      -F type=document_front
-          - lang: 'Javascript'
-            source: |
-                    var formdata = new FormData();
-                    formdata.append("type", "document_front");
-                    formdata.append("document", fileInput.files[0], "sample_folder/img_front.png");
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/ \
+                    -H 'Content-Type: multipart/form-data' \
+                    -F document=@sample_folder/img_front.png \
+                    -F type=document_front
+        - lang: 'Javascript'
+          source: |
+                  var formdata = new FormData();
+                  formdata.append("type", "document_front");
+                  formdata.append("document", fileInput.files[0], "sample_folder/img_front.png");
 
-                    var requestOptions = {
-                      method: 'POST',
-                      headers: myHeaders,
-                      body: formdata,
-                      redirect: 'follow'
-                    };
+                  var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: formdata,
+                    redirect: 'follow'
+                  };
 
-                    fetch("https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/", requestOptions)
-                      .then(response => response.text())
-                      .then(result => console.log(result))
-                      .catch(error => console.log('error', error));
-          - lang: 'Python'
-            source: |
-                    import requests
+                  fetch("https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/", requestOptions)
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
+        - lang: 'Python'
+          source: |
+                  import requests
 
-                    url = "https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/"
+                  url = "https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/"
 
-                    payload={'type': 'document_front'}
-                    files=[
-                      ('document',('file',open('sample_folder/img_front.png','rb'),'image/png'))
-                    ]
-                    headers = {
-                      'Content-Type': 'multipart/form-data'
+                  payload={'type': 'document_front'}
+                  files=[
+                    ('document',('file',open('sample_folder/img_front.png','rb'),'image/png'))
+                  ]
+                  headers = {
+                    'Content-Type': 'multipart/form-data'
+                  }
+
+                  response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+                  print(response.text)
+        - lang: 'Node.js'
+          source: |
+                  const fs = require('fs');
+                  const FormData = require('form-data');
+                  const fetch = require('node-fetch');
+                  const formData = new FormData();
+
+                  formData.append('type', 'document_front');
+                  formData.append('document', fs.createReadStream('sample_folder/img_front.png'));
+
+                  const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/';
+
+                  const options = {
+                    method: 'POST',
+                    headers: {
+                      Accept: 'text/plain',
+                      'Content-Type': 'multipart/form-data; boundary=---011000010111000001101001'
                     }
+                  };
 
-                    response = requests.request("POST", url, headers=headers, data=payload, files=files)
+                  options.body = formData;
 
-                    print(response.text)
-          - lang: 'Node.js'
-            source: |
-                    const fs = require('fs');
-                    const FormData = require('form-data');
-                    const fetch = require('node-fetch');
-                    const formData = new FormData();
+                  fetch(url, options)
+                    .then(res => res.json())
+                    .then(json => console.log(json))
+                    .catch(err => console.error('error:' + err));
+        - lang: 'C#'
+          source: |
+                  var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/");
+                  client.Timeout = -1;
+                  var request = new RestRequest(Method.POST);
+                  request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
+                  request.AddParameter("type", "document_front");
+                  request.AddFile("document", "sample_folder/img_front.png");
 
-                    formData.append('type', 'document_front');
-                    formData.append('document', fs.createReadStream('sample_folder/img_front.png'));
-
-                    const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/';
-
-                    const options = {
-                      method: 'POST',
-                      headers: {
-                        Accept: 'text/plain',
-                        'Content-Type': 'multipart/form-data; boundary=---011000010111000001101001'
-                      }
-                    };
-
-                    options.body = formData;
-
-                    fetch(url, options)
-                      .then(res => res.json())
-                      .then(json => console.log(json))
-                      .catch(err => console.error('error:' + err));
-          - lang: 'C#'
-            source: |
-                    var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/");
-                    client.Timeout = -1;
-                    var request = new RestRequest(Method.POST);
-                    request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
-                    request.AddParameter("type", "document_front");
-                    request.AddFile("document", "sample_folder/img_front.png");
-
-                    IRestResponse response = client.Execute(request);
-                    Console.WriteLine(response.Content);           
+                  IRestResponse response = client.Execute(request);
+                  Console.WriteLine(response.Content);           
 #############
   /api/v1/requests/{id}/pl_delete_document:
     post: 
@@ -9201,7 +9201,107 @@ paths:
                     "id": "80a9e5709417bdc9",
                     "error": "Invalid ScratchCard"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/validate_videoid \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "username": "5012345",
+                      "password": "Gy6F37xK",
+                      "pin": "belorado74",
+                      "rao_id": "1400"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    `https://api.uanataca.com/api/v1/requests/25139/validate_videoid`,
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        username: '5012345',
+                        password: 'Gy6F37xK',
+                        pin: 'belorado74',
+                        rao_id: '1400'
+                      })
+                    }
+                  );
 
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/validate_videoid"
+
+                  payload = {
+                    "username": "5012345",
+                    "password": "Gy6F37xK",
+                    "pin": "belorado74",
+                    "rao_id": "1400"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    `https://api.uanataca.com/api/v1/requests/25139/validate_videoid`,
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        username: '5012345',
+                        password: 'Gy6F37xK',
+                        pin: 'belorado74',
+                        rao_id: '1400'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          username: '5012345',
+                          password: 'Gy6F37xK',
+                          pin: 'belorado74',
+                          rao_id: '1400'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/validate_videoid", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/requests/{id_request}/refuse_videoid:
     post: 
@@ -9297,6 +9397,112 @@ paths:
                     "id": "80a9e5709417bdc9",
                     "error": "Invalid ScratchCard"
                 }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/refuse_videoid \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "username": "5012345",
+                      "password": "Gy6F37xK",
+                      "pin": "belorado74",
+                      "rao_id": "1400",
+                      "reason": "Expired document"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    `https://api.uanataca.com/api/v1/requests/25139/refuse_videoid`,
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        username: '5012345',
+                        password: 'Gy6F37xK',
+                        pin: 'belorado74',
+                        rao_id: '1400',
+                        reason: 'Expired document'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/refuse_videoid"
+
+                  payload = {
+                    "username": "5012345",
+                    "password": "Gy6F37xK",
+                    "pin": "belorado74",
+                    "rao_id": "1400",
+                    "reason": "Expired document"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    `https://api.uanataca.com/api/v1/requests/25139/refuse_videoid`,
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        username: '5012345',
+                        password: 'Gy6F37xK',
+                        pin: 'belorado74',
+                        rao_id: '1400',
+                        reason: 'Expired document'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          username: '5012345',
+                          password: 'Gy6F37xK',
+                          pin: 'belorado74',
+                          rao_id: '1400',
+                          reason: 'Expired document'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/refuse_videoid", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/upload/data/{video_identifier}:
     post: 
@@ -9321,7 +9527,202 @@ paths:
       responses:
         200:
           description: Successful Response      
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://lima.demo.bit4id.org/api/v1/requests/25139/upload_videoid_result \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "acceptance": {
+                        "acceptance_test_data": true,
+                        "another_field": 0
+                      },
+                      "data": {
+                        "images": {
+                          "document_front": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAM (...)",
+                          "document_rear": "/I7ye60+aOKS0mVGVSD9RVfyXukjmnS3cAEbpMVm6M1ncWqS3FszptO1lPRRDJ+orI8b (...)",
+                          "document_photo": "AkjOOwFfHFrrNlpXxcbU9QuIIIkvR56yddgHpX3GEj1PmanmdS/xV1ySVlv/AIbXLPO (...)",
+                          "document_owner": "SSVnovgCZ4Lhk+R3lJPUDJr5t/Z/wBV1DWfjRbeI75B5iQytcykc7yMEAV2/iwC0T34 (...)"
+                        },
+                        "ocr_data": {
+                          "given_name": "Name",
+                          "surname_1": "Surname",
+                          "mobile_phone_number": "+34999999999",
+                          "serial_number": "A9999999E"
+                        },
+                        "security_checks": {
+                          "a_test_check": true,
+                          "another_check": true
+                        },
+                        "similarity_level": "high"
+                      }
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    `https://lima.demo.bit4id.org/api/v1/requests/25139/upload_videoid_result`,
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        acceptance: {
+                          acceptance_test_data: true,
+                          another_field: 0
+                        },
+                        data: {
+                          images: {
+                            document_front: '/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAM (...)',
+                            document_rear: '/I7ye60+aOKS0mVGVSD9RVfyXukjmnS3cAEbpMVm6M1ncWqS3FszptO1lPRRDJ+orI8b (...)',
+                            document_photo: 'AkjOOwFfHFrrNlpXxcbU9QuIIIkvR56yddgHpX3GEj1PmanmdS/xV1ySVlv/AIbXLPO (...)',
+                            document_owner: 'SSVnovgCZ4Lhk+R3lJPUDJr5t/Z/wBV1DWfjRbeI75B5iQytcykc7yMEAV2/iwC0T34 (...)'
+                          },
+                          ocr_data: {
+                            given_name: 'Name',
+                            surname_1: 'Surname',
+                            mobile_phone_number: '+34999999999',
+                            serial_number: 'A9999999E'
+                          },
+                          security_checks: {
+                            a_test_check: true,
+                            another_check: true
+                          },
+                          similarity_level: 'high'
+                        }
+                      })
+                    }
+                  );
 
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://lima.demo.bit4id.org/api/v1/requests/25139/upload_videoid_result"
+
+                  payload = {
+                    "acceptance": {
+                      "acceptance_test_data": True,
+                      "another_field": 0
+                    },
+                    "data": {
+                      "images": {
+                        "document_front": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAM (...)",
+                        "document_rear": "/I7ye60+aOKS0mVGVSD9RVfyXukjmnS3cAEbpMVm6M1ncWqS3FszptO1lPRRDJ+orI8b (...)",
+                        "document_photo": "AkjOOwFfHFrrNlpXxcbU9QuIIIkvR56yddgHpX3GEj1PmanmdS/xV1ySVlv/AIbXLPO (...)",
+                        "document_owner": "SSVnovgCZ4Lhk+R3lJPUDJr5t/Z/wBV1DWfjRbeI75B5iQytcykc7yMEAV2/iwC0T34 (...)"
+                      },
+                      "ocr_data": {
+                        "given_name": "Name",
+                        "surname_1": "Surname",
+                        "mobile_phone_number": "+34999999999",
+                        "serial_number": "Y9999999E"
+                      },
+                      "security_checks": {
+                        "a_test_check": True,
+                        "another_check": True
+                      },
+                      "similarity_level": "high"
+                    }
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    `https://lima.demo.bit4id.org/api/v1/requests/25139/upload_videoid_result`,
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        acceptance: {
+                          acceptance_test_data: true,
+                          another_field: 0
+                        },
+                        data: {
+                          images: {
+                            document_front: '/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAM (...)',
+                            document_rear: '/I7ye60+aOKS0mVGVSD9RVfyXukjmnS3cAEbpMVm6M1ncWqS3FszptO1lPRRDJ+orI8b (...)',
+                            document_photo: 'AkjOOwFfHFrrNlpXxcbU9QuIIIkvR56yddgHpX3GEj1PmanmdS/xV1ySVlv/AIbXLPO (...)',
+                            document_owner: 'SSVnovgCZ4Lhk+R3lJPUDJr5t/Z/wBV1DWfjRbeI75B5iQytcykc7yMEAV2/iwC0T34 (...)'
+                          },
+                          ocr_data: {
+                            given_name: 'Name',
+                            surname_1: 'Surname',
+                            mobile_phone_number: '+34999999999',
+                            serial_number: 'A9999999E'
+                          },
+                          security_checks: {
+                            a_test_check: true,
+                            another_check: true
+                          },
+                          similarity_level: 'high'
+                        }
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      using (var client = new HttpClient())
+                      {
+                        JObject json = JObject.Parse(@"{
+                          acceptance: {
+                            acceptance_test_data: true,
+                            another_field: 0
+                          },
+                          data: {
+                            images: {
+                              document_front: '/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAM (...)',
+                              document_rear: '/I7ye60+aOKS0mVGVSD9RVfyXukjmnS3cAEbpMVm6M1ncWqS3FszptO1lPRRDJ+orI8b (...)',
+                              document_photo: 'AkjOOwFfHFrrNlpXxcbU9QuIIIkvR56yddgHpX3GEj1PmanmdS/xV1ySVlv/AIbXLPO (...)',
+                              document_owner: 'SSVnovgCZ4Lhk+R3lJPUDJr5t/Z/wBV1DWfjRbeI75B5iQytcykc7yMEAV2/iwC0T34 (...)'
+                            },
+                            ocr_data: {
+                              given_name: 'Name',
+                              surname_1: 'Surname',
+                              mobile_phone_number: '+34999999999',
+                              serial_number: 'A9999999E'
+                            },
+                            security_checks: {
+                              a_test_check: true,
+                              another_check: true
+                            },
+                            similarity_level: 'high'
+                          }
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://lima.demo.bit4id.org/api/v1/requests/25139/upload_videoid_result", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
 #############
   /api/v1/upload/video/{video_identifier}:
     post: 
@@ -9347,7 +9748,84 @@ paths:
       responses:
         200:
           description: Successful Response
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://lima.demo.bit4id.org/v1/upload/video/25139/ \
+                    -H 'Content-Type: multipart/form-data' \
+                    -F video=@sample_folder/sample_video.mp4 
+        - lang: 'Javascript'
+          source: |
+                  var formdata = new FormData();
+                  formdata.append("type", "document_front");
+                  formdata.append("video", fileInput.files[0], "sample_folder/sample_video.mp4");
 
+                  var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: formdata,
+                    redirect: 'follow'
+                  };
+
+                  fetch("https://lima.demo.bit4id.org/v1/upload/video/25139/", requestOptions)
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://lima.demo.bit4id.org/v1/upload/video/25139/"
+
+                  payload={'type': 'document_front'}
+                  files=[
+                    ('document',('file',open('sample_folder/sample_video.mp4','rb'),'video/png'))
+                  ]
+                  headers = {
+                    'Content-Type': 'multipart/form-data'
+                  }
+
+                  response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+                  print(response.text)
+        - lang: 'Node.js'
+          source: |
+                  const fs = require('fs');
+                  const FormData = require('form-data');
+                  const fetch = require('node-fetch');
+                  const formData = new FormData();
+
+                  formData.append('type', 'document_front');
+                  formData.append('document', fs.createReadStream('sample_folder/sample_video.mp4'));
+
+                  const url = 'https://lima.demo.bit4id.org/v1/upload/video/25139/';
+
+                  const options = {
+                    method: 'POST',
+                    headers: {
+                      Accept: 'text/plain',
+                      'Content-Type': 'multipart/form-data; boundary=---011000010111000001101001'
+                    }
+                  };
+
+                  options.body = formData;
+
+                  fetch(url, options)
+                    .then(res => res.json())
+                    .then(json => console.log(json))
+                    .catch(err => console.error('error:' + err));
+        - lang: 'C#'
+          source: |
+                  var client = new RestClient("https://lima.demo.bit4id.org/v1/upload/video/25139/");
+                  client.Timeout = -1;
+                  var request = new RestRequest(Method.POST);
+                  request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
+                  request.AddParameter("type", "document_front");
+                  request.AddFile("document", "sample_folder/sample_video.mp4");
+
+                  IRestResponse response = client.Execute(request);
+                  Console.WriteLine(response.Content);           
 
 ###### definitions ######
 ###############################################################################
