@@ -273,7 +273,7 @@ At the end of the enrollment the server replies with a JSON containing all reque
 # Paperless Video ID mode
 
 
-## 1-step validation 
+## 1-Step validation 
 
 
 ### Flow Chart
@@ -296,7 +296,9 @@ At the end of the enrollment the server replies with a JSON containing all reque
 
 
 
-## 2-steps validation Flow Chart
+## 2-Step validation
+
+### Flow Chart
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_2step.png)
 
@@ -314,7 +316,9 @@ At the end of the enrollment the server replies with a JSON containing all reque
 > STEP 5: 
 
 
-## External validation Flow Chart
+## External validation
+
+### Flow Chart
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_External.png)
 
