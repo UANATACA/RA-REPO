@@ -220,7 +220,7 @@ Manage digital certicate requests life-cycle.</br>
   "
 
 
-- name: "VideoID"
+- name: "Video ID"
   description: "
   
 <html>
@@ -230,19 +230,19 @@ This allows the management of certificate issuing by establishing a video call f
     <th>Method</th><th>Endpoint</th><th>Action</th>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users/get'>/users/</a></td><td>Validate Request<td></td>
+    <td>POST</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post'>/requests/{id_request}/validate_videoid</a></td><td>Validate Request<td></td>
   </tr>
  <tr>
-    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/get'>/users/{id}/</a></td><td>Refuse Request</td>
+    <td>POST</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1refuse_videoid/post'>/requests/{id_request}/refuse_videoid</a></td><td>Refuse Request</td>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/put'>/users/{id}/</a></td><td>Upload data evidence</td>
+    <td>POST</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post'>/upload/data/{video_identifier}/</a></td><td>Upload data evidence</td>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/put'>/users/{id}/</a></td><td>Upload video</td>
+    <td>POST</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post'>/upload/video/{video_identifier}/</a></td><td>Upload video</td>
   </tr>
   <tr>
-    <td>GET</td><td><a href='#tag/Users/paths/~1api~1v1~1users~1{id}/put'>/users/{id}/</a></td><td>Download video</td>
+    <td>GET</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get'>/download/video/{video_identifier}/</a></td><td>Download video</td>
   </tr>
 </table> 
 </html>
@@ -9864,7 +9864,7 @@ paths:
       summary: DOWNLOAD VIDEO
       tags:
         - Video ID
-      description: "Download previously uploaded video associated to a Request"
+      description: "Download mp4-format binary video file associated to a Request"
       produces:
         - application/json
       parameters:
@@ -10559,7 +10559,7 @@ definitions:
                 description: Base64 client selfie
           ocr_data:
             type: "object"
-            description: ocr_data description
+            description: Optical Character Recognition result
             properties:
               given_name:
                 type: string
