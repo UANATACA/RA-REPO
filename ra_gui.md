@@ -319,7 +319,7 @@ This call simply requires a Registration Authority (RA) id number. Scratchcards 
 	5 |     "ra": "121"
     6 |  }'
 
-The return response is the a JSON containing the single-use Scratchcard associated data. The scratchcard number `sn` must be added to the <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create Request</a> call. 
+The return response is the a JSON containing the single-use Scratchcard associated data. The scratchcard number `sn` must be added to the <a href="#tag/Requests/paths/~1api~1v1~1requests/post">Create Request</a> call. 
 
 	1 | {
 	2 |   "pk": 1193,
@@ -330,7 +330,7 @@ The return response is the a JSON containing the single-use Scratchcard associat
 
 </br>
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create Request</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests/post">Create Request</a>
 
 This call must include enough information to identify the requester user. The full description of the arguments accepted by this endpoint can be found in the API call detailed documentation.
 
@@ -387,7 +387,7 @@ A previously created Video ID Request needs a set of information defined as evid
 
 Data and images are uploaded by using the following call:
 
-**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post">Upload Data</a>
+**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post">Upload Data Evidence</a>
 
 <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
 
@@ -505,7 +505,7 @@ If all information is correct, the RAO will approve the request by signing the r
 
 </br>
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate tbs receipt</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate RAO Declaration</a>
 
     1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
     2 |  -H 'Content-Type: application/json' \

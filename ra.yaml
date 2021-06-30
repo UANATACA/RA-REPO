@@ -159,7 +159,7 @@ Manage digital certicate requests life-cycle.</br>
     <td>GET</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1validate/get'>/requests/{id}/validate/</a></td><td>Validate the request fields</td>
   </tr>
  <tr>
-    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post'>/requests/generates_tbs_receipt/</a></td><td>Generates a receipt associated to a request that must be signed by a RAO</td>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post'>/requests/generates_tbs_receipt/</a></td><td>Generate a declaration for a request that must be signed by a RAO</td>
   </tr>
  <tr>
     <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_document/post'>/requests/{id}/generate_document/</a></td><td>Generates a contract related to a request that must be signed by a RAO</td>
@@ -1726,11 +1726,11 @@ paths:
 #############
   /api/v1/requests/{id}/generates_tbs_receipt:
     post: 
-      summary: GENERATE A TBS RECEIPT
+      summary: GENERATE RAO DECLARATION
       tags:
         - Requests
-      description: "Generates a receipt associated to a request that must be signed by a RAO.<br>
-                    The receipt is signed in the <HTML><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post'>approve request</a></HTML> call."
+      description: "Generates a declaration related to a request that must be signed by a RAO.<br>
+                    The receipt is signed in the <HTML><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post'>Approve Request</a></HTML> call."
       consumes:
         - application/json
       produces:
