@@ -384,34 +384,34 @@ Data objects in detail:<br>
 
 <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
 
-  1 | curl -i -X POST https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result \
-  2 |   -H 'Content-Type: application/json' \
-  3 |   -d '{
-  4 |     "acceptance": {
-  5 |       "acceptance_test_data": true,
-  6 |       "another_field": 0
-  7 |     },
-  8 |     "data": {
-  9 |       "images": {
-  10|         "document_front": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAM (...)",
-  11|         "document_rear": "/I7ye60+aOKS0mVGVSD9RVfyXukjmnS3cAEbpMVm6M1ncWqS3FszptO1lPRRDJ+orI8b (...)",
-  12|         "document_photo": "AkjOOwFfHFrrNlpXxcbU9QuIIIkvR56yddgHpX3GEj1PmanmdS/xV1ySVlv/AIbXLPO (...)",
-  13|         "document_owner": "SSVnovgCZ4Lhk+R3lJPUDJr5t/Z/wBV1DWfjRbeI75B5iQytcykc7yMEAV2/iwC0T34 (...)"
-  14|       },
-  15|       "ocr_data": {
-  16|         "given_name": "Name",
-  17|         "surname_1": "Surname",
-  18|         "surname_2": Surname 2",
-  19|         "mobile_phone_number": "+34999999999",
-  20|         "serial_number": "A9999999E"
-  21|       },
-  22|       "security_checks": {
-  23|         "a_test_check": true,
-  24|         "another_check": true
-  25|       },
-  26|       "similarity_level": "high"
-  27|     }
-  28|   }'
+    1 | curl -i -X POST https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result \
+    2 |   -H 'Content-Type: application/json' \
+    3 |   -d '{
+    4 |     "acceptance": {
+    5 |       "acceptance_test_data": true,
+    6 |       "another_field": 0
+    7 |     },
+    8 |     "data": {
+    9 |       "images": {
+    10|         "document_front": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAM (...)",
+    11|         "document_rear": "/I7ye60+aOKS0mVGVSD9RVfyXukjmnS3cAEbpMVm6M1ncWqS3FszptO1lPRRDJ+orI8b (...)",
+    12|         "document_photo": "AkjOOwFfHFrrNlpXxcbU9QuIIIkvR56yddgHpX3GEj1PmanmdS/xV1ySVlv/AIbXLPO (...)",
+    13|         "document_owner": "SSVnovgCZ4Lhk+R3lJPUDJr5t/Z/wBV1DWfjRbeI75B5iQytcykc7yMEAV2/iwC0T34 (...)"
+    14|       },
+    15|       "ocr_data": {
+    16|         "given_name": "Name",
+    17|         "surname_1": "Surname",
+    18|         "surname_2": Surname 2",
+    19|         "mobile_phone_number": "+34999999999",
+    20|         "serial_number": "A9999999E"
+    21|       },
+    22|       "security_checks": {
+    23|         "a_test_check": true,
+    24|         "another_check": true
+    25|       },
+    26|       "similarity_level": "high"
+    27|     }
+    28|   }'
 
 Successful response status
 
