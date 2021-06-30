@@ -112,14 +112,14 @@ This section section presents the workflow for a common digital certificate gene
 
 The common digital certificate generation process involves the following steps:
 
-- Request creation
-- Upload required documents
-- Approval by a RAO
-- Cloud/Software Enrollment
+- 1) Creation of a Request
+- 2) Upload required documents
+- 3) Approve Request
+- 4) Cloud/Software Enrollment
 
-> STEP 1: Create a Request
+> **STEP 1: CREATION OF A REQUEST**
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create request</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create Request</a>
 
 This call must include enough information to identify the requester user. The full description of the arguments accepted by this endpoint can be found in the API call detailed documentation.
 
@@ -144,7 +144,7 @@ This call must include enough information to identify the requester user. The fu
     19|     }'
 
 
-The return response is the a JSON containing the info of the Request just created. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
+The return response is the a JSON containing info from the created request. One of the most important parameters from this JSON is the `pk` which represents the request unique identifier and is used for every operation related to this request.
 
 	1 | {
 	2 |   "pk": 11223,
@@ -166,11 +166,11 @@ The return response is the a JSON containing the info of the Request just create
 	18|   ...
 	19| }
 
-> STEP 2: Upload documents
+> **STEP 2: UPLOAD REQUIRED DOCUMENTS**
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_upload_document/post">Upload document</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_upload_document/post">Upload Document</a>
 
-The Request created needs documents, so we can query with an HTTP POST request to upload the files.
+The request created needs documents, so we can query with an HTTP POST request to upload the files.
 
 The required documents for every request are:<br>
 `document_front` : The photo of the front side of the requester ID card<br>
@@ -195,9 +195,9 @@ The return response contains the uploaded document unique identifier associated 
 	3 |   "type": "document_front"
 	4 | }
 
-> STEP 3: Approve Request
+> **STEP 3: APPROVE REQUEST**
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve a request</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve Request</a>
 
 A Registration Authority Officer must first validate the request data and documentation. If the information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate.
 
@@ -214,9 +214,9 @@ In order to approve a Request, this must be in the status of CREATED and must ha
     9 |	}'
 
 
-> STEP 4: Enrollment
+> **STEP 4: ENROLLMENT**
 
-There are different endpoints to enroll a Request, depending on the secure element choosen.
+There are different endpoints to enroll a Request, depending on the secure element chosen.
 
 For all requests is required to send an otp code to the requester. Software and cloud certificates use the same call to send the otp code, while cloud-qscd certificates use another.
 
@@ -340,7 +340,7 @@ This call must include enough information to identify the requester user. The fu
     19|     "webhook_url":"https://bit4id.pythonanywhere.com/video"
     20|    }'
 
-The return response is the a JSON containing the info of the Request just created, in **VIDEOPENDING** status. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
+The return response is the a JSON containing info from the created request, in **VIDEOPENDING** status. One of the most important parameters from this JSON is the `pk` which represents the request unique identifier and is used for every operation related to this request.
 
 	1 | {
 	2 |   "pk": 25139,
