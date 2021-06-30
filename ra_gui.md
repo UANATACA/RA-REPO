@@ -131,7 +131,7 @@ This call must include enough information to identify the requester user. The fu
 	6 |     "scratchcard": "5053311",
 	7 |     "secure_element": "2",
 	8 |     "registration_authority": "116",
-	9 |     "country_name": "ES",
+  9 |     "country_name": "ES",
   10|     "serial_number": "12345678A",
   11|     "id_document_country": "ES",
   12|     "id_document_type": "IDC",
@@ -147,23 +147,23 @@ This call must include enough information to identify the requester user. The fu
 The return response is the a JSON containing the info of the Request just created. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
 
 	1 | {
-	2 | "pk": 11223,
-	3 | "given_name": "Name",
-	4 | "surname_1": "Surname1",
-	5 | "surname_2": "Surname2",
-	6 | "sex": null,
-	7 | "id_document_type": "IDC",
-	8 | "id_document_country": "ES",
-	9 | "serial_number": "12345678A",
-	10| "country_name": "ES",
-	11| "citizenship": null,
-	12| "residence": null,
-	13| "organization_email": null,
-	14| "email": "mail@domain.com",
-	15| "title": null,
-	16| "organization_name": null,
-	17| "organizational_unit_1": null,
-	18| ...
+	2 |   "pk": 11223,
+	3 |   "given_name": "Name",
+	4 |   "surname_1": "Surname1",
+	5 |   "surname_2": "Surname2",
+	6 |   "sex": null,
+	7 |   "id_document_type": "IDC",
+	8 |   "id_document_country": "ES",
+	9 |   "serial_number": "12345678A",
+	10|   "country_name": "ES",
+	11|   "citizenship": null,
+	12|   "residence": null,
+	13|   "organization_email": null,
+	14|   "email": "mail@domain.com",
+	15|   "title": null,
+	16|   "organization_name": null,
+	17|   "organizational_unit_1": null,
+	18|   ...
 	19| }
 
 > STEP 2: Upload documents
