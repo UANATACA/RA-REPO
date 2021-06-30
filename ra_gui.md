@@ -208,11 +208,11 @@ In order to approve a Request, this must be in the status of CREATED and must ha
 	3 | --cert 'cer.pem' --key 'key.pem'
 	4 | -d '{
 	5 | {
-    6 | 	"username": "1000279",
-    7 | 	"password": "3DPTm:N4",
-    8 | 	"pin": "23bYQq9a",
-    9 |		"rao_id": 123
-	10|	}
+  6 | 	"username": "1000279",
+  7 | 	"password": "3DPTm:N4",
+  8 | 	"pin": "23bYQq9a",
+  9 |		"rao_id": 123
+  10|	}
 
 
 > STEP 4: Enrollment
