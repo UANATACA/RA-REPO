@@ -307,7 +307,7 @@ This call simply requires a Registration Authority (RA) id number. Scratchcards 
 	3 | --cert 'cer.pem' --key 'key.pem'
 	4 | -d '{
 	5 |       "ra": "121"
-  6 |   }'
+  6 |     }'
 
 The return response is the a JSON containing the single-use Scratchcard associated data. The scratchcard number `sn` must be added to the **Create request** call. 
 
