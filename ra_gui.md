@@ -191,8 +191,8 @@ Note that this endpoint has to be queried for every document type that the Reque
 The return response contains the uploaded document unique identifier associated to the request.
 
 	1 | {
-	2 | "pk": 11314,
-	3 | "type": "document_front"
+	2 |   "pk": 11314,
+	3 |   "type": "document_front"
 	4 | }
 
 > STEP 3: Approve Request
@@ -207,12 +207,11 @@ In order to approve a Request, this must be in the status of CREATED and must ha
 	2 | -H 'Content-Type: application/json' \
 	3 | --cert 'cer.pem' --key 'key.pem'
 	4 | -d '{
-	5 | {
-  6 | 	"username": "1000279",
-  7 | 	"password": "3DPTm:N4",
-  8 | 	"pin": "23bYQq9a",
-  9 |		"rao_id": 123
-  10|	}
+  5 | 	"username": "1000279",
+  6 | 	"password": "3DPTm:N4",
+  7 | 	"pin": "23bYQq9a",
+  8 |		"rao_id": 123
+  9 |	}'
 
 
 > STEP 4: Enrollment
@@ -232,8 +231,8 @@ API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_en
 For the Software enrollemnt the parameters required are the secret OTP code send to the requester and the p12password set by the requester to import the generated p12:
 
 	1 | {
-	2 |     "secret": "000000",
-	3 |     "p12password": "password12"
+	2 |   "secret": "000000",
+	3 |   "p12password": "password12"
 	4 | }
 
 At the end of the enrollment the server replies with the P12 generated in PEM format.
@@ -245,8 +244,8 @@ API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_
 For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
 
 	1 | {
-	2 |     "secret": "000000",
-	3 |     "pin": "pincode12"
+	2 |   "secret": "000000",
+	3 |   "pin": "pincode12"
 	4 | }
 
 At the end of the enrollment the server replies with a JSON containing all requesta data.
@@ -258,8 +257,8 @@ API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud
 For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
 
 	1 | {
-	2 |     "secret": "000000",
-	3 |     "pin": "pincode12"
+	2 |   "secret": "000000",
+	3 |   "pin": "pincode12"
 	4 | }
 
 At the end of the enrollment the server replies with a JSON containing all requesta data.
@@ -307,16 +306,16 @@ This call simply requires a Registration Authority (RA) id number. Scratchcards 
 	2 | -H 'Content-Type: application/json' \
 	3 | --cert 'cer.pem' --key 'key.pem'
 	4 | -d '{
-	5 |     "ra": "121"
-  6 |     }'
+	5 |       "ra": "121"
+  6 | }'
 
 The return response is the a JSON containing the single-use Scratchcard associated data. The scratchcard number `sn` must be added to the **Create request** call. 
 
 1 | {
-2 | "pk": 1193,
-3 | "sn": "1256948",
-4 | "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
-5 | "registration_authority": 121
+2 |   "pk": 1193,
+3 |   "sn": "1256948",
+4 |   "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
+5 |   "registration_authority": 121
 6 | }
 
 API reference: 
@@ -344,29 +343,29 @@ This call must include enough information to identify the requester user. The fu
   17|     "mobile_phone_number": "+34611223344",
   18|     "videoid_mode": 1,
   19|     "webhook_url":"https://bit4id.pythonanywhere.com/video"
-  20|     }'
+  20| }'
 
 
 The return response is the a JSON containing the info of the Request just created, in **`VIDEOPENDING`** status. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
 
 	1 | {
-	2 | "pk": 25139,
-	3 | "given_name": "Name",
-	4 | "surname_1": "Surname1",
-	5 | "surname_2": "Surname2",
-	6 | "sex": null,
-	7 | "id_document_type": "IDC",
-	8 | "id_document_country": "ES",
-	9 | "serial_number": "A9999999E",
-	10| "country_name": "ES",
-	11| "citizenship": null,
-	12| "residence": null,
-	13| "organization_email": null,
-	14| "email": "mail@domain.com",
-	15| "title": null,
-	16| "organization_name": null,
-	17| "organizational_unit_1": null,
-	18| ...
+	2 |   "pk": 25139,
+	3 |   "given_name": "Name",
+	4 |   "surname_1": "Surname1",
+	5 |   "surname_2": "Surname2",
+	6 |   "sex": null,
+	7 |   "id_document_type": "IDC",
+	8 |   "id_document_country": "ES",
+	9 |   "serial_number": "A9999999E",
+	10|   "country_name": "ES",
+	11|   "citizenship": null,
+	12|   "residence": null,
+	13|   "organization_email": null,
+	14|   "email": "mail@domain.com",
+	15|   "title": null,
+	16|   "organization_name": null,
+	17|   "organizational_unit_1": null,
+	18|   ...
 	19| }
 
 > STEP 2: Upload evidences
@@ -386,7 +385,7 @@ Data objects in detail:<br>
 `security_checks` : Set of validation fields associated to the client's identity (underaging, matching info, liveliness, etc) <br>
 `similarity_level` : Similarity between the client's selfie and the picture is shown on his/her ID document. <br>
 
-<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is lima.demo.bit4id.org instead of api.uanataca.com</blockquote>
+<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
 
   1 | curl -i -X POST https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result \
   2 |   -H 'Content-Type: application/json' \
@@ -420,7 +419,7 @@ Data objects in detail:<br>
 Successful response status
 
 	1 | {
-	2 | "status": "200 OK"
+	2 |   "status": "200 OK"
 	3 | }
 
 
@@ -437,7 +436,7 @@ MP4-format Video evidence is uploaded by using the following call:
 Successful response status
 
 	1 | {
-	2 | "status": "200 OK"
+	2 |   "status": "200 OK"
 	3 | }
 
 
