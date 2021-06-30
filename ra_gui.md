@@ -426,9 +426,9 @@ MP4-format Video evidence is uploaded by using the following call:
 
 <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload video</a>
 
-  1 | curl -i -X POST https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/ \
-  2 |   -H 'Content-Type: multipart/form-data' \
-  3 |   -F video=@sample_folder/sample_video.mp4 
+    1 | curl -i -X POST https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/ \
+    2 |   -H 'Content-Type: multipart/form-data' \
+    3 |   -F video=@sample_folder/sample_video.mp4 
 
 Successful response status
 
@@ -535,41 +535,40 @@ This call makes the request ready for enrollment. Its status changes to **`ENROL
     2 | -H 'Content-Type: application/json' \
     3 | --cert 'cer.pem' --key 'key.pem'
     4 | -d '{
-    5 | {
-    6 | 	"username": "1000279",
-    7 | 	"password": "3DPTm:N4",
-    8 | 	"pin": "23bYQq9a",
-    9 |		"rao_id": 123,
-    10|   "lang": "ES"
-    11|	}
+    5 | 	"username": "1000279",
+    6 | 	"password": "3DPTm:N4",
+    7 | 	"pin": "23bYQq9a",
+    8 |		"rao_id": 123,
+    9 |   "lang": "ES"
+    10|	}'
 
 The response is a JSON object with added request approval information. 
 
-  1 | {
-  2 |   "secrets": {
-  3 |       "puk": "38812452",
-  4 |       "enrollment_code": ".R4P9qgA",
-  5 |       "pin": "31945152",
-  6 |       "erc": "3417062505"
-  7 |   },
-  8 |   "request": {
-  9 |       "pk": 25139,
-  10|       "given_name": "Name",
-  11|      "surname_1": "Surname1",
-  12|      "surname_2": "Surname2",
-  13|      "sex": null,
-  14|      "id_document_type": "IDC",
-  15|      "id_document_country": "ES",
-  16|      "serial_number": "A9999999E",
-  17|      (...)
-  18|     "approving_rao": {
-  19|         "pk": 218,
-  20|         "given_name": "RAO_Name",
-  21|         "surname_1": "RAO_Surname1",
-  22|         "surname_2": "RAO_Surname2",
-  23|     }
-  24|   }
-  25| }
+    1 | {
+    2 |   "secrets": {
+    3 |       "puk": "38812452",
+    4 |       "enrollment_code": ".R4P9qgA",
+    5 |       "pin": "31945152",
+    6 |       "erc": "3417062505"
+    7 |   },
+    8 |   "request": {
+    9 |       "pk": 25139,
+    10|       "given_name": "Name",
+    11|      "surname_1": "Surname1",
+    12|      "surname_2": "Surname2",
+    13|      "sex": null,
+    14|      "id_document_type": "IDC",
+    15|      "id_document_country": "ES",
+    16|      "serial_number": "A9999999E",
+    17|      (...)
+    18|     "approving_rao": {
+    19|         "pk": 218,
+    20|         "given_name": "RAO_Name",
+    21|         "surname_1": "RAO_Surname1",
+    22|         "surname_2": "RAO_Surname2",
+    23|     }
+    24|   }
+    25| }
 
 
 > STEP 4: Enrollment
