@@ -451,12 +451,11 @@ A Registration Authority Officer must first validate the request data and eviden
 	2 | -H 'Content-Type: application/json' \
 	3 | --cert 'cer.pem' --key 'key.pem'
 	4 | -d '{
-	5 | {
-  6 | 	"username": "5012345",
-  7 | 	"password": "Gy6F37xK",
-  8 | 	"pin": "belorado74",
-  9 |		"rao_id": "1400"
-	10|	}'
+  5 | 	"username": "5012345",
+  6 | 	"password": "Gy6F37xK",
+  7 | 	"pin": "belorado74",
+  8 |		"rao_id": "1400"
+	9 |	}'
 
 The validation successful response changes the request to **`CREATED`** status, as a JSON object containing request full information is returned.
 
