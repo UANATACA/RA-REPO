@@ -376,8 +376,6 @@ Data and images are uploaded by using the following call:
 
 <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
 
-</br>
-
 **Data objects in detail:**
 
 `acceptance` : Client acceptance parameters (e.g. Terms & Conditions | Privacy Policy section). This is a customizable JSON object.<br>
@@ -421,14 +419,13 @@ Successful response status
 	2 |   "status": "200 OK"
 	3 | }
 
+</br>
 
-MP4-format Video evidence is uploaded by using the following call:
+in the same way, MP4-format Video evidence is uploaded by using the following call:
 
 **API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload Video</a>
 
 <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
-
-</br>
 
     1 | curl -i -X POST https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/ \
     2 |   -H 'Content-Type: multipart/form-data' \
@@ -491,6 +488,8 @@ The validation successful response changes the request to CREATED status, as a J
 
 If all information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate. These calls are shown below:
 
+</br>
+
 **API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate tbs receipt</a>
 
     1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
@@ -512,6 +511,8 @@ The following JSON object contains the receipt:
     8 |   2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
     9 | }
 
+</br>
+
 Similarly, it is necessary to retrieve the service contract before approving.
 
 **API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get a document</a>
@@ -531,6 +532,8 @@ The response consists in a JSON structure containing the contract in Base64 form
     5 |         "type": "document_front"
     6 |     }
     7 | ]
+
+</br>
 
 **API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve a request</a>
 
