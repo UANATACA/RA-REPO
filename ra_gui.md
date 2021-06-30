@@ -271,32 +271,29 @@ At the end of the enrollment the server replies with a JSON containing all reque
 
 # Video ID mode
 
-
-## External 
-
-
-<div id="APIReference" style="padding-top: 60px;"><h3><b>Flow Chart</b><h3></div>
+## External - Flow Chart
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_External.png)
 
-
-<div id="APIReference" style="padding-top: 60px;"><h3><b>Workflow</b><h3></div>
-
-
+## External - Workflow
 
 This section section presents the workflow for a digital certificate generated through a Video Identification service.
 
 The Video ID certificate generation process involves the following steps:
 
-- Request creation
-- Upload evidences
-- Request validation
-- Request Approval
-- Cloud/Software Enrollment
+- 1) Request creation
+- 2) Upload evidences
+- 3) Request validation
+- 4) Request Approval
+- 5) Cloud/Software Enrollment
 
-> STEP 1: Request creation
+</br>
 
-API reference: <a href="#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1get_first_unused/get">Get first unused scratchcard</a>
+> **STEP 1:** Request creation
+
+</br>
+
+**API reference:** <a href="#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1get_first_unused/get">Get first unused scratchcard</a>
 
 This call simply requires a Registration Authority (RA) id number. Scratchcards must be available for this RA for successful response.
 
@@ -316,8 +313,9 @@ The return response is the a JSON containing the single-use Scratchcard associat
 	5 |   "registration_authority": 121
 	6 | }
 
+</br>
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create request</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create request</a>
 
 This call must include enough information to identify the requester user. The full description of the arguments accepted by this endpoint can be found in the API call detailed documentation.
 
@@ -342,8 +340,7 @@ This call must include enough information to identify the requester user. The fu
     19|     "webhook_url":"https://bit4id.pythonanywhere.com/video"
     20|    }'
 
-
-The return response is the a JSON containing the info of the Request just created, in **`VIDEOPENDING`** status. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
+The return response is the a JSON containing the info of the Request just created, in `**VIDEOPENDING**` status. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
 
 	1 | {
 	2 |   "pk": 25139,
@@ -365,20 +362,28 @@ The return response is the a JSON containing the info of the Request just create
 	18|   ...
 	19| }
 
-> STEP 2: Upload evidences
+</br>
 
-A previously created Video ID Request needs a set of information defined as evidences. The succesful upload of all information will change the request status to **`VIDEOREVIEW`**.
+> **STEP 2:** Upload evidences
+
+</br>
+
+A previously created Video ID Request needs a set of information defined as evidences. The succesful upload of all information will change the request status to `**VIDEOREVIEW**`.
 
 Data and images are uploaded by using the following call:
 
-API reference: <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post">Upload data</a>
+**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post">Upload data</a>
 
-Data objects in detail:<br>
+**Data objects in detail:**
+</br>
+
 `acceptance` : Client acceptance parameters (e.g. Terms & Conditions | Privacy Policy section). This is a customizable JSON object.<br>
 `data` : Set of pictures associated to the client's ID document plus a selfie of him/her. Mandatory object. <br>
 `ocr_data` : Text information extracted from the client's ID document via Optical Character Recognition (OCR). <br>
 `security_checks` : Set of validation fields associated to the client's identity (underaging, matching info, liveliness, etc) <br>
 `similarity_level` : Similarity between the client's selfie and the picture is shown on his/her ID document. <br>
+
+</br>
 
 <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
 
@@ -420,7 +425,7 @@ Successful response status
 
 MP4-format Video evidence is uploaded by using the following call:
 
-API reference: <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload video</a>
+**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload video</a>
 
     1 | curl -i -X POST https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/ \
     2 |   -H 'Content-Type: multipart/form-data' \
@@ -432,10 +437,13 @@ Successful response status
 	2 |   "status": "200 OK"
 	3 | }
 
+</br>
 
-> STEP 3: Validate Request
+> **STEP 3:** Validate Request
 
-API reference: <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post">Validate a request</a>
+</br>
+
+**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post">Validate a request</a>
 
 A Registration Authority Officer must first validate the request data and evidences before approving. 
 
@@ -450,7 +458,7 @@ A Registration Authority Officer must first validate the request data and eviden
     8 |		  "rao_id": "1400"
     9 |	   }'
 
-The validation successful response changes the request to **`CREATED`** status, as a JSON object containing request full information is returned.
+The validation successful response changes the request to `**CREATED**` status, as a JSON object containing request full information is returned.
 
     1 | {
     2 |   "secrets": {
@@ -472,13 +480,15 @@ The validation successful response changes the request to **`CREATED`** status, 
     18|   }
     19| }
 
+</br>
 
+> **STEP 4:** Approve Request
 
-> STEP 4: Approve Request
+</br>
 
 If all information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate. These calls are shown below:
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate tbs receipt</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate tbs receipt</a>
 
     1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
     2 |  -H 'Content-Type: application/json' \
@@ -501,7 +511,7 @@ The following JSON object contains the receipt:
 
 Similarly, it is necessary to retrieve the service contract before approving.
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get a document</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get a document</a>
 
 Form parameter `type`: **signed_contract**
 
@@ -519,9 +529,9 @@ The response consists in a JSON structure containing the contract in Base64 form
     6 |     }
     7 | ]
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve a request</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve a request</a>
 
-This call makes the request ready for enrollment. Its status changes to **`ENROLLREADY`**.
+This call makes the request ready for enrollment. Its status changes to `**ENROLLREADY**`.
 
     1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
     2 | -H 'Content-Type: application/json' \
@@ -562,16 +572,21 @@ The response is a JSON object with added request approval information.
     24|   }
     25| }
 
+</br>
 
 > STEP 4: Enrollment
+
+</br>
 
 There are different endpoints to enroll a Request, depending on the secure element choosen.
 
 For all requests is required to send an otp code to the requester. Software and cloud certificates use the same call to send the otp code, while cloud-qscd certificates use another.
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post">Send OTP code for software and cloud</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post">Send OTP code for software and cloud</a>
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Send OTP code for cloud-QSCD</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Send OTP code for cloud-QSCD</a>
+
+</br>
 
 **Software**
 
@@ -586,9 +601,11 @@ For the Software enrollemnt the parameters required are the secret OTP code send
 
 At the end of the enrollment the server replies with the P12 generated in PEM format.
 
+</br>
+
 **Cloud**
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud enrollment</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud enrollment</a>
 
 For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
 
@@ -598,6 +615,8 @@ For the cloud enrollemnt the parameters required are the secret OTP code send to
 	4 | }
 
 At the end of the enrollment the server replies with a JSON containing all requesta data.
+
+</br>
 
 **Cloud-QSCD**
 

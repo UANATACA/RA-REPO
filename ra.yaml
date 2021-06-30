@@ -162,7 +162,7 @@ Manage digital certicate requests life-cycle.</br>
     <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post'>/requests/generates_tbs_receipt/</a></td><td>Generates a receipt associated to a request that must be signed by a RAO</td>
   </tr>
  <tr>
-    <td>POST</td><td><a href='XXXXXXXXXX INSERT XXXXXXXXXX'>/requests/{id}/generate_document/</a></td><td>Generates a contract related to a request that must be signed by a RAO</td>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_document/post'>/requests/{id}/generate_document/</a></td><td>Generates a contract related to a request that must be signed by a RAO</td>
   </tr>
  <tr>
     <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_upload_document/post'>/requests/{id}/pl_upload_document/</a></td><td>Upload required documentation</td>
@@ -1929,17 +1929,13 @@ paths:
           schema:
             type: object
             properties:
-              serial_number:
+              document:
                 type: string
-                description: The receipt serial number
-              receipt:
-                type: string
-                description: The receipt content
+                description: The document ready for PDF conversion
           examples:
             application/json:
                 {
-                    "serial_number": "3ef3696d2939241d",
-                    "receipt": "El operador RAO_Name RAO_Surname1 con número de identificación 12345678P\r\nactuando en calidad de operador autorizado de registro del prestador de servicios\r\nde confianza UANATACA, S.A. con NIF A66721499, (UANATACA en lo sucesivo)\r\n\r\nDECLARA\r\n\r\nQue previa verificación de acuerdo a la Declaración de Prácticas de UANATACA\r\npublicadas en www.uanataca.com, la información detallada a continuación es\r\ncorrecta y será incluida (donde aplicable) en la solicitud de certificados\r\ncualificados:\r\n\r\n- Datos de Identificación de la solicitud de certificados: 36893\r\n- Nombre y Apellidos del Firmante: Name Surname1 Surname2\r\n- DNI/NIE/PASAPORTE del Firmante: 11111111B\r\n- Dirección de correo electrónico del Firmante: mail@domain.com\r\n\r\n\r\n18/03/2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
+                    "document": "%PDF-1.4\n%���� ReportLab Generated PDF document http://www.reportlab.com\n1 0 obj\n<<\n/F1 2 0 R\n>>\nendobj\n2 0 obj\n<<\n/Bas (...) "
                 }
         400:
           description: Bad Request
@@ -10193,6 +10189,7 @@ definitions:
           description: "The unique identifier of the RAO that will sign and approve the request"
       type:
           type: "string"
+          enum: [APPROVE]
           description: "The type of the receipt to generate"
 ###########
   ContractObject:
@@ -10200,8 +10197,8 @@ definitions:
     properties:
       doctype:
           type: "string"
-          enum: [APPROVE]
-          description: "The action associated to the contract generation (APPROVE)"
+          enum: [contract, contract_renew]
+          description: "The contract type"
 ###########
   ApproveReqObject:
     type: "object"
