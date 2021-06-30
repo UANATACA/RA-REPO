@@ -233,7 +233,7 @@ This allows the management of certificate issuing by establishing a video call f
     <th>Method</th><th>Endpoint</th><th>Action</th>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post'>/requests/{id_request}/validate_videoid</a></td><td>Validate Request<td></td>
+    <td>POST</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post'>/requests/{id_request}/validate_videoid</a></td><td>Validate Request</td>
   </tr>
  <tr>
     <td>POST</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1refuse_videoid/post'>/requests/{id_request}/refuse_videoid</a></td><td>Refuse Request</td>
