@@ -284,12 +284,12 @@ The Video ID certificate generation process involves the following steps:
 - 1) Request creation
 - 2) Upload evidences
 - 3) Request validation
-- 4) Request Approval
-- 5) Cloud/Software Enrollment
+- 4) Request approval
+- 5) Cloud/Software enrollment
 
 </br>
 
-> **STEP 1:** Request creation
+> **STEP 1: REQUEST CREATION**
 
 </br>
 
@@ -304,7 +304,7 @@ This call simply requires a Registration Authority (RA) id number. Scratchcards 
 	5 |     "ra": "121"
     6 |  }'
 
-The return response is the a JSON containing the single-use Scratchcard associated data. The scratchcard number `sn` must be added to the **Create request** call. 
+The return response is the a JSON containing the single-use Scratchcard associated data. The scratchcard number `sn` must be added to the <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create Request</a> call. 
 
 	1 | {
 	2 |   "pk": 1193,
@@ -315,7 +315,7 @@ The return response is the a JSON containing the single-use Scratchcard associat
 
 </br>
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create request</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create Request</a>
 
 This call must include enough information to identify the requester user. The full description of the arguments accepted by this endpoint can be found in the API call detailed documentation.
 
@@ -340,7 +340,7 @@ This call must include enough information to identify the requester user. The fu
     19|     "webhook_url":"https://bit4id.pythonanywhere.com/video"
     20|    }'
 
-The return response is the a JSON containing the info of the Request just created, in `**VIDEOPENDING**` status. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
+The return response is the a JSON containing the info of the Request just created, in **VIDEOPENDING** status. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
 
 	1 | {
 	2 |   "pk": 25139,
@@ -364,28 +364,27 @@ The return response is the a JSON containing the info of the Request just create
 
 </br>
 
-> **STEP 2:** Upload evidences
+> **STEP 2: UPLOAD EVIDENCES**
 
 </br>
 
-A previously created Video ID Request needs a set of information defined as evidences. The succesful upload of all information will change the request status to `**VIDEOREVIEW**`.
+A previously created Video ID Request needs a set of information defined as evidences. The succesful upload of all information will change the request status to **VIDEOREVIEW**.
 
 Data and images are uploaded by using the following call:
 
-**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post">Upload data</a>
+**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post">Upload Data</a>
+
+<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
+
+</br>
 
 **Data objects in detail:**
-</br>
 
 `acceptance` : Client acceptance parameters (e.g. Terms & Conditions | Privacy Policy section). This is a customizable JSON object.<br>
 `data` : Set of pictures associated to the client's ID document plus a selfie of him/her. Mandatory object. <br>
 `ocr_data` : Text information extracted from the client's ID document via Optical Character Recognition (OCR). <br>
 `security_checks` : Set of validation fields associated to the client's identity (underaging, matching info, liveliness, etc) <br>
 `similarity_level` : Similarity between the client's selfie and the picture is shown on his/her ID document. <br>
-
-</br>
-
-<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
 
     1 | curl -i -X POST https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result \
     2 |   -H 'Content-Type: application/json' \
@@ -425,7 +424,11 @@ Successful response status
 
 MP4-format Video evidence is uploaded by using the following call:
 
-**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload video</a>
+**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload Video</a>
+
+<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
+
+</br>
 
     1 | curl -i -X POST https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/ \
     2 |   -H 'Content-Type: multipart/form-data' \
@@ -439,11 +442,11 @@ Successful response status
 
 </br>
 
-> **STEP 3:** Validate Request
+> **STEP 3: Validate Request**
 
 </br>
 
-**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post">Validate a request</a>
+**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post">Validate Request</a>
 
 A Registration Authority Officer must first validate the request data and evidences before approving. 
 
@@ -458,7 +461,7 @@ A Registration Authority Officer must first validate the request data and eviden
     8 |		  "rao_id": "1400"
     9 |	   }'
 
-The validation successful response changes the request to `**CREATED**` status, as a JSON object containing request full information is returned.
+The validation successful response changes the request to CREATED status, as a JSON object containing request full information is returned.
 
     1 | {
     2 |   "secrets": {
@@ -531,7 +534,7 @@ The response consists in a JSON structure containing the contract in Base64 form
 
 **API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve a request</a>
 
-This call makes the request ready for enrollment. Its status changes to `**ENROLLREADY**`.
+This call makes the request ready for enrollment. Its status changes to **ENROLLREADY**.
 
     1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
     2 | -H 'Content-Type: application/json' \
@@ -605,7 +608,7 @@ At the end of the enrollment the server replies with the P12 generated in PEM fo
 
 **Cloud**
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud enrollment</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud Enroll</a>
 
 For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
 
@@ -620,7 +623,7 @@ At the end of the enrollment the server replies with a JSON containing all reque
 
 **Cloud-QSCD**
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post">Cloud-QSCD enrollment</a>
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post">Cloud-QSCD Enroll</a>
 
 For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
 
