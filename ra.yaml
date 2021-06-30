@@ -2230,6 +2230,7 @@ paths:
           description: The type of the document to be retrieved
           required: true
           type: string
+          enum: [document_front, document_rear, document_owner, extra_document, signed_contract, signed_raw]
       responses:
           200:
             description: Successful Response
@@ -2281,11 +2282,11 @@ paths:
                   curl -i -X POST \
                     https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
                     -H 'Content-Type: multipart/form-data' \
-                    -F type="48312"
+                    -F type="document_front"
         - lang: 'Javascript'
           source: |
                   var formdata = new FormData();
-                  formdata.append("type", "48312");
+                  formdata.append("type", "document_front");
 
                   var requestOptions = {
                     method: 'POST',
@@ -2304,7 +2305,7 @@ paths:
 
                   url = "https://api.uanataca.com/api/v1/requests/25139/pl_get_document/"
 
-                  payload={'type': '48312'}
+                  payload={'type': 'document_front'}
 
                   headers = {
                     'Content-Type': 'multipart/form-data'
@@ -2320,7 +2321,7 @@ paths:
                   const fetch = require('node-fetch');
                   const formData = new FormData();
 
-                  formData.append('type', '48312');
+                  formData.append('type', 'document_front');
 
                   const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_get_document/';
 
@@ -2344,7 +2345,7 @@ paths:
                   client.Timeout = -1;
                   var request = new RestRequest(Method.POST);
                   request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
-                  request.AddParameter("type", "48312");
+                  request.AddParameter("type", "document_front");
 
                   IRestResponse response = client.Execute(request);
                   Console.WriteLine(response.Content);        
@@ -9534,7 +9535,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://lima.demo.bit4id.org/api/v1/requests/25139/upload_videoid_result \
+                    https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "acceptance": {
@@ -9564,7 +9565,7 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    `https://lima.demo.bit4id.org/api/v1/requests/25139/upload_videoid_result`,
+                    `https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result`,
                     {
                       method: 'POST',
                       headers: {
@@ -9604,7 +9605,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://lima.demo.bit4id.org/api/v1/requests/25139/upload_videoid_result"
+                  url = "https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result"
 
                   payload = {
                     "acceptance": {
@@ -9643,7 +9644,7 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    `https://lima.demo.bit4id.org/api/v1/requests/25139/upload_videoid_result`,
+                    `https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result`,
                     {
                       method: 'POST',
                       headers: {
@@ -9719,7 +9720,7 @@ paths:
                           }
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://lima.demo.bit4id.org/api/v1/requests/25139/upload_videoid_result", postData);
+                        var request = await client.PostAsync("https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -9783,7 +9784,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://lima.demo.bit4id.org/v1/upload/video/25139/ \
+                    https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/ \
                     -H 'Content-Type: multipart/form-data' \
                     -F video=@sample_folder/sample_video.mp4 
         - lang: 'Javascript'
@@ -9799,7 +9800,7 @@ paths:
                     redirect: 'follow'
                   };
 
-                  fetch("https://lima.demo.bit4id.org/v1/upload/video/25139/", requestOptions)
+                  fetch("https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/", requestOptions)
                     .then(response => response.text())
                     .then(result => console.log(result))
                     .catch(error => console.log('error', error));
@@ -9807,7 +9808,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://lima.demo.bit4id.org/v1/upload/video/25139/"
+                  url = "https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/"
 
                   payload={'type': 'document_front'}
                   files=[
@@ -9830,7 +9831,7 @@ paths:
                   formData.append('type', 'document_front');
                   formData.append('document', fs.createReadStream('sample_folder/sample_video.mp4'));
 
-                  const url = 'https://lima.demo.bit4id.org/v1/upload/video/25139/';
+                  const url = 'https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/';
 
                   const options = {
                     method: 'POST',
@@ -9848,7 +9849,7 @@ paths:
                     .catch(err => console.error('error:' + err));
         - lang: 'C#'
           source: |
-                  var client = new RestClient("https://lima.demo.bit4id.org/v1/upload/video/25139/");
+                  var client = new RestClient("https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/");
                   client.Timeout = -1;
                   var request = new RestRequest(Method.POST);
                   request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");

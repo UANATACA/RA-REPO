@@ -285,18 +285,43 @@ At the end of the enrollment the server replies with a JSON containing all reque
 
 
 
-This section section presents the workflow for a common digital certificate generation with a step-by-step description of the API calls required.
+This section section presents the workflow for a digital certificate generated through a Video Identification service.
 
-The common digital certificate generation process involves the following steps:
+The Video ID certificate generation process involves the following steps:
 
 - Request creation
-- Upload required documents
-- Approval by a RAO
+- Upload evidences
+- Request validation
+- Request Approval
 - Cloud/Software Enrollment
 
-> STEP 1: Create a Request
+> STEP 1: Request creation
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create request</a>
+API reference: 
+
+<a href="#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1get_first_unused/get">Get first unused scratchcard</a>
+
+This call simply requires a Registration Authority (RA) id number. Scratchcards must be available for this RA for successful response.
+
+	1 | curl -i -X GET https://api.uanataca.com/api/v1/scratchcards/get_first_unused/ \
+	2 | -H 'Content-Type: application/json' \
+	3 | --cert 'cer.pem' --key 'key.pem'
+	4 | -d '{
+	5 |     "ra": "121"
+  6 |     }'
+
+The return response is the a JSON containing the single-use Scratchcard associated data. The scratchcard number `sn` must be added to the **Create request** call. 
+
+1 | {
+2 | "pk": 1193,
+3 | "sn": "1256948",
+4 | "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
+5 | "registration_authority": 121
+6 | }
+
+API reference: 
+
+<a href="#tag/Requests/paths/~1api~1v1~1request/post">Create request</a>
 
 This call must include enough information to identify the requester user. The full description of the arguments accepted by this endpoint can be found in the API call detailed documentation.
 
@@ -317,21 +342,22 @@ This call must include enough information to identify the requester user. The fu
   15|     "surname_2" "Surname2"
   16|     "email": "mail@domain.com",
   17|     "mobile_phone_number": "+34611223344",
-  18|     "paperless_mode": 1
-  19|     }'
+  18|     "videoid_mode": 1,
+  19|     "webhook_url":"https://bit4id.pythonanywhere.com/video"
+  20|     }'
 
 
-The return response is the a JSON containing the info of the Request just created. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
+The return response is the a JSON containing the info of the Request just created, in **`VIDEOPENDING`** status. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
 
 	1 | {
-	2 | "pk": 11223,
+	2 | "pk": 25139,
 	3 | "given_name": "Name",
 	4 | "surname_1": "Surname1",
 	5 | "surname_2": "Surname2",
 	6 | "sex": null,
 	7 | "id_document_type": "IDC",
 	8 | "id_document_country": "ES",
-	9 | "serial_number": "12345678A",
+	9 | "serial_number": "A9999999E",
 	10| "country_name": "ES",
 	11| "citizenship": null,
 	12| "residence": null,
@@ -343,53 +369,212 @@ The return response is the a JSON containing the info of the Request just create
 	18| ...
 	19| }
 
-> STEP 2: Upload documents
+> STEP 2: Upload evidences
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_upload_document/post">Upload document</a>
+API reference: 
 
-The Request created needs documents, so we can query with an HTTP POST request to upload the files.
+A previously created Video ID Request needs a set of information defined as evidences. The succesful upload of all information will change the request status to **`VIDEOREVIEW`**.
 
-The required documents for every request are:<br>
-`document_front` : The photo of the front side of the requester ID card<br>
-`document_rear` : The photo of the rear side of the requester ID card<br>
-`extra_document` : If necessary, it is possibile to upload extra documents that represents additional requester information
+Data and images are uploaded by using the following call:
 
+<a href="#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post">Upload data</a>
 
-Additionally a selfie of the requester showing the ID card under the chin can be uploaded as an evidence under the type `document_owner`.
+Data objects in detail:<br>
+`acceptance` : Client acceptance parameters (e.g. Terms & Conditions | Privacy Policy section). This is a customizable JSON object.<br>
+`data` : Set of pictures associated to the client's ID document plus a selfie of him/her. Mandatory object. <br>
+`ocr_data` : Text information extracted from the client's ID document via Optical Character Recognition (OCR). <br>
+`security_checks` : Set of validation fields associated to the client's identity (underaging, matching info, liveliness, etc) <br>
+`similarity_level` : Similarity between the client's selfie and the picture is shown on his/her ID document. <br>
 
-Note that this endpoint has to be queried for every document type that the Request needs.
+<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is lima.demo.bit4id.org instead of api.uanataca.com</blockquote>
 
-	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/11223/pl_upload_document/' \
-	2 | --cert 'cer.pem' --key 'key.pem'
-	3 | -H 'Content-Type: multipart/form-data' \
-	4 | -F document=@/idc_front.jpg \
-	5 | -F type=document_front
+  1 | curl -i -X POST https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result \
+  2 |   -H 'Content-Type: application/json' \
+  3 |   -d '{
+  4 |     "acceptance": {
+  5 |       "acceptance_test_data": true,
+  6 |       "another_field": 0
+  7 |     },
+  8 |     "data": {
+  9 |       "images": {
+  10|         "document_front": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAM (...)",
+  11|         "document_rear": "/I7ye60+aOKS0mVGVSD9RVfyXukjmnS3cAEbpMVm6M1ncWqS3FszptO1lPRRDJ+orI8b (...)",
+  12|         "document_photo": "AkjOOwFfHFrrNlpXxcbU9QuIIIkvR56yddgHpX3GEj1PmanmdS/xV1ySVlv/AIbXLPO (...)",
+  13|         "document_owner": "SSVnovgCZ4Lhk+R3lJPUDJr5t/Z/wBV1DWfjRbeI75B5iQytcykc7yMEAV2/iwC0T34 (...)"
+  14|       },
+  15|       "ocr_data": {
+  16|         "given_name": "Name",
+  17|         "surname_1": "Surname",
+  18|         "surname_2": Surname 2",
+  19|         "mobile_phone_number": "+34999999999",
+  20|         "serial_number": "A9999999E"
+  21|       },
+  22|       "security_checks": {
+  23|         "a_test_check": true,
+  24|         "another_check": true
+  25|       },
+  26|       "similarity_level": "high"
+  27|     }
+  28|   }'
 
-The return response contains the uploaded document unique identifier associated to the request.
+Successful response status
 
 	1 | {
-	2 | "pk": 11314,
-	3 | "type": "document_front"
-	4 | }
+	2 | "status": "200 OK"
+	3 | }
 
-> STEP 3: Approve Request
+
+API reference: 
+
+MP4-format Video evidence is uploaded by using the following call:
+
+<a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload video</a>
+
+  1 | curl -i -X POST https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/ \
+  2 |   -H 'Content-Type: multipart/form-data' \
+  3 |   -F video=@sample_folder/sample_video.mp4 
+
+Successful response status
+
+	1 | {
+	2 | "status": "200 OK"
+	3 | }
+
+
+> STEP 3: Validate Request
+
+API reference: <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post">Validate a request</a>
+
+A Registration Authority Officer must first validate the request data and evidences before approving. 
+
+
+	1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/validate_videoid \
+	2 | -H 'Content-Type: application/json' \
+	3 | --cert 'cer.pem' --key 'key.pem'
+	4 | -d '{
+	5 | {
+  6 | 	"username": "5012345",
+  7 | 	"password": "Gy6F37xK",
+  8 | 	"pin": "belorado74",
+  9 |		"rao_id": "1400"
+	10|	}'
+
+The validation successful response changes the request to **`CREATED`** status, as a JSON object containing request full information is returned.
+
+  1 | {
+  2 |   "secrets": {
+  3 |       "puk": "38812452",
+  4 |       "enrollment_code": ".R4P9qgA",
+  5 |       "pin": "31945152",
+  6 |       "erc": "3417062505"
+  7 |   },
+  8 |   "request": {
+  9 |       "pk": 25139,
+  10|       "given_name": "Name",
+  11|      "surname_1": "Surname1",
+  12|      "surname_2": "Surname2",
+  13|      "sex": null,
+  14|      "id_document_type": "IDC",
+  15|      "id_document_country": "ES",
+  16|      "serial_number": "A9999999E",
+  17|      (...)
+  18|   }
+  19| }
+
+
+
+> STEP 4: Approve Request
+
+If all information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate. These calls are shown below:
+
+API reference:
+
+<a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate tbs receipt</a>
+
+  1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
+  2 |  -H 'Content-Type: application/json' \
+  3 |  -d '{
+  4 |    "rao": "1400",
+  5 |    "type": "APPROVE"
+  6 |  }'
+
+The following JSON object contains the receipt:
+
+  1 | {
+  2 |  "serial_number": "3ef3696d2939241d",
+  3 |  "receipt": "El operador RAO_Name RAO_Surname1 con número de identificación 12345678P\r\nactuando en calidad de operador autorizado de registro del prestador de servicios\r\n
+  4 |   de confianza UANATACA, S.A. con NIF A66721499, (UANATACA en lo sucesivo)\r\n\r\nDECLARA\r\n\r\nQue previa verificación de acuerdo a la Declaración de Prácticas de
+  5 |   UANATACA\r\npublicadas en www.uanataca.com, la información detallada a continuación es\r\ncorrecta y será incluida (donde aplicable) en la solicitud de 
+  6 |   certificados\r\ncualificados:\r\n\r\n- Datos de Identificación de la solicitud de certificados: 36893\r\n- Nombre y Apellidos del Firmante: Name Surname1 Surname2\r\n- DNI/
+  7 |   NIE/PASAPORTE del Firmante: 11111111B\r\n- Dirección de correo electrónico del Firmante: mail@domain.com\r\n\r\n\r\n18/03/
+  8 |   2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
+  9 | }
+
+Similarly, it is necessary to retrieve the service contract before approving.
+
+API reference:
+
+<a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get a document</a>
+
+Form parameter `type`: **signed_contract**
+
+  1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
+  2 |  -H 'Content-Type: multipart/form-data' \
+  3 |  -F type="signed_contract"
+
+The response consists in a JSON structure containing the contract in Base64 format.
+
+  1 | [
+  2 |     {
+  3 |        "pk": 48312,
+  4 |         "document": "iVBORw0KGgoAAAANSUhEUgAAAPwAAAChCAYAAAGUvOLYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAABU9xJREFUeNqMlmuMXGUZx3(...)",
+  5 |         "type": "document_front"
+  6 |     }
+  7 | ]
 
 API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve a request</a>
 
-A Registration Authority Officer must first validate the request data and documentation. If the information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate.
-
-In order to approve a Request, this must be in the status of CREATED and must have at least the required documents (document_front and document_rear).
+This call makes the request ready for enrollment. Its status changes to **`ENROLLREADY`**.
 
 	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
 	2 | -H 'Content-Type: application/json' \
 	3 | --cert 'cer.pem' --key 'key.pem'
 	4 | -d '{
 	5 | {
-    6 | 	"username": "1000279",
-    7 | 	"password": "3DPTm:N4",
-    8 | 	"pin": "23bYQq9a",
-    9 |		"rao_id": 123
-	10|	}
+  6 | 	"username": "1000279",
+  7 | 	"password": "3DPTm:N4",
+  8 | 	"pin": "23bYQq9a",
+  9 |		"rao_id": 123,
+  10|   "lang": "ES"
+  11|	}
+
+The response is a JSON object with added request approval information. 
+
+  1 | {
+  2 |   "secrets": {
+  3 |       "puk": "38812452",
+  4 |       "enrollment_code": ".R4P9qgA",
+  5 |       "pin": "31945152",
+  6 |       "erc": "3417062505"
+  7 |   },
+  8 |   "request": {
+  9 |       "pk": 25139,
+  10|       "given_name": "Name",
+  11|      "surname_1": "Surname1",
+  12|      "surname_2": "Surname2",
+  13|      "sex": null,
+  14|      "id_document_type": "IDC",
+  15|      "id_document_country": "ES",
+  16|      "serial_number": "A9999999E",
+  17|      (...)
+  18|     "approving_rao": {
+  19|         "pk": 218,
+  20|         "given_name": "RAO_Name",
+  21|         "surname_1": "RAO_Surname1",
+  22|         "surname_2": "RAO_Surname2",
+  23|     }
+  24|   }
+  25| }
 
 
 > STEP 4: Enrollment
