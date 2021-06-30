@@ -2230,7 +2230,7 @@ paths:
           description: The type of the document to be retrieved
           required: true
           type: string
-          enum: [document_front, document_rear, document_owner, extra_document, signed_contract, signed_raw]
+          enum: [document_front, document_rear, document_owner, extra_document, signed_contract]
       responses:
           200:
             description: Successful Response

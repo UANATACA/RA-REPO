@@ -318,6 +318,15 @@ The return response is the a JSON containing the single-use Scratchcard associat
   5 |   "registration_authority": 121
   6 | }
 
+	1 | {
+	2 |   "pk": 25139,
+	3 |   "given_name": "Name",
+	4 |   "surname_1": "Surname1",
+	5 |   "surname_2": "Surname2",
+	6 |   "sex": null
+  7 | }
+
+
 API reference: 
 
 <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create request</a>
