@@ -538,7 +538,7 @@ Body parameter `doctype`: **contract**
     2 |   https://api.uanataca.com/api/v1/requests/25139/generate_document/ \
     3 |   -H 'Content-Type: application/json' \
     4 |   -d '{
-    5 |     "type": "APPROVE"
+    5 |     "doctype": "contract"
     6 |  }'
 
 
@@ -558,10 +558,10 @@ This call makes the request ready for enrollment. Its status changes to **ENROLL
     2 | -H 'Content-Type: application/json' \
     3 | --cert 'cer.pem' --key 'key.pem'
     4 | -d '{
-    5 | 	  "username": "1000279",
-    6 | 	  "password": "3DPTm:N4",
-    7 | 	  "pin": "23bYQq9a",
-    8 |		  "rao_id": 123,
+    5 |     "username": "1000279",
+    6 |     "password": "3DPTm:N4",
+    7 |     "pin": "23bYQq9a",
+    8 |     "rao_id": 123,
     9 |     "lang": "ES"
     10|	   }'
 
@@ -577,13 +577,13 @@ The response is a JSON object with added request approval information.
     8 |   "request": {
     9 |       "pk": 25139,
     10|       "given_name": "Name",
-    11|      "surname_1": "Surname1",
-    12|      "surname_2": "Surname2",
-    13|      "sex": null,
-    14|      "id_document_type": "IDC",
-    15|      "id_document_country": "ES",
-    16|      "serial_number": "A9999999E",
-    17|      (...)
+    11|       "surname_1": "Surname1",
+    12|       "surname_2": "Surname2",
+    13|       "sex": null,
+    14|       "id_document_type": "IDC",
+    15|       "id_document_country": "ES",
+    16|       "serial_number": "A9999999E",
+    17|       (...)
     18|     "approving_rao": {
     19|         "pk": 218,
     20|         "given_name": "RAO_Name",
