@@ -123,25 +123,25 @@ API reference: <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create requ
 
 This call must include enough information to identify the requester user. The full description of the arguments accepted by this endpoint can be found in the API call detailed documentation.
 
-	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
-	2 | -H 'Content-Type: application/json' \
-	3 | --cert 'cer.pem' --key 'key.pem'
-	4 | -d '{
-	5 |     "profile": "PFnubeAFCiudadano",
-	6 |     "scratchcard": "5053311",
-	7 |     "secure_element": "2",
-	8 |     "registration_authority": "116",
-  9 |     "country_name": "ES",
-  10|     "serial_number": "12345678A",
-  11|     "id_document_country": "ES",
-  12|     "id_document_type": "IDC",
-  13|     "given_name": "Name",
-  14|     "surname_1": "Surname1",
-  15|     "surname_2" "Surname2"
-  16|     "email": "mail@domain.com",
-  17|     "mobile_phone_number": "+34611223344",
-  18|     "paperless_mode": 1
-  19|     }'
+    1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
+    2 | -H 'Content-Type: application/json' \
+    3 | --cert 'cer.pem' --key 'key.pem'
+    4 | -d '{
+    5 |     "profile": "PFnubeAFCiudadano",
+    6 |     "scratchcard": "5053311",
+    7 |     "secure_element": "2",
+    8 |     "registration_authority": "116",
+    9 |     "country_name": "ES",
+    10|     "serial_number": "12345678A",
+    11|     "id_document_country": "ES",
+    12|     "id_document_type": "IDC",
+    13|     "given_name": "Name",
+    14|     "surname_1": "Surname1",
+    15|     "surname_2" "Surname2"
+    16|     "email": "mail@domain.com",
+    17|     "mobile_phone_number": "+34611223344",
+    18|     "paperless_mode": 1
+    19|     }'
 
 
 The return response is the a JSON containing the info of the Request just created. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
@@ -203,15 +203,15 @@ A Registration Authority Officer must first validate the request data and docume
 
 In order to approve a Request, this must be in the status of CREATED and must have at least the required documents (document_front and document_rear).
 
-	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
-	2 | -H 'Content-Type: application/json' \
-	3 | --cert 'cer.pem' --key 'key.pem'
-	4 | -d '{
-  5 | 	"username": "1000279",
-  6 | 	"password": "3DPTm:N4",
-  7 | 	"pin": "23bYQq9a",
-  8 |		"rao_id": 123
-  9 |	}'
+    1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
+    2 | -H 'Content-Type: application/json' \
+    3 | --cert 'cer.pem' --key 'key.pem'
+    4 | -d '{
+    5 | 	"username": "1000279",
+    6 | 	"password": "3DPTm:N4",
+    7 | 	"pin": "23bYQq9a",
+    8 |		"rao_id": 123
+    9 |	}'
 
 
 > STEP 4: Enrollment
@@ -367,13 +367,11 @@ The return response is the a JSON containing the info of the Request just create
 
 > STEP 2: Upload evidences
 
-API reference: 
-
 A previously created Video ID Request needs a set of information defined as evidences. The succesful upload of all information will change the request status to **`VIDEOREVIEW`**.
 
 Data and images are uploaded by using the following call:
 
-<a href="#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post">Upload data</a>
+API reference: <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post">Upload data</a>
 
 Data objects in detail:<br>
 `acceptance` : Client acceptance parameters (e.g. Terms & Conditions | Privacy Policy section). This is a customizable JSON object.<br>
@@ -420,11 +418,9 @@ Successful response status
 	3 | }
 
 
-API reference: 
-
 MP4-format Video evidence is uploaded by using the following call:
 
-<a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload video</a>
+API reference: <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload video</a>
 
     1 | curl -i -X POST https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/ \
     2 |   -H 'Content-Type: multipart/form-data' \
@@ -482,9 +478,7 @@ The validation successful response changes the request to **`CREATED`** status, 
 
 If all information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate. These calls are shown below:
 
-API reference:
-
-<a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate tbs receipt</a>
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate tbs receipt</a>
 
     1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
     2 |  -H 'Content-Type: application/json' \
@@ -507,9 +501,7 @@ The following JSON object contains the receipt:
 
 Similarly, it is necessary to retrieve the service contract before approving.
 
-API reference:
-
-<a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get a document</a>
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get a document</a>
 
 Form parameter `type`: **signed_contract**
 
