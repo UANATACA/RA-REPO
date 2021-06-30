@@ -308,7 +308,7 @@ The Video ID certificate generation process involves the following steps:
 
 </br>
 
-**API reference:** <a href="#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1get_first_unused/get">Get first unused scratchcard</a>
+**API reference:** <a href="#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1get_first_unused/get">Get First Unused Scratchcard</a>
 
 This call simply requires a Registration Authority (RA) id number. Scratchcards must be available for this RA for successful response.
 
@@ -530,7 +530,7 @@ The following JSON object contains the receipt:
 
 Similarly, it is necessary to retrieve the service contract before approving.
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_document/post">Generate Contract/a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_document/post">Generate Contract</a>
 
 Body parameter `doctype`: **contract**
 
@@ -550,7 +550,7 @@ The response consists in a JSON structure containing the contract in Base64 form
 
 </br>
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve a request</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve Request</a>
 
 This call makes the request ready for enrollment. Its status changes to **ENROLLREADY**.
 
@@ -611,7 +611,7 @@ For all requests is required to send an otp code to the requester. Software and 
 
 **Software**
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post">Software enrollment</a>
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post">Software Enroll</a>
 
 For the Software enrollemnt the parameters required are the secret OTP code send to the requester and the p12password set by the requester to import the generated p12:
 
