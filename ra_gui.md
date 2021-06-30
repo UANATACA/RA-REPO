@@ -241,7 +241,7 @@ API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_
 
 **Software**
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post">Software enrollment</a>
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post">Software Enroll</a>
 
 For the Software enrollemnt the parameters required are the secret OTP code send to the requester and the p12password set by the requester to import the generated p12:
 
@@ -254,7 +254,7 @@ At the end of the enrollment the server replies with the P12 generated in PEM fo
 
 **Cloud**
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud enrollment</a>
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud Enroll</a>
 
 For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
 
@@ -267,7 +267,7 @@ At the end of the enrollment the server replies with a JSON containing all reque
 
 **Cloud-QSCD**
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post">Cloud-QSCD enrollment</a>
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post">Cloud-QSCD Enroll</a>
 
 For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
 
@@ -276,7 +276,7 @@ For the cloud enrollemnt the parameters required are the secret OTP code send to
 	3 |   "pin": "pincode12"
 	4 | }
 
-At the end of the enrollment the server replies with a JSON containing all requesta data.
+At the end of enrollment the server replies with a JSON containing all request data.
 
 </html>
 
