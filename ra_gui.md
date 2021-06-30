@@ -448,33 +448,33 @@ A Registration Authority Officer must first validate the request data and eviden
 	2 | -H 'Content-Type: application/json' \
 	3 | --cert 'cer.pem' --key 'key.pem'
 	4 | -d '{
-  5 | 	"username": "5012345",
-  6 | 	"password": "Gy6F37xK",
-  7 | 	"pin": "belorado74",
-  8 |		"rao_id": "1400"
-	9 |	}'
+    5 | 	"username": "5012345",
+    6 | 	"password": "Gy6F37xK",
+    7 | 	"pin": "belorado74",
+    8 |		"rao_id": "1400"
+    9 |	}'
 
 The validation successful response changes the request to **`CREATED`** status, as a JSON object containing request full information is returned.
 
-  1 | {
-  2 |   "secrets": {
-  3 |       "puk": "38812452",
-  4 |       "enrollment_code": ".R4P9qgA",
-  5 |       "pin": "31945152",
-  6 |       "erc": "3417062505"
-  7 |   },
-  8 |   "request": {
-  9 |       "pk": 25139,
-  10|       "given_name": "Name",
-  11|      "surname_1": "Surname1",
-  12|      "surname_2": "Surname2",
-  13|      "sex": null,
-  14|      "id_document_type": "IDC",
-  15|      "id_document_country": "ES",
-  16|      "serial_number": "A9999999E",
-  17|      (...)
-  18|   }
-  19| }
+    1 | {
+    2 |   "secrets": {
+    3 |       "puk": "38812452",
+    4 |       "enrollment_code": ".R4P9qgA",
+    5 |       "pin": "31945152",
+    6 |       "erc": "3417062505"
+    7 |   },
+    8 |   "request": {
+    9 |       "pk": 25139,
+    10|       "given_name": "Name",
+    11|      "surname_1": "Surname1",
+    12|      "surname_2": "Surname2",
+    13|      "sex": null,
+    14|      "id_document_type": "IDC",
+    15|      "id_document_country": "ES",
+    16|      "serial_number": "A9999999E",
+    17|      (...)
+    18|   }
+    19| }
 
 
 
@@ -486,24 +486,24 @@ API reference:
 
 <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate tbs receipt</a>
 
-  1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
-  2 |  -H 'Content-Type: application/json' \
-  3 |  -d '{
-  4 |    "rao": "1400",
-  5 |    "type": "APPROVE"
-  6 |  }'
+    1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
+    2 |  -H 'Content-Type: application/json' \
+    3 |  -d '{
+    4 |    "rao": "1400",
+    5 |    "type": "APPROVE"
+    6 |  }'
 
 The following JSON object contains the receipt:
 
-  1 | {
-  2 |  "serial_number": "3ef3696d2939241d",
-  3 |  "receipt": "El operador RAO_Name RAO_Surname1 con número de identificación 12345678P\r\nactuando en calidad de operador autorizado de registro del prestador de servicios\r\n
-  4 |   de confianza UANATACA, S.A. con NIF A66721499, (UANATACA en lo sucesivo)\r\n\r\nDECLARA\r\n\r\nQue previa verificación de acuerdo a la Declaración de Prácticas de
-  5 |   UANATACA\r\npublicadas en www.uanataca.com, la información detallada a continuación es\r\ncorrecta y será incluida (donde aplicable) en la solicitud de 
-  6 |   certificados\r\ncualificados:\r\n\r\n- Datos de Identificación de la solicitud de certificados: 36893\r\n- Nombre y Apellidos del Firmante: Name Surname1 Surname2\r\n- DNI/
-  7 |   NIE/PASAPORTE del Firmante: 11111111B\r\n- Dirección de correo electrónico del Firmante: mail@domain.com\r\n\r\n\r\n18/03/
-  8 |   2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
-  9 | }
+    1 | {
+    2 |  "serial_number": "3ef3696d2939241d",
+    3 |  "receipt": "El operador RAO_Name RAO_Surname1 con número de identificación 12345678P\r\nactuando en calidad de operador autorizado de registro del prestador de servicios\r\n
+    4 |   de confianza UANATACA, S.A. con NIF A66721499, (UANATACA en lo sucesivo)\r\n\r\nDECLARA\r\n\r\nQue previa verificación de acuerdo a la Declaración de Prácticas de
+    5 |   UANATACA\r\npublicadas en www.uanataca.com, la información detallada a continuación es\r\ncorrecta y será incluida (donde aplicable) en la solicitud de 
+    6 |   certificados\r\ncualificados:\r\n\r\n- Datos de Identificación de la solicitud de certificados: 36893\r\n- Nombre y Apellidos del Firmante: Name Surname1 Surname2\r\n- DNI/
+    7 |   NIE/PASAPORTE del Firmante: 11111111B\r\n- Dirección de correo electrónico del Firmante: mail@domain.com\r\n\r\n\r\n18/03/
+    8 |   2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
+    9 | }
 
 Similarly, it is necessary to retrieve the service contract before approving.
 
@@ -513,35 +513,35 @@ API reference:
 
 Form parameter `type`: **signed_contract**
 
-  1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
-  2 |  -H 'Content-Type: multipart/form-data' \
-  3 |  -F type="signed_contract"
+    1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
+    2 |  -H 'Content-Type: multipart/form-data' \
+    3 |  -F type="signed_contract"
 
 The response consists in a JSON structure containing the contract in Base64 format.
 
-  1 | [
-  2 |     {
-  3 |        "pk": 48312,
-  4 |         "document": "iVBORw0KGgoAAAANSUhEUgAAAPwAAAChCAYAAAGUvOLYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAABU9xJREFUeNqMlmuMXGUZx3(...)",
-  5 |         "type": "document_front"
-  6 |     }
-  7 | ]
+    1 | [
+    2 |     {
+    3 |        "pk": 48312,
+    4 |         "document": "iVBORw0KGgoAAAANSUhEUgAAAPwAAAChCAYAAAGUvOLYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAABU9xJREFUeNqMlmuMXGUZx3(...)",
+    5 |         "type": "document_front"
+    6 |     }
+    7 | ]
 
 API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve a request</a>
 
 This call makes the request ready for enrollment. Its status changes to **`ENROLLREADY`**.
 
-	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
-	2 | -H 'Content-Type: application/json' \
-	3 | --cert 'cer.pem' --key 'key.pem'
-	4 | -d '{
-	5 | {
-  6 | 	"username": "1000279",
-  7 | 	"password": "3DPTm:N4",
-  8 | 	"pin": "23bYQq9a",
-  9 |		"rao_id": 123,
-  10|   "lang": "ES"
-  11|	}
+    1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
+    2 | -H 'Content-Type: application/json' \
+    3 | --cert 'cer.pem' --key 'key.pem'
+    4 | -d '{
+    5 | {
+    6 | 	"username": "1000279",
+    7 | 	"password": "3DPTm:N4",
+    8 | 	"pin": "23bYQq9a",
+    9 |		"rao_id": 123,
+    10|   "lang": "ES"
+    11|	}
 
 The response is a JSON object with added request approval information. 
 
