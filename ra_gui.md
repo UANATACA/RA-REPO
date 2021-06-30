@@ -307,16 +307,16 @@ This call simply requires a Registration Authority (RA) id number. Scratchcards 
 	3 | --cert 'cer.pem' --key 'key.pem'
 	4 | -d '{
 	5 |       "ra": "121"
-    6 |     }'
+    6 |   }'
 
 The return response is the a JSON containing the single-use Scratchcard associated data. The scratchcard number `sn` must be added to the **Create request** call. 
 
-1 | {
-2 |   "pk": 1193,
-3 |   "sn": "1256948",
-4 |   "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
-5 |   "registration_authority": 121
-6 | }
+  1 | {
+  2 |   "pk": 1193,
+  3 |   "sn": "1256948",
+  4 |   "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
+  5 |   "registration_authority": 121
+  6 | }
 
 API reference: 
 
