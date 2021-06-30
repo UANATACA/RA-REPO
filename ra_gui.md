@@ -467,13 +467,13 @@ A Registration Authority Officer must first validate the request data and eviden
     2 | -H 'Content-Type: application/json' \
     3 | --cert 'cer.pem' --key 'key.pem'
     4 | -d '{
-    5 | 	  "username": "5012345",
-    6 | 	  "password": "Gy6F37xK",
-    7 | 	  "pin": "belorado74",
-    8 |		  "rao_id": "1400"
+    5 |     "username": "5012345",
+    6 |     "password": "Gy6F37xK",
+    7 |     "pin": "belorado74",
+    8 |     "rao_id": "1400"
     9 |	   }'
 
-The validation successful response changes the request to CREATED status, as a JSON object containing request full information is returned.
+The validation successful response changes the request to **CREATED** status, as a JSON object containing request full information is returned.
 
     1 | {
     2 |   "secrets": {
@@ -485,13 +485,13 @@ The validation successful response changes the request to CREATED status, as a J
     8 |   "request": {
     9 |       "pk": 25139,
     10|       "given_name": "Name",
-    11|      "surname_1": "Surname1",
-    12|      "surname_2": "Surname2",
-    13|      "sex": null,
-    14|      "id_document_type": "IDC",
-    15|      "id_document_country": "ES",
-    16|      "serial_number": "A9999999E",
-    17|      (...)
+    11|       "surname_1": "Surname1",
+    12|       "surname_2": "Surname2",
+    13|       "sex": null,
+    14|       "id_document_type": "IDC",
+    15|       "id_document_country": "ES",
+    16|       "serial_number": "A9999999E",
+    17|       (...)
     18|   }
     19| }
 
