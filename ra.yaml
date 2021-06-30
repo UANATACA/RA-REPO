@@ -162,6 +162,9 @@ Manage digital certicate requests life-cycle.</br>
     <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post'>/requests/generates_tbs_receipt/</a></td><td>Generates a receipt associated to a request that must be signed by a RAO</td>
   </tr>
  <tr>
+    <td>POST</td><td><a href='XXXXXXXXXX INSERT XXXXXXXXXX'>/requests/{id}/generate_document/</a></td><td>Generates a contract associated to a request that must be signed by a RAO</td>
+  </tr>
+ <tr>
     <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_upload_document/post'>/requests/{id}/pl_upload_document/</a></td><td>Upload required documentation</td>
   </tr>
  <tr>
@@ -1891,6 +1894,179 @@ paths:
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
                         var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/", postData);
+                        var response = await request.Content.ReadAsStringAsync();
+
+                        Console.WriteLine(response);
+                      }
+                    }
+                  }
+
+#############
+  /api/v1/requests/{id}/generate_document:
+    post: 
+      summary: GENERATE CONTRACT
+      tags:
+        - Requests
+      description: "Generates a contract associated to a request that must be signed by a RAO.<br>
+                    The contract is signed in the <HTML><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post'>approve request</a></HTML> call."
+      consumes:
+        - application/json
+      produces:
+        - application/json 
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The unique identifier of the Request
+          required: true
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/ContractObject"
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            properties:
+              serial_number:
+                type: string
+                description: The receipt serial number
+              receipt:
+                type: string
+                description: The receipt content
+          examples:
+            application/json:
+                {
+                    "serial_number": "3ef3696d2939241d",
+                    "receipt": "El operador RAO_Name RAO_Surname1 con número de identificación 12345678P\r\nactuando en calidad de operador autorizado de registro del prestador de servicios\r\nde confianza UANATACA, S.A. con NIF A66721499, (UANATACA en lo sucesivo)\r\n\r\nDECLARA\r\n\r\nQue previa verificación de acuerdo a la Declaración de Prácticas de UANATACA\r\npublicadas en www.uanataca.com, la información detallada a continuación es\r\ncorrecta y será incluida (donde aplicable) en la solicitud de certificados\r\ncualificados:\r\n\r\n- Datos de Identificación de la solicitud de certificados: 36893\r\n- Nombre y Apellidos del Firmante: Name Surname1 Surname2\r\n- DNI/NIE/PASAPORTE del Firmante: 11111111B\r\n- Dirección de correo electrónico del Firmante: mail@domain.com\r\n\r\n\r\n18/03/2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
+                }
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                description: JSON syntax error description
+          examples:
+            application/json:
+              {
+                  "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 2 (char 30)"
+              }
+        404:
+          description: Invalid request id
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message    
+          examples:
+            application/json:
+              {
+                  "code": "400",
+                  "id": "b78952287417c96f",
+                  "error": "No Request matches the given query."
+              }
+      x-codeSamples:
+        - lang: 'curl'
+          source: |
+                  curl -i -X POST \
+                    https://api.uanataca.com/api/v1/requests/25139/generate_document/ \
+                    -H 'Content-Type: application/json' \
+                    -d '{
+                      "type": "APPROVE"
+                    }'
+        - lang: 'Javascript'
+          source: |
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/generate_document/',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        type: 'APPROVE'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'Python'
+          source: |
+                  import requests
+
+                  url = "https://api.uanataca.com/api/v1/requests/25139/generate_document/"
+
+                  payload = {
+                    "type": "APPROVE"
+                  }
+
+                  headers = {"Content-Type": "application/json"}
+
+                  response = requests.post(url, json=payload, headers=headers)
+
+                  data = response.json()
+                  print(data)
+        - lang: 'Node.js'
+          source: |
+                  const fetch = require('node-fetch');
+
+                  const resp = await fetch(
+                    'https://api.uanataca.com/api/v1/requests/25139/generates_document/',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        type: 'APPROVE'
+                      })
+                    }
+                  );
+
+                  const data = await resp.json();
+                  console.log(data);
+        - lang: 'C#'
+          source: |
+                  using System;
+                  using System.Net.Http;
+                  using System.Threading.Tasks;
+                  using System.Text;
+                  using Newtonsoft.Json.Linq;
+                  using System.Security.Cryptography.X509Certificates;
+                  
+                  public class Program
+                  {
+                    public static async Task Main(string[] args)
+                    {
+                      X509Certificate2 clientCert = new X509Certificate2("./path/to/cert_and_key.p12", "password"); 
+                      HttpClientHandler handler = new HttpClientHandler();
+
+                      // This disables the SSL verification in TEST mode
+                      handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+                      {
+                          return true;
+                      };
+                      
+                      handler.ClientCertificates.Add(clientCert);
+                      
+                      using (var client = new HttpClient(handler))
+                      {
+                        JObject json = JObject.Parse(@"{
+                          type: 'APPROVE'
+                        }");
+                        var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var request = await client.PostAsync("https://api.uanataca.com/api/v1/requests/25139/generates_document/", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -10008,6 +10184,9 @@ definitions:
 ###########
   TBSObject:
     type: "object"
+    required:
+      - rao
+      - type
     properties:
       rao:
           type: "string"
@@ -10015,6 +10194,14 @@ definitions:
       type:
           type: "string"
           description: "The type of the receipt to generate"
+###########
+  ContractObject:
+    type: "object"
+    properties:
+      doctype:
+          type: "string"
+          enum: [APPROVE]
+          description: "The action associated to the contract generation (APPROVE)"
 ###########
   ApproveReqObject:
     type: "object"
