@@ -162,7 +162,7 @@ Manage digital certicate requests life-cycle.</br>
     <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post'>/requests/generates_tbs_receipt/</a></td><td>Generates a receipt associated to a request that must be signed by a RAO</td>
   </tr>
  <tr>
-    <td>POST</td><td><a href='XXXXXXXXXX INSERT XXXXXXXXXX'>/requests/{id}/generate_document/</a></td><td>Generates a contract associated to a request that must be signed by a RAO</td>
+    <td>POST</td><td><a href='XXXXXXXXXX INSERT XXXXXXXXXX'>/requests/{id}/generate_document/</a></td><td>Generates a contract related to a request that must be signed by a RAO</td>
   </tr>
  <tr>
     <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_upload_document/post'>/requests/{id}/pl_upload_document/</a></td><td>Upload required documentation</td>
