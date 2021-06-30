@@ -304,8 +304,8 @@ This call simply requires a Registration Authority (RA) id number. Scratchcards 
 	2 | -H 'Content-Type: application/json' \
 	3 | --cert 'cer.pem' --key 'key.pem'
 	4 | -d '{
-	5 |       "ra": "121"
-    6 |   }'
+	5 |     "ra": "121"
+    6 |  }'
 
 The return response is the a JSON containing the single-use Scratchcard associated data. The scratchcard number `sn` must be added to the **Create request** call. 
 
@@ -321,14 +321,14 @@ API reference: <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create requ
 
 This call must include enough information to identify the requester user. The full description of the arguments accepted by this endpoint can be found in the API call detailed documentation.
 
-	1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
-	2 | -H 'Content-Type: application/json' \
-	3 | --cert 'cer.pem' --key 'key.pem'
-	4 | -d '{
-	5 |     "profile": "PFnubeAFCiudadano",
-	6 |     "scratchcard": "5053311",
-	7 |     "secure_element": "2",
-	8 |     "registration_authority": "116",
+    1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
+    2 | -H 'Content-Type: application/json' \
+    3 | --cert 'cer.pem' --key 'key.pem'
+    4 | -d '{
+    5 |     "profile": "PFnubeAFCiudadano",
+    6 |     "scratchcard": "5053311",
+    7 |     "secure_element": "2",
+    8 |     "registration_authority": "116",
     9 |     "country_name": "ES",
     10|     "serial_number": "12345678A",
     11|     "id_document_country": "ES",
@@ -340,7 +340,7 @@ This call must include enough information to identify the requester user. The fu
     17|     "mobile_phone_number": "+34611223344",
     18|     "videoid_mode": 1,
     19|     "webhook_url":"https://bit4id.pythonanywhere.com/video"
-    20| }'
+    20|    }'
 
 
 The return response is the a JSON containing the info of the Request just created, in **`VIDEOPENDING`** status. One of the most important parameters from this JSON is the `pk` which represents the Request unique identifier and is used for every operation related to this Request.
@@ -440,15 +440,15 @@ API reference: <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1v
 A Registration Authority Officer must first validate the request data and evidences before approving. 
 
 
-	1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/validate_videoid \
-	2 | -H 'Content-Type: application/json' \
-	3 | --cert 'cer.pem' --key 'key.pem'
-	4 | -d '{
-    5 | 	"username": "5012345",
-    6 | 	"password": "Gy6F37xK",
-    7 | 	"pin": "belorado74",
-    8 |		"rao_id": "1400"
-    9 |	}'
+    1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/validate_videoid \
+    2 | -H 'Content-Type: application/json' \
+    3 | --cert 'cer.pem' --key 'key.pem'
+    4 | -d '{
+    5 | 	  "username": "5012345",
+    6 | 	  "password": "Gy6F37xK",
+    7 | 	  "pin": "belorado74",
+    8 |		  "rao_id": "1400"
+    9 |	   }'
 
 The validation successful response changes the request to **`CREATED`** status, as a JSON object containing request full information is returned.
 
@@ -483,9 +483,9 @@ API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates
     1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
     2 |  -H 'Content-Type: application/json' \
     3 |  -d '{
-    4 |    "rao": "1400",
-    5 |    "type": "APPROVE"
-    6 |  }'
+    4 |      "rao": "1400",
+    5 |      "type": "APPROVE"
+    6 |     }'
 
 The following JSON object contains the receipt:
 
@@ -527,12 +527,12 @@ This call makes the request ready for enrollment. Its status changes to **`ENROL
     2 | -H 'Content-Type: application/json' \
     3 | --cert 'cer.pem' --key 'key.pem'
     4 | -d '{
-    5 | 	"username": "1000279",
-    6 | 	"password": "3DPTm:N4",
-    7 | 	"pin": "23bYQq9a",
-    8 |		"rao_id": 123,
-    9 |   "lang": "ES"
-    10|	}'
+    5 | 	  "username": "1000279",
+    6 | 	  "password": "3DPTm:N4",
+    7 | 	  "pin": "23bYQq9a",
+    8 |		  "rao_id": 123,
+    9 |     "lang": "ES"
+    10|	   }'
 
 The response is a JSON object with added request approval information. 
 
@@ -580,8 +580,8 @@ API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_en
 For the Software enrollemnt the parameters required are the secret OTP code send to the requester and the p12password set by the requester to import the generated p12:
 
 	1 | {
-	2 |     "secret": "000000",
-	3 |     "p12password": "password12"
+	2 |   "secret": "000000",
+	3 |   "p12password": "password12"
 	4 | }
 
 At the end of the enrollment the server replies with the P12 generated in PEM format.
@@ -593,8 +593,8 @@ API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_
 For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
 
 	1 | {
-	2 |     "secret": "000000",
-	3 |     "pin": "pincode12"
+	2 |   "secret": "000000",
+	3 |   "pin": "pincode12"
 	4 | }
 
 At the end of the enrollment the server replies with a JSON containing all requesta data.
@@ -606,8 +606,8 @@ API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud
 For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
 
 	1 | {
-	2 |     "secret": "000000",
-	3 |     "pin": "pincode12"
+	2 |   "secret": "000000",
+	3 |   "pin": "pincode12"
 	4 | }
 
 At the end of the enrollment the server replies with a JSON containing all requesta data.
