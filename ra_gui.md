@@ -442,7 +442,7 @@ Successful response status
 
 </br>
 
-> **STEP 3: Validate Request**
+> **STEP 3: VALIDATE REQUEST**
 
 </br>
 
@@ -485,7 +485,7 @@ The validation successful response changes the request to CREATED status, as a J
 
 </br>
 
-> **STEP 4:** Approve Request
+> **STEP 4: APPROVE REQUEST**
 
 </br>
 
@@ -577,7 +577,7 @@ The response is a JSON object with added request approval information.
 
 </br>
 
-> STEP 4: Enrollment
+> **STEP 5: ENROLLMENT**
 
 </br>
 
