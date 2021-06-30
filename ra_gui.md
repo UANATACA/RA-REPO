@@ -112,12 +112,16 @@ This section section presents the workflow for a common digital certificate gene
 
 The common digital certificate generation process involves the following steps:
 
-- 1) Creation of a Request
-- 2) Upload required documents
+- 1) Request creation
+- 2) Upload documents
 - 3) Approve Request
 - 4) Cloud/Software Enrollment
 
-> **STEP 1: CREATION OF A REQUEST**
+</br>
+
+> **STEP 1: REQUEST CREATION**
+
+</br>
 
 **API reference:** <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create Request</a>
 
@@ -166,7 +170,11 @@ The return response is the a JSON containing info from the created request. One 
 	18|   ...
 	19| }
 
-> **STEP 2: UPLOAD REQUIRED DOCUMENTS**
+</br>
+
+> **STEP 2: UPLOAD DOCUMENTS**
+
+</br>
 
 **API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_upload_document/post">Upload Document</a>
 
@@ -195,7 +203,11 @@ The return response contains the uploaded document unique identifier associated 
 	3 |   "type": "document_front"
 	4 | }
 
+</br>
+
 > **STEP 3: APPROVE REQUEST**
+
+</br>
 
 **API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve Request</a>
 
@@ -213,8 +225,11 @@ In order to approve a Request, this must be in the status of CREATED and must ha
     8 |		"rao_id": 123
     9 |	}'
 
+</br>
 
-> **STEP 4: ENROLLMENT**
+> **STEP 4: CLOUD/SOFTWARE ENROLLMENT**
+
+</br>
 
 There are different endpoints to enroll a Request, depending on the secure element chosen.
 
@@ -515,23 +530,23 @@ The following JSON object contains the receipt:
 
 Similarly, it is necessary to retrieve the service contract before approving.
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get a document</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_document/post">Generate Contract/a>
 
-Form parameter `type`: **signed_contract**
+Body parameter `doctype`: **contract**
 
-    1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
-    2 |  -H 'Content-Type: multipart/form-data' \
-    3 |  -F type="signed_contract"
+    1 | curl -i -X POST \
+    2 |   https://api.uanataca.com/api/v1/requests/25139/generate_document/ \
+    3 |   -H 'Content-Type: application/json' \
+    4 |   -d '{
+    5 |     "type": "APPROVE"
+    6 |  }'
+
 
 The response consists in a JSON structure containing the contract in Base64 format.
 
-    1 | [
-    2 |     {
-    3 |        "pk": 48312,
-    4 |         "document": "iVBORw0KGgoAAAANSUhEUgAAAPwAAAChCAYAAAGUvOLYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAABU9xJREFUeNqMlmuMXGUZx3(...)",
-    5 |         "type": "document_front"
-    6 |     }
-    7 | ]
+    1 | {
+    2 |   "document": "%PDF-1.4\n%���� ReportLab Generated PDF document http://www.reportlab.com\n1 0 obj\n<<\n/F1 2 0 R\n>>\nendobj\n2 0 obj\n<<\n/Bas (...) "
+    3 | }
 
 </br>
 
