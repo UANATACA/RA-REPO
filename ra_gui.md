@@ -296,9 +296,7 @@ The Video ID certificate generation process involves the following steps:
 
 > STEP 1: Request creation
 
-API reference: 
-
-<a href="#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1get_first_unused/get">Get first unused scratchcard</a>
+API reference: <a href="#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1get_first_unused/get">Get first unused scratchcard</a>
 
 This call simply requires a Registration Authority (RA) id number. Scratchcards must be available for this RA for successful response.
 
@@ -327,9 +325,7 @@ The return response is the a JSON containing the single-use Scratchcard associat
   7 | }
 
 
-API reference: 
-
-<a href="#tag/Requests/paths/~1api~1v1~1request/post">Create request</a>
+API reference: <a href="#tag/Requests/paths/~1api~1v1~1request/post">Create request</a>
 
 This call must include enough information to identify the requester user. The full description of the arguments accepted by this endpoint can be found in the API call detailed documentation.
 
