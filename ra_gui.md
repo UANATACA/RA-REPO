@@ -406,10 +406,10 @@ Data and images are uploaded by using the following call:
 **Data objects in detail:**
 
 `acceptance` : Client acceptance parameters (e.g. Terms & Conditions,  Privacy Policy). This is a customizable JSON object.<br>
-`data` : Set of pictures associated to the client's ID document plus a selfie of him/her. Mandatory object. <br>
-`ocr_data` : Text information extracted from the client's ID document via Optical Character Recognition (OCR). Mandatory. <br>
+`data` : Set of pictures associated to the client's ID document plus a selfie of him/her. **Mandatory object** <br>
+`ocr_data` : Text information extracted from the client's ID document via Optical Character Recognition (OCR). **Mandatory** <br>
 `security_checks` : Set of validation fields associated to the client's identity (underaging, matching info, liveliness, etc) <br>
-`similarity_level` : Similarity between the client's selfie and the picture is shown on his/her ID document. Mandatory. <br>
+`similarity_level` : Similarity between the client's selfie and the picture is shown on his/her ID document. **Mandatory** <br>
 
     1 | curl -i -X POST https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result \
     2 |   -H 'Content-Type: application/json' \
@@ -448,7 +448,7 @@ Successful response status
 
 </br>
 
-in the same way, MP4-format Video evidence is uploaded by using the following call:
+In the same way, MP4-format Video evidence is uploaded by using the following call:
 
 **API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload Video</a>
 
@@ -464,7 +464,7 @@ Successful response status
 	2 |   "status": "200 OK"
 	3 | }
 
-If uploaded video needs to be retrieved, use <a href="#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get">Download Video</a>
+If the uploaded video needs to be retrieved, use <a href="#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get">Download Video</a>
 
 </br>
 
@@ -474,7 +474,7 @@ If uploaded video needs to be retrieved, use <a href="#tag/Video-ID/paths/~1api~
 
 **API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post">Validate Request</a>
 
-A Registration Authority Officer must validate the request data and evidences before approving. This call is used only for 2-step mode.  
+A Registration Authority Officer must validate the request data and evidences before approval. This call is used only for 2-step mode.  
 
 
     1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/validate_videoid \
@@ -487,7 +487,7 @@ A Registration Authority Officer must validate the request data and evidences be
     8 |     "rao_id": "1400"
     9 |	   }'
 
-The validation successful response changes the request to **CREATED** status, as a JSON object containing request full information is returned.
+The validation successful response changes the request to **CREATED** status as a JSON object containing full request information is returned.
 
     1 | {
     2 |   "secrets": {
@@ -511,7 +511,7 @@ The validation successful response changes the request to **CREATED** status, as
 
 </br>
 
-For unsuccessful validations leading to the refusal of a request, the corresponding call is  <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1refuse_videoid/post">Refuse Request</a>. Check API Reference.
+For unsuccessful validations leading to a request refusal, the corresponding call is  <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1refuse_videoid/post">Refuse Request</a>. Check API Reference.
 
 </br>
 
