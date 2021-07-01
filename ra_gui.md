@@ -539,9 +539,7 @@ The following JSON object contains the receipt:
 
 Similarly, it is necessary to retrieve the service contract and present it to the RAO before approval.
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (Body `type`: **contract**)
-
-Body parameter `type` must be set to **contract**
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (`type`: **contract**)
 
     1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
     2 |   -H 'Content-Type: application/json' \
