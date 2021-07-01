@@ -382,6 +382,8 @@ The return response is the a JSON containing info from the created request, in *
 
 In some cases, specific request associated data needs to be modified before continuing the process. To do so, the corresponding call is <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a>. Check API Reference.
 
+</br>
+
 > **STEP 2: UPLOAD EVIDENCES**
 
 </br>
@@ -502,6 +504,8 @@ The validation successful response changes the request to **CREATED** status, as
 
 For unsuccessful validations leading to the refusal of a request, the corresponding call is  <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1refuse_videoid/post">Refuse Request</a>. Check API Reference.
 
+</br>
+
 > **STEP 4: REQUEST APPROVAL**
 
 </br>
@@ -601,6 +605,8 @@ The response is a JSON object with added request approval information.
 </br>
 
 In case of not approving a request for any reason, the call <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1cancel/delete">Cancel Request</a> must be executed. Check API Reference.
+
+</br>
 
 > **STEP 5: CLOUD/SOFTWARE ENROLLMENT**
 
