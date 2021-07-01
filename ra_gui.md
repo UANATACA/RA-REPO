@@ -292,7 +292,7 @@ At the end of enrollment the server replies with a JSON containing all request d
 
 ## External - Workflow
 
-This section section presents the workflow for a digital certificate generated through a Video Identification service.
+This section section presents the workflow for a digital certificate generated via Video Identification service.
 
 The Video ID certificate generation process involves the following steps:
 </br>
@@ -313,7 +313,7 @@ The Video ID certificate generation process involves the following steps:
 
 </br>
 
-**API reference:** <a href="#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1get_first_unused/get">Get First Unused Scratchcard</a>
+**API Reference:** <a href="#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1get_first_unused/get">Get First Unused Scratchcard</a>
 
 This call simply requires a Registration Authority (RA) id number. Scratchcards must be available for this RA for successful response.
 
@@ -335,7 +335,7 @@ The return response is the a JSON containing the single-use Scratchcard associat
 
 </br>
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests/post">Create Request</a>
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests/post">Create Request</a>
 
 This call must include enough information to identify the requester user. The full description of the arguments accepted by this endpoint can be found in the API call detailed documentation.
 
@@ -397,7 +397,7 @@ A previously created Video ID Request needs a set of information defined as evid
 
 Data and images are uploaded by using the following call:
 
-**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post">Upload Data Evidence</a>
+**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post">Upload Data Evidence</a>
 
 <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
 
@@ -450,7 +450,7 @@ Successful response status
 
 in the same way, MP4-format Video evidence is uploaded by using the following call:
 
-**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload Video</a>
+**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload Video</a>
 
 <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
 
@@ -472,7 +472,7 @@ If uploaded video needs to be retrieved, use <a href="#tag/Video-ID/paths/~1api~
 
 </br>
 
-**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post">Validate Request</a>
+**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post">Validate Request</a>
 
 A Registration Authority Officer must validate the request data and evidences before approving. This call is used only for 2-step mode.  
 
@@ -523,7 +523,7 @@ If all information is correct, the RAO will approve the request by signing the r
 
 </br>
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate RAO Declaration</a>
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate RAO Declaration</a>
 
     1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
     2 |  -H 'Content-Type: application/json' \
@@ -548,7 +548,7 @@ The following JSON object contains the receipt:
 
 Similarly, it is necessary to retrieve the service contract and present it to the RAO before approval.
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (`type`: **contract**)
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (`type`: **contract**)
 
     1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
     2 |   -H 'Content-Type: application/json' \
@@ -569,7 +569,7 @@ The response consists in a JSON structure containing the contract in Base64 form
 
 </br>
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve Request</a>
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve Request</a>
 
 This call makes the request ready for enrollment. Its status changes to **ENROLLREADY**. In 1-step mode, both validation and approval occur when executing this call.
 
@@ -624,19 +624,19 @@ In case of not approving a request for any reason, the call <a href="#tag/Reques
 
 In this step, the service contract must be presented to the signer before enrollment.
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (Body `type`: **contract**)
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (Body `type`: **contract**)
 
 There are different endpoints to enroll a request depending on the secure element chosen. The next action involves sending an otp code to the requester using the calls shown below. Software and cloud certificates use the same call to send the otp code, as cloud-qscd certificates use a different one.
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post">Generate OTP (Cloud or Software)</a>
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post">Generate OTP (Cloud or Software)</a>
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Generate OTP (Cloud or QSCD)</a>
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Generate OTP (Cloud or QSCD)</a>
 
 </br>
 
 **Software**
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post">Software Enroll</a>
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post">Software Enroll</a>
 
 For the Software enrollemnt the parameters required are the secret OTP code send to the requester and the p12password set by the requester to import the generated p12:
 
@@ -651,7 +651,7 @@ At the end of the enrollment the server replies with the P12 generated in PEM fo
 
 **Cloud**
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud Enroll</a>
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud Enroll</a>
 
 For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
 
@@ -666,7 +666,7 @@ At the end of the enrollment the server replies with a JSON containing all reque
 
 **Cloud-QSCD**
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post">Cloud-QSCD Enroll</a>
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post">Cloud-QSCD Enroll</a>
 
 For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
 
@@ -695,9 +695,9 @@ For correct process completion, the following information must be delivered to t
 
 </br>
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a>
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a>
 
-**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get">Download video</a>
+**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get">Download video</a>
 
 </html>
 
