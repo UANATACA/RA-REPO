@@ -295,9 +295,7 @@ At the end of enrollment the server replies with a JSON containing all request d
 This section section presents the workflow for a digital certificate generated through a Video Identification service.
 
 The Video ID certificate generation process involves the following steps:
-
 </br>
-
 **1) CREATION OF A REQUEST**
 
 **2) UPLOAD EVIDENCES**
