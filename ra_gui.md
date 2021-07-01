@@ -677,7 +677,7 @@ For correct process completion, the following information must be delivered to t
 
 - The certificate set of credentials (Cloud Enroll)
 
-- The signed contract by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud Enroll</a> call.
+- The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> call.
 
 
 </html>
