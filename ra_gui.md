@@ -108,7 +108,7 @@ The following image summarizes the common digital certificate request and issue 
 ## Workflow
 
 
-This section section presents the workflow for a common digital certificate generation with a step-by-step description of the API calls required.
+This section presents the workflow for a common digital certificate generation with a step-by-step description of the API calls required.
 
 The common digital certificate generation process involves the following steps:
 
@@ -148,7 +148,7 @@ This call must include enough information to identify the requester user. The fu
     19|     }'
 
 
-The return response is the a JSON containing info from the created request. One of the most important parameters from this JSON is the `pk` which represents the request unique identifier and is used for every operation related to this request.
+The response is a JSON containing info from the created request. One of the most important parameters from this JSON is the `pk` which represents the request unique identifier and is used for every operation related to this request.
 
 	1 | {
 	2 |   "pk": 11223,
@@ -178,7 +178,7 @@ The return response is the a JSON containing info from the created request. One 
 
 **API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_upload_document/post">Upload Document</a>
 
-The request created needs documents, so we can query with an HTTP POST request to upload the files.
+The created request needs documents, so we can query with an HTTP POST request to upload the files.
 
 The required documents for every request are:<br>
 `document_front` : The photo of the front side of the requester ID card<br>
@@ -196,7 +196,7 @@ Note that this endpoint has to be queried for every document type that the Reque
 	4 | -F document=@/idc_front.jpg \
 	5 | -F type=document_front
 
-The return response contains the uploaded document unique identifier associated to the request.
+The response contains the uploaded document unique identifier associated to the request.
 
 	1 | {
 	2 |   "pk": 11314,
@@ -292,7 +292,7 @@ At the end of enrollment the server replies with a JSON containing all request d
 
 ## External - Workflow
 
-This section section presents the workflow for a digital certificate generated through Video Identification service.
+This section presents the workflow for a digital certificate generated through Video Identification service.
 
 The Video ID certificate generation process involves the following steps:
 </br>
@@ -324,7 +324,7 @@ This call simply requires a Registration Authority (RA) id number. Scratchcards 
 	5 |     "ra": "121"
     6 |  }'
 
-The response is the a JSON containing the single-use Scratchcard associated data. The scratchcard number `sn` must be added to the <a href="#tag/Requests/paths/~1api~1v1~1requests/post">Create Request</a> call. 
+The response is a JSON object containing the single-use Scratchcard associated data. The scratchcard number `sn` must be added to the <a href="#tag/Requests/paths/~1api~1v1~1requests/post">Create Request</a> call. 
 
 	1 | {
 	2 |   "pk": 1193,
