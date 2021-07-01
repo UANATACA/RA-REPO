@@ -177,7 +177,7 @@ Manage digital certicate requests life-cycle.</br>
     <td>GET</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_documents/get'>/requests/{id}/pl_get_documents/</a></td><td>Retrieve all documents</td>
   </tr>
  <tr>
-    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post'>/requests/{id}/pl_approve/</a></td><td>Approve a request</td>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post'>/requests/{id}/pl_approve/</a></td><td>Approve request</td>
   </tr>
  <tr>
     <td>GET</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1preauthlink/get'>/requests/{id}/preauthlink/</a></td><td>Get the certificate generation process pre-authenticated link</td>
@@ -2669,7 +2669,7 @@ paths:
 #############
   /api/v1/requests/{id}/pl_approve:
     post: 
-      summary: APPROVE A REQUEST
+      summary: APPROVE REQUEST
       tags:
         - Requests
       description: Approval of a request by a RAO. At this moment the RAO will sign the receipt and the contract.
