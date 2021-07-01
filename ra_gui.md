@@ -296,15 +296,19 @@ This section section presents the workflow for a digital certificate generated t
 
 The Video ID certificate generation process involves the following steps:
 
-**1)** Request Creation
-**2)** Upload Evidences
-**3)** Request Validation
-**4)** Request Approval
-**5)** Cloud/Software Enrollment
+**1)** CREATION OF A REQUEST
+
+**2)** UPLOAD EVIDENCES
+
+**3)** REQUEST VALIDATION
+
+**4)** REQUEST APPROVAL
+
+**5)** CLOUD/SOFTWARE ENROLLMENT
 
 </br>
 
-> **STEP 1: REQUEST CREATION**
+> **STEP 1: CREATION OF A REQUEST**
 
 </br>
 
