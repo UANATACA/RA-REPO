@@ -2402,7 +2402,12 @@ paths:
           description: The type of the document to be retrieved
           required: true
           type: string
-          enum: [document_front, document_rear, document_owner, extra_document, signed_contract]
+          enum: [document_front, document_rear, document_owner, extra_document, contract, signed_contract]
+        - in: formData
+          name: rao_id
+          description: The rao id number. **This field is required only if request status is CREATED or VIDEOREVIEW**
+          required: true
+          type: string
       responses:
           200:
             description: Successful Response
@@ -2422,9 +2427,8 @@ paths:
               application/json:
                   [
                       {
-                          "pk": 48312,
                           "document": "iVBORw0KGgoAAAANSUhEUgAAAPwAAAChCAYAAAGUvOLYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAABU9xJREFUeNqMlmuMXGUZx3/nfmZ257bX7m53t91uKbS1Ak0kIFIwIZHUSP0kBmLiJSIWXa3SBE1TkaZaU2liQFObED9QE0M(...)",
-                          "type": "document_front"
+                          "type": "contract"
                       }
                   ]
           404:
@@ -2454,11 +2458,13 @@ paths:
                   curl -i -X POST \
                     https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
                     -H 'Content-Type: multipart/form-data' \
-                    -F type="document_front"
+                    -F type="contract"
+                    -F rao_id="1400"
         - lang: 'Javascript'
           source: |
                   var formdata = new FormData();
-                  formdata.append("type", "document_front");
+                  formdata.append("type", "contract");
+                  formdata.append("rao_id", "1400");
 
                   var requestOptions = {
                     method: 'POST',
@@ -2477,7 +2483,8 @@ paths:
 
                   url = "https://api.uanataca.com/api/v1/requests/25139/pl_get_document/"
 
-                  payload={'type': 'document_front'}
+                  payload={'type': 'document_front',
+                  'rao_id': '1400'}
 
                   headers = {
                     'Content-Type': 'multipart/form-data'
@@ -2494,6 +2501,7 @@ paths:
                   const formData = new FormData();
 
                   formData.append('type', 'document_front');
+                  formdata.append("rao_id", "1400");
 
                   const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_get_document/';
 
@@ -2518,6 +2526,7 @@ paths:
                   var request = new RestRequest(Method.POST);
                   request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
                   request.AddParameter("type", "document_front");
+                  request.AddParameter("rao_id", "1400");
 
                   IRestResponse response = client.Execute(request);
                   Console.WriteLine(response.Content);        

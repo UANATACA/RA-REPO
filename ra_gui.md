@@ -459,7 +459,7 @@ Successful response status
 
 </br>
 
-> **STEP 3: REQUEST VALIDATION** `2-step only`
+> **STEP 3: REQUEST VALIDATION** `2-step mode only`
 
 </br>
 
@@ -539,23 +539,26 @@ The following JSON object contains the receipt:
 
 Similarly, it is necessary to retrieve the service contract and present it to the RAO before approval.
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_document/post">Generate Contract</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (Body `type`: **contract**)
 
-Body parameter `doctype`: **contract**
+Body parameter `type` must be set to **contract**
 
-    1 | curl -i -X POST \
-    2 |   https://api.uanataca.com/api/v1/requests/25139/generate_document/ \
-    3 |   -H 'Content-Type: application/json' \
-    4 |   -d '{
-    5 |     "doctype": "contract"
-    6 |  }'
+    1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
+    2 |   -H 'Content-Type: application/json' \
+    3 |   -d '{
+    4 |     "type": "contract"
+    5 |     "rao_id": "1400"    
+    6 |   }'
 
 
 The response consists in a JSON structure containing the contract in Base64 format.
 
-    1 | {
-    2 |   "document": "%PDF-1.4\n%���� ReportLab Generated PDF document http://www.reportlab.com\n1 0 obj\n<<\n/F1 2 0 R\n>>\nendobj\n2 0 obj\n<<\n/Bas (...) "
-    3 | }
+    1 | [
+    2 |    {
+    3 |        "document": "JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgaHR0cDovL3d3\ndy5yZXBvcnRsYWIuY29tCjEgMCBvYmoKPDwKL0YxIDIgMCBSCj4 (...)\n",
+    4 |        "type": "contract"
+    5 |    }
+    6 | ]
 
 </br>
 
@@ -614,7 +617,7 @@ In case of not approving a request for any reason, the call <a href="#tag/Reques
 
 In this step, the service contract must be presented to the signer before enrollment.
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_document/post">Generate Contract</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (Body `type`: **contract**)
 
 There are different endpoints to enroll a request depending on the secure element chosen. The next action involves sending an otp code to the requester using the calls shown below. Software and cloud certificates use the same call to send the otp code, as cloud-qscd certificates use a different one.
 
@@ -677,7 +680,7 @@ For correct process completion, the following information must be delivered to t
 
 - The certificate set of credentials (Cloud Enroll)
 
-- The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> call.
+- The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> (Body `type`: **signed_contract**) call.
 
 
 </html>
