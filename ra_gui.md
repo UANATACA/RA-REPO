@@ -380,7 +380,11 @@ The return response is the a JSON containing info from the created request, in *
 
 </br>
 
-In some cases, specific request associated data needs to be modified before continuing the process. To do so, the corresponding call is <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a>. Check API Reference.
+If request data needs to be modified, use <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a>. 
+
+If request data needs to be retrieved, use <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a>
+
+Check API Reference.
 
 </br>
 
@@ -456,6 +460,8 @@ Successful response status
 	1 | {
 	2 |   "status": "200 OK"
 	3 | }
+
+If uploaded video needs to be retrieved, use <a href="#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get">Download Video</a>
 
 </br>
 
@@ -680,6 +686,15 @@ For correct process completion, the following information must be delivered to t
 
 - The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> call (Body `type`: **signed_contract**)
 
+</br>
+
+> **OPTIONAL**
+
+</br>
+
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a>
+
+**API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get">Download video</a>
 
 </html>
 
