@@ -407,9 +407,9 @@ Data and images are uploaded by using the following call:
 
 `acceptance` : Client acceptance parameters (e.g. Terms & Conditions,  Privacy Policy). This is a customizable JSON object.<br>
 `data` : Set of pictures associated to the client's ID document plus a selfie of him/her. Mandatory object. <br>
-`ocr_data` : Text information extracted from the client's ID document via Optical Character Recognition (OCR). <br>
+`ocr_data` : Text information extracted from the client's ID document via Optical Character Recognition (OCR). Mandatory. <br>
 `security_checks` : Set of validation fields associated to the client's identity (underaging, matching info, liveliness, etc) <br>
-`similarity_level` : Similarity between the client's selfie and the picture is shown on his/her ID document. <br>
+`similarity_level` : Similarity between the client's selfie and the picture is shown on his/her ID document. Mandatory. <br>
 
     1 | curl -i -X POST https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result \
     2 |   -H 'Content-Type: application/json' \
