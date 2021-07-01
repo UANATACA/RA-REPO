@@ -296,12 +296,11 @@ This section section presents the workflow for a digital certificate generated t
 
 The Video ID certificate generation process involves the following steps:
 
-- 1) Request creation
-- 2) Upload evidences
-- 3) Request validation
-- 4) Request approval
-- 5) Cloud/Software enrollment
-- Optional actions
+**1)** Request Creation
+**2)** Upload Evidences
+**3)** Request Validation
+**4)** Request Approval
+**5)** Cloud/Software Enrollment
 
 </br>
 
@@ -379,9 +378,9 @@ The return response is the a JSON containing info from the created request, in *
 	19| }
 
 
-If request data needs to be modified, use <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a>. Check API Reference.
+If request data needs to be modified, use <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a> call. Check API Reference.
 
-If request data needs to be retrieved, use <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a>. Check API Reference.
+If request data needs to be retrieved, use <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a> call. Check API Reference.
 
 </br>
 
@@ -396,6 +395,8 @@ Data and images are uploaded by using the following call:
 **API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post">Upload Data Evidence</a>
 
 <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
+
+</br>
 
 **Data objects in detail:**
 
@@ -565,7 +566,7 @@ The response consists in a JSON structure containing the contract in Base64 form
 
 **API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve Request</a>
 
-This call makes the request ready for enrollment. Its status changes to **ENROLLREADY**. In 1-step mode, both validation and approval are performed by executing this call.
+This call makes the request ready for enrollment. Its status changes to **ENROLLREADY**. In 1-step mode, both validation and approval occur when executing this call.
 
     1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
     2 | -H 'Content-Type: application/json' \
