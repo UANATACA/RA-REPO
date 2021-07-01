@@ -405,7 +405,7 @@ Data and images are uploaded by using the following call:
 
 **Data objects in detail:**
 
-`acceptance` : Client acceptance parameters (e.g. Terms & Conditions | Privacy Policy section). This is a customizable JSON object.<br>
+`acceptance` : Client acceptance parameters (e.g. Terms & Conditions,  Privacy Policy). This is a customizable JSON object.<br>
 `data` : Set of pictures associated to the client's ID document plus a selfie of him/her. Mandatory object. <br>
 `ocr_data` : Text information extracted from the client's ID document via Optical Character Recognition (OCR). <br>
 `security_checks` : Set of validation fields associated to the client's identity (underaging, matching info, liveliness, etc) <br>
