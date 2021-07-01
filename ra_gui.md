@@ -301,6 +301,7 @@ The Video ID certificate generation process involves the following steps:
 - 3) Request validation
 - 4) Request approval
 - 5) Cloud/Software enrollment
+- Optional actions
 
 </br>
 
@@ -379,6 +380,8 @@ The return response is the a JSON containing info from the created request, in *
 
 </br>
 
+In some cases, specific request associated data needs to be modified before continuing the process. To do so, the corresponding call is <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a>. Check API Reference.
+
 > **STEP 2: UPLOAD EVIDENCES**
 
 </br>
@@ -454,13 +457,13 @@ Successful response status
 
 </br>
 
-> **STEP 3: REQUEST VALIDATION**
+> **STEP 3: REQUEST VALIDATION** `2-step only`
 
 </br>
 
 **API reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post">Validate Request</a>
 
-A Registration Authority Officer must first validate the request data and evidences before approving. 
+A Registration Authority Officer must validate the request data and evidences before approving. This call is used only for 2-step mode.  
 
 
     1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/validate_videoid \
@@ -497,6 +500,8 @@ The validation successful response changes the request to **CREATED** status, as
 
 </br>
 
+For unsuccessful validations leading to the refusal of a request, the corresponding call is  <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1refuse_videoid/post">Refuse Request</a>. Check API Reference.
+
 > **STEP 4: REQUEST APPROVAL**
 
 </br>
@@ -528,7 +533,7 @@ The following JSON object contains the receipt:
 
 </br>
 
-Similarly, it is necessary to retrieve the service contract before approving.
+Similarly, it is necessary to retrieve the service contract and present it to the RAO before approval.
 
 **API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_document/post">Generate Contract</a>
 
@@ -552,7 +557,7 @@ The response consists in a JSON structure containing the contract in Base64 form
 
 **API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve Request</a>
 
-This call makes the request ready for enrollment. Its status changes to **ENROLLREADY**.
+This call makes the request ready for enrollment. Its status changes to **ENROLLREADY**. In 1-step mode, both validation and approval are performed by executing this call.
 
     1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
     2 | -H 'Content-Type: application/json' \
@@ -595,17 +600,21 @@ The response is a JSON object with added request approval information.
 
 </br>
 
+In case of not approving a request for any reason, the call <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1cancel/delete">Cancel Request</a> must be executed. Check API Reference.
+
 > **STEP 5: CLOUD/SOFTWARE ENROLLMENT**
 
 </br>
 
-There are different endpoints to enroll a Request, depending on the secure element choosen.
+In this step, the service contract must be presented to the signer before enrollment.
 
-For all requests is required to send an otp code to the requester. Software and cloud certificates use the same call to send the otp code, while cloud-qscd certificates use another.
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_document/post">Generate Contract</a>
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post">Send OTP code for software and cloud</a>
+There are different endpoints to enroll a request depending on the secure element chosen. The next action involves sending an otp code to the requester using the calls shown below. Software and cloud certificates use the same call to send the otp code, as cloud-qscd certificates use a different one.
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Send OTP code for cloud-QSCD</a>
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post">Generate OTP (Cloud or Software)</a>
+
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Generate OTP (Cloud or QSCD)</a>
 
 </br>
 
@@ -650,7 +659,20 @@ For the cloud enrollemnt the parameters required are the secret OTP code send to
 	3 |   "pin": "pincode12"
 	4 | }
 
-At the end of the enrollment the server replies with a JSON containing all requesta data.
+After this call, the server replies with a JSON object containing all request data.
+
+</br>
+
+**PROCESS COMPLETION**
+
+For correct process completion, the following information must be delivered to the requester:
+
+- The certificate in .p12 format (Software Enroll)
+
+- The certificate set of credentials (Cloud Enroll)
+
+- The signed contract by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud Enroll</a> call.
+
 
 </html>
 
