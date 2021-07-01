@@ -472,7 +472,7 @@ If the uploaded video needs to be retrieved, use <a href="#tag/Video-ID/paths/~1
 
 </br>
 
-**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post">Validate Request Video ID</a>
+**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post">Validate Video ID Request</a>
 
 A Registration Authority Officer must validate the request data and evidences before approval. This call is used only for 2-step mode.  
 
