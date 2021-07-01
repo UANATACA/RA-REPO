@@ -292,7 +292,7 @@ At the end of enrollment the server replies with a JSON containing all request d
 
 ## External - Workflow
 
-This section section presents the workflow for a digital certificate generated via Video Identification service.
+This section section presents the workflow for a digital certificate generated through Video Identification service.
 
 The Video ID certificate generation process involves the following steps:
 </br>
