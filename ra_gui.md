@@ -324,7 +324,7 @@ This call simply requires a Registration Authority (RA) id number. Scratchcards 
 	5 |     "ra": "121"
     6 |  }'
 
-The return response is the a JSON containing the single-use Scratchcard associated data. The scratchcard number `sn` must be added to the <a href="#tag/Requests/paths/~1api~1v1~1requests/post">Create Request</a> call. 
+The response is the a JSON containing the single-use Scratchcard associated data. The scratchcard number `sn` must be added to the <a href="#tag/Requests/paths/~1api~1v1~1requests/post">Create Request</a> call. 
 
 	1 | {
 	2 |   "pk": 1193,
@@ -337,7 +337,7 @@ The return response is the a JSON containing the single-use Scratchcard associat
 
 **API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests/post">Create Request</a>
 
-This call must include enough information to identify the requester user. The full description of the arguments accepted by this endpoint can be found in the API call detailed documentation.
+This call must include enough information to identify the end user. The full description of the arguments accepted by this endpoint can be found in the call detailed documentation.
 
     1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
     2 | -H 'Content-Type: application/json' \
@@ -360,7 +360,7 @@ This call must include enough information to identify the requester user. The fu
     19|     "webhook_url":"https://bit4id.pythonanywhere.com/video"
     20|    }'
 
-The return response is the a JSON containing info from the created request, in **VIDEOPENDING** status. One of the most important parameters from this JSON is the `pk` which represents the request unique identifier and is used for every operation related to this request.
+The response is the a JSON containing info from the created request in **VIDEOPENDING** status. One of the most important parameters from this JSON is the `pk` which represents the request unique identifier and is used for every operation related to this request.
 
 	1 | {
 	2 |   "pk": 25139,
@@ -383,9 +383,9 @@ The return response is the a JSON containing info from the created request, in *
 	19| }
 
 
-If request data needs to be modified, use <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a> call. Check API Reference.
+If request data needs to be modified, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a> call. Check API Reference.
 
-If request data needs to be retrieved, use <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a> call. Check API Reference.
+If request data needs to be retrieved, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a> call. Check API Reference.
 
 </br>
 
@@ -393,7 +393,7 @@ If request data needs to be retrieved, use <a href="#tag/Requests/paths/~1api~1v
 
 </br>
 
-A previously created Video ID Request needs a set of information defined as evidences. The succesful upload of all information will change the request status to **VIDEOREVIEW**.
+A previously created Video ID Request needs a set of information defined as evidences. The succesful upload of **ALL** this information will change the request status to **VIDEOREVIEW**.
 
 Data and images are uploaded by using the following call:
 
