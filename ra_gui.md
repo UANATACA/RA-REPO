@@ -380,7 +380,7 @@ The return response is the a JSON containing info from the created request, in *
 
 </br>
 
-If request data needs to be modified, use <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a>. 
+If request data needs to be modified, use <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a>
 
 If request data needs to be retrieved, use <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a>
 
