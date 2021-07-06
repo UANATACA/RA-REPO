@@ -283,7 +283,11 @@ At the end of enrollment the server replies with a JSON containing all request d
 
 ## 1-Step Workflow
 
+</br>
+
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_External.png)
+
+</br>
 
 This section presents the workflow for a digital certificate generated through Video Identification service.
 
@@ -699,7 +703,11 @@ For correct process completion, the following information must be delivered to t
 
 ## 2-Step Workflow
 
+</br>
+
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_External.png)
+
+</br>
 
 This section presents the workflow for a digital certificate generated through Video Identification service.
 
@@ -1114,7 +1122,11 @@ For correct process completion, the following information must be delivered to t
 
 ## External Workflow
 
+</br>
+
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_External.png)
+
+</br>
 
 This section presents the workflow for a digital certificate generated through Video Identification service.
 
