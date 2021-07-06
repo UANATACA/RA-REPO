@@ -297,13 +297,9 @@ The Video ID certificate generation process involves the following steps:
 
 **1) CREATION OF A REQUEST**
 
-**2) UPLOAD EVIDENCES**
+**2) REQUEST APPROVAL**
 
-**3) REQUEST VALIDATION**
-
-**4) REQUEST APPROVAL**
-
-**5) CLOUD/SOFTWARE ENROLLMENT**
+**3) CLOUD/SOFTWARE ENROLLMENT**
 
 </br>
 
@@ -384,132 +380,6 @@ The response is the a JSON containing info from the created request in **VIDEOPE
 If request data needs to be modified, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a> call. Check API Reference.
 
 If request data needs to be retrieved, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a> call. Check API Reference.
-
-</br>
-
-> **STEP 2: UPLOAD EVIDENCES**
-
-</br>
-
-A previously created Video ID Request needs a set of information defined as evidences. The succesful upload of **ALL** this information will change the request status to **VIDEOREVIEW**.
-
-Data and images are uploaded by using the following call:
-
-**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post">Upload Data Evidence</a>
-
-<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
-
-</br>
-
-**Data objects in detail:**
-
-`acceptance` : Client acceptance parameters (e.g. Terms & Conditions,  Privacy Policy). This is a customizable JSON object.<br>
-`data` : Set of pictures associated to the client's ID document plus a selfie of him/her. **Mandatory object** <br>
-`ocr_data` : Text information extracted from the client's ID document via Optical Character Recognition (OCR). **Mandatory** <br>
-`security_checks` : Set of validation fields associated to the client's identity (underaging, matching info, liveliness, etc) <br>
-`similarity_level` : Similarity between the client's selfie and the picture is shown on his/her ID document. **Mandatory** <br>
-
-    1 | curl -i -X POST https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result \
-    2 |   -H 'Content-Type: application/json' \
-    3 |   -d '{
-    4 |     "acceptance": {
-    5 |       "acceptance_test_data": true,
-    6 |       "another_field": 0
-    7 |     },
-    8 |     "data": {
-    9 |       "images": {
-    10|         "document_front": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAM (...)",
-    11|         "document_rear": "/I7ye60+aOKS0mVGVSD9RVfyXukjmnS3cAEbpMVm6M1ncWqS3FszptO1lPRRDJ+orI8b (...)",
-    12|         "document_photo": "AkjOOwFfHFrrNlpXxcbU9QuIIIkvR56yddgHpX3GEj1PmanmdS/xV1ySVlv/AIbXLPO (...)",
-    13|         "document_owner": "SSVnovgCZ4Lhk+R3lJPUDJr5t/Z/wBV1DWfjRbeI75B5iQytcykc7yMEAV2/iwC0T34 (...)"
-    14|       },
-    15|       "ocr_data": {
-    16|         "given_name": "Name",
-    17|         "surname_1": "Surname",
-    18|         "surname_2": Surname 2",
-    19|         "mobile_phone_number": "+34999999999",
-    20|         "serial_number": "A9999999E"
-    21|       },
-    22|       "security_checks": {
-    23|         "a_test_check": true,
-    24|         "another_check": true
-    25|       },
-    26|       "similarity_level": "high"
-    27|     }
-    28|   }'
-
-Successful response status
-
-	1 | {
-	2 |   "status": "200 OK"
-	3 | }
-
-</br>
-
-In the same way, MP4-format Video evidence is uploaded by using the following call:
-
-**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload Video</a>
-
-<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
-
-    1 | curl -i -X POST https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/ \
-    2 |   -H 'Content-Type: multipart/form-data' \
-    3 |   -F video=@sample_folder/sample_video.mp4 
-
-Successful response status
-
-	1 | {
-	2 |   "status": "200 OK"
-	3 | }
-
-If the uploaded video needs to be retrieved, use <a href="#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get">Download Video</a>
-
-</br>
-
-> **STEP 3: REQUEST VALIDATION** `2-step mode only`
-
-</br>
-
-**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post">Validate Request</a>
-
-A Registration Authority Officer must validate the request data and evidences before approval. This call is used only for 2-step mode.  
-
-
-    1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/validate_videoid \
-    2 | -H 'Content-Type: application/json' \
-    3 | --cert 'cer.pem' --key 'key.pem'
-    4 | -d '{
-    5 |     "username": "5012345",
-    6 |     "password": "Gy6F37xK",
-    7 |     "pin": "belorado74",
-    8 |     "rao_id": "1400"
-    9 |	   }'
-
-The validation successful response changes the request to **CREATED** status as a JSON object containing full request information is returned.
-
-    1 | {
-    2 |   "secrets": {
-    3 |       "puk": "38812452",
-    4 |       "enrollment_code": ".R4P9qgA",
-    5 |       "pin": "31945152",
-    6 |       "erc": "3417062505"
-    7 |   },
-    8 |   "request": {
-    9 |       "pk": 25139,
-    10|       "given_name": "Name",
-    11|       "surname_1": "Surname1",
-    12|       "surname_2": "Surname2",
-    13|       "sex": null,
-    14|       "id_document_type": "IDC",
-    15|       "id_document_country": "ES",
-    16|       "serial_number": "A9999999E",
-    17|       (...)
-    18|   }
-    19| }
-
-</br>
-
-For unsuccessful validations leading to a request refusal, the corresponding call is  <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1refuse_videoid/post">Refuse Request</a>. Check API Reference.
 
 </br>
 
@@ -717,13 +587,11 @@ The Video ID certificate generation process involves the following steps:
 
 **1) CREATION OF A REQUEST**
 
-**2) UPLOAD EVIDENCES**
+**2) REQUEST VALIDATION**
 
-**3) REQUEST VALIDATION**
+**3) REQUEST APPROVAL**
 
-**4) REQUEST APPROVAL**
-
-**5) CLOUD/SOFTWARE ENROLLMENT**
+**4) CLOUD/SOFTWARE ENROLLMENT**
 
 </br>
 
@@ -807,86 +675,7 @@ If request data needs to be retrieved, use the <a href="#tag/Requests/paths/~1ap
 
 </br>
 
-> **STEP 2: UPLOAD EVIDENCES**
-
-</br>
-
-A previously created Video ID Request needs a set of information defined as evidences. The succesful upload of **ALL** this information will change the request status to **VIDEOREVIEW**.
-
-Data and images are uploaded by using the following call:
-
-**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post">Upload Data Evidence</a>
-
-<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
-
-</br>
-
-**Data objects in detail:**
-
-`acceptance` : Client acceptance parameters (e.g. Terms & Conditions,  Privacy Policy). This is a customizable JSON object.<br>
-`data` : Set of pictures associated to the client's ID document plus a selfie of him/her. **Mandatory object** <br>
-`ocr_data` : Text information extracted from the client's ID document via Optical Character Recognition (OCR). **Mandatory** <br>
-`security_checks` : Set of validation fields associated to the client's identity (underaging, matching info, liveliness, etc) <br>
-`similarity_level` : Similarity between the client's selfie and the picture is shown on his/her ID document. **Mandatory** <br>
-
-    1 | curl -i -X POST https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result \
-    2 |   -H 'Content-Type: application/json' \
-    3 |   -d '{
-    4 |     "acceptance": {
-    5 |       "acceptance_test_data": true,
-    6 |       "another_field": 0
-    7 |     },
-    8 |     "data": {
-    9 |       "images": {
-    10|         "document_front": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAM (...)",
-    11|         "document_rear": "/I7ye60+aOKS0mVGVSD9RVfyXukjmnS3cAEbpMVm6M1ncWqS3FszptO1lPRRDJ+orI8b (...)",
-    12|         "document_photo": "AkjOOwFfHFrrNlpXxcbU9QuIIIkvR56yddgHpX3GEj1PmanmdS/xV1ySVlv/AIbXLPO (...)",
-    13|         "document_owner": "SSVnovgCZ4Lhk+R3lJPUDJr5t/Z/wBV1DWfjRbeI75B5iQytcykc7yMEAV2/iwC0T34 (...)"
-    14|       },
-    15|       "ocr_data": {
-    16|         "given_name": "Name",
-    17|         "surname_1": "Surname",
-    18|         "surname_2": Surname 2",
-    19|         "mobile_phone_number": "+34999999999",
-    20|         "serial_number": "A9999999E"
-    21|       },
-    22|       "security_checks": {
-    23|         "a_test_check": true,
-    24|         "another_check": true
-    25|       },
-    26|       "similarity_level": "high"
-    27|     }
-    28|   }'
-
-Successful response status
-
-	1 | {
-	2 |   "status": "200 OK"
-	3 | }
-
-</br>
-
-In the same way, MP4-format Video evidence is uploaded by using the following call:
-
-**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload Video</a>
-
-<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ For this call the endpoint must be used is <b>lima.demo.bit4id.org</b> instead of <b>api.uanataca.com</b></blockquote>
-
-    1 | curl -i -X POST https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/ \
-    2 |   -H 'Content-Type: multipart/form-data' \
-    3 |   -F video=@sample_folder/sample_video.mp4 
-
-Successful response status
-
-	1 | {
-	2 |   "status": "200 OK"
-	3 | }
-
-If the uploaded video needs to be retrieved, use <a href="#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get">Download Video</a>
-
-</br>
-
-> **STEP 3: REQUEST VALIDATION** `2-step mode only`
+> **STEP 2: REQUEST VALIDATION** `2-step mode only`
 
 </br>
 
@@ -933,7 +722,7 @@ For unsuccessful validations leading to a request refusal, the corresponding cal
 
 </br>
 
-> **STEP 4: REQUEST APPROVAL**
+> **STEP 3: REQUEST APPROVAL**
 
 </br>
 
@@ -1036,7 +825,7 @@ In case of not approving a request for any reason, the call <a href="#tag/Reques
 
 </br>
 
-> **STEP 5: CLOUD/SOFTWARE ENROLLMENT**
+> **STEP 4: CLOUD/SOFTWARE ENROLLMENT**
 
 </br>
 
