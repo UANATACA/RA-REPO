@@ -103,7 +103,7 @@ The following image summarizes the common digital certificate request and issue 
 12. During the process, the service contract is shown to the user
 13. An OTP code is sent to the user via sms
 14. The user inserts the OTP code and creates a custom PIN
-15. The certificate is generated
+15. The certificate is generated and the service contract is signed by the user
 16. Finally, the user receives the signed contract and an email with the certificate credentials and instructions
 
 
