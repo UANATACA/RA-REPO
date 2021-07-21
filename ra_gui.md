@@ -112,14 +112,18 @@ This section presents the workflow for a common digital certificate generation w
 
 The common digital certificate generation process involves the following steps:
 
-- 1) Request creation
-- 2) Upload documents
-- 3) Approve Request
-- 4) Cloud/Software Enrollment
+**1) CREATION OF A REQUEST**
+
+**2) UPLOAD DOCUMENTS**
+
+**3) REQUEST APPROVAL**
+
+**4) CLOUD/SOFTWARE ENROLLMENT**
+
 
 </br>
 
-> **STEP 1: REQUEST CREATION**
+> **STEP 1: CREATION OF A REQUEST**
 
 </br>
 
@@ -205,7 +209,57 @@ The response contains the uploaded document unique identifier associated to the 
 
 </br>
 
-> **STEP 3: APPROVE REQUEST**
+> **STEP 3: REQUEST APPROVAL**
+
+</br>
+
+If all information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate. These calls are shown below:
+
+</br>
+
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate RAO Declaration</a>
+
+    1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
+    2 |  -H 'Content-Type: application/json' \
+    3 |  -d '{
+    4 |      "rao": "1400",
+    5 |      "type": "APPROVE"
+    6 |     }'
+
+The following JSON object contains the receipt:
+
+    1 | {
+    2 |  "serial_number": "3ef3696d2939241d",
+    3 |  "receipt": "El operador RAO_Name RAO_Surname1 con número de identificación 12345678P\r\nactuando en calidad de operador autorizado de registro del prestador de servicios\r\n
+    4 |   de confianza UANATACA, S.A. con NIF A66721499, (UANATACA en lo sucesivo)\r\n\r\nDECLARA\r\n\r\nQue previa verificación de acuerdo a la Declaración de Prácticas de
+    5 |   UANATACA\r\npublicadas en www.uanataca.com, la información detallada a continuación es\r\ncorrecta y será incluida (donde aplicable) en la solicitud de 
+    6 |   certificados\r\ncualificados:\r\n\r\n- Datos de Identificación de la solicitud de certificados: 36893\r\n- Nombre y Apellidos del Firmante: Name Surname1 Surname2\r\n- DNI/
+    7 |   NIE/PASAPORTE del Firmante: 11111111B\r\n- Dirección de correo electrónico del Firmante: mail@domain.com\r\n\r\n\r\n18/03/
+    8 |   2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
+    9 | }
+
+</br>
+
+Similarly, it is necessary to retrieve the service contract and present it to the RAO before approval.
+
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (`type`: **contract**)
+
+    1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
+    2 |   -H 'Content-Type: application/json' \
+    3 |   -d '{
+    4 |     "type": "contract"
+    5 |     "rao_id": "1400"    
+    6 |   }'
+
+
+The response consists in a JSON structure containing the contract in Base64 format.
+
+    1 | [
+    2 |    {
+    3 |        "document": "JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgaHR0cDovL3d3\ndy5yZXBvcnRsYWIuY29tCjEgMCBvYmoKPDwKL0YxIDIgMCBSCj4 (...)\n",
+    4 |        "type": "contract"
+    5 |    }
+    6 | ]
 
 </br>
 
@@ -277,6 +331,24 @@ For the cloud enrollemnt the parameters required are the secret OTP code send to
 	4 | }
 
 At the end of enrollment the server replies with a JSON containing all request data.
+
+**PROCESS COMPLETION**
+
+For correct process completion, the following information must be delivered to the requester:
+
+- The certificate in .p12 format (Software Enroll)
+
+- The certificate set of credentials (Cloud Enroll)
+
+- The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> call (Body `type`: **signed_contract**)
+
+</br>
+
+> **OPTIONAL**
+
+</br>
+
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a>
 
 </html>
 
