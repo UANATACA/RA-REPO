@@ -96,13 +96,15 @@ The following image summarizes the common digital certificate request and issue 
 5. The response returns a request ID
 6. The RAO uploads the required documentation according to the request
 7. The RAO verifies all request data and documentation
-8. The RAO approves the digital certificate request to allow the certificate issue
-9. The user receives an email with a link to start the certificate generation process
-10. The user access to the online digital certificate generation process
-11. During the process, an OTP code is sent to the user via sms
-12. The user inserts the OTP code and creates a custom PIN
-13. The certificate is generated
-14. Finally, the user receives an email with the certificate credentials and instructions
+8. The RAO checks declaration and signs service contract.
+9. The RAO approves the digital certificate request to allow the certificate issue
+10. The user receives an email with a link to start the certificate generation process
+11. The user access to the online digital certificate generation process
+12. During the process, the service contract is shown to the user
+13. An OTP code is sent to the user via sms
+14. The user inserts the OTP code and creates a custom PIN
+15. The certificate is generated
+16. Finally, the user receives the signed contract and an email with the certificate credentials and instructions
 
 
 ## Workflow
