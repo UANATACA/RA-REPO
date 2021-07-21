@@ -85,7 +85,7 @@ The following image summarizes the common digital certificate request and issue 
 </div>
 <br></br>
 
-![img](https://github.com/UANATACA/RA-REPO/raw/main/img/ra-flc.png)
+![img](https://github.com/UANATACA/RA-REPO/raw/main/img/ra-flc2.png)
 
 </br>
 
