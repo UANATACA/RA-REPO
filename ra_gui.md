@@ -285,13 +285,15 @@ In order to approve a Request, this must be in the status of CREATED and must ha
 
 </br>
 
-There are different endpoints to enroll a Request, depending on the secure element chosen.
+In this step, the service contract must be presented to the signer before enrollment.
 
-For all requests is required to send an otp code to the requester. Software and cloud certificates use the same call to send the otp code, while cloud-qscd certificates use another.
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (Body `type`: **contract**)
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post">Send OTP code for software and cloud</a>
+There are different endpoints to enroll a request depending on the secure element chosen. The next action involves sending an otp code to the requester using the calls shown below. Software and cloud certificates use the same call to send the otp code, as cloud-qscd certificates use a different one.
 
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Send OTP code for cloud-QSCD</a>
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post">Generate OTP (Cloud or Software)</a>
+
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Generate OTP (Cloud or QSCD)</a>
 
 **Software**
 
