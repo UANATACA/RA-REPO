@@ -377,6 +377,8 @@ In 1-step mode Video ID, a request approval also implies its validation. For thi
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/flc-1step.png)
 
+</br>
+
 This certificate generation process involves the following steps:
 
 </br>
@@ -672,6 +674,8 @@ For correct process completion, the following information must be delivered to t
 In 2-Step mode Video ID, request validations and approvals are performed in different stages, by the same or different operators.
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/flc-2step.png)
+
+</br>
 
 This certificate generation process involves the following steps:
 
@@ -1011,6 +1015,8 @@ For correct process completion, the following information must be delivered to t
 
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_External.png)
+
+</br>
 
 The External-Mode Video ID certificate generation process involves the following steps:
 
