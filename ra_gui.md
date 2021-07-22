@@ -290,7 +290,11 @@ There are different endpoints to enroll a request depending on the secure elemen
 
 **API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Generate OTP (Cloud or QSCD)</a>
 
-**Software**
+</br>
+
+**SOFTWARE**
+
+</br>
 
 API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post">Software Enroll</a>
 
@@ -303,7 +307,11 @@ For the Software enrollemnt the parameters required are the secret OTP code send
 
 At the end of the enrollment the server replies with the P12 generated in PEM format.
 
-**Cloud**
+</br>
+
+**CLOUD**
+
+</br>
 
 API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud Enroll</a>
 
@@ -316,7 +324,11 @@ For the cloud enrollemnt the parameters required are the secret OTP code send to
 
 At the end of the enrollment the server replies with a JSON containing all requesta data.
 
-**Cloud-QSCD**
+</br>
+
+**CLOUD-QSCD**
+
+</br>
 
 API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post">Cloud-QSCD Enroll</a>
 
@@ -329,7 +341,10 @@ For the cloud enrollemnt the parameters required are the secret OTP code send to
 
 At the end of enrollment the server replies with a JSON containing all request data.
 
-**PROCESS COMPLETION**
+</br>
+
+**PROCESS COMPLETION**</br>
+
 
 For correct process completion, the following information must be delivered to the requester:
 
