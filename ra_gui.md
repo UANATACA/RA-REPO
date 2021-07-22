@@ -464,7 +464,7 @@ The response is the a JSON containing info from the created request in **VIDEOPE
 
 At this point, the workflow progress will depend on the video-identification successful completion on client side. This action will change request status from **VIDEOPENDING** to **VIDEOREVIEW**. </br>
 
-<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ In case the process is not totally completed or has failed for any reason, the request will change to <b>VIDEOINCOMPLETE</b> or <b>VIDEOERROR</b> respectively.</blockquote></br>
+<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ In case the process is not totally completed or has failed for any reason, the request will change to <b>VIDEOINCOMPLETE</b> or <b>VIDEOERROR</b> respectively.</blockquote>
 
 If request data needs to be modified, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a> call. Check API Reference.</br>
 
