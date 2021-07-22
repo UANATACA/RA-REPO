@@ -343,7 +343,7 @@ At the end of enrollment the server replies with a JSON containing all request d
 
 </br>
 
-**PROCESS COMPLETION**</br>
+> **PROCESS COMPLETION**</br>
 
 
 For correct process completion, the following information must be delivered to the requester:
@@ -462,15 +462,12 @@ The response is the a JSON containing info from the created request in **VIDEOPE
 	19| }
 
 
-At this point, the workflow progress will depend on the video-identification successful completion on client side. This action will change request status from **VIDEOPENDING** to **VIDEOREVIEW**.
+At this point, the workflow progress will depend on the video-identification successful completion on client side. This action will change request status from **VIDEOPENDING** to **VIDEOREVIEW**. </br>
 
-</br>
-
-<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ In case the process is not totally completed or has failed for any reason, the request will change to <b>VIDEOINCOMPLETE</b> or <b>VIDEOERROR</b> respectively.</blockquote>
-
-</br>
+<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ In case the process is not totally completed or has failed for any reason, the request will change to <b>VIDEOINCOMPLETE</b> or <b>VIDEOERROR</b> respectively.</blockquote></br>
 
 If request data needs to be modified, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a> call. Check API Reference.</br>
+
 If request data needs to be retrieved, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a> call. Check API Reference.
 
 </br>
