@@ -467,7 +467,9 @@ The response is the a JSON containing info from the created request in **VIDEOPE
 
 At this point, the workflow progress will depend on the video-identification process taken place on client side. Its successful completion will change request status from **VIDEOPENDING** to **VIDEOREVIEW**. </br>
 
-<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ In case the process is not totally completed or has failed for any reason, the request will change to <b>VIDEOINCOMPLETE</b> or <b>VIDEOERROR</b> respectively.</blockquote>
+<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ In case the process is not totally completed or has failed for any reason, the request will change to <b>VIDEOINCOMPLETE</b> or <b>VIDEOERROR</b> respectively.</blockquote></br>
+
+To inform business app and validation RAO about this change at the time it takes place, we recommend the implementation of a **Webhook**. Check our documentation for <a href='#section/Configuration/Webhooks'>Webhook Configuration</a>.</br>
 
 If request data needs to be modified, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a> call. Check API Reference.</br>
 
@@ -1425,6 +1427,83 @@ For correct process completion, the following information must be delivered to t
 **API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get">Download video</a>
 
 </html>
+
+
+
+
+# Webhook Configuration
+
+
+One-Shot API requires a Webhook implemented on customer business side to manage our service callbacks. Every request status change will trigger a simple event-notification via HTTP POST, consisting on a JSON object to an URL that must be explicitly included as a **required parameter** in the <a href='#tag/Video-ID/paths/~1api~1v1~1videoid/post'>Create Video ID Request</a> call when using Uanataca 1-step or 2-step mode. 
+
+The following is a sample view of the JSON object that is sent as a callback at every status change:
+
+	{
+		"status": "VIDEOINCOMPLETE", 
+		"date": "2021-07-20T08:08:21.132394", 
+		"previous_status": "VIDEOPENDING", 
+		"request": 46760, 
+		"registration_authority": 455
+	}
+
+Where:
+
+**status** is the most recent status, this is, the status that triggered the notification.</br>
+**date** is the date of the request status change in datetime format.</br>
+**previous_status** is the status inmediately previous to last change.</br>
+**request** is the request unique id.</br>
+**registration_authority** is the Registration Authority id number the request is associated.</br>
+
+</br>
+
+> **Sample code**
+
+In this sample, every JSON object is stored in a file named 'videoid'.
+
+The webhook parameter used in the <a href='#tag/Video-ID/paths/~1api~1v1~1videoid/post'>Create Video ID Request</a> call is defined as:
+
+	{host}/videoid
+
+where {host} is the IP or domain from the server exposing the webhook.
+
+</br>
+
+*Python*
+
+	import web
+	import datetime
+	
+	urls = (
+	        '/videoid, 'videoid',
+	        )
+	
+	app = web.application(urls, globals())
+	app = app.wsgifunc()
+	
+	class video:
+		def POST(self):
+			data = web.data()
+			f = open("status.json",'a+')
+			f.write(data)
+			f.close()
+			return ''
+
+	if __name__ == "__main__":
+	    app.run()
+
+
+*PHP*
+
+	<?php
+	
+	//videoid.json
+
+	$post = file_get_contents('php://input',true);
+	$file_handle = fopen('/videoid/status.json', 'w');
+	fwrite($file_handle, $post);
+	fclose($file_handle);
+	
+	?>
 
 
 
