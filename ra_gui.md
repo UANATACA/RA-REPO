@@ -511,7 +511,7 @@ The following JSON object contains the receipt:
 
 Similarly, it is necessary to retrieve the service contract and present it to the RAO before approval.
 
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (`type`: **contract**)
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (`type`: **contract** in body)
 
     curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
     -H 'Content-Type: application/json' \
@@ -588,7 +588,7 @@ In case of not approving a request for any reason, the call <a href="#tag/Reques
 
 In this step, the service contract must be presented to the signer before enrollment.
 
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (Use `type`: **contract** in body)
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (`type`: **contract** in body)
 
 There are different endpoints to enroll a request depending on the secure element chosen. The next action involves sending an otp code to the requester using the calls shown below. Software and cloud certificates use the same call to send the otp code, as cloud-qscd certificates use a different one.
 
@@ -651,7 +651,7 @@ For correct process completion, the following information must be delivered to t
 
 - The certificate set of credentials (Cloud Enroll)
 
-- The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> call (Body `type`: **signed_contract**)
+- The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> call (`type`: **signed_contract** in body)
 
 </br>
 
@@ -768,7 +768,7 @@ The response is the a JSON containing info from the created request in **VIDEOPE
     }
 
 
-At this point, the workflow progress will depend on the video-identification process taken place on client side. Its successful completion will change request status from **VIDEOPENDING** to **VIDEOREVIEW**. </br>
+At this point, the workflow progress will depend on the video-identification process taken place on client side. Its successful completion will change request status to **VIDEOREVIEW**. </br>
 
 <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ In case the process is not totally completed or has failed for any reason, the request will change to <b>VIDEOINCOMPLETE</b> or <b>VIDEOERROR</b> respectively.</blockquote>
 
@@ -857,7 +857,7 @@ The following JSON object contains the receipt:
 
 Similarly, it is necessary to retrieve the service contract and present it to the RAO before approval.
 
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (`type`: **contract**)
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (use `type`: **contract** in body)
 
     curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
     -H 'Content-Type: application/json' \
@@ -934,7 +934,7 @@ In case of not approving a request for any reason, the call <a href="#tag/Reques
 
 In this step, the service contract must be presented to the signer before enrollment.
 
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (Body `type`: **contract**)
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (use `type`: **contract** in body)
 
 There are different endpoints to enroll a request depending on the secure element chosen. The next action involves sending an otp code to the requester using the calls shown below. Software and cloud certificates use the same call to send the otp code, as cloud-qscd certificates use a different one.
 
@@ -997,7 +997,7 @@ For correct process completion, the following information must be delivered to t
 
 - The certificate set of credentials (Cloud Enroll)
 
-- The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> call (Body `type`: **signed_contract**)
+- The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> call (use `type`: **signed_contract** in body)
 
 </br>
 
@@ -1017,7 +1017,7 @@ For correct process completion, the following information must be delivered to t
 ## External Mode
 
 
-![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/RA_VID_WKF_External.png)
+![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/flc-ext.png)
 
 </br>
 
@@ -1289,7 +1289,7 @@ The following JSON object contains the receipt:
 
 Similarly, it is necessary to retrieve the service contract and present it to the RAO before approval.
 
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (`type`: **contract**)
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (use `type`: **contract** in body)
 
     curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
     -H 'Content-Type: application/json' \
@@ -1366,7 +1366,7 @@ In case of not approving a request for any reason, the call <a href="#tag/Reques
 
 In this step, the service contract must be presented to the signer before enrollment.
 
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (Body `type`: **contract**)
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (use `type`: **contract** in body)
 
 There are different endpoints to enroll a request depending on the secure element chosen. The next action involves sending an otp code to the requester using the calls shown below. Software and cloud certificates use the same call to send the otp code, as cloud-qscd certificates use a different one.
 
@@ -1429,7 +1429,7 @@ For correct process completion, the following information must be delivered to t
 
 - The certificate set of credentials (Cloud Enroll)
 
-- The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> call (Body `type`: **signed_contract**)
+- The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> call (use `type`: **signed_contract** in body)
 
 </br>
 
