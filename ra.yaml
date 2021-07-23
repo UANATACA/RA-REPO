@@ -10117,6 +10117,11 @@ paths:
 definitions:
   CreateReqObject:
     type: "object"
+    required:
+      - scratchcard
+      - email
+      - registration_authority
+      - profile
     properties:
       profile:
           type: "string"
@@ -10126,35 +10131,51 @@ definitions:
           description: "Available and unused serial number from the file scratchcards.txt"
       secure_element:
           type: "string"
-          description: "Can be 0, 1 or 2 which stands respectively to Software, Smartcard and Cloud."
+          description: "Can be 0, 1 or 2 which stands respectively to Software, Smartcard and Cloud"
       registration_authority:
           type: "string"
-          description: "The unique identifier (PK) of the RA (it's assigned when is created)."
+          description: "The unique identifier (PK) of the RA (it's assigned when is created)"
       country_name:
           type: "string"
-          description: "The country where the RA is registered."
+          description: "The country where the RA is registered"
       serial_number:
           type: "string"
-          description: "The country where the RA is registered."
+          description: "The country where the RA is registered"
       id_document_country:
           type: "string"
+          description: The user's id document country two-letters code (ISO 3166-1 alpha-2)
       id_document_type:
           type: "string"
+          description: The user's document type
       given_name:
           type: "string"
+          description: The user's given name
       surname_1:
           type: "string"
+          description: The user's first surname
       surname_2:
           type: "string"
+          description: The user's second surname
       email:
           type: "string"
+          description: The user's email
       mobile_phone_number:
-          type: "string"
+          type: "string" 
+          description: The user's mobile phone number
       paperless_mode:
           type: "number"
+          description: This parameter must be included and set to 1 for a classic certificate request
+      videoid_mode:
+          type: "number"
+          description: This parameter must be included and set to 1 for a Video ID certificate request  
 ###########
   UpdateReqObject:
     type: "object"
+    required:
+      - scratchcard
+      - email
+      - registration_authority
+      - profile
     properties:
       profile:
           type: "string"
@@ -10164,28 +10185,43 @@ definitions:
           description: "Available and unused serial number from the file scratchcards.txt"
       secure_element:
           type: "string"
-          description: "Can be 0, 1 or 2 which stands respectively to Software, Smartcard and Cloud."
+          description: "Can be 0, 1 or 2 which stands respectively to Software, Smartcard and Cloud"
       registration_authority:
           type: "string"
-          description: "The unique identifier (PK) of the RA (it's assigned when is created)."
+          description: "The unique identifier (PK) of the RA (it's assigned when is created)"
       country_name:
           type: "string"
-          description: "The country where the RA is registered."
+          description: "The country where the RA is registered"
       serial_number:
           type: "string"
-          description: "The country where the RA is registered."
+          description: "The country where the RA is registered"
       id_document_country:
           type: "string"
+          description: The user's id document country two-letters code (ISO 3166-1 alpha-2)
       id_document_type:
           type: "string"
+          description: The user's document type
       given_name:
           type: "string"
+          description: The user's given name
       surname_1:
           type: "string"
+          description: The user's first surname
+      surname_2:
+          type: "string"
+          description: The user's second surname
       email:
           type: "string"
+          description: The user's email
       mobile_phone_number:
-          type: "string"
+          type: "string" 
+          description: The user's mobile phone number
+      paperless_mode:
+          type: "number"
+          description: This parameter must be included and set to 1 for a classic certificate request
+      videoid_mode:
+          type: "number"
+          description: This parameter must be included and set to 1 for a Video ID certificate request  
 ###########
   TBSObject:
     type: "object"
