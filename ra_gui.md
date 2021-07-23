@@ -1084,8 +1084,7 @@ This call must include enough information to identify the end user. The full des
       "surname_2" "Surname2"
       "email": "mail@domain.com",
       "mobile_phone_number": "+34611223344",
-      "videoid_mode": 1,
-      "webhook_url":"https://bit4id.pythonanywhere.com/video"
+      "videoid_mode": 1
     }'
 
 The response is the a JSON containing info from the created request in **VIDEOPENDING** status. One of the most important parameters from this JSON is the `pk` which represents the request unique identifier and is used for every operation related to this request.

@@ -273,6 +273,7 @@ paths:
         name: "body"
         schema:
           $ref: "#/definitions/CreateReqObject"
+  	      $ref: "#/definitions/UpdateReqObject"          
       responses:
         201:
           description: Successful Response
@@ -10138,8 +10139,10 @@ definitions:
           description: "The country where the RA is registered."
       id_document_country:
           type: "string"
+          description: "The user's id document country two-letters code (ISO 3166-1 alpha-2)"
       id_document_type:
           type: "string"
+          description: ""
       given_name:
           type: "string"
       surname_1:
