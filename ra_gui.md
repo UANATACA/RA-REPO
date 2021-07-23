@@ -421,48 +421,48 @@ The response is a JSON object containing the single-use Scratchcard associated d
 
 This call must include enough information to identify the end user. The full description of the arguments accepted by this endpoint can be found in the call detailed documentation.
 
-    1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
-    2 | -H 'Content-Type: application/json' \
-    3 | --cert 'cer.pem' --key 'key.pem'
-    4 | -d '{
-    5 |     "profile": "PFnubeAFCiudadano",
-    6 |     "scratchcard": "5053311",
-    7 |     "secure_element": "2",
-    8 |     "registration_authority": "116",
-    9 |     "country_name": "ES",
-    10|     "serial_number": "12345678A",
-    11|     "id_document_country": "ES",
-    12|     "id_document_type": "IDC",
-    13|     "given_name": "Name",
-    14|     "surname_1": "Surname1",
-    15|     "surname_2" "Surname2"
-    16|     "email": "mail@domain.com",
-    17|     "mobile_phone_number": "+34611223344",
-    18|     "videoid_mode": 1,
-    19|     "webhook_url":"https://bit4id.pythonanywhere.com/video"
-    20|    }'
+    curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
+    -H 'Content-Type: application/json' \
+    --cert 'cer.pem' --key 'key.pem'
+    -d '{
+      "profile": "PFnubeAFCiudadano",
+      "scratchcard": "5053311",
+      "secure_element": "2",
+      "registration_authority": "116",
+      "country_name": "ES",
+      "serial_number": "12345678A",
+      "id_document_country": "ES",
+      "id_document_type": "IDC",
+      "given_name": "Name",
+      "surname_1": "Surname1",
+      "surname_2" "Surname2"
+      "email": "mail@domain.com",
+      "mobile_phone_number": "+34611223344",
+      "videoid_mode": 1,
+      "webhook_url":"https://bit4id.pythonanywhere.com/video"
+    }'
 
 The response is the a JSON containing info from the created request in **VIDEOPENDING** status. One of the most important parameters from this JSON is the `pk` which represents the request unique identifier and is used for every operation related to this request.
 
-	1 | {
-	2 |   "pk": 25139,
-	3 |   "given_name": "Name",
-	4 |   "surname_1": "Surname1",
-	5 |   "surname_2": "Surname2",
-	6 |   "sex": null,
-	7 |   "id_document_type": "IDC",
-	8 |   "id_document_country": "ES",
-	9 |   "serial_number": "A9999999E",
-	10|   "country_name": "ES",
-	11|   "citizenship": null,
-	12|   "residence": null,
-	13|   "organization_email": null,
-	14|   "email": "mail@domain.com",
-	15|   "title": null,
-	16|   "organization_name": null,
-	17|   "organizational_unit_1": null,
-	18|   ...
-	19| }
+    {
+      "pk": 25139,
+      "given_name": "Name",
+      "surname_1": "Surname1",
+      "surname_2": "Surname2",
+      "sex": null,
+      "id_document_type": "IDC",
+      "id_document_country": "ES",
+      "serial_number": "A9999999E",
+      "country_name": "ES",
+      "citizenship": null,
+      "residence": null,
+      "organization_email": null,
+      "email": "mail@domain.com",
+      "title": null,
+      "organization_name": null,
+      "organizational_unit_1": null,
+      ...
+    }
 
 
 At this point, the workflow progress will depend on the video-identification process taken place on client side. Its successful completion will change request status from **VIDEOPENDING** to **VIDEOREVIEW**. </br>
@@ -488,24 +488,24 @@ If all information is correct, the RAO will approve the request by signing the r
 
 **API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate RAO Declaration</a>
 
-    1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
-    2 |  -H 'Content-Type: application/json' \
-    3 |  -d '{
-    4 |      "rao": "1400",
-    5 |      "type": "APPROVE"
-    6 |     }'
+    curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "rao": "1400",
+      "type": "APPROVE"
+    }'
 
 The following JSON object contains the receipt:
 
-    1 | {
-    2 |  "serial_number": "3ef3696d2939241d",
-    3 |  "receipt": "El operador RAO_Name RAO_Surname1 con número de identificación 12345678P\r\nactuando en calidad de operador autorizado de registro del prestador de servicios\r\n
-    4 |   de confianza UANATACA, S.A. con NIF A66721499, (UANATACA en lo sucesivo)\r\n\r\nDECLARA\r\n\r\nQue previa verificación de acuerdo a la Declaración de Prácticas de
-    5 |   UANATACA\r\npublicadas en www.uanataca.com, la información detallada a continuación es\r\ncorrecta y será incluida (donde aplicable) en la solicitud de 
-    6 |   certificados\r\ncualificados:\r\n\r\n- Datos de Identificación de la solicitud de certificados: 36893\r\n- Nombre y Apellidos del Firmante: Name Surname1 Surname2\r\n- DNI/
-    7 |   NIE/PASAPORTE del Firmante: 11111111B\r\n- Dirección de correo electrónico del Firmante: mail@domain.com\r\n\r\n\r\n18/03/
-    8 |   2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
-    9 | }
+    {
+      "serial_number": "3ef3696d2939241d",
+      "receipt": "El operador RAO_Name RAO_Surname1 con número de identificación 12345678P\r\nactuando en calidad de operador autorizado de registro del prestador de servicios\r\n
+      de confianza UANATACA, S.A. con NIF A66721499, (UANATACA en lo sucesivo)\r\n\r\nDECLARA\r\n\r\nQue previa verificación de acuerdo a la Declaración de Prácticas de
+      UANATACA\r\npublicadas en www.uanataca.com, la información detallada a continuación es\r\ncorrecta y será incluida (donde aplicable) en la solicitud de 
+      certificados\r\ncualificados:\r\n\r\n- Datos de Identificación de la solicitud de certificados: 36893\r\n- Nombre y Apellidos del Firmante: Name Surname1 Surname2\r\n- DNI/
+      NIE/PASAPORTE del Firmante: 11111111B\r\n- Dirección de correo electrónico del Firmante: mail@domain.com\r\n\r\n\r\n18/03/
+      2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
+    }
 
 </br>
 
@@ -513,22 +513,22 @@ Similarly, it is necessary to retrieve the service contract and present it to th
 
 **API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (`type`: **contract**)
 
-    1 | curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
-    2 |   -H 'Content-Type: application/json' \
-    3 |   -d '{
-    4 |     "type": "contract"
-    5 |     "rao_id": "1400"    
-    6 |   }'
+    curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "type": "contract"
+      "rao_id": "1400"    
+    }'
 
 
 The response consists in a JSON structure containing the contract in Base64 format.
 
-    1 | [
-    2 |    {
-    3 |        "document": "JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgaHR0cDovL3d3\ndy5yZXBvcnRsYWIuY29tCjEgMCBvYmoKPDwKL0YxIDIgMCBSCj4 (...)\n",
-    4 |        "type": "contract"
-    5 |    }
-    6 | ]
+    [
+      {
+        "document": "JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgaHR0cDovL3d3\ndy5yZXBvcnRsYWIuY29tCjEgMCBvYmoKPDwKL0YxIDIgMCBSCj4 (...)\n",
+        "type": "contract"
+      }
+    ]
 
 </br>
 
@@ -536,44 +536,45 @@ The response consists in a JSON structure containing the contract in Base64 form
 
 This call makes the request ready for enrollment. Its status changes to **ENROLLREADY**. In 1-step mode, both validation and approval occur when executing this call.
 
-    1 | curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
-    2 | -H 'Content-Type: application/json' \
-    3 | --cert 'cer.pem' --key 'key.pem'
-    4 | -d '{
-    5 |     "username": "1000279",
-    6 |     "password": "3DPTm:N4",
-    7 |     "pin": "23bYQq9a",
-    8 |     "rao_id": 123,
-    9 |     "lang": "ES"
-    10|	   }'
+    curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
+    -H 'Content-Type: application/json' \
+    --cert 'cer.pem' --key 'key.pem'
+    -d '{
+      "username": "1000279",
+      "password": "3DPTm:N4",
+      "pin": "23bYQq9a",
+      "rao_id": 123,
+      "lang": "ES"
+    }'
 
 The response is a JSON object with added request approval information. 
 
-    1 | {
-    2 |   "secrets": {
-    3 |       "puk": "38812452",
-    4 |       "enrollment_code": ".R4P9qgA",
-    5 |       "pin": "31945152",
-    6 |       "erc": "3417062505"
-    7 |   },
-    8 |   "request": {
-    9 |       "pk": 25139,
-    10|       "given_name": "Name",
-    11|       "surname_1": "Surname1",
-    12|       "surname_2": "Surname2",
-    13|       "sex": null,
-    14|       "id_document_type": "IDC",
-    15|       "id_document_country": "ES",
-    16|       "serial_number": "A9999999E",
-    17|       (...)
-    18|     "approving_rao": {
-    19|         "pk": 218,
-    20|         "given_name": "RAO_Name",
-    21|         "surname_1": "RAO_Surname1",
-    22|         "surname_2": "RAO_Surname2",
-    23|     }
-    24|   }
-    25| }
+    {
+      "secrets": {
+        "puk": "38812452",
+        "enrollment_code": ".R4P9qgA",
+        "pin": "31945152",
+        "erc": "3417062505"
+      },
+      "request": {
+        "pk": 25139,
+        "given_name": "Name",
+        "surname_1": "Surname1",
+        "surname_2": "Surname2",
+        "sex": null,
+        "id_document_type": "IDC",
+        "id_document_country": "ES",
+        "serial_number": "A9999999E",
+        (...)
+        "approving_rao": {
+          "pk": 218,
+          "given_name": "RAO_Name",
+          "surname_1": "RAO_Surname1",
+          "surname_2": "RAO_Surname2",
+          (...)
+        }
+      }
+    }
 
 </br>
 
@@ -587,7 +588,7 @@ In case of not approving a request for any reason, the call <a href="#tag/Reques
 
 In this step, the service contract must be presented to the signer before enrollment.
 
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (Body `type`: **contract**)
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (Use `type`: **contract** in body)
 
 There are different endpoints to enroll a request depending on the secure element chosen. The next action involves sending an otp code to the requester using the calls shown below. Software and cloud certificates use the same call to send the otp code, as cloud-qscd certificates use a different one.
 
@@ -603,10 +604,10 @@ There are different endpoints to enroll a request depending on the secure elemen
 
 For the Software enrollemnt the parameters required are the secret OTP code send to the requester and the p12password set by the requester to import the generated p12:
 
-	1 | {
-	2 |   "secret": "000000",
-	3 |   "p12password": "password12"
-	4 | }
+    {
+      "secret": "000000",
+      "p12password": "password12"
+    }
 
 At the end of the enrollment the server replies with the P12 generated in PEM format.
 
@@ -618,10 +619,10 @@ At the end of the enrollment the server replies with the P12 generated in PEM fo
 
 For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
 
-	1 | {
-	2 |   "secret": "000000",
-	3 |   "pin": "pincode12"
-	4 | }
+    {
+      "secret": "000000",
+      "pin": "pincode12"
+    }
 
 At the end of the enrollment the server replies with a JSON containing all requesta data.
 
@@ -633,10 +634,10 @@ At the end of the enrollment the server replies with a JSON containing all reque
 
 For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
 
-	1 | {
-	2 |   "secret": "000000",
-	3 |   "pin": "pincode12"
-	4 | }
+    {
+      "secret": "000000",
+      "pin": "pincode12"
+    }
 
 After this call, the server replies with a JSON object containing all request data.
 
