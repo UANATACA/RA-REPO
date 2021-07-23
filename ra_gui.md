@@ -1191,7 +1191,7 @@ Successful response status
 	2 |   "status": "200 OK"
 	3 | }
 
-If the uploaded video needs to be retrieved, use <a href="#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get">Download Video</a>
+If the uploaded video needs to be retrieved, use <a href="#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get">Download Video</a> call.
 
 </br>
 
