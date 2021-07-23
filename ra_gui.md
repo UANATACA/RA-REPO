@@ -399,21 +399,21 @@ This certificate generation process involves the following steps:
 
 This call simply requires a Registration Authority (RA) id number. Scratchcards must be available for this RA for successful response.
 
-	1 | curl -i -X GET https://api.uanataca.com/api/v1/scratchcards/get_first_unused/ \
-	2 | -H 'Content-Type: application/json' \
-	3 | --cert 'cer.pem' --key 'key.pem'
-	4 | -d '{
-	5 |     "ra": "121"
-    6 |  }'
+    curl -i -X GET https://api.uanataca.com/api/v1/scratchcards/get_first_unused/ \
+    -H 'Content-Type: application/json' \
+    --cert 'cer.pem' --key 'key.pem'
+    -d '{
+      "ra": "121"
+    }'
 
 The response is a JSON object containing the single-use Scratchcard associated data. The scratchcard number `sn` must be added to the <a href="#tag/Requests/paths/~1api~1v1~1requests/post">Create Request</a> call. 
 
-	1 | {
-	2 |   "pk": 1193,
-	3 |   "sn": "1256948",
-	4 |   "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
-	5 |   "registration_authority": 121
-	6 | }
+    {
+      "pk": 1193,
+      "sn": "1256948",
+      "secrets": "{\"erc\": \"6292998123\", \"enrollment_code\": \"_,463vt:\", \"pin\": \"08695572\", \"puk\": \"52351291\"}",
+      "registration_authority": 121
+    }
 
 </br>
 
