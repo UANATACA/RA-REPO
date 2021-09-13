@@ -242,7 +242,7 @@ This allows the management of certificate issuing by establishing a video call f
     <td>POST</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post'>/upload/data/{video_identifier}/</a></td><td>Upload data evidence</td>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post'>/upload/video/{video_identifier}/</a></td><td>Upload video</td>
+    <td>PUT</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post'>/upload/video/{video_identifier}/</a></td><td>Upload video</td>
   </tr>
   <tr>
     <td>GET</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get'>/download/video/{video_identifier}/</a></td><td>Download video</td>
@@ -5569,8 +5569,10 @@ paths:
                 type: string
                 description: The list previous page endpoint                
               results:
-                type: object
-                description: A JSON object with the listed scratchcards information
+                type: array
+                items:
+                  type: object
+                  description: A list of JSON objects containing information about scratchcards
           examples:
             application/json:
                 {
@@ -5707,15 +5709,20 @@ paths:
                 description: The scratchcard serial number
               secrets:
                 type: object
+                description: Credentials associated to a scratchcard.
                 properties:
                     erc:
                       type: string
+                      description: A code specially used for revoking the associated certificate
                     enrollment_code:
+                      description: The password required for logging into Uanataca services
                       type: string
                     pin:
                       type: string
+                      description: The secret code used for certificate usage
                     puk:
                       type: string
+                      description: A code required for unblocking the certificate
           examples:
             application/json:
                 {
@@ -5847,14 +5854,19 @@ paths:
                 properties:
                     erc:
                       type: string
+                      description: A code specially used for revoking the associated certificate
                     enrollment_code:
+                      description: The password required for logging into Uanataca services
                       type: string
                     pin:
                       type: string
+                      description: The secret code used for certificate usage
                     puk:
                       type: string
+                      description: A code required for unblocking the certificate
               registration_authority:
                 type: number
+                description: The registration authority id the scratchcard is associated
           examples:
             application/json:
                 {
@@ -5870,7 +5882,7 @@ paths:
             properties:
               detail:
                 type: string
-                description: JSON syntax error
+                description: JSON syntax error message
           examples:
             application/json:
                 {
@@ -5983,7 +5995,7 @@ paths:
             $ref: "#/definitions/IUScrObject"
           required: true      
       produces:
-        - text/plain       
+        - application/json     
       responses:
         200:
           description: Successful Response
@@ -6141,26 +6153,37 @@ paths:
             properties:
               data:
                 type: string
+                description: The certificate associated to the revoked scratchard
               profile:
                 type: string
+                description: The certificate profile associated to the scratchcard
               subject:
                 type: string
+                description: The certificate subject information
               issuer:
                 type: string
+                description: The certificate issuer information
               valid_from:
                 type: string
+                description: The date when the certificate was enabled from (the format is YYYY-MM-DD)
               valid_to:
                 type: string
+                description: The date when the certificate was no longer enabled (the format is YYYY-MM-DD)
               serial_number:
                 type: string
+                description: The serial number associated to the scratchcard
               status:
                 type: string
+                description: The scratchcard status id 
               pk:
                 type: string
-              revocation_reason:
+                description: The request id associated to the scratchcard
+              revocation_reason: 
                 type: string
+                description: The revocation reason id
               type:
                 type: string
+                description: The revocation type
           examples:
             application/json:
                 [
@@ -6831,52 +6854,78 @@ paths:
             properties:
               pk:
                 type: number
+                description: "The created RA unique id"
               name: 
                 type: string
+                description: "The created RA name"
               parent:
                 type: number
+                description: "The created RA's parent unique id"
               operators: 
-                type: array
+                description: "An object with information about operators belonging the created RA (void)"
+                type: object
                 items:
                   type: string
               enabled_from:
+                description: "The date when the created RA is enabled from (the format is YYYY-MM-DD)"
                 type: string
-              enabled_until: 
+              enabled_until:
+                description: "The date when the created RA will be no longer enabled (the format is YYYY-MM-DD)" 
                 type: string
               organization_tax_number:
+                description: "The tax number of the organization"
                 type: string
-              organization_name: 
+              organization_name:
+                description: "The organization name" 
                 type: string
               responsible_name:
+                description: "The created RA responsible name"
                 type: string
-              responsible_first_surname: 
+              responsible_first_surname:
+                description: "The created RA responsible first surname" 
                 type: string
               responsible_second_surname:
+                description: "The created RA responsible second surname"
                 type: string
-              responsible_serial: 
+              responsible_serial:
+                description: "The created RA responsible serial" 
                 type: string
               email: 
                 type: string
+                description: "A valid email address"
               fix_phone_number:
-                type: string
-              fix_mobile_number:
+                description: "A phone number"
                 type: string
               city: 
                 type: string
+                description: "The city where the created RA is located"
               postal_code:
                 type: string
+                description: "The postal code of the city where the created RA is located"
               province: 
                 type: string
+                description: "The province of the city where the created RA is located"
               url:
                 type: string
+                description: "A web url for the created RA"
               address: 
                 type: string
+                description: "The city address"
               state:
                 type: string
+                description: "The state the city belongs to"
               country: 
                 type: string
+                description: "The country where the created RA is located"
               enable_external_auth: 
-                type: string
+                type: boolean
+                description: "VideoID external authentication mode enabling/disabling check"
+              videoid_enabled: 
+                type: boolean
+                description: "VideoID enabling/disabling check"
+              videoid_provider: 
+                type: integer
+                description: "VideoID provider indicator"
           examples:
             application/json:
               {
@@ -6902,7 +6951,9 @@ paths:
                   "address": null,
                   "state": null,
                   "country": "ES",
-                  "enable_external_auth": false
+                  "enable_external_auth": false,
+                  "videoid_enabled": true,
+                  "videoid_provider": 2
               }
         400:
           description: Bad Request
@@ -7142,10 +7193,10 @@ paths:
                 description: The number of associated RAs 
               next:
                 type: string
-                description: The list next page endpoint
+                description: The next list page endpoint
               previous:
                 type: string
-                description: The list previous page endpoint                
+                description: The previous list page endpoint                
               results:
                 type: object
                 description: A JSON object with the set of operators for each listed RA   
@@ -7310,7 +7361,7 @@ paths:
               operators:
                 type: array
                 items:
-                  type: string
+                  type: object
                   description: A JSON array of objects with the set operators for the requested RA                
           examples:
             application/json:
@@ -7688,45 +7739,38 @@ paths:
             properties:
               pk:
                 type: number
+                description: The created RAO's unique id
               given_name: 
                 type: string
+                description: The created RAO's given name
               surname_1:
                 type: number
+                description: The created RAO's first surname
               surname_2: 
                 type: string
+                description: The created RAO's second surname
               certificate:
                 type: object
-                properties:
-                  profile:
-                    type: string
-                  status:
-                    type: number
-                  valid_from:
-                    type: string
-                  valid_to:
-                    type: string
-                  revokation_season:
-                    type: string
-                  serial_number:
-                    type: string
-                  subject:
-                    type: string
-                  data:
-                    type: string
-                  issuer:
-                    type: string
+                description: An object with information about the RAO's request certificate
               id_document_number: 
                 type: string
+                description: The created RAO's id document number 
               id_document_description:
                 type: string
+                description: The created RAO's document description 
               id_document_issuer: 
                 type: string
+                description: The created RAO's document issuer
               registration_authority:
                 type: array
+                description: The created RAO's registration authorities where he can operate
                 items:
                   type: number
               registration_authority_master: 
+                description: The created RAO's master registration authority id
                 type: string
+              id_identificator:
+                type: boolean
           examples:
             application/json:
               {
@@ -7749,10 +7793,10 @@ paths:
                     "id_document_number": "Y8888888E",
                     "id_document_description": null,
                     "id_document_issuer": null,
-                    "registration_authority": [
-                        121, 122, 123
-                    ],
-                    "registration_authority_master": 1
+                    "registration_authority": [121, 122, 123],
+                    "registration_authority_master": 1,
+                    "is_identificator": false
+
               }
         400:
           description: Bad Request
@@ -7959,8 +8003,10 @@ paths:
                 type: string
                 description: The list previous page endpoint                
               results:
-                type: object
-                description: A JSON object with the listed RAOs information 
+                type: array
+                description: Array of JSON objects containing RAOs information
+                items:
+                  type: object
           examples:
             application/json:
                 {
@@ -7988,10 +8034,9 @@ paths:
                             "id_document_number": "Y8888888E",
                             "id_document_description": null,
                             "id_document_issuer": null,
-                            "registration_authority": [
-                                2
-                            ],
-                            "registration_authority_master": 1
+                            "registration_authority": [2 , 3],
+                            "registration_authority_master": 1,
+                            "is_identificator": false
                         }
                     ]
                 }
@@ -8126,7 +8171,9 @@ paths:
                 description: The list of the RAs where the RAO can operate
               registration_authority_master:
                 type: number
-                description: The registration authority master id       
+                description: The master registration authority id   
+               is_identificator: 
+                type: boolean
           examples:
             application/json:
                 {
@@ -8149,10 +8196,9 @@ paths:
                     "id_document_number": "12354232414",
                     "id_document_description": null,
                     "id_document_issuer": null,
-                    "registration_authority": [
-                        2
-                    ],
-                    "registration_authority_master": 1
+                    "registration_authority": [2, 3],
+                    "registration_authority_master": 1,
+                    "is_identificator": false
                 }
         500:
           description: Invalid RAO
@@ -8264,46 +8310,37 @@ paths:
             type: object
             properties:
               pk:
-                type: number
-              given_name: 
                 type: string
+                description: The requested RA unique id
+              given_name:
+                type: string
+                description: The RAO's name
               surname_1:
-                type: number
-              surname_2: 
                 type: string
+                description: The RAO's first surname
+              surname_2:
+                type: string
+                description: The RAO's second surname
               certificate:
                 type: object
-                properties:
-                  profile:
-                    type: string
-                  status:
-                    type: number
-                  valid_from:
-                    type: string
-                  valid_to:
-                    type: string
-                  revokation_season:
-                    type: string
-                  serial_number:
-                    type: string
-                  subject:
-                    type: string
-                  data:
-                    type: string
-                  issuer:
-                    type: string
-              id_document_number: 
+                description: A JSON object with information associated to the RAO's certificate
+              id_document_number:
                 type: string
+                description: The RAO's id document number
               id_document_description:
                 type: string
-              id_document_issuer: 
+                description: The RAO's id document description
+              id_document_issuer:
                 type: string
+                description: The RAO's id document issuer name
               registration_authority:
                 type: array
-                items:
-                  type: number
-              registration_authority_master: 
-                type: string
+                description: The list of the RAs where the RAO can operate
+              registration_authority_master:
+                type: number
+                description: The master registration authority id   
+               is_identificator: 
+                type: boolean
           examples:
             application/json:
               {
@@ -8326,10 +8363,9 @@ paths:
                     "id_document_number": "Y8888888E",
                     "id_document_description": null,
                     "id_document_issuer": null,
-                    "registration_authority": [
-                        121, 122, 123
-                    ],
-                    "registration_authority_master": 1
+                    "registration_authority": [2, 3],
+                    "registration_authority_master": 1,
+                    "is_identificator": false
               }
         400:
           description: Bad Request
@@ -8681,7 +8717,8 @@ paths:
                 type: array
                 items:
                   type: object
-                  description: Array of JSON objects containing users information
+                  description: Array of JSON objects containing information about users
+                  
           examples:             
             application/json:
                 {
@@ -8800,6 +8837,20 @@ paths:
       responses:
         200:
             description: Successful Response
+            type: object
+            properties:
+              pk:
+                type: string
+                description: The user unique id
+              permission_profile:
+                type: string
+                description: The permission profile id associated to this user
+              request:
+                type: string
+                description: The request id
+              rao:
+                type: string
+                description: The RAO id  
             examples:
               application/json:
                   {
@@ -9690,7 +9741,7 @@ paths:
                   }
 #############
   /api/v1/upload/data/{video_identifier}:
-    post: 
+    put: 
       summary: UPLOAD DATA EVIDENCE
       tags:
         - Video ID
@@ -9715,8 +9766,8 @@ paths:
       x-codeSamples:
         - lang: 'curl'
           source: |
-                  curl -i -X POST \
-                    https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result \
+                  curl -i -X PUT \
+                    https://one-shot.developers.uanataca.com/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "acceptance": {
@@ -9746,9 +9797,9 @@ paths:
         - lang: 'Javascript'
           source: |
                   const resp = await fetch(
-                    `https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result`,
+                    `https://one-shot.developers.uanataca.com/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result`,
                     {
-                      method: 'POST',
+                      method: 'PUT',
                       headers: {
                         'Content-Type': 'application/json'
                       },
@@ -9786,7 +9837,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result"
+                  url = "https://one-shot.developers.uanataca.com/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result"
 
                   payload = {
                     "acceptance": {
@@ -9816,7 +9867,7 @@ paths:
 
                   headers = {"Content-Type": "application/json"}
 
-                  response = requests.post(url, json=payload, headers=headers)
+                  response = requests.put(url, json=payload, headers=headers)
 
                   data = response.json()
                   print(data)
@@ -9825,9 +9876,9 @@ paths:
                   const fetch = require('node-fetch');
 
                   const resp = await fetch(
-                    `https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result`,
+                    `https://one-shot.developers.uanataca.com/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result`,
                     {
-                      method: 'POST',
+                      method: 'PUT',
                       headers: {
                         'Content-Type': 'application/json'
                       },
@@ -9901,7 +9952,7 @@ paths:
                           }
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PostAsync("https://lima.demo.bit4id.org/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result", postData);
+                        var request = await client.PutAsync("https://one-shot.developers.uanataca.com/api/v1/requests/30e57b02819a430d8386fd85be9f499f/upload_videoid_result", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -9965,7 +10016,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/ \
+                    https://one-shot.developers.uanataca.com/v1/upload/video/30e57b02819a430d8386fd85be9f499f/ \
                     -H 'Content-Type: multipart/form-data' \
                     -F video=@sample_folder/sample_video.mp4 
         - lang: 'Javascript'
@@ -9981,7 +10032,7 @@ paths:
                     redirect: 'follow'
                   };
 
-                  fetch("https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/", requestOptions)
+                  fetch("https://one-shot.developers.uanataca.com/v1/upload/video/30e57b02819a430d8386fd85be9f499f/", requestOptions)
                     .then(response => response.text())
                     .then(result => console.log(result))
                     .catch(error => console.log('error', error));
@@ -9989,7 +10040,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/"
+                  url = "https://one-shot.developers.uanataca.com/v1/upload/video/30e57b02819a430d8386fd85be9f499f/"
 
                   payload={'type': 'document_front'}
                   files=[
@@ -10012,7 +10063,7 @@ paths:
                   formData.append('type', 'document_front');
                   formData.append('document', fs.createReadStream('sample_folder/sample_video.mp4'));
 
-                  const url = 'https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/';
+                  const url = 'https://one-shot.developers.uanataca.com/v1/upload/video/30e57b02819a430d8386fd85be9f499f/';
 
                   const options = {
                     method: 'POST',
@@ -10030,7 +10081,7 @@ paths:
                     .catch(err => console.error('error:' + err));
         - lang: 'C#'
           source: |
-                  var client = new RestClient("https://lima.demo.bit4id.org/v1/upload/video/30e57b02819a430d8386fd85be9f499f/");
+                  var client = new RestClient("https://one-shot.developers.uanataca.com/v1/upload/video/30e57b02819a430d8386fd85be9f499f/");
                   client.Timeout = -1;
                   var request = new RestRequest(Method.POST);
                   request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
@@ -10403,17 +10454,21 @@ definitions:
     properties:
       sn:
           type: "string"
-          description: "The scratchcard serial number"
+          description: "The scratchcard id number"
 ###########
   REVScrObject:
     type: "object"
+    required:
+        - scratchcard
+        - erc
+        - reason
     properties:
       scratchcard:
           type: "string"
-          description: "The scratchcard serial number"
+          description: "The scratchcard id number"
       erc:
           type: "string"
-          description: "The scratchcard serial number"
+          description: "The scratchcard revocation code"
       reason:
           type: "string"
           description: "The secrets associated to the scratchcard"
@@ -10430,22 +10485,32 @@ definitions:
 ###########
   MoveScrObject:
     type: "object"
+    required:
+        - from_ra
+        - to_ra
+        - amount
+        - from_sn
+        - to_sn
     properties:
       from_ra:
           type: "string"
-          description: "The source RA that will give the scratchcards"
+          description: 'The source RA id that will give the scratchcards </br>
+          <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ If from_ra/to_ra is used, from_sn/to_sn cannot be used</blockquote>'
       to_ra:
           type: "string"
-          description: "The scratchcard enrollment code"
+          description: 'The destination RA id that will receive the scratchcards </br>
+          <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ If from_ra/to_ra is used, from_sn/to_sn cannot be used</blockquote>'
       amount:
           type: "string"
-          description: "The scratchcard enrollment code	" 
+          description: "The amount of scratchcards to be transferred" 
       from_sn:
           type: "string"
-          description: "The starting serial" 
+          description: 'The scratchcard starting id </br>
+          <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ If from_sn/to_sn is used, from_ra/to_ra cannot be used</blockquote>'
       to_sn:
           type: "string"
-          description: "The ending serial"
+          description: 'The scratchcard ending id </br>
+          <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ If from_sn/to_sn is used, from_ra/to_ra cannot be used</blockquote>'
 ###########
   IsRenScrObject:
     type: "object"
@@ -10501,6 +10566,9 @@ definitions:
 ###########
   CreateRAObject:
     type: "object"
+    required:
+      - name
+      - parent
     properties:
       name:
           type: "string"
@@ -10522,19 +10590,19 @@ definitions:
           description: "The organization name"
       responsible_name:
           type: "string"
-          description: "The RA responsible name"
+          description: "The RA responsible given name"
       responsible_first_surname:
           type: "string"
           description: "The RA responsible first surname"
       responsible_second_surname:
           type: "string"
-          description: "The RA responsible serial" 
+          description: "The RA responsible second surname" 
       responsible_serial:
           type: "string"
-          description: "A valid email address" 
+          description: "The RA responsible serial number" 
       email:
           type: "string"
-          description: "A phone number"
+          description: "A valid email address"
       fix_phone_number:
           type: "string"
           description: "A mobile phone number"
@@ -10556,16 +10624,28 @@ definitions:
       country:
           type: "string"
           description: "The country where the RA is located"
+      enable_external_auth:
+          type: "boolean"
+          description: "VideoID external authentication mode enabling/disabling check"
+      videoid_enabled:
+          type: "boolean"
+          description: "VideoID enabling/disabling check"
+      videoid_provider:
+          type: "integer"
+          description: "VideoID provider indicator"
 ###########
   UpdateRAObject:
     type: "object"
+    required:
+      - name
+      - parent
     properties:
       name:
           type: "string"
           description: "The RA name"
       parent:
           type: "string"
-          description: "The parent RA unique id"
+          description: "The RA parent unique id"
       enabled_from:
           type: "string"
           description: "The date when the RA will be enabled from (the format is YYYY-MM-DD)" 
@@ -10580,19 +10660,19 @@ definitions:
           description: "The organization name"
       responsible_name:
           type: "string"
-          description: "The RA responsible name"
+          description: "The RA responsible given name"
       responsible_first_surname:
           type: "string"
           description: "The RA responsible first surname"
       responsible_second_surname:
           type: "string"
-          description: "The RA responsible serial" 
+          description: "The RA responsible second surname" 
       responsible_serial:
           type: "string"
-          description: "A valid email address" 
+          description: "The RA responsible serial number" 
       email:
           type: "string"
-          description: "A phone number"
+          description: "A valid email address"
       fix_phone_number:
           type: "string"
           description: "A mobile phone number"
@@ -10613,43 +10693,25 @@ definitions:
           description: "A web url of the RA" 
       country:
           type: "string"
-          description: "The country where the RA is located" 
-###########
-  CreateRAOObject:
-    type: "object"
-    properties:
-      registration_authority_master:
-          type: "string"
-          description: "The registration authority master id"
-      registration_authority:
-          type: "array"
-          items:
-            type: string          
-          description: "The list of the RAs where the RAO can operate	"
-      certificate:
-          type: "string"
-          description: "The Request certificate in Base64 format"
-      given_name:
-          type: "string"
-          description: "The RAO's name"
-      surname_1:
-          type: "string"
-          description: "The RAO's first surname"
-      surname_2:
-          type: "string"
-          description: "The RAO's second surname"
-      id_document_number:
-          type: "string"
-          description: "The RAO's document number"
-      id_document_issuer:
-          type: "string"
-          description: "The document issuer"
-      email:
-          type: "string"
-          description: "A valid email address" 
+          description: "The country where the RA is located"
+      enable_external_auth:
+          type: "boolean"
+          description: "VideoID external authentication mode enabling/disabling check"
+      videoid_enabled:
+          type: "boolean"
+          description: "VideoID enabling/disabling check"
+      videoid_provider:
+          type: "integer"
+          description: "VideoID provider indicator"
 ###########
   UpdateRAOObject:
     type: "object"
+    required:
+        - registration_authority_master
+        - registration_authority
+        - certificate
+        - given_name
+        - surname_1
     properties:
       registration_authority_master:
           type: "string"
@@ -10681,6 +10743,11 @@ definitions:
 ###########
   CreateUserObject:
     type: "object"
+    required:
+        - registration_authority
+        - permission_profile
+        - request
+        - rao
     properties:
       registration_authority:
           type: "string"
@@ -10697,6 +10764,8 @@ definitions:
 ###########
   UpdateUserObject:
     type: "object"
+    required:
+        - registration_authority
     properties:
       registration_authority:
           type: "string"
@@ -10713,6 +10782,11 @@ definitions:
 ###########
   ValidateReqObject_VID:
     type: "object"
+    required:
+        - username
+        - password
+        - pin
+        - rao_id
     properties:
       username:
           type: "string"
@@ -10729,6 +10803,11 @@ definitions:
 ###########
   RefuseReqObject_VID:
     type: "object"
+    required:
+        - username
+        - password
+        - pin
+        - rao_id
     properties:
       username:
           type: "string"
@@ -10748,84 +10827,115 @@ definitions:
 ###########
   UploadData_VID:
     type: "object"
-    properties:
-      acceptance:
-        type: "object"
-        description: Service Terms and Conditions acceptance parameters
-        properties:
-          description:
-            type: "string"
-          url-doc-privacypolicy:
-            type: "string"
-          ip:
-            type: "string"
-          url-web-videoid:
-            type: "string"
-          user-agent:
-            type: "string"
-          date:
-            type: "string"
-          url-doc-termsconditions:
-            type: "string"
-      data:
-        type: "object"
-        description: Data to upload for Video ID
-        properties:
-          images:
-            type: "object"
-            description: Document images
-            properties:
-              document_front:
-                type: "string"
-                description: Base64 document front image
-              document_rear:
-                type: string
-                description: Base64 document rear image
-              document_photo:
-                type: string
-                description: Base64 document client picture (extracted from document)
-              document_owner:
-                type: string
-                description: Base64 client selfie
-          ocr_data:
-            type: "object"
-            description: Optical Character Recognition result
-            properties:
-              given_name:
-                type: string
-                description: Client's given name
-              surname_1:
-                type: string
-                description: Client's first surname
-              surname_2:
-                type: string
-                description: Client's second surname              
-              mobile_phone_number:
-                type: string
-                description: Client's mobile phone number
-              serial_number:
-                type: string
-                description: Client's serial number
-          security_checks:
-            type: "object"
-            description: Security checks related to document integrity
-            properties:
-              otp_validation:
-                type: boolean
-              documents_match:
-                type: boolean
-              data_integrity:
-                type: boolean
-              document_notcopy:
-                type: boolean
-              document_notexpired:
-                type: boolean
-              document_notunderage:
-                type: boolean
-              liveliness:
-                type: boolean
-          similarity_level:
-            type: "string"
-            description: similarity_level description 
-
+      properties:
+        acceptance:
+          type: "object"
+          description: "A set of acceptance parameters. </br> 
+                        <blockquote style='background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;'><b>⚠ Customizable object for external authentication.</b></blockquote>"
+          properties:
+            description:
+              type: "string"
+              description: "Terms and Conditions descriptive text"
+            url-doc-privacypolicy:
+              type: "string"
+              description: "Privacy policy document URL"
+            ip:
+              type: "string"
+              description: "The local IP adress"
+            url-web-videoid:
+              type: "string"
+              description: "Video ID platform access URL"
+            user-agent:
+              type: "string"
+              description: "A user agent (e.g. web browser)"
+            date:
+              type: "string"
+              description: "The current date"
+            url-doc-termsconditions:
+              type: "string"
+              description: "Terms and conditions document URL"
+        videoid_data:
+          type: "object"
+          description: "Data to upload for Video ID
+                        <blockquote style='background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;'><b>⚠ Customizable object for external authentication.</b></blockquote>"
+          properties:
+            images:
+              type: "object"
+              description: Document images
+              properties:
+                document_front:
+                  type: "string"
+                  description: Base64 document front image
+                document_rear:
+                  type: string
+                  description: Base64 document rear image
+                document_photo:
+                  type: string
+                  description: Base64 document client picture (extracted from document)
+                document_owner:
+                  type: string
+                  description: Base64 client selfie
+            ocr_data:
+              type: "object"
+              description: "Optical Character Recognition result
+                           <blockquote style='background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;'><b>⚠ Customizable object for external authentication.</b></blockquote>"
+              properties:
+                given_name:
+                  type: string
+                  description: The user's given name
+                surname_1:
+                  type: string
+                  description: The user's first surname
+                surname_2:
+                  type: string
+                  description: The user's second surname              
+                mobile_phone_number:
+                  type: string
+                  description: The user's mobile phone number
+                email:
+                  type: string
+                  description: The user's email
+                serial_number:
+                  type: string
+                  description: The user's document serial number
+                id_document_type:
+                  type: string
+                  enum: [IDC, PAS, PNO, TIN]
+                  description: "Document types allowed for user identification: \n
+                    - **IDC** - Identification based on national identity card number \n
+                    - **PAS** - Identification based on passport number \n
+                    - **PNO** - Identification based on national personal number (national civic registration number) \n
+                    - **TIN** - Tax Identification Number according to the European Commission"
+                id_document_country:
+                  type: string
+                  description: The user's id document country two-letters code (ISO 3166-1 alpha-2)            
+            security_checks:
+              type: "object"
+              description: "Security checks related to document integrity
+                           <blockquote style='background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;'><b>⚠ Customizable object for external authentication.</b></blockquote>"
+              properties:
+                otp_validation:
+                  type: boolean
+                  description: OTP code validation check
+                documents_match:
+                  type: boolean
+                  description: Documents matching official registers check
+                data_integrity:
+                  type: boolean
+                  description: Document data is not corrupted check
+                document_notcopy:
+                  type: boolean
+                  description: Document is not a copy check
+                document_notexpired:
+                  type: boolean
+                  description: Document is not expired check
+                document_notunderage:
+                  type: boolean
+                  description: The user is not underage check
+                liveliness:
+                  type: boolean
+                  description: The user is real check
+            similarity_level:
+              type: integer
+              description: Level of similarity between document picture and face selfie. Ranges in [0,100].  
          
