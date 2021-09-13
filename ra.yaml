@@ -8172,7 +8172,7 @@ paths:
               registration_authority_master:
                 type: number
                 description: The master registration authority id   
-               is_identificator: 
+              is_identificator: 
                 type: boolean
           examples:
             application/json:
