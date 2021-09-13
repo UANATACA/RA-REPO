@@ -8339,7 +8339,7 @@ paths:
               registration_authority_master:
                 type: number
                 description: The master registration authority id   
-               is_identificator: 
+              is_identificator: 
                 type: boolean
           examples:
             application/json:
@@ -10827,7 +10827,7 @@ definitions:
 ###########
   UploadData_VID:
     type: "object"
-      properties:
+    properties:
         acceptance:
           type: "object"
           description: "A set of acceptance parameters. </br> 
