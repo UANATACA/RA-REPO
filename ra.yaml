@@ -10471,17 +10471,17 @@ definitions:
           description: "The scratchcard revocation code"
       reason:
           type: "string"
-          description: "The secrets associated to the scratchcard"
+          description: "The reason associated to the scratchcard revocation"
 ###########
   WhoScrObject:
     type: "object"
     properties:
       scratchcard:
           type: "string"
-          description: "The registration authority id"
+          description: "The scratchcard id number"
       erc:
           type: "string"
-          description: "The scratchcard enrollment code"    
+          description: "The scratchcard enrollment code (password for accessing Uanataca services)"    
 ###########
   MoveScrObject:
     type: "object"
