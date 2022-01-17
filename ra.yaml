@@ -3,7 +3,7 @@ info:
   version: 'v1'
   title: UANATACA RA API DOCUMENTATION
   x-logo:
-      url: https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/ra_logo.png
+      url: https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/ra_logo.png?token=GHSAT0AAAAAABQU64XXUHUJ5HRQLLZKQXR6YPFTY7A
       altText: RA logo
   description: 
       $ref: ./ra_gui.md
