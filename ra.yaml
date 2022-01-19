@@ -3,7 +3,7 @@ info:
   version: 'v1'
   title: UANATACA RA API DOCUMENTATION
   x-logo:
-      url: https://github.com/UANATACA/RA-REPO/blob/main/img/ra_logo.png?raw=true
+      url: https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/ra_logo.png?token=GHSAT0AAAAAABQU64XWNG7FWNNNNTPDI36GYPIDJQA
       altText: RA logo
   description: 
       $ref: ./ra_gui.md
@@ -3122,7 +3122,7 @@ paths:
             examples:
               application/json:
                   {
-                      "preauthenticatedlink": "https://cms.access.bit4id.org:13035/lcmpl/enrollment/auth/8edddd76680a4ecc978bb95b4fb39029"
+                      "preauthenticatedlink": "https://api.uanataca.com/lcmpl/enrollment/auth/8edddd76680a4ecc978bb95b4fb39029"
                   }
           403:
             description: Permission denied
@@ -9373,7 +9373,7 @@ paths:
                           "pk": 36,
                           "status": "VALIDATED",
                           "provider": 2,
-                          "videoid_link": "https://cms.access.bit4id.org:13035/lcmpl/videoid/ZWxlY3Ryb25pY2lkOjBjd2JDaVpMYjNmRVNKQWd4UVZKWGgtempYbno3TXRMbElRRU1adGM2V19JTEUxa25lNkhuamFRdFR4aXVSS3QtQzlGd3JBZkdVNjVZQlBESG5MOXV6cnhTOXdJU2d6UzdXcEVIR1dGb1BZPToxNDQ0MDljMC04ZTgwLTQ1NTgtYWZlNy1kNmUxNjkyMDE1MDU=",
+                          "videoid_link": "https://api.uanataca.com/lcmpl/videoid/ZWxlY3Ryb25pY2lkOjBjd2JDaVpMYjNmRVNKQWd4UVZKWGgtempYbno3TXRMbElRRU1adGM2V19JTEUxa25lNkhuamFRdFR4aXVSS3QtQzlGd3JBZkdVNjVZQlBESG5MOXV6cnhTOXdJU2d6UzdXcEVIR1dGb1BZPToxNDQ0MDljMC04ZTgwLTQ1NTgtYWZlNy1kNmUxNjkyMDE1MDU=",
                           "requests": [
                               45013
                           ],
@@ -9429,7 +9429,7 @@ paths:
                               "description": "User Accepted Terms and Conditions and Privacy Policy",
                               "url-doc-privacypolicy": "https://www.uanataca.com/public/pki/privacidad-PSC/",
                               "ip": "92.59.58.74",
-                              "url-web-videoid": "https://cms.access.bit4id.org:13035/lcmpl/videoid/144409c0-8e80-4558-afe7-d6e169201505",
+                              "url-web-videoid": "https://api.uanataca.com/lcmpl/videoid/144409c0-8e80-4558-afe7-d6e169201505",
                               "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36 Edg/91.0.864.59",
                               "date": 1624872567147,
                               "url-doc-termsconditions": "https://www.uanataca.com/public/pki/terminos-VID/"
