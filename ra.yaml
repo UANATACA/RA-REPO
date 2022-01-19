@@ -3,7 +3,7 @@ info:
   version: 'v1'
   title: UANATACA RA API DOCUMENTATION
   x-logo:
-      url: https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/ra_logo.png?token=GHSAT0AAAAAABQU64XXUHUJ5HRQLLZKQXR6YPFTY7A
+      url: https://github.com/UANATACA/RA-REPO/blob/main/img/ra_logo.png?raw=true
       altText: RA logo
   description: 
       $ref: ./ra_gui.md
@@ -2247,15 +2247,37 @@ paths:
                     .catch(err => console.error('error:' + err));
         - lang: 'C#'
           source: |
-                  var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/");
-                  client.Timeout = -1;
-                  var request = new RestRequest(Method.POST);
-                  request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
-                  request.AddParameter("type", "document_front");
-                  request.AddFile("document", "sample_folder/img_front.png");
+                  using System;
+                  using System.Threading.Tasks;
+                  using RestSharp;
+                  using System.Security.Cryptography.X509Certificates;
 
-                  IRestResponse response = client.Execute(request);
-                  Console.WriteLine(response.Content);           
+
+                  public class Program
+                  {
+                    public static Task Main(string[] args)
+                      {
+                          X509Certificate2 clientCert = new X509Certificate2("./path_to_cert/certfile.p12", "p12passwd");
+
+                          var client = new RestClient("https:/api.uanataca.com/api/v1/requests/59188/pl_upload_document/");
+                          client.Timeout = -1;
+                          client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+                          client.ClientCertificates = new X509CertificateCollection() { clientCert };
+
+                          string imgPath = "./path_to_img/img_owner.png";
+
+                          var request = new RestRequest(Method.POST);
+                          request.AlwaysMultipartFormData = true;
+                          request.AddHeader("content-type", "multipart/form-data");
+                          request.AddParameter("type", "document_owner");
+                          request.AddFile("document", imgPath, "image/png");
+
+                          IRestResponse response = client.Execute(request);
+
+                          Console.WriteLine(response.Content);
+                          return Task.CompletedTask;
+                      }
+                  }        
 #############
   /api/v1/requests/{id}/pl_delete_document:
     post: 
@@ -2390,14 +2412,33 @@ paths:
                     .catch(err => console.error('error:' + err));
         - lang: 'C#'
           source: |
-                  var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_delete_document/");
-                  client.Timeout = -1;
-                  var request = new RestRequest(Method.POST);
-                  request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
-                  request.AddParameter("docpk", "document_front");
+                  using System;
+                  using System.Threading.Tasks;
+                  using RestSharp;
+                  using System.Security.Cryptography.X509Certificates;
 
-                  IRestResponse response = client.Execute(request);
-                  Console.WriteLine(response.Content);  
+                  public class Program
+                  {
+                    public static Task Main(string[] args)
+                      {
+                          X509Certificate2 clientCert = new X509Certificate2("./path_to_cert/certfile.p12", "p12passwd");
+
+                          var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_delete_document/");
+                          client.Timeout = -1;
+                          client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+                          client.ClientCertificates = new X509CertificateCollection() { clientCert };
+
+                          var request = new RestRequest(Method.POST);
+                          request.AlwaysMultipartFormData = true;
+                          request.AddHeader("content-type", "multipart/form-data");
+                          request.AddParameter("docpk", "document_front");
+
+                          IRestResponse response = client.Execute(request);
+
+                          Console.WriteLine(response.Content);
+                          return Task.CompletedTask;
+                      }
+                  }
 #############
   /api/v1/requests/{id}/pl_get_document:
     post: 
@@ -2538,15 +2579,35 @@ paths:
                     .catch(err => console.error('error:' + err));
         - lang: 'C#'
           source: |
-                  var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_get_document/");
-                  client.Timeout = -1;
-                  var request = new RestRequest(Method.POST);
-                  request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
-                  request.AddParameter("type", "document_front");
-                  request.AddParameter("rao_id", "1400");
+                  using System;
+                  using System.Threading.Tasks;
+                  using RestSharp;
+                  using System.Security.Cryptography.X509Certificates;
 
-                  IRestResponse response = client.Execute(request);
-                  Console.WriteLine(response.Content);        
+
+                  public class Program
+                  {
+                    public static Task Main(string[] args)
+                      {
+                          X509Certificate2 clientCert = new X509Certificate2("./path_to_cert/certfile.p12", "p12passwd");
+
+                          var client = new RestClient("https://api.uanataca.com/api/v1/requests/25139/pl_get_document/");
+                          client.Timeout = -1;
+                          client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+                          client.ClientCertificates = new X509CertificateCollection() { clientCert };
+
+                          var request = new RestRequest(Method.POST);
+                          request.AlwaysMultipartFormData = true;
+                          request.AddHeader("content-type", "multipart/form-data");
+                          request.AddParameter("type", "document_front");
+                          request.AddParameter("rao_id", "1400");
+
+                          IRestResponse response = client.Execute(request);
+
+                          Console.WriteLine(response.Content);
+                          return Task.CompletedTask;
+                      }
+                  }     
 #############
   /api/v1/requests/{id}/pl_get_documents:
     get: 
@@ -10098,16 +10159,35 @@ paths:
                     .catch(err => console.error('error:' + err));
         - lang: 'C#'
           source: |
-                  var client = new RestClient("https://api.uanataca.com/api/v1/videoid/25139/evidences/video");
-                  client.Timeout = -1;
-                  var request = new RestRequest(Method.POST);
-                  request.AddHeader("content-type", "multipart/form-data; boundary=----011000010111000001101001");
-                  request.AddParameter("type", "document_front");
-                  request.AddFile("document", "sample_folder/sample_video.mp4");
+                  using System;
+                  using System.Threading.Tasks;
+                  using RestSharp;
+                  using System.Security.Cryptography.X509Certificates;
 
-                  IRestResponse response = client.Execute(request);
-                  Console.WriteLine(response.Content);           
+                  public class Program
+                  {
+                    public static Task Main(string[] args)
+                      {
+                          X509Certificate2 clientCert = new X509Certificate2("./path_to_cert/certfile.p12", "p12passwd"); // RA authentication certificate
 
+                          var client = new RestClient("https://api.uanataca.com/api/v1/videoid/25139/evidences/video");
+                          client.Timeout = -1;
+                          client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true; // SSL verification disabled in TEST mode
+                          client.ClientCertificates = new X509CertificateCollection() { clientCert };
+
+                          string vidPath = "./path_to_video/sample_video.mp4";
+
+                          var request = new RestRequest(Method.POST);
+                          request.AlwaysMultipartFormData = true;
+                          request.AddHeader("content-type", "multipart/form-data");
+                          request.AddFile("video", vidPath, "video/mp4");
+
+                          IRestResponse response = client.Execute(request);
+
+                          Console.WriteLine(response.Content);
+                          return Task.CompletedTask;
+                      }
+                  }      
 #############
   /api/v1/download/video/{video_identifier}:
     get: 
