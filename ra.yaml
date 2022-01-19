@@ -2222,22 +2222,21 @@ paths:
                   print(response.text)
         - lang: 'Node.js'
           source: |
-                  const fs = require('fs');
-                  const FormData = require('form-data');
-                  const fetch = require('node-fetch');
-                  const formData = new FormData();
+                  import fetch from "node-fetch";
+                  import FormData from "form-data";
+                  import fs from "fs";
+
+                  var formData = new FormData();
 
                   formData.append('type', 'document_front');
                   formData.append('document', fs.createReadStream('sample_folder/img_front.png'));
 
-                  const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/';
+                  var url = 'https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/';
 
-                  const options = {
+                  var options = {
                     method: 'POST',
-                    headers: {
-                      Accept: 'text/plain',
-                      'Content-Type': 'multipart/form-data; boundary=---011000010111000001101001'
-                    }
+                    body: formData,
+                    redirect: 'follow'
                   };
 
                   options.body = formData;
@@ -2367,21 +2366,20 @@ paths:
                   print(response.text)
         - lang: 'Node.js'
           source: |
-                  const fs = require('fs');
-                  const FormData = require('form-data');
-                  const fetch = require('node-fetch');
-                  const formData = new FormData();
+                  import fetch from "node-fetch";
+                  import FormData from "form-data";
+                  import fs from "fs";
+
+                  var formData = new FormData();
 
                   formData.append('docpk', 'document_front');
 
                   const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_delete_document/';
 
-                  const options = {
+                  var options = {
                     method: 'POST',
-                    headers: {
-                      Accept: 'text/plain',
-                      'Content-Type': 'multipart/form-data; boundary=---011000010111000001101001'
-                    }
+                    body: formData,
+                    redirect: 'follow'
                   };
 
                   options.body = formData;
@@ -2515,22 +2513,21 @@ paths:
                   print(response.text)
         - lang: 'Node.js'
           source: |
-                  const fs = require('fs');
-                  const FormData = require('form-data');
-                  const fetch = require('node-fetch');
-                  const formData = new FormData();
+                  import fetch from "node-fetch";
+                  import FormData from "form-data";
+                  import fs from "fs";
+
+                  var formData = new FormData();
 
                   formData.append('type', 'document_front');
                   formdata.append("rao_id", "1400");
 
                   const url = 'https://api.uanataca.com/api/v1/requests/25139/pl_get_document/';
 
-                  const options = {
+                  var options = {
                     method: 'POST',
-                    headers: {
-                      Accept: 'text/plain',
-                      'Content-Type': 'multipart/form-data; boundary=---011000010111000001101001'
-                    }
+                    body: formData,
+                    redirect: 'follow'
                   };
 
                   options.body = formData;
@@ -10076,22 +10073,21 @@ paths:
                   print(response.text)
         - lang: 'Node.js'
           source: |
-                  const fs = require('fs');
-                  const FormData = require('form-data');
-                  const fetch = require('node-fetch');
-                  const formData = new FormData();
+                  import fetch from "node-fetch";
+                  import FormData from "form-data";
+                  import fs from "fs";
+
+                  var formData = new FormData();
 
                   formData.append('type', 'document_front');
                   formData.append('document', fs.createReadStream('sample_folder/sample_video.mp4'));
 
                   const url = 'https://api.uanataca.com/api/v1/videoid/25139/evidences/video';
 
-                  const options = {
+                  var options = {
                     method: 'POST',
-                    headers: {
-                      Accept: 'text/plain',
-                      'Content-Type': 'multipart/form-data; boundary=---011000010111000001101001'
-                    }
+                    body: formData,
+                    redirect: 'follow'
                   };
 
                   options.body = formData;
