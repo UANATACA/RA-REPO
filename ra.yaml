@@ -429,50 +429,6 @@ paths:
                       "mobile_phone_number": "+34600112233",
                       "paperless_mode": 1
                     }'
-
-        - lang: 'Javascript'
-          source: |
-                  const options = {
-                    cert: fs.readFileSync(
-                      path.resolve(__dirname, './path/to/certificate/cer.pem'),
-                      `utf-8`,
-                    ),
-                    key: fs.readFileSync(
-                      path.resolve(__dirname, './path/to/private-key/key.pem'),
-                      'utf-8',
-                    ),
-
-                  const sslConfiguredAgent = new https.Agent(options);
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/',
-                    {
-                      method: 'POST',
-                      agent: sslConfiguredAgent,
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        profile: 'PFnubeAFCiudadano',
-                        scratchcard: '5053349',
-                        secure_element: '2',
-                        registration_authority: '116',
-                        country_name: 'ES',
-                        serial_number: 'A1111111E',
-                        id_document_country: 'IT',
-                        id_document_type: 'TIN',
-                        given_name: 'Name',
-                        surname_1: 'Surname1',        
-                        surname_2: 'Surname2',
-                        email: 'mail@domain',
-                        mobile_phone_number: '+34600112233',
-                        paperless_mode: 1
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -504,7 +460,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const options = {
                     cert: fs.readFileSync(
@@ -804,15 +760,6 @@ paths:
           source: |
                   curl -i -X GET \
                     https://api.uanataca.com/api/v1/requests/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/',
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -825,7 +772,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/',
@@ -1085,15 +1032,6 @@ paths:
           source: |
                   curl -i -X GET \
                     https://api.uanataca.com/api/v1/requests/25139/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/',
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -1106,7 +1044,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/',
@@ -1354,28 +1292,6 @@ paths:
                       "surname_2": "New_Surname2",
                       "email": "New_mail@domain.com"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/',
-                    {
-                      method: 'PUT',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        profile: 'PFnubeAFCiudadano',
-                        scratchcard: '5052046',
-                        country_name: 'ES',
-                        registration_authority: '303', 
-                        surname_2: 'New_Surname2',
-                        email: 'New_mail@domain.com'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -1399,7 +1315,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/',
@@ -1539,15 +1455,6 @@ paths:
           source: |
                   curl -i -X DELETE \
                     https://api.uanataca.com/api/v1/requests/25139/cancel/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/cancel/',
-                    {method: 'DELETE'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -1560,7 +1467,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/cancel/',
@@ -1681,15 +1588,6 @@ paths:
           source: |
                   curl -i -X GET \
                     https://api.uanataca.com/api/v1/requests/25139/validate/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/validate/',
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -1702,7 +1600,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/validate/',
@@ -1827,24 +1725,6 @@ paths:
                       "rao": "1400",
                       "type": "APPROVE"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        rao: '1400',
-                        type: 'APPROVE'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -1864,7 +1744,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/',
@@ -2000,23 +1880,6 @@ paths:
                     -d '{
                       "doctype": "contract"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_document/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        doctype: 'contract'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -2035,7 +1898,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/generates_document/',
@@ -2186,23 +2049,6 @@ paths:
                     -H 'Content-Type: multipart/form-data' \
                     -F document=@sample_folder/img_front.png \
                     -F type=document_front
-        - lang: 'Javascript'
-          source: |
-                  var formdata = new FormData();
-                  formdata.append("type", "document_front");
-                  formdata.append("document", fileInput.files[0], "sample_folder/img_front.png");
-
-                  var requestOptions = {
-                    method: 'POST',
-                    headers: myHeaders,
-                    body: formdata,
-                    redirect: 'follow'
-                  };
-
-                  fetch("https://api.uanataca.com/api/v1/requests/25139/pl_upload_document/", requestOptions)
-                    .then(response => response.text())
-                    .then(result => console.log(result))
-                    .catch(error => console.log('error', error));
         - lang: 'Python'
           source: |
                   import requests
@@ -2355,22 +2201,6 @@ paths:
                     https://api.uanataca.com/api/v1/requests/25139/pl_delete_document/ \
                     -H 'Content-Type: multipart/form-data' \
                     -F docpk="document_front"
-        - lang: 'Javascript'
-          source: |
-                  var formdata = new FormData();
-                  formdata.append("docpk", "document_front");
-
-                  var requestOptions = {
-                    method: 'POST',
-                    headers: myHeaders,
-                    body: formdata,
-                    redirect: 'follow'
-                  };
-
-                  fetch("https://api.uanataca.com/api/v1/requests/25139/pl_delete_document/", requestOptions)
-                    .then(response => response.text())
-                    .then(result => console.log(result))
-                    .catch(error => console.log('error', error));
         - lang: 'Python'
           source: |
                   import requests
@@ -2519,23 +2349,6 @@ paths:
                     -H 'Content-Type: multipart/form-data' \
                     -F type="contract"
                     -F rao_id="1400"
-        - lang: 'Javascript'
-          source: |
-                  var formdata = new FormData();
-                  formdata.append("type", "contract");
-                  formdata.append("rao_id", "1400");
-
-                  var requestOptions = {
-                    method: 'POST',
-                    headers: myHeaders,
-                    body: formdata,
-                    redirect: 'follow'
-                  };
-
-                  fetch("https://api.uanataca.com/api/v1/requests/25139/pl_get_document/", requestOptions)
-                    .then(response => response.text())
-                    .then(result => console.log(result))
-                    .catch(error => console.log('error', error));
         - lang: 'Python'
           source: |
                   import requests
@@ -2683,15 +2496,6 @@ paths:
           source: |
                   curl -i -X GET \
                     https://api.uanataca.com/api/v1/requests/25139/pl_get_documents/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/pl_get_documents/',
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -2704,7 +2508,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/pl_get_documents/',
@@ -2989,27 +2793,6 @@ paths:
                       "rao_id": "898",
                       "lang": "ES"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/pl_approve/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        username: 'RAO_Name',
-                        password: 'Rw36:#Y6',
-                        pin: 'tejedora32',
-                        rao_id: '898',
-                        lang: 'ES'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -3032,7 +2815,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/pl_approve/',
@@ -3163,15 +2946,6 @@ paths:
             source: |
                     curl -i -X POST \
                       https://api.uanataca.com/api/v1/requests/25139/preauthlink/
-          - lang: 'Javascript'
-            source: |
-                    const resp = await fetch(
-                      'https://api.uanataca.com/api/v1/requests/25139/preauthlink/',
-                      {method: 'POST'}
-                    );
-
-                    const data = await resp.text();
-                    console.log(data);
           - lang: 'Python'
             source: |
                     import requests
@@ -3184,7 +2958,7 @@ paths:
                     print(data)
           - lang: 'Node.js'
             source: |
-                    const fetch = require('node-fetch');
+                    import fetch from "node-fetch";
 
                     const resp = await fetch(
                       'https://api.uanataca.com/api/v1/requests/25139/preauthlink/',
@@ -3332,22 +3106,6 @@ paths:
                     -d '{
                       "scratchcard": "5113598"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        scratcard: '5113598'
-                      })
-                    }
-                  );
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -3364,7 +3122,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/generate_otp/',
@@ -3559,24 +3317,6 @@ paths:
                       "secret": "014566",
                       "pin": "belorado74"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        secret: '014566',
-                        pin: 'belorado74'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -3596,7 +3336,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/pl_cloud_enroll/',
@@ -3825,24 +3565,6 @@ paths:
                       "secret": "014566",
                       "p12password": "belorado74"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        secret: '014566',
-                        p12password: 'belorado74'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -3862,7 +3584,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/pl_p12_enroll/',
@@ -4029,24 +3751,6 @@ paths:
                       "pin": "pincode12",
                       "puk": "pukcode12"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_qs/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        pin: 'pincode12',
-                        puk: 'pukcode12'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -4066,7 +3770,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_qs/',
@@ -4267,24 +3971,6 @@ paths:
                       "secret": "014566",
                       "pin": "belorado74"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/plq_cloud_enroll/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        secret: '014566',
-                        pin: 'belorado74'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -4304,7 +3990,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/plq_cloud_enroll/',
@@ -4615,24 +4301,6 @@ paths:
                       "scratchcard": "5053349",
                       "erc": ",_3A26F!"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/is_renewable/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        scratchcard: '5053349',
-                        erc: ',_3A26F!'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -4652,7 +4320,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/is_renewable/',
@@ -4763,15 +4431,6 @@ paths:
           source: |
                   curl -i -X POST \
                     https://api.uanataca.com/api/v1/requests/25139/enable_renewal/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/enable_renewal/',
-                    {method: 'POST'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -4784,7 +4443,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/enable_renewal/',
@@ -4879,15 +4538,6 @@ paths:
           source: |
                   curl -i -X POST \
                     https://api.uanataca.com/api/v1/requests/25139/disable_renewal/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/disable_renewal/',
-                    {method: 'POST'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -4900,7 +4550,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/disable_renewal/',
@@ -5024,25 +4674,6 @@ paths:
                       "password": ",_3A26F!",
                       "pin": "belorado74"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/cloud_renew/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        username: '5053349',
-                        password: ',_3A26F!',
-                        pin: 'belorado74'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -5063,7 +4694,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/cloud_renew/',
@@ -5205,25 +4836,6 @@ paths:
                       "password": ",_3A26F!",
                       "pin": "belorado74"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/soft_renew/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        username: '5053349',
-                        password: ',_3A26F!',
-                        pin: 'belorado74'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -5244,7 +4856,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/soft_renew/',
@@ -5361,15 +4973,6 @@ paths:
           source: |
                   curl -i -X POST \
                     https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock/',
-                    {method: 'POST'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -5382,7 +4985,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/generate_otp_for_unlock/',
@@ -5517,26 +5120,6 @@ paths:
                       "newpin": "nuevopin33",
                       "otp": "211489"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/requests/25139/unlock_pin/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        scratchcard: '5053349',
-                        enrollment_code: '7T8xdGBN',
-                        newpin: 'nuevopin33',
-                        otp: '211489'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -5558,7 +5141,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/requests/25139/unlock_pin/',
@@ -5697,15 +5280,6 @@ paths:
           source: |
                   curl -i -X GET \
                     https://api.uanataca.com/api/v1/scratchcards/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/',
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -5718,7 +5292,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/scratchcards/',
@@ -5835,15 +5409,6 @@ paths:
           source: |
                   curl -i -X GET \
                     https://api.uanataca.com/api/v1/scratchcards/1200948/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/1200948/',
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -5856,7 +5421,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/scratchcards/1200948/',
@@ -5975,21 +5540,6 @@ paths:
                     -d '{
                       "ra": 121
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/get_first_unused/',
-                    {
-                      method: 'GET',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({ra: 121})
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -6008,7 +5558,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/scratchcards/get_first_unused/',
@@ -6123,21 +5673,6 @@ paths:
                     -d '{
                       "sn": "1200948"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/isused/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({sn: '1200948'})
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -6156,7 +5691,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/scratchcards/isused/',
@@ -6345,25 +5880,6 @@ paths:
                       "erc": "1551329333",
                       "reason": "UNSPECIFIED"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/revoke/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        scratchcard: '5053349',
-                        erc: '1551329333',
-                        reason: 'UNSPECIFIED'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -6384,7 +5900,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/scratchcards/revoke/',
@@ -6634,24 +6150,6 @@ paths:
                       "scratchcard": "5053349",
                       "erc": ",_3A26F!"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/whoami/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        scratchcard: '5053349',
-                        erc: ',_3A26F!'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -6671,7 +6169,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/scratchcards/whoami/',
@@ -6809,25 +6307,6 @@ paths:
                       "to_ra": 121,
                       "amount": 1000
                      }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/move/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        from_ra: 364,
-                        to_ra: 121,
-                        amount: 1000
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -6848,7 +6327,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/scratchcards/move/',
@@ -7093,40 +6572,6 @@ paths:
                       "url": "http://www.organization.com",
                       "country": "ES"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        name: 'RA Name',
-                        parent: '1',
-                        enabled_from: '2020-07-20',
-                        enabled_until: '2020-07-20',
-                        organization_tax_number: 'A9999999W',
-                        organization_name: 'Name_Org',
-                        responsible_name: 'Name_Resp',
-                        responsible_first_surname: 'Sur1_Resp',
-                        responsible_second_surname: 'Sur2_Resp',
-                        responsible_serial: 'X11111111C',
-                        email: 'mail@domain.com',
-                        fix_phone_number: '+34333333333',
-                        address: 'Address Name',
-                        city: 'City Name',
-                        postal_code: '1000000',
-                        province: 'Province_Name',
-                        url: 'http://www.organization.com',
-                        country: 'ES'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -7162,7 +6607,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/registrationauthorities/',
@@ -7343,15 +6788,6 @@ paths:
           source: |
                   curl -i -X GET \
                     https://api.uanataca.com/api/v1/registrationauthorities/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities/',
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -7364,7 +6800,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/registrationauthorities/',
@@ -7494,15 +6930,6 @@ paths:
           source: |
                   curl -i -X GET \
                     https://api.uanataca.com/api/v1/registrationauthorities/121/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities/121/',
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -7515,7 +6942,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/registrationauthorities/121/',
@@ -7698,24 +7125,6 @@ paths:
                       "enabled_until": "2028-07-20",
                       "email": "new_mail@domain.com"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/registrationauthorities/121/',
-                    {
-                      method: 'PUT',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        enabled_until: '2028-07-20',
-                        email: 'new_mail@domain.com'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -7735,7 +7144,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/registrationauthorities/121/',
@@ -7926,30 +7335,6 @@ paths:
                       "id_document_number": "Y8888888E",
                       "email": "mail@domain"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        registration_authority_master: 1,
-                        registration_authority: ["121", "122", "123"],
-                        certificate: '25714',
-                        given_name: 'RAO_Name',
-                        surname_1: 'RAO_Surname1',
-                        surname_2: 'RAO_Surname2',
-                        id_document_number: 'Y8888888E',
-                        email: 'mail@domain'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -7975,7 +7360,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/rao/',
@@ -8123,20 +7508,6 @@ paths:
           source: |
                   curl -i -X GET \
                     'https://api.uanataca.com/api/v1/rao?filter1=registration_authority&filter2=given_name'
-        - lang: 'Javascript'
-          source: |
-                  const query = new URLSearchParams({
-                    filter1: 'registration_authority',
-                    filter2: 'given_name'
-                  }).toString();
-
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao?' + query,
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -8154,7 +7525,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const query = new URLSearchParams({
                     filter1: 'registration_authority',
@@ -8304,15 +7675,6 @@ paths:
           source: |
                   curl -i -X GET \
                     https://api.uanataca.com/api/v1/rao/1400/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao/1400/',
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -8325,7 +7687,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/rao/1400/',
@@ -8488,23 +7850,6 @@ paths:
                     -d '{
                       "given_name": "RAO_NewName"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/rao/1400/',
-                    {
-                      method: 'PUT',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        given_name: 'RAO_NewName'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -8523,7 +7868,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/rao/1400/',
@@ -8667,26 +8012,6 @@ paths:
                       "request": 255,
                       "rao": 1400
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/users/',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        registration_authority: 1,
-                        permission_profile: 18,
-                        request: 255,
-                        rao: 1400
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -8708,7 +8033,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/users/',
@@ -8836,15 +8161,6 @@ paths:
           source: |
                   curl -i -X GET \
                     https://api.uanataca.com/api/v1/users/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/users/',
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -8857,7 +8173,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/users/',
@@ -8964,15 +8280,6 @@ paths:
           source: |
                   curl -i -X GET \
                     https://api.uanataca.com/api/v1/users/36/
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/users/36/',
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -8985,7 +8292,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/users/36/',
@@ -9114,23 +8421,6 @@ paths:
                     -d '{
                       "request": 150
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/users/',
-                    {
-                      method: 'PUT',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        request: 150
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -9149,7 +8439,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     'https://api.uanataca.com/api/v1/users/',
@@ -9528,26 +8818,6 @@ paths:
                       "pin": "belorado74",
                       "rao_id": "1400"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    `https://api.uanataca.com/api/v1/requests/25139/validate_videoid`,
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        username: '5012345',
-                        password: 'Gy6F37xK',
-                        pin: 'belorado74',
-                        rao_id: '1400'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -9569,7 +8839,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     `https://api.uanataca.com/api/v1/requests/25139/validate_videoid`,
@@ -9725,27 +8995,6 @@ paths:
                       "rao_id": "1400",
                       "reason": "Expired document"
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    `https://api.uanataca.com/api/v1/requests/25139/refuse_videoid`,
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        username: '5012345',
-                        password: 'Gy6F37xK',
-                        pin: 'belorado74',
-                        rao_id: '1400',
-                        reason: 'Expired document'
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -9768,7 +9017,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     `https://api.uanataca.com/api/v1/requests/25139/refuse_videoid`,
@@ -9873,45 +9122,6 @@ paths:
                         "similarity_level": "high"
                       }
                     }'
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    `https://api.uanataca.com/api/v1/videoid/25139/evidences`,
-                    {
-                      method: 'PUT',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                        acceptance: {
-                          acceptance_test_data: true,
-                          another_field: 0
-                        },
-                        data: {
-                          images: {
-                            document_front: '/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAM (...)',
-                            document_rear: '/I7ye60+aOKS0mVGVSD9RVfyXukjmnS3cAEbpMVm6M1ncWqS3FszptO1lPRRDJ+orI8b (...)',
-                            document_photo: 'AkjOOwFfHFrrNlpXxcbU9QuIIIkvR56yddgHpX3GEj1PmanmdS/xV1ySVlv/AIbXLPO (...)',
-                            document_owner: 'SSVnovgCZ4Lhk+R3lJPUDJr5t/Z/wBV1DWfjRbeI75B5iQytcykc7yMEAV2/iwC0T34 (...)'
-                          },
-                          ocr_data: {
-                            given_name: 'Name',
-                            surname_1: 'Surname',
-                            mobile_phone_number: '+34999999999',
-                            serial_number: 'A9999999E'
-                          },
-                          security_checks: {
-                            a_test_check: true,
-                            another_check: true
-                          },
-                          similarity_level: 'high'
-                        }
-                      })
-                    }
-                  );
-
-                  const data = await resp.json();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -9952,7 +9162,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     `https://api.uanataca.com/api/v1/videoid/25139/evidences`,
@@ -10098,23 +9308,6 @@ paths:
                     https://api.uanataca.com/api/v1/videoid/25139/evidences/video \
                     -H 'Content-Type: multipart/form-data' \
                     -F video=@sample_folder/sample_video.mp4 
-        - lang: 'Javascript'
-          source: |
-                  var formdata = new FormData();
-                  formdata.append("type", "document_front");
-                  formdata.append("video", fileInput.files[0], "sample_folder/sample_video.mp4");
-
-                  var requestOptions = {
-                    method: 'POST',
-                    headers: myHeaders,
-                    body: formdata,
-                    redirect: 'follow'
-                  };
-
-                  fetch("https://api.uanataca.com/api/v1/videoid/25139/evidences/video", requestOptions)
-                    .then(response => response.text())
-                    .then(result => console.log(result))
-                    .catch(error => console.log('error', error));
         - lang: 'Python'
           source: |
                   import requests
@@ -10211,15 +9404,6 @@ paths:
           source: |
                   curl -i -X GET \
                     https://api.uanataca.com/api/v1/download/video/25139
-        - lang: 'Javascript'
-          source: |
-                  const resp = await fetch(
-                    `https://api.uanataca.com/api/v1/download/video/25139`,
-                    {method: 'GET'}
-                  );
-
-                  const data = await resp.text();
-                  console.log(data);
         - lang: 'Python'
           source: |
                   import requests
@@ -10232,7 +9416,7 @@ paths:
                   print(data)
         - lang: 'Node.js'
           source: |
-                  const fetch = require('node-fetch');
+                  import fetch from "node-fetch";
 
                   const resp = await fetch(
                     `https://api.uanataca.com/api/v1/download/video/25139`,
