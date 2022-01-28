@@ -375,7 +375,7 @@ For correct process completion, the following information must be delivered to t
 
 In 1-step mode Video ID, a request approval also implies its validation. For this reason, executing the validation step is not required.
 
-![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/flc-1step.png)
+![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/flc-1step.png)
 
 </br>
 
@@ -676,7 +676,7 @@ For correct process completion, the following information must be delivered to t
 
 In 2-Step mode Video ID, request validations and approvals are performed in different stages, by the same or different operators.
 
-![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/flc-2step.png)
+![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/flc-2step.png)
 
 </br>
 
@@ -1017,7 +1017,7 @@ For correct process completion, the following information must be delivered to t
 ## External Mode
 
 
-![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/test/img/flc-ext.png)
+![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/flc-ext.png)
 
 </br>
 
