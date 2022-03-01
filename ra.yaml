@@ -9772,7 +9772,7 @@ definitions:
              * **CESSATIONOFOPERATION** - Ceased
              * **PRIVILEGESWITHDRAWN** - Privileges withdrawn
              
-             The reason to suspend or activate a certificate whent it is suspended:
+            The reason to suspend or activate a certificate when this is suspended:
              * **CERTIFICATEHOLD** - Suspend a certificate
              * **NOT_REVOKED** - Activate a certificate that was suspended
              
