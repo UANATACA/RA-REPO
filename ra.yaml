@@ -5748,7 +5748,7 @@ paths:
       summary: REVOKE SCRATCHCARD
       tags:
         - Scratchcards
-      description: Revoke, suspend or activate certificates associated to the request that use the specified scratchcard.
+      description: Revokecertificates associated to the request that use the specified scratchcard.
       consumes:
         - application/json
       produces:
@@ -9763,17 +9763,17 @@ definitions:
       reason:
           type: "string"
           enum: [UNSPECIFIED, KEYCOMPROMISE, AFFILIATIONCHANGED, SUPERSEDED, CESSATIONOFOPERATION, PRIVILEGESWITHDRAWN, CERTIFICATEHOLD, NOT_REVOKED]
-          description: >
-            The reason associated to the scratchcard revocation:
+          description:
+            'The reason associated to the scratchcard revocation:</br>
              * **UNSPECIFIED** - Unspecified reason
              * **KEYCOMPROMISE** - Compromised keys
              * **AFFILIATIONCHANGED** - Affiliation changed
              * **SUPERSEDED** - Superseded
              * **CESSATIONOFOPERATION** - Ceased
-             * **PRIVILEGESWITHDRAWN** - Privileges withdrawn
-            The reason to suspend or activate a certificate whent it is suspended:
+             * **PRIVILEGESWITHDRAWN** - Privileges withdrawn</br>
+             The reason to suspend or activate a certificate whent it is suspended:
              * **CERTIFICATEHOLD** - Suspend a certificate
-             * **NOT_REVOKED** - Activate a certificate that was suspended
+             * **NOT_REVOKED** - Activate a certificate that was suspended'
              
 ###########
   WhoScrObject:
