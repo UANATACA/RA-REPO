@@ -9763,7 +9763,7 @@ definitions:
       reason:
           type: "string"
           enum: [UNSPECIFIED, KEYCOMPROMISE, AFFILIATIONCHANGED, SUPERSEDED, CESSATIONOFOPERATION, PRIVILEGESWITHDRAWN, CERTIFICATEHOLD, NOT_REVOKED]
-          description:
+          description:>
             'The reason associated to the scratchcard revocation:</br>
              * **UNSPECIFIED** - Unspecified reason
              * **KEYCOMPROMISE** - Compromised keys
