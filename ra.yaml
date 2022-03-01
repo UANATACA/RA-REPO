@@ -9770,7 +9770,8 @@ definitions:
              * **AFFILIATIONCHANGED** - Affiliation changed
              * **SUPERSEDED** - Superseded
              * **CESSATIONOFOPERATION** - Ceased
-             * **PRIVILEGESWITHDRAWN** - Privileges withdrawn</br>
+             * **PRIVILEGESWITHDRAWN** - Privileges withdrawn
+             
              The reason to suspend or activate a certificate whent it is suspended:
              * **CERTIFICATEHOLD** - Suspend a certificate
              * **NOT_REVOKED** - Activate a certificate that was suspended
