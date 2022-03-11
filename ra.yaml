@@ -119,7 +119,7 @@ A scratchcard is a virtual card containing the initial secret codes of a digital
     <td>POST</td><td><a href='#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1isused/post'>/scratchards/isused/</a></td><td>Get the status of a scratchcard</td>
   </tr>
  <tr>
-    <td>POST</td><td><a href='#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1revoke/post'>/scratchards/revoke/</a></td><td>Revoke the digital certificate associated to a scratchcard</td>
+    <td>POST</td><td><a href='#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1revoke/post'>/scratchards/revoke/</a></td><td>Revoke, suspend or activate the digital certificate associated to a scratchcard</td>
   </tr>
  <tr>
     <td>POST</td><td><a href='#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1whoami/post'>/scratchards/whoami/</a></td><td>Get the request assocaited to a scratchcard</td>
@@ -5748,7 +5748,7 @@ paths:
       summary: REVOKE SCRATCHCARD
       tags:
         - Scratchcards
-      description: Revoke certificates associated to the request that use the specified scratchcard.
+      description: Revoke, suspend or activate certificates associated to the request that use the specified scratchcard.
       consumes:
         - application/json
       produces:
@@ -9762,7 +9762,20 @@ definitions:
           description: "The scratchcard revocation code"
       reason:
           type: "string"
-          description: "The reason associated to the scratchcard revocation"
+          enum: [UNSPECIFIED, KEYCOMPROMISE, AFFILIATIONCHANGED, SUPERSEDED, CESSATIONOFOPERATION, PRIVILEGESWITHDRAWN, CERTIFICATEHOLD, NOT_REVOKED]
+          description: >
+            The reason associated to the scratchcard revocation:
+             * **UNSPECIFIED** - Unspecified reason
+             * **KEYCOMPROMISE** - Compromised keys
+             * **AFFILIATIONCHANGED** - Affiliation changed
+             * **SUPERSEDED** - Superseded
+             * **CESSATIONOFOPERATION** - Ceased
+             * **PRIVILEGESWITHDRAWN** - Privileges withdrawn
+             
+            The reason to suspend or activate a certificate when this is suspended:
+             * **CERTIFICATEHOLD** - Suspend a certificate
+             * **NOT_REVOKED** - Activate a certificate that was suspended
+             
 ###########
   WhoScrObject:
     type: "object"
