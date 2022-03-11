@@ -85,6 +85,8 @@ referenceDocs:
       level1Items:
         textTransform: 'none'
         fontFamily: 'Lato'
+    layout:
+      showDarkRightPanel: true
     rightPanel:
       backgroundColor: '#585856'
       width: '40%'
