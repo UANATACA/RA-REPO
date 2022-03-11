@@ -17,9 +17,9 @@ The Registration Authority is composed of people and processes, with the main fu
 
 Digital certificates are created and used as part of a life-cycle that includes three fundamental stages:
 
-- registration including documentation
-- data validation
-- certificate issuance
+- Registration including documentation
+- Data validation
+- Certificate issuance
 
 The complete flow is explained in the next section <a href="#section/Flow-chart">Flow chart</a> 
 
@@ -1459,11 +1459,11 @@ The following is a sample view of the JSON object that is sent as a callback at 
 
 Where:
 
-**status** is the most recent status, this is, the status that triggered the notification.</br>
-**date** is the date of the request status change in datetime format.</br>
-**previous_status** is the status inmediately previous to last change.</br>
-**request** is the request unique id.</br>
-**registration_authority** is the Registration Authority id number the request is associated.</br>
+**Status** is the most recent status, this is, the status that triggered the notification.</br>
+**Date** is the date of the request status change in datetime format.</br>
+**Previous_status** is the status inmediately previous to last change.</br>
+**Request** is the request unique id.</br>
+**Registration_authority** is the Registration Authority id number the request is associated.</br>
 
 </br>
 
@@ -1527,7 +1527,7 @@ Uanataca expose its API on urls composed as follows:
 
 <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ Make sure the URL always ends with a forward slash ("/")</blockquote>
 
-> uanatacahost
+> Uanatacahost
  
 The host changes according to the environment:
 
@@ -1536,11 +1536,11 @@ The host changes according to the environment:
 
 <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ In test environment you need to trust the certificate <a href="https://cdn.bit4id.com/es/uanataca/public/ra/Bit4idCA.crt">Bit4idCA.crt</a></blockquote>
 
-> version
+> Version
  
 It is the api version (currently **v1**)
 
-> resource
+> Resource
  
 It is the name of the resource of our interest.
 
