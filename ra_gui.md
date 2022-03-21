@@ -491,7 +491,8 @@ Through Video Identification process, evidences from the certificate subscriber 
 
 </br>
 
-If all information obtained is correct, a Certified UANATACA Operator will approve the request by signing the receipt and contract with his or her own cloud certificate.
+With the information gathered in the above mentioned process, a UANATACA Certified Operator will be in charge of validating every evidence.
+
 In case of Natural Person profiles, the request gets approved in this step, meaning that it is completed.
 
 </br>
@@ -504,19 +505,47 @@ In case of Natural Person profiles, the request gets approved in this step, mean
 
 </br>
 
-RAO entity compliments every field that does not belong to subscriber identification. This step is required for all profiles except Natural Person.
+RAO entity compliments every field that does not belong to subscriber identification.
+Be aware that the fields filled in with information obtained from the video identification process cannot be modified in any way.
+
+This step is required for all profiles except Natural Person.
 
 </br>
 
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a>
+
+    curl -i -X PUT https://api.uanataca.com/api/v1/requests/{ID}/ \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "given_name": "Name",
+      "surname_1": "Surname1",
+      "scratchcard": "1234567890",
+      "country_name": "ES",
+      "email": "mail@domain.com",
+      "profile": "PFnubeAFCiudadano",
+      "registration_authority": 64
+    }'
+
+</br>
 
 > **STEP 5: DOCUMENTS UPLOAD**
 
 </br>
 
-RAO entity uploads required documentation subject to the type of profile being issued. This step is required for all profiles except Natural Person.
+RAO entity uploads required documentation subject to the type of profile being issued.
+
+This step is required for all profiles except Natural Person.
 
 </br>
 
+**API Reference:** Upload documents
+
+    curl -i -X PUT https://api.uanataca.com/api/v1/requests/{request}/upload_videoid_evidence/ \
+    -H 'Content-Type: multipart/form-data' \
+    -F document=@sample_folder/sample.pdf \
+    -F label=test label
+
+</br>
 
 > **STEP 6: REQUEST APPROVAL**
 
@@ -598,9 +627,9 @@ The response is a JSON object with added request approval information.
 
 For correct process completion, the following information must be delivered to the requester:
 
-- The certificate in .p12 format (Software Enroll)
+- The certificate in .p12 format (Software)
 
-- The certificate set of credentials (Cloud Enroll)
+- The certificate set of credentials (Cloud)
 
 - The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> call (`type`: **signed_contract** in body)
 
