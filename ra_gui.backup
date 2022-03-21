@@ -69,8 +69,8 @@ It is a virtual scratch card containing the secret codes of the user.
 
 The card contains:
 
-- A serial number: it uniquely identifies the user
-- An enrollment code: secret code, that is sent to the user by email
+- a serial number: it uniquely identifies the user
+- an enrollment code: secret code, that is sent to the user by email
 
 It is important to notice that a **scratchcard** can be used only once. Every **request** must be associated with a different **scratchcard**.
 
@@ -370,10 +370,10 @@ For correct process completion, the following information must be delivered to t
 
 
 
-## eIDAS VideoID
+## 1-Step Validation
 
 
-In eIDAS VideoID mode, a request approval it is required. For this reason, executing the validation step is not required.(Duda)
+In 1-step mode Video ID, a request approval also implies its validation. For this reason, executing the validation step is not required.
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/flc-1step.png)
 
@@ -385,15 +385,9 @@ This certificate generation process involves the following steps:
 
 **1) CREATION OF A REQUEST**
 
-**2) VIDEO IDENTIFICATION**
+**2) REQUEST APPROVAL**
 
-**3) VALIDATION OF VIDEO IDENTIFICATION**
-
-**4) UPDATE OF REQUEST (OPTIONAL)**
-
-**5) DOCUMENTS UPLOAD (OPTIONAL)**
-
-**6) REQUEST APPROVAL**
+**3) CLOUD/SOFTWARE ENROLLMENT**
 
 </br>
 
@@ -425,7 +419,7 @@ The response is a JSON object containing the single-use Scratchcard associated d
 
 **API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests/post">Create Request</a>
 
-This call must include this parameters to success. The full description of the arguments accepted by this endpoint can be found in the call detailed documentation.
+This call must include enough information to identify the end user. The full description of the arguments accepted by this endpoint can be found in the call detailed documentation.
 
     curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
     -H 'Content-Type: application/json' \
@@ -435,9 +429,17 @@ This call must include this parameters to success. The full description of the a
       "scratchcard": "5053311",
       "secure_element": "2",
       "registration_authority": "116",
+      "country_name": "ES",
+      "serial_number": "12345678A",
+      "id_document_country": "ES",
+      "id_document_type": "IDC",
+      "given_name": "Name",
+      "surname_1": "Surname1",
+      "surname_2" "Surname2"
       "email": "mail@domain.com",
       "mobile_phone_number": "+34611223344",
-      "videoid_mode": 1
+      "videoid_mode": 1,
+      "webhook_url": "my-webhook-url.com"
     }'
 
 The response is the a JSON containing info from the created request in **VIDEOPENDING** status. One of the most important parameters from this JSON is the `pk` which represents the request unique identifier and is used for every operation related to this request.
@@ -469,61 +471,18 @@ At this point, the workflow progress will depend on the video-identification pro
 
 To inform business app and validation RAO about this change at the time it takes place, we recommend the implementation of a **Webhook**. Check our documentation for <a href='#section/Configuration/Webhooks'>Webhook Configuration</a>.</br>
 
-If request data needs to be modified, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a> call. Check API Reference.</br> (Move to step 4)
+If request data needs to be modified, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a> call. Check API Reference.</br>
 
 If request data needs to be retrieved, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a> call. Check API Reference.
 
-If request needs to be cancelled, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1cancel/delete">Cancel Request</a> call. Check API Reference.
-
 </br>
 
 
-> **STEP 2: VIDEO IDENTIFICATION**
+> **STEP 2: REQUEST APPROVAL**
 
 </br>
 
-Through Video Identification process, evidences from the certificate subscriber such as name,surname or data related to subscriber ID card are obtained.
-
-</br>
-
-
-> **STEP 3: VALIDATION OF VIDEO IDENTIFICATION**
-
-</br>
-
-If all information obtained is correct, a Certified UANATACA Operator will approve the request by signing the receipt and contract with his or her own cloud certificate.
-In case of Natural Person profiles, the request gets approved in this step, meaning that it is completed.
-
-</br>
-
-
-
-</br>
-
-> **STEP 4: UPDATE OF THE REQUEST**
-
-</br>
-
-RAO entity compliments every field that does not belong to subscriber identification. This step is required for all profiles except Natural Person.
-
-</br>
-
-
-> **STEP 5: DOCUMENTS UPLOAD**
-
-</br>
-
-RAO entity uploads required documentation subject to the type of profile being issued. This step is required for all profiles except Natural Person.
-
-</br>
-
-
-> **STEP 6: REQUEST APPROVAL**
-
-</br>
-
-To finalize a request, you must make sure to validate both additional documents and additional fields.
-Before approval, you will be shown a preview of RAO declaration.
+If all information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate. These calls are shown below:
 
 </br>
 
@@ -547,6 +506,31 @@ The following JSON object contains the receipt:
       NIE/PASAPORTE del Firmante: 11111111B\r\n- Dirección de correo electrónico del Firmante: mail@domain.com\r\n\r\n\r\n18/03/
       2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
     }
+
+</br>
+
+Similarly, it is necessary to retrieve the service contract and present it to the RAO before approval.
+
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (`type`: **contract** in body)
+
+    curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "type": "contract"
+      "rao_id": "1400"    
+    }'
+
+
+The response consists in a JSON structure containing the contract in Base64 format.
+
+    [
+      {
+        "document": "JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgaHR0cDovL3d3\ndy5yZXBvcnRsYWIuY29tCjEgMCBvYmoKPDwKL0YxIDIgMCBSCj4 (...)\n",
+        "type": "contract"
+      }
+    ]
+
+</br>
 
 **API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve Request</a>
 
@@ -591,6 +575,71 @@ The response is a JSON object with added request approval information.
         }
       }
     }
+
+</br>
+
+In case of not approving a request for any reason, the call <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1cancel/delete">Cancel Request</a> must be executed. Check API Reference.
+
+</br>
+
+> **STEP 3: CLOUD/SOFTWARE ENROLLMENT**
+
+</br>
+
+In this step, the service contract must be presented to the signer before enrollment.
+
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (`type`: **contract** in body)
+
+There are different endpoints to enroll a request depending on the secure element chosen. The next action involves sending an otp code to the requester using the calls shown below. Software and cloud certificates use the same call to send the otp code, as cloud-qscd certificates use a different one.
+
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post">Generate OTP (Cloud or Software)</a>
+
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Generate OTP (Cloud or QSCD)</a>
+
+</br>
+
+**Software**
+
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post">Software Enroll</a>
+
+For the Software enrollemnt the parameters required are the secret OTP code send to the requester and the p12password set by the requester to import the generated p12:
+
+    {
+      "secret": "123456",
+      "p12password": "password12"
+    }
+
+At the end of the enrollment the server replies with the P12 generated in PEM format.
+
+</br>
+
+**Cloud**
+
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud Enroll</a>
+
+For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
+
+    {
+      "secret": "123456",
+      "pin": "pincode12"
+    }
+
+At the end of the enrollment the server replies with a JSON containing all requesta data.
+
+</br>
+
+**Cloud-QSCD**
+
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post">Cloud-QSCD Enroll</a>
+
+For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
+
+    {
+      "secret": "123456",
+      "pin": "pincode12"
+    }
+
+After this call, the server replies with a JSON object containing all request data.
 
 </br>
 
