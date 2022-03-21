@@ -373,7 +373,7 @@ For correct process completion, the following information must be delivered to t
 ## eIDAS VideoID
 
 
-In eIDAS VideoID mode, a request approval it is required. For this reason, executing the validation step is not required.(Duda)
+This workflow defines the complete process of issuing eIDAS certificates.
 
 ![img](https://raw.githubusercontent.com/UANATACA/RA-REPO/main/img/flc-1step.png)
 
@@ -387,7 +387,7 @@ This certificate generation process involves the following steps:
 
 **2) VIDEO IDENTIFICATION**
 
-**3) VALIDATION OF VIDEO IDENTIFICATION**
+**3) VALIDATION OF VIDEO IDENTIFICATION EVIDENCES**
 
 **4) UPDATE OF REQUEST (OPTIONAL)**
 
@@ -463,17 +463,13 @@ The response is the a JSON containing info from the created request in **VIDEOPE
     }
 
 
-At this point, the workflow progress will depend on the video-identification process taken place on client side. Its successful completion will change request status from to **VIDEOREVIEW**. </br>
+At this point, the workflow progress will depend on the video-identification process performed by end user. Its successful completion will change request status to **VIDEOREVIEW**. </br>
 
 <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ In case the process is not totally completed or has failed for any reason, the request will change to <b>VIDEOINCOMPLETE</b> or <b>VIDEOERROR</b> respectively.</blockquote></br>
 
 To inform business app and validation RAO about this change at the time it takes place, we recommend the implementation of a **Webhook**. Check our documentation for <a href='#section/Configuration/Webhooks'>Webhook Configuration</a>.</br>
 
-If request data needs to be modified, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/put">Update Request</a> call. Check API Reference.</br> (Move to step 4)
-
-If request data needs to be retrieved, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a> call. Check API Reference.
-
-If request needs to be cancelled, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1cancel/delete">Cancel Request</a> call. Check API Reference.
+If a request needs to be cancelled, use the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1cancel/delete">Cancel Request</a> call.
 
 </br>
 
@@ -482,33 +478,35 @@ If request needs to be cancelled, use the <a href="#tag/Requests/paths/~1api~1v1
 
 </br>
 
-Through Video Identification process, evidences from the certificate subscriber such as name,surname or data related to subscriber ID card are obtained.
+This process is performed by end user in Uanataca platform. It can be start from a link received in an email sent to the end user.
+ 
+Through Video Identification process, evidences from the certificate subscriber such as name, surname or data related to subscriber ID card are obtained.
 
 </br>
 
 
-> **STEP 3: VALIDATION OF VIDEO IDENTIFICATION**
+> **STEP 3: VALIDATION OF VIDEO IDENTIFICATION EVIDENCES**
 
 </br>
 
 With the information gathered in the above mentioned process, a UANATACA Certified Operator will be in charge of validating every evidence.
 
-In case of Natural Person profiles, the request gets approved in this step, meaning that it is completed.
+In case of Natural Person profiles, the request gets approved in this step, meaning that the user will receive an email to complete the certificate issuance.
 
-</br>
-
-
+After this step the request status will change to **ENROLLREADY** for Natural Person profiles or **CREATED** for the rest of them.
 
 </br>
 
 > **STEP 4: UPDATE OF THE REQUEST**
 
 </br>
+<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ This step is required for all profiles except Natural Person</blockquote></br>
 
 RAO entity compliments every field that does not belong to subscriber identification.
 Be aware that the fields filled in with information obtained from the video identification process cannot be modified in any way.
 
-This step is required for all profiles except Natural Person.
+Check the required fields for each certificate profile in <a href="#section/Certificate-Profiles/Europe-(eIDAS)">eIDAS Certificate Profiles</a> list.
+
 
 </br>
 
@@ -531,10 +529,9 @@ This step is required for all profiles except Natural Person.
 > **STEP 5: DOCUMENTS UPLOAD**
 
 </br>
+<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ This step is required for all profiles except Natural Person</blockquote></br>
 
 RAO entity uploads required documentation subject to the type of profile being issued.
-
-This step is required for all profiles except Natural Person.
 
 </br>
 
@@ -551,7 +548,7 @@ This step is required for all profiles except Natural Person.
 
 </br>
 
-To finalize a request, you must make sure to validate both additional documents and additional fields.
+To complete a request, the RAO must be sure to validate both additional documents and fields.
 Before approval, you will be shown a preview of RAO declaration.
 
 </br>
@@ -579,7 +576,7 @@ The following JSON object contains the receipt:
 
 **API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve Request</a>
 
-This call makes the request ready for enrollment. Its status changes to **ENROLLREADY** after executing this call. In 1-step mode, both validation and approval occur when executing this call.
+This call makes the request ready for enrollment. Its status changes to **ENROLLREADY** after executing this call. 
 
     curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
     -H 'Content-Type: application/json' \
@@ -623,25 +620,6 @@ The response is a JSON object with added request approval information.
 
 </br>
 
-**PROCESS COMPLETION**
-
-For correct process completion, the following information must be delivered to the requester:
-
-- The certificate in .p12 format (Software)
-
-- The certificate set of credentials (Cloud)
-
-- The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> call (`type`: **signed_contract** in body)
-
-</br>
-
-> **OPTIONAL**
-
-</br>
-
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a>
-
-**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get">Download video</a>
 
 </html>
 
