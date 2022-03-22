@@ -7122,7 +7122,7 @@ paths:
     post: 
       summary: UPLOAD ADITIONAL DOCUMENT
       tags:
-        - Requests
+        - eIDAS VideoID
       description: Upload the required documentation for certificate issuance.
       produces:
         - application/json
@@ -7170,7 +7170,7 @@ paths:
     post: 
       summary: VALIDATE VIDEO ID REQUEST
       tags:
-        - Video ID
+        - External VideoID
       description: "Validation of a Video ID Request"
       consumes:
         - application/json
@@ -7563,7 +7563,7 @@ paths:
     post: 
       summary: REFUSE REQUEST
       tags:
-        - Video ID
+        - External VideoID
       description: "Refuse validation for a Video ID Request"
       consumes:
         - application/json
@@ -7743,7 +7743,7 @@ paths:
     put: 
       summary: UPLOAD DATA EVIDENCE
       tags:
-        - Video ID
+        - External VideoID
       description: "Upload Request associated data"
       consumes:
         - application/json
@@ -7924,7 +7924,7 @@ paths:
     post: 
       summary: UPLOAD VIDEO
       tags:
-        - Video ID
+        - External VideoID
       description: "Upload Request associated video"
       consumes:
         - multipart/form-data
@@ -8057,7 +8057,7 @@ paths:
     get: 
       summary: DOWNLOAD VIDEO
       tags:
-        - Video ID
+        - External VideoID
       description: "Download mp4-format binary video file associated to a Request"
       produces:
         - application/json
