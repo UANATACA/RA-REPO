@@ -228,19 +228,19 @@ This allows the management of certificate issuing by uploading external evidence
     <th>Method</th><th>Endpoint</th><th>Action</th>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post'>/requests/{id_request}/validate_videoid</a></td><td>Validate Video ID Request</td>
+    <td>POST</td><td><a href='#tag/External-VideoID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post'>/requests/{id_request}/validate_videoid</a></td><td>Validate Video ID Request</td>
   </tr>
  <tr>
-    <td>POST</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1refuse_videoid/post'>/requests/{id_request}/refuse_videoid</a></td><td>Refuse Request</td>
+    <td>POST</td><td><a href='#tag/External-VideoID/paths/~1api~1v1~1requests~1{id_request}~1refuse_videoid/post'>/requests/{id_request}/refuse_videoid</a></td><td>Refuse Request</td>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post'>/upload/data/{video_identifier}/</a></td><td>Upload data evidence</td>
+    <td>POST</td><td><a href='#tag/External-VideoID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post'>/upload/data/{video_identifier}/</a></td><td>Upload data evidence</td>
   </tr>
   <tr>
-    <td>PUT</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post'>/upload/video/{video_identifier}/</a></td><td>Upload video</td>
+    <td>PUT</td><td><a href='#tag/VExternal-VideoID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post'>/upload/video/{video_identifier}/</a></td><td>Upload video</td>
   </tr>
   <tr>
-    <td>GET</td><td><a href='#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get'>/download/video/{video_identifier}/</a></td><td>Download video</td>
+    <td>GET</td><td><a href='#tag/External-VideoID/paths/~1api~1v1~1download~1video~1{video_identifier}/get'>/download/video/{video_identifier}/</a></td><td>Download video</td>
   </tr>
 </table> 
 </html>
