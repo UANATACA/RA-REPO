@@ -555,7 +555,7 @@ RAO entity uploads required documentation subject to the type of profile being i
 
 </br>
 
-**API Reference:** Upload documents
+**API Reference:** <a href='#tag/eIDAS-VideoID/paths/~1api~1v1~1requests~1{id_request}~1upload_videoid_evidence/post'>Upload documents</a>
 
     curl -i -X PUT https://api.uanataca.com/api/v1/requests/{request}/upload_videoid_evidence/ \
     -H 'Content-Type: multipart/form-data' \

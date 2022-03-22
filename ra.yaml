@@ -212,7 +212,7 @@ This allows the management of certificate issuing by establishing a video call f
     <th>Method</th><th>Endpoint</th><th>Action</th>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/eIDAS-VideoID/paths/~1api~1v1~1requests~1{id_request}~1upload_videoid_evidence/post'>/requests/{id_request}/upload_videoid_evidence</a></td><td>Upload Aditional Documents</td>
+    <td>POST</td><td><a href='#tag/eIDAS-VideoID/paths/~1api~1v1~1requests~1{id_request}~1upload_videoid_evidence/post'>/requests/{id_request}/upload_videoid_evidence</a></td><td>Upload Documents</td>
   </tr>
 </table> 
 </html>
@@ -7120,7 +7120,7 @@ paths:
 
   /api/v1/requests/{id_request}/upload_videoid_evidence:
     post: 
-      summary: UPLOAD ADITIONAL DOCUMENT
+      summary: UPLOAD DOCUMENT
       tags:
         - eIDAS VideoID
       description: Upload the required documentation for certificate issuance.
