@@ -8140,7 +8140,7 @@ definitions:
           description: "The unique identifier (PK) of the RA (it's assigned when is created)"
       identification_rao:
           type: "number"
-          description: "The ID of operator in charge of identifying, this operator has to be registered as IDENTIFICATION RAO in the respective registration authority. You are able to check it through <HTML><a href='#tag/Registration-Authority-Officer/paths/~1api~1v1~1rao~1%7Bid%7D/get'>GET RAO</a></HTML> call response, explicitly in **is_identificator** field"
+          description: "The ID of Operator in charge of identifying, this Operator has to be registered as 'Identification RAO' in the respective Registration Authority. You are able to check it through <HTML><a href='#tag/Registration-Authority-Officer/paths/~1api~1v1~1rao~1%7Bid%7D/get'>Get RAO</a></HTML> call response, explicitly in **is_identificator** field. **This field is required if the approval Operator is not the same as the identifier**"
       country_name:
           type: "string"
           description: "The country where the RA is registered"
