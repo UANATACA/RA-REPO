@@ -226,58 +226,6 @@ The response contains the uploaded document unique identifier associated to the 
 
 > **STEP 3: REQUEST APPROVAL**
 
-</br>
-
-If all information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate. These calls are shown below:
-
-</br>
-
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate RAO Declaration</a>
-
-    curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
-    -H 'Content-Type: application/json' \
-    -d '{
-      "rao": "1400",
-      "type": "APPROVE"
-    }'
-
-The following JSON object contains the receipt:
-
-    {
-      "serial_number": "3ef3696d2939241d",
-      "receipt": "El operador RAO_Name RAO_Surname1 con número de identificación 12345678P\r\nactuando en calidad de operador autorizado de registro del prestador de servicios\r\n
-      de confianza UANATACA, S.A. con NIF A66721499, (UANATACA en lo sucesivo)\r\n\r\nDECLARA\r\n\r\nQue previa verificación de acuerdo a la Declaración de Prácticas de
-      UANATACA\r\npublicadas en www.uanataca.com, la información detallada a continuación es\r\ncorrecta y será incluida (donde aplicable) en la solicitud de 
-      certificados\r\ncualificados:\r\n\r\n- Datos de Identificación de la solicitud de certificados: 36893\r\n- Nombre y Apellidos del Firmante: Name Surname1 Surname2\r\n- DNI/
-      NIE/PASAPORTE del Firmante: 11111111B\r\n- Dirección de correo electrónico del Firmante: mail@domain.com\r\n\r\n\r\n18/03/
-      2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
-    }
-
-</br>
-
-Similarly, it is necessary to retrieve the service contract and present it to the RAO before approval.
-
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (`type`: **contract**)
-
-    curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
-    -H 'Content-Type: application/json' \
-    -d '{
-      "type": "contract"
-      "rao_id": "1400"    
-    }'
-
-
-The response consists in a JSON structure containing the contract in Base64 format.
-
-    [
-      {
-        "document": "JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgaHR0cDovL3d3\ndy5yZXBvcnRsYWIuY29tCjEgMCBvYmoKPDwKL0YxIDIgMCBSCj4 (...)\n",
-        "type": "contract"
-      }
-    ]
-
-</br>
-
 **API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve Request</a>
 
 A Registration Authority Officer must first validate the request data and documentation. If the information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate.
@@ -293,73 +241,6 @@ In order to approve a Request, this must be in the status of CREATED and must ha
       "pin": "23bYQq9a",
       "rao_id": 123
     }'
-
-</br>
-
-> **STEP 4: CLOUD/SOFTWARE ENROLLMENT**
-
-</br>
-
-In this step, the service contract must be presented to the signer before enrollment.
-
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (Body `type`: **contract**)
-
-There are different endpoints to enroll a request depending on the secure element chosen. The next action involves sending an otp code to the requester using the calls shown below. Software and cloud certificates use the same call to send the otp code, as cloud-qscd certificates use a different one.
-
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post">Generate OTP (Cloud or Software)</a>
-
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Generate OTP (Cloud or QSCD)</a>
-
-</br>
-
-**SOFTWARE**
-
-</br>
-
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post">Software Enroll</a>
-
-For the Software enrollemnt the parameters required are the secret OTP code send to the requester and the p12password set by the requester to import the generated p12:
-
-    {
-      "secret": "000000",
-      "p12password": "password12"
-    }
-
-At the end of the enrollment the server replies with the P12 generated in PEM format.
-
-</br>
-
-**CLOUD**
-
-</br>
-
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud Enroll</a>
-
-For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
-
-    {
-      "secret": "000000",
-      "pin": "pincode12"
-    }
-
-At the end of the enrollment the server replies with a JSON containing all requesta data.
-
-</br>
-
-**CLOUD-QSCD**
-
-</br>
-
-API reference: <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post">Cloud-QSCD Enroll</a>
-
-For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
-
-    {
-      "secret": "000000",
-      "pin": "pincode12"
-    }
-
-At the end of enrollment the server replies with a JSON containing all request data.
 
 </br>
 
