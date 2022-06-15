@@ -500,6 +500,28 @@ The following JSON object contains the receipt:
       2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
     }
 
+
+Similarly, it is necessary to retrieve the service contract and present it to the RAO before approval.
+
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (use `type`: **contract** in body)
+
+    curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "type": "contract"
+      "rao_id": "1400"    
+    }'
+
+
+The response consists in a JSON structure containing the contract in Base64 format.
+
+    [
+      {
+        "document": "JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgaHR0cDovL3d3\ndy5yZXBvcnRsYWIuY29tCjEgMCBvYmoKPDwKL0YxIDIgMCBSCj4 (...)\n",
+        "type": "contract"
+      }
+    ]
+
 **API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve Request</a>
 
 This call makes the request ready for enrollment. Its status changes to **ENROLLREADY** after executing this call. 
