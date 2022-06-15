@@ -226,9 +226,53 @@ The response contains the uploaded document unique identifier associated to the 
 
 > **STEP 3: REQUEST APPROVAL**
 
-**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve Request</a>
-
 A Registration Authority Officer must first validate the request data and documentation. If the information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate.
+
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generates_tbs_receipt/post">Generate RAO Declaration</a>
+
+    curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/generates_tbs_receipt/ \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "rao": "1400",
+      "type": "APPROVE"
+    }'
+
+The following JSON object contains the receipt:
+
+    {
+      "serial_number": "3ef3696d2939241d",
+      "receipt": "El operador RAO_Name RAO_Surname1 con número de identificación 12345678P\r\nactuando en calidad de operador autorizado de registro del prestador de servicios\r\n
+      de confianza UANATACA, S.A. con NIF A66721499, (UANATACA en lo sucesivo)\r\n\r\nDECLARA\r\n\r\nQue previa verificación de acuerdo a la Declaración de Prácticas de
+      UANATACA\r\npublicadas en www.uanataca.com, la información detallada a continuación es\r\ncorrecta y será incluida (donde aplicable) en la solicitud de 
+      certificados\r\ncualificados:\r\n\r\n- Datos de Identificación de la solicitud de certificados: 36893\r\n- Nombre y Apellidos del Firmante: Name Surname1 Surname2\r\n- DNI/
+      NIE/PASAPORTE del Firmante: 11111111B\r\n- Dirección de correo electrónico del Firmante: mail@domain.com\r\n\r\n\r\n18/03/
+      2021\r\n\r\n\r\n\r\n--------------------------------------------------------------------\r\nFdo. User Admin\r\nOperador autorizado de registro"
+    }
+
+</br>
+
+Similarly, it is necessary to retrieve the service contract and present it to the RAO before approval.
+
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (use `type`: **contract** in body)
+
+    curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/pl_get_document/ \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "type": "contract"
+      "rao_id": "1400"    
+    }'
+
+
+The response consists in a JSON structure containing the contract in Base64 format.
+
+    [
+      {
+        "document": "JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgaHR0cDovL3d3\ndy5yZXBvcnRsYWIuY29tCjEgMCBvYmoKPDwKL0YxIDIgMCBSCj4 (...)\n",
+        "type": "contract"
+      }
+    ]
+
+**API reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve Request</a>
 
 In order to approve a Request, this must be in the status of CREATED and must have at least the required documents (document_front and document_rear).
 
@@ -243,25 +287,6 @@ In order to approve a Request, this must be in the status of CREATED and must ha
     }'
 
 </br>
-
-> **PROCESS COMPLETION**</br>
-
-
-For correct process completion, the following information must be delivered to the requester:
-
-- The certificate in .p12 format (Software Enroll)
-
-- The certificate set of credentials (Cloud Enroll)
-
-- The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> call (Body `type`: **signed_contract**)
-
-</br>
-
-> **OPTIONAL**
-
-</br>
-
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a>
 
 </html>
 
@@ -542,11 +567,8 @@ The External-Mode Video ID certificate generation process involves the following
 
 **2) UPLOAD EVIDENCES**
 
-**3) REQUEST VALIDATION**
+**3) REQUEST APPROVAL**
 
-**4) REQUEST APPROVAL**
-
-**5) CLOUD/SOFTWARE ENROLLMENT**
 
 </br>
 
@@ -717,57 +739,10 @@ If the uploaded video needs to be retrieved, use <a href="#tag/Video-ID/paths/~1
 
 </br>
 
-> **STEP 3: REQUEST VALIDATION** `2-step mode only`
+> **STEP 3: REQUEST APPROVAL**
 
 </br>
-
-**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1validate_videoid/post">Validate Video ID Request</a>
-
-A Registration Authority Officer must validate the request data and evidences before approval. This call is used only for 2-step mode.  
-
-
-    curl -i -X POST https://api.uanataca.com/api/v1/requests/25139/validate_videoid \
-    -H 'Content-Type: application/json' \
-    --cert 'cer.pem' --key 'key.pem'
-    -d '{
-      "username": "5012345",
-      "password": "Gy6F37xK",
-      "pin": "belorado74",
-      "rao_id": "1400"
-    }'
-
-The validation successful response changes the request to **CREATED** status as a JSON object containing full request information is returned.
-
-    {
-      "secrets": {
-        "puk": "38812452",
-        "enrollment_code": ".R4P9qgA",
-        "pin": "31945152",
-        "erc": "3417062505"
-      },
-      "request": {
-        "pk": 25139,
-        "given_name": "Name",
-        "surname_1": "Surname1",
-        "surname_2": "Surname2",
-        "sex": null,
-        "id_document_type": "IDC",
-        "id_document_country": "ES",
-        "serial_number": "A9999999E",
-        (...)
-      }
-    }
-
-</br>
-
 For unsuccessful validations leading to a request refusal, the corresponding call is  <a href="#tag/Video-ID/paths/~1api~1v1~1requests~1{id_request}~1refuse_videoid/post">Refuse Request</a>. Check API Reference.
-
-</br>
-
-> **STEP 4: REQUEST APPROVAL**
-
-</br>
-
 If all information is correct, the RAO will approve the request by signing the receipt and contract with his or her own cloud certificate. These calls are shown below:
 
 </br>
@@ -820,7 +795,7 @@ The response consists in a JSON structure containing the contract in Base64 form
 
 **API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_approve/post">Approve Request</a>
 
-This call makes the request ready for enrollment. Its status changes to **ENROLLREADY**. In 1-step mode, both validation and approval occur when executing this call.
+This call makes the request ready for enrollment. Its status changes to **ENROLLREADY**.
 
     curl -i -X POST 'https://api.uanataca.com/api/v1/requests/' \
     -H 'Content-Type: application/json' \
@@ -868,86 +843,13 @@ In case of not approving a request for any reason, the call <a href="#tag/Reques
 
 </br>
 
-> **STEP 4: CLOUD/SOFTWARE ENROLLMENT**
-
-</br>
-
-In this step, the service contract must be presented to the signer before enrollment.
-
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Generate Contract</a> (use `type`: **contract** in body)
-
-There are different endpoints to enroll a request depending on the secure element chosen. The next action involves sending an otp code to the requester using the calls shown below. Software and cloud certificates use the same call to send the otp code, as cloud-qscd certificates use a different one.
-
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp/post">Generate OTP (Cloud or Software)</a>
-
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_qs/post">Generate OTP (Cloud or QSCD)</a>
-
-</br>
-
-**Software**
-
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_p12_enroll/post">Software Enroll</a>
-
-For the Software enrollemnt the parameters required are the secret OTP code send to the requester and the p12password set by the requester to import the generated p12:
-
-    {
-      "secret": "000000",
-      "p12password": "password12"
-    }
-
-At the end of the enrollment the server replies with the P12 generated in PEM format.
-
-</br>
-
-**Cloud**
-
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_cloud_enroll/post">Cloud Enroll</a>
-
-For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
-
-    {
-      "secret": "000000",
-      "pin": "pincode12"
-    }
-
-At the end of the enrollment the server replies with a JSON containing all requesta data.
-
-</br>
-
-**Cloud-QSCD**
-
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1plq_cloud_enroll/post">Cloud-QSCD Enroll</a>
-
-For the cloud enrollemnt the parameters required are the secret OTP code send to the requester and the PIN code set by the requester to use the generated certificate:
-
-    {
-      "secret": "000000",
-      "pin": "pincode12"
-    }
-
-After this call, the server replies with a JSON object containing all request data.
-
-</br>
-
-**PROCESS COMPLETION**
-
-For correct process completion, the following information must be delivered to the requester:
-
-- The certificate in .p12 format (Software Enroll)
-
-- The certificate set of credentials (Cloud Enroll)
-
-- The contract signed by both parties. Available when executing the <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}~1pl_get_document/post">Get Signed Contract</a> call (use `type`: **signed_contract** in body)
-
-</br>
-
 > **OPTIONAL**
 
 </br>
 
-**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a>
+**API Reference:** <a href="#tag/Requests/paths/~1api~1v1~1requests~1{id}/get">Get Request</a> to consult any information about the request.
 
-**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get">Download video</a>
+**API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1download~1video~1{video_identifier}/get">Download video</a> to download the video recorded and uploaded in the identification part.
 
 </html>
 
@@ -958,7 +860,9 @@ For correct process completion, the following information must be delivered to t
 # Webhook Configuration
 
 
-One-Shot API requires a Webhook implemented on customer business side to manage our service callbacks. Every request status change will trigger a simple event-notification via HTTP POST, consisting on a JSON object to an URL that must be explicitly included as a **required parameter** in the <a href='#tag/Video-ID/paths/~1api~1v1~1videoid/post'>Create Video ID Request</a> call when using Uanataca 1-step or 2-step mode. 
+One-Shot API requires a Webhook implemented on customer business side to manage our service callbacks. Every request status change will trigger a simple event-notification via HTTP POST, consisting on a JSON object to an URL that must be explicitly included as a parameter in the <a href='#tag/Video-ID/paths/~1api~1v1~1videoid/post'>Create Video ID Request</a> call. Keep in mind that the webhook via parameter is just for demo purposes.
+You will have to contact your officer to set a webhook in your RA.
+
 
 The following is a sample view of the JSON object that is sent as a callback at every status change:
 

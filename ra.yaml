@@ -3218,7 +3218,7 @@ paths:
                     "detail": "JSON parse error - Expecting ',' delimiter: line 3 column 5 (char 38)"
                 }
         412:
-          description: Request disabled | not enabled for renewal | Invalid parameters | Maximum renewals reached
+          description: Precondition Failed
           schema:
             type: object
             properties:
@@ -3232,12 +3232,26 @@ paths:
                 type: string
                 description: The response status message           
           examples:
-            application/json:
-                {
+            Renewal disabled:
+                value: 
+                    "code": 421,
+                    "id": "f387051b1e2f75e2"
+                    "error": "Renewal disabled by Registration Authority Officer"
+            Not enabled for renewal:
+                value: 
+                    "code": 423,
+                    "id": "8fa1ecfd59176186"
+                    "error": "Renewal not available"
+            Renewal not available:
+                value: 
                     "code": 426,
-                    "id": "11ed087a5fed92b2",
+                    "id": "61e83b49ce6de6b3"
                     "error": "Request not enabled for renewal by RAO"
-                }
+            Invalid paramiters:
+                value: 
+                    "code": 418,
+                    "id": "5596b382cbc2b8c6"
+                    "error": "Invalid paramiters"                    
       x-codeSamples:
         - lang: 'curl'
           source: |
