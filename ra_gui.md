@@ -10795,4 +10795,4 @@ For test environment is also required to disable the SSL certificate verificatio
 `SSL certificate verification` must be set OFF.
 
 <br>
-<div id="APIReference" style="padding-top: 60px;"><h1>API Reference<h1></div>
+<div id="APIReference" style="padding-top: 60px;"><h1 style="color:black;">API Reference<h1></div>
