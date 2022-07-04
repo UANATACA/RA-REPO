@@ -3857,7 +3857,7 @@ paths:
         - in: query
           name: sn
           type: string
-          description: Number of scratchard
+          description: Number of scratchcard
           required: true
       responses:
         200:
