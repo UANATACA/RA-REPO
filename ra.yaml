@@ -3924,12 +3924,12 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/scratchcards/?registration_authority=&sn
+                    https://api.uanataca.com/api/v1/scratchcards/?registration_authority=123&sn=123456
         - lang: 'Python'
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/scratchcards/?registration_authority=&sn"
+                  url = "https://api.uanataca.com/api/v1/scratchcards/?registration_authority=123&sn=123456"
 
                   response = requests.get(url)
 
@@ -3940,7 +3940,7 @@ paths:
                   import fetch from "node-fetch";
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/?registration_authority=&sn',
+                    'https://api.uanataca.com/api/v1/scratchcards/?registration_authority=123&sn=123456',
                     {method: 'GET'}
                   );
 
@@ -3970,7 +3970,7 @@ paths:
                       
                       using (var client = new HttpClient(handler))
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/scratchcards/?registration_authority=&sn");
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/scratchcards/?registration_authority=123&sn=123456");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
