@@ -3848,6 +3848,17 @@ paths:
       description: Gets the list of scratchcards
       produces:
         - application/json
+      parameters:
+        - in: query
+          name: registration_authority
+          type: string
+          description: Registration authority number
+          required: true
+        - in: query
+          name: sn
+          type: string
+          description: Number of scratchard
+          required: true
       responses:
         200:
           description: Successful Response
@@ -3913,12 +3924,12 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/scratchcards/
+                    https://api.uanataca.com/api/v1/scratchcards/?registration_authority=&sn
         - lang: 'Python'
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/scratchcards/"
+                  url = "https://api.uanataca.com/api/v1/scratchcards/?registration_authority=&sn"
 
                   response = requests.get(url)
 
@@ -3929,7 +3940,7 @@ paths:
                   import fetch from "node-fetch";
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/',
+                    'https://api.uanataca.com/api/v1/scratchcards/?registration_authority=&sn',
                     {method: 'GET'}
                   );
 
@@ -3959,7 +3970,7 @@ paths:
                       
                       using (var client = new HttpClient(handler))
                       {
-                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/scratchcards/");
+                        var request = await client.GetAsync("https://api.uanataca.com/api/v1/scratchcards/?registration_authority=&sn");
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
