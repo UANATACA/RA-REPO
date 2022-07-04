@@ -3853,12 +3853,10 @@ paths:
           name: registration_authority
           type: string
           description: Registration authority number
-          required: true
         - in: query
           name: sn
           type: string
           description: Number of scratchcard
-          required: true
       responses:
         200:
           description: Successful Response
