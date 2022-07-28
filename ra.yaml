@@ -830,7 +830,7 @@ paths:
               type: object
               description: The JSON object with full information associated to the approved request
           examples:
-            application/pdf:
+            application/json:
                 {
                     "pk": 25139,
                     "given_name": "Name",
