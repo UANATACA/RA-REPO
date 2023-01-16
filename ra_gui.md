@@ -973,7 +973,6 @@ The host changes according to the environment:
 - **api.sandbox.uanataca.com** for sandbox environment
 - **api.uanataca.com** for production environment
 
-<blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ In test environment you need to trust the certificate <a href="https://cdn.bit4id.com/es/uanataca/public/ra/Bit4idCA.crt">Bit4idCA.crt</a></blockquote>
 
 > Version
  
@@ -11481,11 +11480,6 @@ The required fields are:
 
 `KEY file`: the file containing the certificate private key
 
-For test environment is also required to disable the SSL certificate verification in:. 
-
-**Postman settings > General > Request**
-
-`SSL certificate verification` must be set OFF.
 
 <br>
 <div id="APIReference" style="padding-top: 60px;"><h1 style="color:#585856;">API Reference<h1></div>
