@@ -7940,7 +7940,7 @@ definitions:
           description: "Certificate profile"
       validity_time:
           type: int
-          description: "Validity time for the certificate (value in days)"
+          description: "Validity time for the certificate (value in days). Values are subject to the certificate profile that is being used."
       scratchcard:
           type: "string"
           description: "Available and unused scratchcard serial number. The first unused scratchcard serial number can be obtained in the <HTML><a href='#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1get_first_unused/get'>Get first unused</a></HTML> call"
