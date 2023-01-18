@@ -7939,7 +7939,7 @@ definitions:
           type: "string"
           description: "Certificate profile"
       validity_time:
-          type: int
+          type: number
           description: "Validity time for the certificate (value in days). Values are subject to the certificate profile that is being used."
       scratchcard:
           type: "string"
