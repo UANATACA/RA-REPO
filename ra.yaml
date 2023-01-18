@@ -7938,9 +7938,12 @@ definitions:
       profile:
           type: "string"
           description: "Certificate profile"
+      validity_time:
+          type: int
+          description: "Validity time for the certificate (value in days)"
       scratchcard:
           type: "string"
-          description: "Available and unused scratchcard serial number. The first unused scratcard serial number can be obtained in the <HTML><a href='#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1get_first_unused/get'>Get first unused</a></HTML> call"
+          description: "Available and unused scratchcard serial number. The first unused scratchcard serial number can be obtained in the <HTML><a href='#tag/Scratchcards/paths/~1api~1v1~1scratchcards~1get_first_unused/get'>Get first unused</a></HTML> call"
       secure_element:
           type: "string"
           description: "Can be 0, 1 or 2 which stands respectively to Software, Smartcard and Cloud"
