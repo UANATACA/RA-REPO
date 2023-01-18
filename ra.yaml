@@ -7955,7 +7955,7 @@ definitions:
           description: "The country where the RA is registered"
       serial_number:
           type: "string"
-          description: "The country where the RA is registered"
+          description: "The user's document serial number"
       id_document_country:
           type: "string"
           description: The user's id document country two-letters code (ISO 3166-1 alpha-2)
@@ -8014,7 +8014,7 @@ definitions:
           description: "The country where the RA is registered"
       serial_number:
           type: "string"
-          description: "The country where the RA is registered"
+          description: "The user's document serial number"
       id_document_country:
           type: "string"
           description: The user's id document country two-letters code (ISO 3166-1 alpha-2)
