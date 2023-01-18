@@ -1968,7 +1968,7 @@ paths:
                     "error": "No Request matches the given query."
                 } 
         412:
-          description: Missing document
+          description: Precondition Failed
           schema:
             type: object
             properties:
@@ -1982,12 +1982,29 @@ paths:
                 type: string
                 description: The response status message                
           examples:
-            application/json:
-                {
-                    "code": "418",
-                    "id": "cacfd01333019b5a",
-                    "error": "Invalid parameters"
-                } 
+            Missing or blank parameters:
+                code: "418"
+                id: "29b7b6d28fa97f1d"
+                error: Invalid paramiters
+        500:
+          description: Internal server error
+          schema: 
+            type: object
+            properties: 
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message 
+          examples: 
+            Wrong file content-type:
+              code: "500"
+              id: "80b7dca326bf3cdd"
+              error: Invalid content_type
       x-codeSamples:
         - lang: 'curl'
           source: |
@@ -2667,18 +2684,44 @@ paths:
                     }
                 }
         400:
-          description: Bad Request / Missing required docs
-          schema:
+          description: Bad Request
+          schema: 
+            allOf:
+              - type: object
+                properties:
+                  detail:
+                    type: string
+                    description: The response status message
+              - type: object
+                properties:
+                  error:
+                    type: string
+                    description: The response status message
+          examples:
+            Missing request documents:
+              error: "Missing required docs"
+            Invalid JSON:
+              detail: "JSON parse error - Expecting ',' delimiter: line 5 column 5 (char 85)"
+        404:
+          description: Not Found
+          schema: 
             type: object
             properties:
+              code:
+                type: string
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
               error:
                 type: string
-                description: Missing required docs message
-          examples:
-            application/json:
-              {
-                  "error": "Missing required docs"
-              }
+                description: The response status message   
+          examples: 
+            Invalid request id:
+              code: "400"
+              id: "2e7ec3d691bca3c7"
+              error: ""
+
         412:
           description: Missing request parameters
           schema:
@@ -3291,7 +3334,7 @@ paths:
                     "status": "Renewal enabled for request"
                 }
         404:
-          description: Invalid parameters
+          description: Not Found
           schema:
             type: object
             properties:
@@ -3305,12 +3348,46 @@ paths:
                 type: string
                 description: The response status message           
           examples:
-            application/json:
+            Non-existent request number:
                 {
                     "code": "400",
                     "id": "f03579946f89a49e",
                     "error": "No Request matches the given query."
                 }
+            Invalid request number:
+                {
+                    "code": "400",
+                    "id": "65c411b9c308443e",
+                    "error": ""
+                }
+            
+        412:
+          description: Precondition Failed
+          schema: 
+            type: object
+            properties:
+              code:
+                type: number
+                description: The response status code
+              id:
+                type: string
+                description: The response status id
+              error:
+                type: string
+                description: The response status message  
+          examples: 
+            Request not available for enable renewal:
+              {
+                "code": "412",
+                "id": "0a15d574c826c870",
+                "error": "Request not eligible for renewal"
+              }
+            Request not issued or certificate not valid:
+              {
+                "code": "412",
+                "id": "67a1a1dae3d7a95d",
+                "error": "Invalid request status"
+              }
       x-codeSamples:
         - lang: 'curl'
           source: |
