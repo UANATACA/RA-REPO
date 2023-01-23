@@ -548,6 +548,39 @@ paths:
       tags:
         - Requests
       description: Retrieves the list of requests stored.
+      parameters: 
+        -  name: scratchcard
+           in: path
+           description: Number of scratchcard
+           required: false
+        -  name: given_name
+           in: path
+           description: Name
+           required: false
+        -  name: surname_1
+           in: path
+           description: First surname
+           required: false
+        -  name: surname_2
+           in: path
+           description: Last surname
+           required: false
+        -  name: serial_number
+           in: path
+           description: Document number
+           required: false
+        -  name: email
+           in: path
+           description: Email of the certificate owner
+           required: false
+        -  name: mobile_phone_number
+           in: path
+           description: Phone number of the certificate owner
+           required: false
+        -  name: registration_authority
+           in: path
+           description: Registration Authority number where certificate belongs
+           required: false
       produces:
         - application/json 
       responses:
