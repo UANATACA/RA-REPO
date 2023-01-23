@@ -547,7 +547,7 @@ paths:
       summary: LIST REQUESTS
       tags:
         - Requests
-      description: Retrieves the list of requests stored.
+      description: Retrieves the list of requests stored. Path parameters are only necessary if a explicit filter is wanted.
       parameters: 
         -  name: scratchcard
            in: path
