@@ -693,7 +693,7 @@ Data and images are uploaded by using the following call:
 `security_checks` : Set of validation fields associated to the client's identity (underaging, matching info, liveliness, etc) <br>
 `similarity_level` : Similarity between the client's selfie and the picture is shown on his/her ID document.  <br>
 
-    curl -i -X PUT https://api.uanataca.com/api/v1/videoid/45836/evidences \
+    curl -i -X PUT https://api.uanataca.com/api/v1/videoid/45836 \
         -H 'Content-Type: application/json' \
         -d '{
             "acceptance": {
@@ -747,7 +747,7 @@ In the same way, MP4-format Video evidence is uploaded by using the following ca
 
 **API Reference:** <a href="#tag/Video-ID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post">Upload Video</a>
 
-    curl -i -X POST https://api.uanataca.com/v1/upload/video/30e57b02819a430d8386fd85be9f499f/ \
+    curl -i -X POST https://lima.uanataca.com/v1/upload/video/30e57b02819a430d8386fd85be9f499f/ \
     -H 'Content-Type: multipart/form-data' \
     -F video=@sample_folder/sample_video.mp4 
 
@@ -966,12 +966,14 @@ Uanataca expose its API on urls composed as follows:
 
 <blockquote style="background-color: #faf3ac; border-color: #5a5a5a; color: #3b3b3b;">⚠ Make sure the URL always ends with a forward slash ("/")</blockquote>
 
-> Uanatacahost
+> Uanataca host
  
 The host changes according to the environment:
 
 - **api.sandbox.uanataca.com** for sandbox environment
+- **lima.sandbox.uanataca.com** for sandbox environment(only for external videoid flow)
 - **api.uanataca.com** for production environment
+- **lima.uanataca.com** for production environment(only for external videoid flow)
 
 
 > Version

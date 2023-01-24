@@ -234,7 +234,7 @@ This allows the management of certificate issuing by uploading external evidence
     <td>POST</td><td><a href='#tag/External-VideoID/paths/~1api~1v1~1requests~1{id_request}~1refuse_videoid/post'>/requests/{id_request}/refuse_videoid</a></td><td>Refuse Request</td>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/External-VideoID/paths/~1api~1v1~1upload~1data~1{video_identifier}/post'>/upload/data/{video_identifier}/</a></td><td>Upload data evidence</td>
+    <td>POST</td><td><a href='#tag/External-VideoID/paths/~1api~1v1~1upload~1data~1{video_pk}/put'>/upload/data/{video_pk}/</a></td><td>Upload data evidence</td>
   </tr>
   <tr>
     <td>PUT</td><td><a href='#tag/VExternal-VideoID/paths/~1api~1v1~1upload~1video~1{video_identifier}/post'>/upload/video/{video_identifier}/</a></td><td>Upload video</td>
@@ -7658,7 +7658,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/videoid/{video_identifier}/evidences:
+  /api/v1/videoid/{video_pk}:
     put: 
       summary: UPLOAD DATA EVIDENCE
       tags:
@@ -7670,9 +7670,9 @@ paths:
         - application/json
       parameters:
       - in: path
-        name: video_identifier
+        name: video_pk
         type: string
-        description: The Request unique identifier
+        description: The video request pk
         required: true
       - in: "body"
         name: "body"
@@ -7685,7 +7685,7 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X PUT \
-                    https://api.uanataca.com/api/v1/videoid/25139/evidences \
+                    https://api.uanataca.com/api/v1/videoid/25139 \
                     -H 'Content-Type: application/json' \
                     -d '{
                       "acceptance": {
@@ -7716,7 +7716,7 @@ paths:
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/videoid/25139/evidences"
+                  url = "https://api.uanataca.com/api/v1/videoid/25139"
 
                   payload = {
                     "acceptance": {
@@ -7755,7 +7755,7 @@ paths:
                   import fetch from "node-fetch";
 
                   const resp = await fetch(
-                    `https://api.uanataca.com/api/v1/videoid/25139/evidences`,
+                    `https://api.uanataca.com/api/v1/videoid/25139`,
                     {
                       method: 'PUT',
                       headers: {
@@ -7831,7 +7831,7 @@ paths:
                           }
                         }");
                         var postData = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/videoid/25139/evidences", postData);
+                        var request = await client.PutAsync("https://api.uanataca.com/api/v1/videoid/25139", postData);
                         var response = await request.Content.ReadAsStringAsync();
 
                         Console.WriteLine(response);
@@ -7839,7 +7839,7 @@ paths:
                     }
                   }
 #############
-  /api/v1/videoid/{video_identifier}/evidences/video:
+  /v1/upload/video/{video_identifier}:
     post: 
       summary: UPLOAD VIDEO
       tags:
@@ -7853,7 +7853,7 @@ paths:
       - in: path
         name: video_identifier
         type: string
-        description: The Request unique identifier
+        description: Unique request video identifier
         required: true
       - in: formData
         name: video
@@ -7895,14 +7895,14 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X POST \
-                    https://api.uanataca.com/api/v1/videoid/25139/evidences/video \
+                    https://lima.uanataca.com/v1/upload/video/f8402ee3844b48a1a84aff69b48b \
                     -H 'Content-Type: multipart/form-data' \
                     -F video=@sample_folder/sample_video.mp4 
         - lang: 'Python'
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/videoid/25139/evidences/video"
+                  url = "https://lima.uanataca.com/v1/upload/video/f8402ee3844b48a1a84aff69b48b"
 
                   payload={'type': 'document_front'}
                   files=[
@@ -7926,7 +7926,7 @@ paths:
                   formData.append('type', 'document_front');
                   formData.append('document', fs.createReadStream('sample_folder/sample_video.mp4'));
 
-                  const url = 'https://api.uanataca.com/api/v1/videoid/25139/evidences/video';
+                  const url = 'https://lima.uanataca.com/v1/upload/video/f8402ee3844b48a1a84aff69b48b';
 
                   var options = {
                     method: 'POST',
@@ -7953,7 +7953,7 @@ paths:
                       {
                           X509Certificate2 clientCert = new X509Certificate2("./path_to_cert/certfile.p12", "p12passwd"); // RA authentication certificate
 
-                          var client = new RestClient("https://api.uanataca.com/api/v1/videoid/25139/evidences/video");
+                          var client = new RestClient("https://lima.uanataca.com/v1/upload/video/f8402ee3844b48a1a84aff69b48b");
                           client.Timeout = -1;
                           client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
                           client.ClientCertificates = new X509CertificateCollection() { clientCert };
