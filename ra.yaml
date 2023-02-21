@@ -193,6 +193,12 @@ Manage digital certicate requests life-cycle.</br>
     <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1disable_renewal/post'>/requests/{id}/disable_renewal/</a></td><td>Disable the renewal option for a request's certificate</td>
   </tr>
 <tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1disable_renewal/post'>/requests/{id}/disable_renewal/</a></td><td>Disable the renewal option for a request's certificate</td>
+  </tr>
+<tr>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1disable_renewal/post'>/requests/{id}/disable_renewal/</a></td><td>Disable the renewal option for a request's certificate</td>
+  </tr>
+<tr>
     <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1generate_otp_for_unlock/post'>/requests/{id}/generate_otp_for_unlock/</a></td><td>Send an OTP code for reset or unlock PIN</td>
   </tr>
 <tr>
@@ -3573,7 +3579,158 @@ paths:
                       }
                     }
                   }
+#############
+/api/v1/requests/{id}/renewal_status/:
+  get: 
+    summary: GET RENEWAL STATUS
+    tags:
+      - Requests
+    description: Displays information about renewal status of a request
+    produces:
+      - application/json
+    parameters:
+      - in: path
+        name: id
+        type: string
+        description: The response status message
+        required: true
+    responses:
+      200:
+        description: Successful Response
+        schema:
+          type: object
+          properties:
+            request_is_renewable:
+              type: boolean
+              description: Shows if the request is eligible for renewal
+            renewal_enabled:
+              type: boolean
+              description: Shows if the request has renewal enabled
+            reason:
+              type: string
+              description: Detailed reason of the current status
+        examples:
+          application/json:
+              {
+                "request_is_renewable": false,
+                "renewal_enabled": false,
+                "reason": "Not yet enabled"
+              }
+#############
+#  /api/v1/requests/{id}/approve_renewal/:
+#   post: 
+#     summary: APPROVE RENEWAL
+#     tags:
+#       - Requests
+#     description: Approves the review of eIDAS representative profiles renewals
+#     produces:
+#       - application/json
+#     parameters:
+#       - in: path
+#         name: id
+#         type: string
+#         description: The response status message
+#         required: true
+#     responses:
+#       200:
+#         description: Successful Response
+#         schema:
+#           type: object
+#           properties:
+#             request_is_renewable:
+#               type: boolean
+#               description: Shows if the request is eligible for renewal
+#             renewal_enabled:
+#               type: boolean
+#               description: Shows if the request has renewal enabled
+#             reason:
+#               type: string
+#               description: Detailed reason of the current status
+#         examples:
+#           application/json:
+#               {
+#                 "request_is_renewable": false,
+#                 "renewal_enabled": false,
+#                 "reason": "Not yet enabled"
+#               }
+#############
+#  /api/v1/requests/{id}/upload_renewal_document/:
+#   post: 
+#     summary: UPLOAD RENEWAL DOCUMENTS
+#     tags:
+#       - Requests
+#     description: Upload documentation for eIDAS representative profiles renewals
+#     produces:
+#       - application/json
+#     parameters:
+#       - in: path
+#         name: id
+#         type: string
+#         description: The response status message
+#         required: true
+#        - in: body
+#          name: body
+#          schema:
+#     responses:
+#       200:
+#         description: Successful Response
+#         schema:
+#           type: object
+#           properties:
 
+#         examples:
+#           application/json:
+#               {
+#                 "request_is_renewable": false,
+#                 "renewal_enabled": false,
+#                 "reason": "Not yet enabled"
+#               }
+#############
+/api/v1/requests/{id}/check_contact_data_limits/:
+  post: 
+    summary: CHECK CONTACT DATA
+    tags:
+      - Requests
+    description: Checks if the given contact data is already in use.
+    produces:
+      - application/json
+    parameters:
+      - in: body
+        name: body
+        schema:
+          type: object
+          properties:
+            registration_authority:
+              type: number
+              description: Registration authority number where the contact data it's going to be consulted.
+            serial_number:
+              type: string
+              description: Serial number to check
+            email:
+              type: string
+              description: Email address to check
+            mobile_phone_number:
+              type: string
+              description: Mobile phone number to check
+          
+    responses:
+      200:
+        description: Successful Response
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              description: Successful status message
+            message: 
+              type: number
+              description: Successful status description
+        examples:
+          application/json:
+              {
+                  "status": "success",
+                  "message": "OTP sent via SMS"
+              }
 #############
   /api/v1/requests/{id}/generate_otp_for_unlock:
     post: 
@@ -4059,12 +4216,12 @@ paths:
         - lang: 'curl'
           source: |
                   curl -i -X GET \
-                    https://api.uanataca.com/api/v1/scratchcards/1200948/
+                    https://api.uanataca.com/api/v1/scratchcards/1045/
         - lang: 'Python'
           source: |
                   import requests
 
-                  url = "https://api.uanataca.com/api/v1/scratchcards/1200948/"
+                  url = "https://api.uanataca.com/api/v1/scratchcards/1045/"
 
                   response = requests.get(url)
 
@@ -4075,7 +4232,7 @@ paths:
                   import fetch from "node-fetch";
 
                   const resp = await fetch(
-                    'https://api.uanataca.com/api/v1/scratchcards/1200948/',
+                    'https://api.uanataca.com/api/v1/scratchcards/1045/',
                     {method: 'GET'}
                   );
 
