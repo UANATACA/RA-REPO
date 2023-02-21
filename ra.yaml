@@ -193,7 +193,7 @@ Manage digital certicate requests life-cycle.</br>
     <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1disable_renewal/post'>/requests/{id}/disable_renewal/</a></td><td>Disable the renewal option for a request's certificate</td>
   </tr>
   <tr>
-    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1renewal_status~1/get'>/requests/{id}/renewal_statys/</a></td><td>Displays information about renewal status of a request</td>
+    <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1renewal_status~1/get'>/requests/{id}/renewal_status/</a></td><td>Displays information about renewal status of a request</td>
   </tr>
   <tr>
   <td>POST</td><td><a href='#tag/Requests/paths/~1api~1v1~1requests~1{id}~1check_contact_data_limits~1/post'>/requests/{id}/check_contact_data_limits/</a></td><td>Checks if the given contact data is already in use</td>
