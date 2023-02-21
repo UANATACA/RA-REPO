@@ -3574,42 +3574,42 @@ paths:
                     }
                   }
 #############
-/api/v1/requests/{id}/renewal_status/:
-  get: 
-    summary: GET RENEWAL STATUS
-    tags:
-      - Requests
-    description: Displays information about renewal status of a request
-    produces:
-      - application/json
-    parameters:
-      - in: path
-        name: id
-        type: string
-        description: The response status message
-        required: true
-    responses:
-      200:
-        description: Successful Response
-        schema:
-          type: object
-          properties:
-            request_is_renewable:
-              type: boolean
-              description: Shows if the request is eligible for renewal
-            renewal_enabled:
-              type: boolean
-              description: Shows if the request has renewal enabled
-            reason:
-              type: string
-              description: Detailed reason of the current status
-        examples:
-          application/json:
-              {
-                "request_is_renewable": false,
-                "renewal_enabled": false,
-                "reason": "Not yet enabled"
-              }
+  /api/v1/requests/{id}/renewal_status/:
+    get: 
+      summary: GET RENEWAL STATUS
+      tags:
+        - Requests
+      description: Displays information about renewal status of a request
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: The response status message
+          required: true
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            properties:
+              request_is_renewable:
+                type: boolean
+                description: Shows if the request is eligible for renewal
+              renewal_enabled:
+                type: boolean
+                description: Shows if the request has renewal enabled
+              reason:
+                type: string
+                description: Detailed reason of the current status
+          examples:
+            application/json:
+                {
+                  "request_is_renewable": false,
+                  "renewal_enabled": false,
+                  "reason": "Not yet enabled"
+                }
 #############
 #  /api/v1/requests/{id}/approve_renewal/:
 #   post: 
@@ -3680,51 +3680,51 @@ paths:
 #                 "reason": "Not yet enabled"
 #               }
 #############
-/api/v1/requests/{id}/check_contact_data_limits/:
-  post: 
-    summary: CHECK CONTACT DATA
-    tags:
-      - Requests
-    description: Checks if the given contact data is already in use.
-    produces:
-      - application/json
-    parameters:
-      - in: "body"
-        name: "body"
-        schema:
-          type: object
-          properties:
-            registration_authority:
-              type: number
-              description: Registration authority number where the contact data it's going to be consulted.
-            serial_number:
-              type: string
-              description: Serial number to check
-            email:
-              type: string
-              description: Email address to check
-            mobile_phone_number:
-              type: string
-              description: Mobile phone number to check
-          
-    responses:
-      200:
-        description: Successful Response
-        schema:
-          type: object
-          properties:
-            status:
-              type: string
-              description: Successful status message
-            message: 
-              type: number
-              description: Successful status description
-        examples:
-          application/json:
-              {
-                "result": "ok",
-                "registration_authority": 7
-              }
+  /api/v1/requests/{id}/check_contact_data_limits/:
+    post: 
+      summary: CHECK CONTACT DATA
+      tags:
+        - Requests
+      description: Checks if the given contact data is already in use.
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            type: object
+            properties:
+              registration_authority:
+                type: number
+                description: Registration authority number where the contact data it's going to be consulted.
+              serial_number:
+                type: string
+                description: Serial number to check
+              email:
+                type: string
+                description: Email address to check
+              mobile_phone_number:
+                type: string
+                description: Mobile phone number to check
+            
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: Successful status message
+              message: 
+                type: number
+                description: Successful status description
+          examples:
+            application/json:
+                {
+                  "result": "ok",
+                  "registration_authority": 7
+                }
 #############
   /api/v1/requests/{id}/generate_otp_for_unlock:
     post: 
