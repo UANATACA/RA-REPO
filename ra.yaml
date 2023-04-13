@@ -3719,18 +3719,40 @@ paths:
           schema:
             type: object
             properties:
-              status:
+              reason:
                 type: string
-                description: Successful status message
-              message: 
+                description: Response reason
+              result: 
+                type: string
+                description: Response result
+              registration_authority: 
                 type: number
-                description: Successful status description
+                description: Registration authority checked
           examples:
-            application/json:
-                {
-                  "result": "ok",
-                  "registration_authority": 7
-                }
+            Succesful Response:
+              summary: Succesful Response
+              value:
+                result: ok
+                registration_authority: 1
+            mobile_phone_number response:
+              summary: mobile_phone_number already used
+              value:
+                reason: Too many different documents associated to the same phone number
+                result: ko
+                registration_authority: 1
+            email response:
+              summary: email already used
+              value:
+                reason: Too many different documents associated to the same email address
+                result: ko
+                registration_authority: 1  
+            contact data response:
+              summary: Contact data already used
+              value:
+                reason: Too many different documents associated to the same email and phone
+                result: ko
+                registration_authority: 1  
+        
 #############
   /api/v1/requests/{id}/generate_otp_for_unlock:
     post: 
