@@ -3730,25 +3730,17 @@ paths:
                 description: Registration authority checked
           examples:
             Succesful Response:
-              summary: Succesful Response
-              value:
                 result: ok
                 registration_authority: 1
             mobile_phone_number response:
-              summary: mobile_phone_number already used
-              value:
                 reason: Too many different documents associated to the same phone number
                 result: ko
                 registration_authority: 1
             email response:
-              summary: email already used
-              value:
                 reason: Too many different documents associated to the same email address
                 result: ko
                 registration_authority: 1  
             contact data response:
-              summary: Contact data already used
-              value:
                 reason: Too many different documents associated to the same email and phone
                 result: ko
                 registration_authority: 1  
