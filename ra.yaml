@@ -3686,7 +3686,7 @@ paths:
 #                 "reason": "Not yet enabled"
 #               }
 #############
-  /api/v1/requests/{id}/check_contact_data_limits/:
+  /api/v1/requests/check_contact_data_limits/:
     post: 
       summary: CHECK CONTACT DATA
       tags:
